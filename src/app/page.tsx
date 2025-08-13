@@ -26,7 +26,7 @@ export default function Home() {
             Fun games we played on our hiking trip
           </p>
           <p className="text-sm text-slate-300 mt-2 opacity-80">
-            Liechtenstein • 2024
+            Liechtenstein • 2025
           </p>
         </header>
 
