@@ -283,8 +283,8 @@ export default function ImposterPage() {
                   <div className="text-2xl font-bold mb-4">YOU ARE THE</div>
                   <div className="text-3xl font-bold text-red-400 mb-6 animate-pulse">IMPOSTER</div>
                   <div className="text-base leading-relaxed">
-                    You don't know the item!<br />
-                    Listen to others' clues and try to blend in.
+                    You don&apos;t know the item!<br />
+                    Listen to others&apos; clues and try to blend in.
                   </div>
                 </>
               ) : (
@@ -293,7 +293,7 @@ export default function ImposterPage() {
                   <div className="text-base leading-relaxed">
                     This is the item.<br />
                     Give clues that show you know it,<br />
-                    but don't make it too obvious!
+                    but don&apos;t make it too obvious!
                   </div>
                 </>
               )}

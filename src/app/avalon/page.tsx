@@ -1,7 +1,7 @@
 'use client';
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 type Character = {
   name: string;
@@ -73,10 +73,10 @@ export default function AvalonPage() {
 
   const selectPlayers = (num: number) => {
     setGameState(prev => ({ ...prev, numPlayers: num }));
-    selectDefaultCharacters(num);
+    selectDefaultCharacters();
   };
 
-  const selectDefaultCharacters = (numPlayers: number) => {
+  const selectDefaultCharacters = () => {
     // Reset to empty selection when changing player count
     setGameState(prev => ({ ...prev, selectedCharacters: [] }));
   };
@@ -238,10 +238,10 @@ export default function AvalonPage() {
     setVoteCardFlipped(false);
   };
 
-  const questPassed = () => {
+  const questPassed = useCallback(() => {
     const failVotes = gameState.questVotes.filter(v => v === 'fail').length;
     return failVotes === 0 || (gameState.currentQuest === 4 && gameState.numPlayers >= 7 && failVotes < 2);
-  };
+  }, [gameState.questVotes, gameState.currentQuest, gameState.numPlayers]);
 
   useEffect(() => {
     if (currentScreen === 'questResult') {
@@ -251,7 +251,7 @@ export default function AvalonPage() {
         questResults: [...prev.questResults, passed]
       }));
     }
-  }, [currentScreen, gameState.questVotes]);
+  }, [currentScreen, gameState.questVotes, questPassed]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-800 text-white overflow-hidden">
