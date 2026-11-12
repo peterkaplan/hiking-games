@@ -45,7 +45,19 @@ async function main() {
   pres.layout = "LAYOUT_WIDE";
   pres.theme = { headFontFace: THEME.headFontFace, bodyFontFace: THEME.bodyFontFace };
   pres.title = "Marea Sling - concept proposal";
-  const C = pres.SchemeColor;
+  const T = THEME.colors;
+  const C = { text1: T.dk1, text2: T.dk2, background1: T.lt1, background2: T.lt2, accent1: T.accent1, accent2: T.accent2, accent3: T.accent3, accent4: T.accent4, accent5: T.accent5, accent6: T.accent6 };
+  const TITLE = {
+    Content: { x: 0.6, y: 0.45, w: 12.1, h: 0.95, color: T.dk1 },
+    ImageLeft: { x: 6.6, y: 0.45, w: 6.1, h: 1.5, color: T.dk1 },
+    ImageRight: { x: 0.6, y: 0.45, w: 6.1, h: 1.5, color: T.dk1 },
+    Dark: { x: 0.6, y: 0.45, w: 12.1, h: 0.95, color: T.lt1 },
+  };
+  const titled = (master, sectionTitle, text) => {
+    const sl = pres.addSlide({ masterName: master, sectionTitle });
+    sl.addText(text, { isTextBox: true, margin: 0, fontSize: 36, bold: true, fontFace: THEME.headFontFace, valign: "top", align: "left", ...TITLE[master] });
+    return sl;
+  };
   const W = 13.333;
   const H = 7.5;
 
@@ -65,12 +77,6 @@ async function main() {
     background: { color: C.background1 },
     objects: [
       ...footer(C.accent6),
-      {
-        placeholder: {
-          options: { name: "title", type: "title", x: 0.6, y: 0.45, w: 12.1, h: 0.95, fontSize: 36, bold: true, color: C.text1, valign: "top", align: "left", margin: 0 },
-          text: "",
-        },
-      },
     ],
     slideNumber: num(C.accent6),
   });
@@ -84,12 +90,6 @@ async function main() {
           options: { x: 6.6, y: 7.0, w: 5, h: 0.3, fontSize: 10, color: C.accent6, charSpacing: 2, margin: 0 },
         },
       },
-      {
-        placeholder: {
-          options: { name: "title", type: "title", x: 6.6, y: 0.45, w: 6.1, h: 1.5, fontSize: 36, bold: true, color: C.text1, valign: "top", align: "left", margin: 0 },
-          text: "",
-        },
-      },
     ],
     slideNumber: num(C.accent6),
   });
@@ -98,12 +98,6 @@ async function main() {
     background: { color: C.background1 },
     objects: [
       ...footer(C.accent6),
-      {
-        placeholder: {
-          options: { name: "title", type: "title", x: 0.6, y: 0.45, w: 6.1, h: 1.5, fontSize: 36, bold: true, color: C.text1, valign: "top", align: "left", margin: 0 },
-          text: "",
-        },
-      },
     ],
   });
   pres.defineSlideMaster({
@@ -111,12 +105,6 @@ async function main() {
     background: { color: C.text1 },
     objects: [
       ...footer(C.accent4),
-      {
-        placeholder: {
-          options: { name: "title", type: "title", x: 0.6, y: 0.45, w: 12.1, h: 0.95, fontSize: 36, bold: true, color: C.background1, valign: "top", align: "left", margin: 0 },
-          text: "",
-        },
-      },
     ],
     slideNumber: num(C.accent4),
   });
@@ -134,8 +122,8 @@ async function main() {
   body(s, "Design direction, materials, feasibility and plan", { x: 0.6, y: 6.5, w: 4.0, h: 0.4, fontSize: 14, color: C.accent4 });
 
   // ---------------------------------------------------------------- 2 brief
-  s = pres.addSlide({ masterName: "Content", sectionTitle: "Concept" });
-  s.addText("The brief: living-room leather, taken to the shoreline", { placeholder: "title" });
+  s = titled("Content", "Concept", "The brief: living-room leather, taken to the shoreline");
+
   s.addImage({ path: img("ref1.jpg"), x: 0.6, y: 1.75, w: 3.1, h: 3.1, objectName: "Client reference 1" });
   s.addImage({ path: img("ref2.jpg"), x: 3.95, y: 1.75, w: 3.1, h: 3.1, objectName: "Client reference 2" });
   body(s, "Client reference 1: sling lounger on a black sled frame", { x: 0.6, y: 4.95, w: 3.1, h: 0.6, fontSize: 12, color: C.accent6 });
@@ -155,8 +143,8 @@ async function main() {
   body(s, "What we left behind: bulk. Thick padding and deep upholstery read as indoor furniture and hold water and sand.", { x: 0.6, y: 5.85, w: 12.1, h: 0.7, fontSize: 16, italic: true, color: C.accent1 });
 
   // -------------------------------------------------------------- 3 concept
-  s = pres.addSlide({ masterName: "Content", sectionTitle: "Concept" });
-  s.addText("One line of metal, one panel of woven leather", { placeholder: "title" });
+  s = titled("Content", "Concept", "One line of metal, one panel of woven leather");
+
   s.addImage({ path: img("hero.jpg"), x: 5.1, y: 1.7, w: 7.63, h: 5.09, objectName: "Hero render, cognac and brass" });
   const ideas = [
     ["A single bent tube", "Runners, legs and both cross bars are one continuous loop, so the frame reads as jewellery, not scaffolding."],
@@ -170,9 +158,9 @@ async function main() {
   });
 
   // -------------------------------------------------------------- 4 details
-  s = pres.addSlide({ masterName: "ImageLeft", sectionTitle: "Concept" });
+  s = titled("ImageLeft", "Concept", "The details carry the price point");
   s.addImage({ path: img("detail.jpg"), x: 0, y: 0, w: 6.0, h: H, objectName: "Detail render" });
-  s.addText("The details carry the price point", { placeholder: "title" });
+
   const det = [
     ["Woven panel", "22 mm strips, diagonal over-under weave, rolled leather binding on both edges."],
     ["Stitched cuffs", "A plain leather sleeve wraps each bar, closed with a double row of contrast saddle stitch."],
@@ -188,8 +176,8 @@ async function main() {
   });
 
   // ----------------------------------------------------------- 5 colourways
-  s = pres.addSlide({ masterName: "Content", sectionTitle: "Concept" });
-  s.addText("Three colourways from one frame and one pattern", { placeholder: "title" });
+  s = titled("Content", "Concept", "Three colourways from one frame and one pattern");
+
   const ways = [
     ["way-cognac.jpg", "Cognac / Brass", "The signature. Closest to both client references.", "A8572A"],
     ["way-noir.jpg", "Noir / Steel", "Sharper and more urban. Runs hottest in direct sun.", "141414"],
@@ -204,9 +192,9 @@ async function main() {
   });
 
   // -------------------------------------------------------------- 6 context
-  s = pres.addSlide({ masterName: "ImageRight", sectionTitle: "Concept" });
+  s = titled("ImageRight", "Concept", "Sold as a set, shot as a campaign");
   s.addImage({ path: img("wide.jpg"), x: 7.33, y: 0, w: 6.0, h: H, objectName: "Wide render with parasol" });
-  s.addText("Sold as a set, shot as a campaign", { placeholder: "title" });
+
   body(s, "The lounger is strongest as part of a small family of pieces that share leather, metal and stitch.", { x: 0.6, y: 2.2, w: 6.1, h: 0.9, fontSize: 16 });
   body(
     s,
@@ -222,8 +210,8 @@ async function main() {
 
   // ------------------------------------------------------------ 7 materials
   pres.addSection({ title: "Making it real" });
-  s = pres.addSlide({ masterName: "Content", sectionTitle: "Making it real" });
-  s.addText("Materials: looks like leather, built like a boat", { placeholder: "title" });
+  s = titled("Content", "Making it real", "Materials: looks like leather, built like a boat");
+
   const hdr = (t) => ({ text: t, options: { bold: true, color: C.background1, fill: { color: C.text1 }, fontSize: 14 } });
   const part = (t) => ({ text: t, options: { bold: true, color: C.text1 } });
   const rows = [
@@ -243,8 +231,8 @@ async function main() {
   });
 
   // ---------------------------------------------------------- 8 feasibility
-  s = pres.addSlide({ masterName: "Content", sectionTitle: "Making it real" });
-  s.addText("Will it work? Yes, with one change: no real hide", { placeholder: "title" });
+  s = titled("Content", "Making it real", "Will it work? Yes, with one change: no real hide");
+
   const risks = [
     ["FaWater", "Salt and corrosion", "Untreated leather cracks and brass tarnishes in weeks. Marine material and PVD steel solve both."],
     ["FaSun", "Sun and heat", "Dark surfaces get hot. The open weave ventilates, and Ecru is offered for full-sun use."],
@@ -264,8 +252,8 @@ async function main() {
   }
 
   // ------------------------------------------------------------ 9 the spec
-  s = pres.addSlide({ masterName: "Content", sectionTitle: "Making it real" });
-  s.addText("Concept dimensions, to be confirmed at prototype", { placeholder: "title" });
+  s = titled("Content", "Making it real", "Concept dimensions, to be confirmed at prototype");
+
   const stats = [
     ["69 cm", "overall width"],
     ["121 cm", "overall length"],
@@ -290,8 +278,8 @@ async function main() {
   );
 
   // --------------------------------------------------------------- 10 tiers
-  s = pres.addSlide({ masterName: "Content", sectionTitle: "Making it real" });
-  s.addText("Three build tiers set the price, not the look", { placeholder: "title" });
+  s = titled("Content", "Making it real", "Three build tiers set the price, not the look");
+
   const tiers = [
     ["Resort", "$", "Powder-coated aluminium frame in a brass tone", "Machine-cut marine vinyl weave", "Lightest and lowest cost. Best for hotel and club volume", false],
     ["Signature", "$$", "316 stainless frame with PVD brass", "Hand-woven premium leather-look marine material", "Recommended. Looks identical to the renders and lasts", true],
@@ -313,8 +301,8 @@ async function main() {
 
   // ------------------------------------------------------------- 11 roadmap
   pres.addSection({ title: "Plan" });
-  s = pres.addSlide({ masterName: "Content", sectionTitle: "Plan" });
-  s.addText("From render to first chairs in about five months", { placeholder: "title" });
+  s = titled("Content", "Plan", "From render to first chairs in about five months");
+
   const steps = [
     ["Weeks 1-2", "Sign-off", "Pick colourway and tier. Freeze the silhouette"],
     ["Weeks 3-5", "Engineering", "CAD, tube sizing, load analysis, sling fixing detail"],
@@ -335,8 +323,8 @@ async function main() {
   body(s, "Timings are indicative and depend on supplier lead times. The prototype is the gate: nothing is ordered in volume before it passes.", { x: 0.6, y: 5.7, w: 12.1, h: 0.7, fontSize: 16, italic: true, color: C.accent1 });
 
   // ------------------------------------------------------------- 12 closing
-  s = pres.addSlide({ masterName: "Dark", sectionTitle: "Plan" });
-  s.addText("Three decisions to move forward", { placeholder: "title" });
+  s = titled("Dark", "Plan", "Three decisions to move forward");
+
   s.addImage({ path: img("close.jpg"), x: 7.1, y: 1.7, w: 5.63, h: 4.9, objectName: "Hero render" });
   const asks = [
     ["Direction", "Approve the woven sling on a single-loop frame as the design to develop."],
