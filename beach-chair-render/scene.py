@@ -14,12 +14,13 @@ OUT = sys.argv[1] if len(sys.argv) > 1 else "render.png"
 SCALE = int(sys.argv[2]) if len(sys.argv) > 2 else 100
 SAMPLES = int(sys.argv[3]) if len(sys.argv) > 3 else 160
 SHOT = sys.argv[4] if len(sys.argv) > 4 else "hero"
+WAY = sys.argv[5] if len(sys.argv) > 5 else "cognac"
 
 bpy.ops.wm.read_factory_settings(use_empty=True)
 scene = bpy.context.scene
 coll = scene.collection
 
-TUBE = 0.016
+TUBE = 0.014
 HALF_W = 0.33
 WATER_Z = -0.32
 
@@ -197,8 +198,12 @@ def leather(name, dark, mid, light, crease_dark=0.45):
     patina.inputs["Roughness"].default_value = 0.62
     patina.inputs["Distortion"].default_value = 0.6
     link(tc.outputs["Object"], patina.inputs["Vector"])
-    col = ramp(nt, [(0.3, dark), (0.52, mid), (0.74, light)])
-    link(patina.outputs["Fac"], col.inputs["Fac"])
+    col = ramp(nt, [(0.05, dark), (0.5, mid), (0.95, light)])
+    tone = add(nt, "ShaderNodeAttribute", attribute_name="tone")
+    shift = add(nt, "ShaderNodeMath", operation="ADD")
+    link(patina.outputs["Fac"], shift.inputs[0])
+    link(tone.outputs["Fac"], shift.inputs[1])
+    link(shift.outputs["Value"], col.inputs["Fac"])
     crease = add(nt, "ShaderNodeAttribute", attribute_name="crease")
     mul = add(nt, "ShaderNodeMix", data_type="RGBA", blend_type="MULTIPLY")
     link(crease.outputs["Fac"], mul.inputs["Factor"])
@@ -240,10 +245,36 @@ def simple(name, color, rough, metallic=0.0):
     return mat
 
 
-M_COGNAC = leather("cognac", (0.13, 0.042, 0.014), (0.36, 0.135, 0.045), (0.6, 0.3, 0.12))
-M_ESPRESSO = leather("espresso", (0.02, 0.01, 0.006), (0.05, 0.022, 0.012), (0.1, 0.05, 0.025))
-M_FRAME = simple("frame", (0.012, 0.012, 0.013), 0.42)
-M_BRASS = simple("brass", (0.86, 0.6, 0.25), 0.22, 1.0)
+WAYS = {
+    "cognac": {
+        "leather": ((0.15, 0.05, 0.016), (0.4, 0.155, 0.05), (0.62, 0.31, 0.12)),
+        "trim": ((0.02, 0.01, 0.006), (0.05, 0.022, 0.012), (0.1, 0.05, 0.025)),
+        "metal": ((0.9, 0.66, 0.33), 0.27),
+        "stitch": (0.85, 0.78, 0.62),
+        "canopy": (0.22, 0.08, 0.03),
+    },
+    "noir": {
+        "leather": ((0.006, 0.006, 0.007), (0.022, 0.021, 0.022), (0.06, 0.056, 0.055)),
+        "trim": ((0.006, 0.006, 0.007), (0.02, 0.02, 0.02), (0.05, 0.05, 0.05)),
+        "metal": ((0.78, 0.78, 0.8), 0.16),
+        "stitch": (0.75, 0.73, 0.68),
+        "canopy": (0.02, 0.02, 0.022),
+    },
+    "ecru": {
+        "leather": ((0.42, 0.33, 0.22), (0.66, 0.55, 0.4), (0.8, 0.71, 0.56)),
+        "trim": ((0.15, 0.05, 0.016), (0.4, 0.155, 0.05), (0.62, 0.31, 0.12)),
+        "metal": ((0.9, 0.66, 0.33), 0.27),
+        "stitch": (0.36, 0.14, 0.05),
+        "canopy": (0.5, 0.36, 0.2),
+    },
+}
+W = WAYS[WAY]
+M_LEATHER = leather("leather", *W["leather"])
+M_TRIM = leather("trim", *W["trim"])
+M_METAL = simple("metal", W["metal"][0], W["metal"][1], 1.0)
+M_FRAME = M_METAL
+M_BRASS = M_METAL
+M_STITCH = simple("stitch", W["stitch"], 0.8)
 M_TEAK = simple("teak", (0.3, 0.16, 0.07), 0.5)
 
 
@@ -251,7 +282,7 @@ def canvas_mat():
     mat, nt, bsdf = principled("canvas")
     link = nt.links.new
     uv = add(nt, "ShaderNodeAttribute", attribute_name="gore")
-    col = ramp(nt, [(0.0, (0.82, 0.77, 0.66)), (0.5, (0.82, 0.77, 0.66)), (0.51, (0.2, 0.075, 0.03))])
+    col = ramp(nt, [(0.0, (0.82, 0.77, 0.66)), (0.5, (0.82, 0.77, 0.66)), (0.51, W["canopy"])])
     link(uv.outputs["Fac"], col.inputs["Fac"])
     link(col.outputs["Color"], bsdf.inputs["Base Color"])
     bsdf.inputs["Roughness"].default_value = 0.85
@@ -409,114 +440,181 @@ def build_sea():
 
 
 # ----------------------------------------------------------------- chair
-def arc(center, radius, a0, a1, n=5):
+def arc(center, radius, a0, a1, n=6):
     return [
         (center[0] + radius * math.cos(math.radians(a)), center[1] + radius * math.sin(math.radians(a)))
         for a in np.linspace(a0, a1, n)
     ]
 
 
-TOP = (0.62, 0.78)
-FRONT = (-0.42, 0.36)
+TOP = (0.66, 0.74)
+FRONT = (-0.52, 0.3)
+PANEL_W = 0.56
+STRIP_W = 0.022
+
+
+def grid_mesh(name, pts, mat, parent=None):
+    """Quad mesh from an (m, k, 3) array of points."""
+    m, k, _ = pts.shape
+    idx = np.arange(m * k).reshape(m, k)
+    quads = np.stack([idx[:-1, :-1], idx[1:, :-1], idx[1:, 1:], idx[:-1, 1:]], 2).reshape(-1, 4)
+    mesh = bpy.data.meshes.new(name)
+    mesh.vertices.add(m * k)
+    mesh.vertices.foreach_set("co", pts.reshape(-1, 3).ravel())
+    mesh.loops.add(quads.size)
+    mesh.loops.foreach_set("vertex_index", quads.ravel())
+    mesh.polygons.add(len(quads))
+    mesh.polygons.foreach_set("loop_start", np.arange(0, quads.size, 4))
+    mesh.polygons.foreach_set("use_smooth", np.ones(len(quads), dtype=bool))
+    mesh.update(calc_edges=True)
+    mesh.materials.append(mat)
+    obj = bpy.data.objects.new(name, mesh)
+    coll.objects.link(obj)
+    if parent:
+        obj.parent = parent
+    return obj
+
+
+def set_attr(obj, name, values):
+    attr = obj.data.color_attributes.new(name, "FLOAT_COLOR", "POINT")
+    v = np.asarray(values, dtype=float).ravel()
+    attr.data.foreach_set("color", np.stack([v, v, v, np.ones_like(v)], 1).ravel())
+
+
+def woven_panel(prof, parent):
+    """Diagonal hand-woven leather sling as real geometry (over/under strips)."""
+    seg = np.linalg.norm(np.diff(prof, axis=0), axis=1)
+    s_raw = np.concatenate([[0], np.cumsum(seg)])
+    m = int(s_raw[-1] / 0.0022)
+    s = np.linspace(0, s_raw[-1], m)
+    cp = np.stack([np.interp(s, s_raw, prof[:, 0]), np.interp(s, s_raw, prof[:, 1])], 1)
+    nrm = normals2d(cp)
+    k = int(PANEL_W / 0.0022)
+    x = np.linspace(-PANEL_W / 2, PANEL_W / 2, k)
+    ss, xx = np.meshgrid(s, x, indexing="ij")
+    a = (ss + xx) / math.sqrt(2) / STRIP_W
+    b = (ss - xx) / math.sqrt(2) / STRIP_W
+    ia, ib = np.floor(a), np.floor(b)
+    fa, fb = a - ia, b - ib
+    over_a = ((ia + ib) % 2) == 0
+    across = np.where(over_a, fa, fb)
+    along = np.where(over_a, fb, fa)
+    strip_id = np.where(over_a, ia, ib + 1000.0)
+    edge = (2 * across - 1) ** 6
+    lift = 0.78 + 0.22 * np.sin(math.pi * along)
+    h = 0.0036 * (1 - edge) * lift
+    crease = np.clip(np.maximum(edge, 6.0 * (1 - lift) ** 2), 0, 1)
+    tone = (np.modf(np.sin(strip_id * 12.9898) * 43758.5453)[0]) * 0.11
+    y = cp[:, 0:1] + nrm[:, 0:1] * (h - 0.001)
+    z = cp[:, 1:2] + nrm[:, 1:2] * (h - 0.001)
+    obj = grid_mesh("weave", np.stack([xx, y, z], 2), M_LEATHER, parent)
+    set_attr(obj, "crease", crease)
+    set_attr(obj, "tone", tone)
+    mod = obj.modifiers.new("solid", "SOLIDIFY")
+    mod.thickness = 0.004
+    mod.offset = -1
+    for sx in (-1, 1):
+        pts = [(sx * PANEL_W / 2, p[0], p[1] + 0.0005) for p in cp[::6]]
+        tube("binding", pts, 0.0065, M_LEATHER, cyclic=False, parent=parent)
+    return cp, nrm
+
+
+def stitches(prof, indices, width, parent):
+    nrm = normals2d(prof)
+    tan = np.stack([-nrm[:, 1], nrm[:, 0]], 1)
+    verts, faces = [], []
+    xs = np.arange(-width / 2 + 0.012, width / 2 - 0.012, 0.0095)
+    for i in indices:
+        c = prof[i] + nrm[i] * 0.0031
+        for x0 in xs:
+            base = len(verts)
+            for dx in (-0.0031, 0.0031):
+                for dt in (-0.0007, 0.0007):
+                    for dn in (0.0, 0.0011):
+                        p = c + tan[i] * dt + nrm[i] * dn
+                        verts.append((x0 + dx, p[0], p[1]))
+            faces += [
+                tuple(base + q for q in f)
+                for f in ((0, 1, 3, 2), (4, 6, 7, 5), (0, 4, 5, 1), (2, 3, 7, 6), (0, 2, 6, 4), (1, 5, 7, 3))
+            ]
+    new_obj("stitch", verts, faces, M_STITCH, smooth=False, parent=parent)
 
 
 def build_chair(name, loc, rot_z):
     root = bpy.data.objects.new(name, None)
     coll.objects.link(root)
-    sink = float(sand_height(loc[0], loc[1])) + 0.006
-    root.location = (loc[0], loc[1], sink)
+    root.location = (loc[0], loc[1], float(sand_height(loc[0], loc[1])) + 0.005)
     root.rotation_euler = (0, 0, rot_z)
     a = HALF_W
 
     # One continuous bent tube: sled runners, raked legs and both cross bars.
-    side = [(TOP[0], TOP[1]), (0.42, TUBE), (-0.3, TUBE), (FRONT[0], FRONT[1])]
+    side = [TOP, (0.5, TUBE), (-0.36, TUBE), FRONT]
     loop = [(a, y, z) for y, z in side] + [(-a, y, z) for y, z in reversed(side)]
-    tube("frame", fillet(loop, 0.075), TUBE, M_FRAME, parent=root)
-    tube("brace", [(-a, 0.34, TUBE), (a, 0.34, TUBE)], TUBE * 0.8, M_FRAME, cyclic=False, parent=root)
+    tube("frame", fillet(loop, 0.095), TUBE, M_FRAME, parent=root)
+    tube("brace", [(-a, 0.4, TUBE), (a, 0.4, TUBE)], TUBE * 0.8, M_FRAME, cyclic=False, parent=root)
 
-    # Structural hide: wraps both bars and folds back under itself.
-    wrap = 0.0215
+    wrap = TUBE + 0.0045
     path = (
-        [(0.47, 0.6), (0.575, 0.735)]
-        + arc(TOP, wrap, -75, 125, 6)
-        + [(0.47, 0.6), (0.31, 0.385), (0.15, 0.245), (0.0, 0.212), (-0.16, 0.238), (-0.31, 0.305)]
-        + arc(FRONT, wrap, 65, 265, 6)
-        + [(-0.35, 0.3), (-0.26, 0.262)]
+        [(0.6, 0.65), (0.635, 0.69)]
+        + arc(TOP, wrap, -75, 125)
+        + [(0.52, 0.565), (0.36, 0.36), (0.2, 0.218), (0.02, 0.155), (-0.18, 0.168), (-0.38, 0.235)]
+        + arc(FRONT, wrap, 65, 265)
+        + [(-0.45, 0.236), (-0.36, 0.198)]
     )
-    path[0] = (0.455, 0.565)
-    prof = catmull(path, 700)
-    strip("hide", prof, 0.6, 0.006, 0, M_ESPRESSO, ex=0.08, en=0.5, k=32, parent=root)
+    prof = catmull(path, 760)
+    top_i = int(np.argmin(np.hypot(prof[:, 0] - TOP[0], prof[:, 1] - TOP[1] - wrap)))
+    front_i = int(np.argmin(np.hypot(prof[:, 0] - FRONT[0], prof[:, 1] - FRONT[1] - wrap)))
+    mid = prof[top_i:front_i]
+    i_a = top_i + int(np.argmin(np.hypot(mid[:, 0] - 0.585, mid[:, 1] - 0.648)))
+    i_b = top_i + int(np.argmin(np.hypot(mid[:, 0] + 0.43, mid[:, 1] - 0.256)))
 
-    # Channel-quilted cushion riding on the hide.
-    i0 = int(np.argmin(np.hypot(prof[:, 0] - 0.585, prof[:, 1] - 0.77)))
-    i1 = int(np.argmin(np.hypot(prof[:, 0] + 0.385, prof[:, 1] - 0.352)))
-    cp = prof[i0:i1]
-    u = np.linspace(0, 1, len(cp))
-    channels = 9
-    puff = np.abs(np.sin(math.pi * channels * u)) ** 0.55
-    taper = np.clip(np.minimum(u, 1 - u) / 0.035, 0, 1) ** 0.6
-    thick = 0.012 + (0.03 + 0.05 * puff) * taper
-    width = 0.545 - 0.012 * (1 - puff)
-    cushion = strip("cushion", cp, width, thick, 0.004 + thick / 2, M_COGNAC, k=56, parent=root)
-    attr = cushion.data.color_attributes.new("crease", "FLOAT_COLOR", "POINT")
-    cr = np.repeat((1 - puff) ** 3, 56)
-    attr.data.foreach_set("color", np.stack([cr, cr, cr, np.ones_like(cr)], 1).ravel())
+    # Saddle-leather cuffs sleeve the bars; the woven sling is stitched between.
+    cuff_w = PANEL_W + 0.018
+    strip("cuff_top", prof[: i_a + 1], cuff_w, 0.005, 0, M_LEATHER, ex=0.06, en=0.5, k=32, parent=root)
+    strip("cuff_front", prof[i_b:], cuff_w, 0.005, 0, M_LEATHER, ex=0.06, en=0.5, k=32, parent=root)
+    stitches(prof, [i_a - 4, i_a - 9, top_i - 14, i_b + 4, i_b + 9, front_i + 14], cuff_w, root)
+    cp, nrm = woven_panel(prof[i_a - 10 : i_b + 10], root)
 
-    # Bolster headrest with two espresso straps and brass buckles.
-    nrm = normals2d(cp)
-    k = int(0.115 * len(cp))
-    top_of_cushion = 0.004 + thick[k]
-    radius = 0.058
-    cen = cp[k] + nrm[k] * (top_of_cushion + radius * 0.82)
-    th = np.linspace(0.02, math.pi - 0.02, 60)
+    # Slim bolster headrest on two belt straps with brass keepers.
+    k = int(0.12 * len(cp))
+    radius = 0.054
+    cen = cp[k] + nrm[k] * (0.004 + radius * 0.9)
+    th = np.linspace(0.0, math.pi, 80)
     bol = lathe_x(
         "bolster",
-        [(0.235 * sgnpow(math.cos(t), 0.3), radius * math.sin(t) ** 0.3) for t in th],
-        M_COGNAC,
+        [(0.21 * sgnpow(math.cos(t), 0.42), radius * max(math.sin(t), 0.0) ** 0.42) for t in th],
+        M_LEATHER,
         parent=root,
     )
     bol.location = (0, cen[0], cen[1])
-    for sx in (-0.13, 0.13):
-        r0, r1, w = radius * 0.985, radius + 0.004, 0.019
+    for sx in (-0.125, 0.125):
+        r0, r1, w = radius * 0.985, radius + 0.0035, 0.013
         band = lathe_x(
             "strap",
             [(-w, r0), (-w, r1), (w, r1), (w, r0), (-w, r0)],
-            M_ESPRESSO,
+            M_TRIM,
             smooth=False,
             parent=root,
         )
         band.location = (sx, cen[0], cen[1])
-        d = 0.011
-        bx = [(sx + i * 0.022, j * 0.012, kk * d) for i in (-1, 1) for j in (-1, 1) for kk in (0, 1)]
-        buckle = new_obj(
-            "buckle",
-            bx,
-            [(0, 1, 3, 2), (4, 6, 7, 5), (0, 4, 5, 1), (2, 3, 7, 6), (0, 2, 6, 4), (1, 5, 7, 3)],
-            M_BRASS,
+        r2, r3, w2 = radius + 0.003, radius + 0.0065, 0.004
+        keeper = lathe_x(
+            "keeper",
+            [(-w2, r2), (-w2, r3), (w2, r3), (w2, r2), (-w2, r2)],
+            M_METAL,
             smooth=False,
             parent=root,
         )
-        ang = math.atan2(nrm[k][1], nrm[k][0]) - math.pi / 2 + 0.5
-        buckle.rotation_euler = (ang, 0, 0)
-        buckle.location = (
-            0,
-            cen[0] + (radius + 0.002) * math.cos(ang + math.pi / 2),
-            cen[1] + (radius + 0.002) * math.sin(ang + math.pi / 2),
-        )
+        keeper.location = (sx, cen[0], cen[1])
 
-    # Brass collars where the hide meets the tube.
+    # Metal collars where the cuffs meet the tube.
     for cy, cz in (TOP, FRONT):
         for sx in (-1, 1):
-            x0 = sx * 0.3
+            x0 = sx * (cuff_w / 2 + 0.003)
             col = lathe_x(
                 "collar",
-                [
-                    (x0, TUBE),
-                    (x0, TUBE + 0.011),
-                    (x0 + sx * 0.012, TUBE + 0.011),
-                    (x0 + sx * 0.012, TUBE),
-                ],
-                M_BRASS,
+                [(x0, TUBE), (x0, TUBE + 0.008), (x0 + sx * 0.01, TUBE + 0.008), (x0 + sx * 0.01, TUBE)],
+                M_METAL,
                 smooth=False,
                 parent=root,
             )
