@@ -142,7 +142,7 @@ async function main() {
       { text: "Wooden frame with fixed, dramatic armrests", options: { bullet: true, breakLine: true } },
       { text: "Sail-like fabric held taut to the frame by rope, with room for branding", options: { bullet: true, breakLine: true } },
       { text: "Backpack straps, because it is heavier than an average beach chair", options: { bullet: true, breakLine: true } },
-      { text: "Easy to fold, much thicker than a traditional beach chair, slip cover later", options: { bullet: true } },
+      { text: "Easy to fold and compact, thicker than a traditional beach chair, slip cover later", options: { bullet: true } },
     ],
     { x: 0.6, y: 4.95, w: 12.1, h: 1.9, fontSize: 16, paraSpaceAfter: 6 }
   );
@@ -176,8 +176,8 @@ async function main() {
     s,
     [
       { text: "Wooden arched arm rests: one bent loop per side", options: { bullet: true, breakLine: true } },
-      { text: "Interchangeable fabric: sail panels laced into each loop", options: { bullet: true, breakLine: true } },
-      { text: "Much thicker: one deep pad draped over back and seat", options: { bullet: true } },
+      { text: "Interchangeable fabric: a pad cover that swaps in two minutes", options: { bullet: true, breakLine: true } },
+      { text: "Thicker: a 2 in pad draped over back, seat and front rail", options: { bullet: true } },
     ],
     { x: 0.6, y: 5.2, w: 5.0, h: 1.6, paraSpaceAfter: 6 }
   );
@@ -188,9 +188,9 @@ async function main() {
   s.addImage({ path: img("detail.jpg"), x: 0, y: 0, w: 6.0, h: H, objectName: "Arm detail render" });
   const det = [
     ["One loop, three jobs", "Each bent-wood loop is the armrest, the legs and the runner that sits on the sand."],
-    ["Laced sail panels", "Sailcloth is tied into the loop through brass eyelets. Untie it to swap colours."],
+    ["Laced sail panels", "Sailcloth is laced into the loop at the factory and stays put. It is the signature."],
     ["Clear arm tops", "The rope runs inside the loop only, so forearms rest on smooth wood."],
-    ["Pegged joinery", "Three wooden rails pass through the arms and finish in brass caps."],
+    ["Pegged joinery", "Three rails pass through the arms and lock with hand pegs. No tools, no metal hinges."],
   ];
   det.forEach(([h, t], i) => {
     const x = 6.6 + (i % 2) * 3.15;
@@ -201,12 +201,12 @@ async function main() {
   });
 
   // ----------------------------------------------------------------- 6 rear
-  s = titled("Content", "Design", "The back carries the brand and the straps");
+  s = titled("Content", "Design", "The back carries the brand");
   s.addImage({ path: img("rear.jpg"), x: 0.6, y: 1.7, w: 7.3, h: 4.87, objectName: "Rear render" });
   const rear = [
     ["Sail number", "The back panel is real sailcloth, so the brand mark is printed like a racing sail number."],
-    ["Backpack straps", "Two leather-look straps run the height of the back for hands-free carrying."],
-    ["Laced back panel", "Same rope and eyelets as the arms. The panel can be replaced or personalised."],
+    ["One flat frame", "The back lifts out in one piece and packs flat between the two arms."],
+    ["Laced back panel", "Same rope and eyelets as the arms, so the chair reads as one idea from every side."],
   ];
   rear.forEach(([h, t], i) => {
     const y = 1.7 + i * 1.65;
@@ -215,28 +215,27 @@ async function main() {
   });
 
   // ----------------------------------------------------------------- 7 fold
-  s = titled("Content", "Design", "Three recline angles, and the back folds down");
+  s = titled("Content", "Design", "Three recline angles from one simple back");
   s.addImage({ path: img("fold.png"), x: 0.6, y: 1.7, w: 7.3, h: 4.56, objectName: "Side view diagram of recline positions" });
   const rec = [
     ["102 degrees", "Upright, for reading and eating"],
     ["118 degrees", "Mid recline, the default shown in the renders"],
     ["133 degrees", "Relaxed recline"],
-    ["Folded", "The back drops forward onto the seat for carrying"],
   ];
   rec.forEach(([h, t], i) => {
-    const y = 1.7 + i * 1.0;
+    const y = 1.7 + i * 1.25;
     body(s, h, { x: 8.3, y, w: 4.4, h: 0.35, fontSize: 18, bold: true, color: C.text1 });
     body(s, t, { x: 8.3, y: y + 0.38, w: 4.4, h: 0.5 });
   });
   body(s, "Proposed mechanism: the foot of the back moves between notches on the seat rails. To be proven at prototype.", { x: 8.3, y: 5.75, w: 4.4, h: 0.9, fontSize: 12, italic: true, color: C.accent6 });
 
   // ------------------------------------------------------------ 7b folded
-  s = titled("Content", "Design", "Folded: the back drops in and the straps end up on top");
-  s.addImage({ path: img("fold.jpg"), x: 0.6, y: 1.7, w: 7.3, h: 4.87, objectName: "Folded chair render" });
+  s = titled("Content", "Design", "Packed: it comes apart and carries flat");
+  s.addImage({ path: img("pack.jpg"), x: 0.6, y: 1.7, w: 7.3, h: 4.87, objectName: "Packed chair render" });
   const fold = [
-    ["How it folds", "The back tips forward onto the seat. The pad folds with it and stays inside the arm loops."],
-    ["How it carries", "The straps sit on the outside of the folded back, so it goes on like a backpack."],
-    ["Folded size", "About 30 x 31 x 22 in. The rigid arms mean it folds to a box, not flat."],
+    ["How it packs", "Pull six pegs. The two arms, the back and the folded pad stack flat, lashed with the chair's own rope."],
+    ["How it carries", "Backpack straps sit on the outer arm, so the bundle lies flat against the back."],
+    ["Packed size", "About 31 x 22 x 10 in, roughly a third of the volume of a fold-down version. Set-up target: under two minutes."],
   ];
   fold.forEach(([h, t], i) => {
     const y = 1.7 + i * 1.65;
@@ -245,11 +244,11 @@ async function main() {
   });
 
   // ----------------------------------------------------------- 8 colourways
-  s = titled("Content", "Design", "Interchangeable fabrics: three launch colourways");
+  s = titled("Content", "Design", "One frame, three pad covers at launch");
   const ways = [
-    ["way-sail.jpg", "Sail / Navy rope", "The signature. Reads most clearly as a sailboat.", "D8D2C4"],
-    ["way-navy.jpg", "Navy / Hemp rope", "Yacht-club classic. Hides sunscreen and sand.", "14213D"],
-    ["way-rust.jpg", "Rust / Hemp rope", "Closest to the leather tones on the board.", "A8472A"],
+    ["way-sail.jpg", "Sail", "The signature. Reads most clearly as a sailboat.", "D8D2C4"],
+    ["way-navy.jpg", "Navy", "Yacht-club classic. Hides sunscreen and sand.", "14213D"],
+    ["way-rust.jpg", "Rust", "Closest to the leather tones on the board.", "A8472A"],
   ];
   ways.forEach(([f, h, t, hex], i) => {
     const x = 0.6 + i * 4.13;
@@ -262,12 +261,12 @@ async function main() {
   // -------------------------------------------------------------- 9 context
   s = titled("ImageRight", "Design", "A small family, not a single chair");
   s.addImage({ path: img("wide.jpg"), x: 7.33, y: 0, w: 6.0, h: H, objectName: "Wide render with parasol" });
-  body(s, "Swappable fabric turns one frame into a product line and gives customers a reason to come back.", { x: 0.6, y: 2.2, w: 6.1, h: 0.9, fontSize: 16 });
+  body(s, "A swappable pad cover turns one frame into a product line and gives customers a reason to come back.", { x: 0.6, y: 2.2, w: 6.1, h: 0.9, fontSize: 16 });
   body(
     s,
     [
       { text: "Chair, sold singly or as a pair", options: { bullet: true, breakLine: true } },
-      { text: "Fabric kits: pad cover plus arm and back panels", options: { bullet: true, breakLine: true } },
+      { text: "Pad covers sold separately, swapped in two minutes", options: { bullet: true, breakLine: true } },
       { text: "Slip cover, as the client suggested, for a second look", options: { bullet: true, breakLine: true } },
       { text: "Matching parasol with rope-colour trim", options: { bullet: true } },
     ],
@@ -282,12 +281,12 @@ async function main() {
   const part = (t) => ({ text: t, options: { bold: true, color: C.text1 } });
   const rows = [
     [hdr("Part"), hdr("Proposed specification"), hdr("Why")],
-    [part("Arm loops"), "Hollow bent-laminate section, 80 x 32 mm, teak or ash face veneer, marine finish", "Looks like solid wood at about a third of the weight"],
-    [part("Rails and back frame"), "Solid ash or teak, 26-32 mm, brass end caps", "Small parts where solid wood is light enough"],
+    [part("Arm loops"), "Solid bent laminate, 70 x 28 mm, ash faces over a light core, marine finish", "A standard chair-making process, lighter than solid hardwood"],
+    [part("Rails and back frame"), "Solid ash, 26-32 mm, locked with hand pegs", "Comes apart without tools and packs flat"],
     [part("Sail panels and sling"), "Polyester sailcloth (Dacron type), brass eyelets", "Made for sun, salt and tension. Prints well for branding"],
     [part("Rope"), "6-7 mm three-strand polyester in navy or hemp look", "Looks like natural rope, does not rot or stretch when wet"],
-    [part("Pad"), "Quick-dry foam, removable outdoor-fabric cover", "Thick but drains. Cover is washable and swappable"],
-    [part("Straps"), "Padded webbing with leather-look facing", "Comfort at the upper end of the weight range"],
+    [part("Pad"), "2 in quick-dry foam in panels, zip-off cover, strapped to the sling", "Drains, folds in three, and the cover is the swappable part"],
+    [part("Straps"), "Padded webbing with leather-look facing, clipped to one arm", "Comfort at the upper end of the weight range"],
   ];
   s.addTable(rows, {
     x: 0.6, y: 1.65, w: 12.1, colW: [2.5, 5.3, 4.3], rowH: 0.68,
@@ -298,16 +297,16 @@ async function main() {
 
   // -------------------------------------------------------------- 11 weight
   const chartText = { catAxisLabelColor: THEME.colors.dk2, valAxisLabelColor: THEME.colors.dk2, catAxisLabelFontSize: 12, valAxisLabelFontSize: 12, catAxisLabelFontFace: "+mn-lt", valAxisLabelFontFace: "+mn-lt", dataLabelColor: THEME.colors.dk2, dataLabelFontSize: 12, dataLabelFontFace: "+mn-lt", titleFontFace: "+mn-lt", titleColor: THEME.colors.dk1, titleFontSize: 14 };
-  s = titled("Content", "Making it real", "Weight: hollow arms keep it under 20 lb");
-  s.addChart(pres.charts.BAR, [{ name: "Estimated weight (lb)", labels: ["Arm loops (hollow)", "Rails and back frame", "Pad", "Sail panels and sling", "Rope and hardware", "Straps"], values: [6, 3, 3, 1.5, 1, 0.5] }], {
+  s = titled("Content", "Making it real", "Weight: 16-18 lb is the honest target");
+  s.addChart(pres.charts.BAR, [{ name: "Estimated weight (lb)", labels: ["Arm loops", "Rails and back frame", "Pad", "Sail panels and sling", "Rope and hardware", "Straps"], values: [8, 3, 2, 1.5, 1, 0.5] }], {
     x: 0.6, y: 1.6, w: 7.4, h: 5.0, barDir: "bar", catAxisOrientation: "maxMin", chartColors: [THEME.colors.accent1], showLegend: false,
     showTitle: true, title: "Estimated weight by part (lb)", showValue: true, dataLabelPosition: "outEnd", dataLabelFormatCode: "0.0",
-    valGridLine: { color: "E6DFD3", size: 0.75 }, catGridLine: { style: "none" }, valAxisMinVal: 0, valAxisMaxVal: 8, ...chartText, objectName: "Weight budget chart",
+    valGridLine: { color: "E6DFD3", size: 0.75 }, catGridLine: { style: "none" }, valAxisMinVal: 0, valAxisMaxVal: 10, ...chartText, objectName: "Weight budget chart",
   });
   s.addShape(pres.ShapeType.roundRect, { x: 8.4, y: 1.75, w: 4.3, h: 2.0, rectRadius: 0.08, fill: { color: C.background2 }, line: { type: "none" }, objectName: "Total weight card" });
-  s.addText("15 lb", { isTextBox: true, margin: 0, x: 8.4, y: 1.9, w: 4.3, h: 1.0, align: "center", valign: "middle", fontSize: 44, bold: true, fontFace: THEME.headFontFace, color: C.accent1 });
-  body(s, "estimated total, against a 20 lb limit", { x: 8.6, y: 2.95, w: 3.9, h: 0.6, align: "center" });
-  body(s, "Arms this size in solid hardwood would weigh about 17 lb on their own. A hollow laminated section brings them to about 6 lb.", { x: 8.4, y: 4.05, w: 4.3, h: 1.5, fontSize: 16 });
+  s.addText("16-18 lb", { isTextBox: true, margin: 0, x: 8.4, y: 1.9, w: 4.3, h: 1.0, align: "center", valign: "middle", fontSize: 44, bold: true, fontFace: THEME.headFontFace, color: C.accent1 });
+  body(s, "target, against a 20 lb limit", { x: 8.6, y: 2.95, w: 3.9, h: 0.6, align: "center" });
+  body(s, "This sits in the brief\u2019s \u201cnoticeable but acceptable\u201d band, not the 12-15 lb sweet spot. Going lower means thinner arms, which the brief does not want.", { x: 8.4, y: 4.05, w: 4.3, h: 1.5, fontSize: 16 });
   body(s, "Estimates from the 3D model volumes. To be weighed at prototype.", { x: 8.4, y: 5.85, w: 4.3, h: 0.7, fontSize: 12, italic: true, color: C.accent6 });
 
   // --------------------------------------------------------------- 12 price
@@ -320,18 +319,18 @@ async function main() {
   s.addShape(pres.ShapeType.roundRect, { x: 8.4, y: 1.75, w: 4.3, h: 2.0, rectRadius: 0.08, fill: { color: C.background2 }, line: { type: "none" }, objectName: "Target price card" });
   s.addText("$300-700", { isTextBox: true, margin: 0, x: 8.4, y: 1.9, w: 4.3, h: 1.0, align: "center", valign: "middle", fontSize: 40, bold: true, fontFace: THEME.headFontFace, color: C.accent1 });
   body(s, "target retail band", { x: 8.6, y: 2.95, w: 3.9, h: 0.6, align: "center" });
-  body(s, "Only one of the seven chairs listed reaches $500. The wood arms, real sailcloth and swappable fabric are what justify sitting above them.", { x: 8.4, y: 4.05, w: 4.3, h: 1.7, fontSize: 16 });
+  body(s, "Bent-wood arms, eyelets and hand lacing are labour-heavy. Expect the upper half of the band, $500-700, above all but one chair listed.", { x: 8.4, y: 4.05, w: 4.3, h: 1.7, fontSize: 16 });
   body(s, "Unit cost is not yet estimated. It needs supplier quotes.", { x: 8.4, y: 5.85, w: 4.3, h: 0.7, fontSize: 12, italic: true, color: C.accent6 });
 
   // --------------------------------------------------------- 13 feasibility
   s = titled("Content", "Making it real", "Will it work? Yes, with three things to prove");
   const risks = [
-    ["FaWeightHanging", "1. Weight", "Dramatic arms and a 20 lb limit pull against each other. Hollow arms are the answer and must be prototyped first."],
-    ["FaCompressAlt", "2. Fold size", "With rigid arm loops the chair folds to a box about 30 x 30 x 22 in, not flat. Hinged rails could let the arms close together."],
-    ["FaSlidersH", "3. Recline", "Three positions on a folding back need a simple, sand-proof notch. No mechanism is designed yet."],
+    ["FaWeightHanging", "1. Weight", "The 16-18 lb target depends on the light-core arm laminate. Weigh the first arm before anything else."],
+    ["FaArrowsAltH", "2. Side-to-side wobble", "Only three pegged rails join the arms. The joints need shoulders or a brace, tested with a heavy sitter."],
+    ["FaSlidersH", "3. Recline", "Three positions need a simple, sand-proof notch for the back. No mechanism is designed yet."],
+    ["FaStopwatch", "Set-up time", "If assembly takes more than two minutes people will not bother. Test it with real users."],
+    ["FaWind", "Wind", "The sail panels catch wind. An empty chair may need vented panels or a sand anchor."],
     ["FaWater", "Salt and sun", "Marine-finished wood, polyester sailcloth and rope are all proven on boats."],
-    ["FaUmbrellaBeach", "Sand", "Wide runners do not sink like legs. Sand falls past the laced panels."],
-    ["FaCouch", "Comfort", "The thick pad uses quick-dry foam so it can be deep without holding water."],
   ];
   for (const [i, [ic, h, t]] of risks.entries()) {
     const x = 0.6 + (i % 3) * 4.13;
@@ -348,10 +347,10 @@ async function main() {
   pres.addSection({ title: "Plan" });
   s = titled("Content", "Plan", "From render to first chairs in about five months");
   const steps = [
-    ["Weeks 1-2", "Sign-off", "Agree direction, fold approach and lead colourway"],
-    ["Weeks 3-5", "Engineering", "CAD, arm section, recline notch, fold and strap fixing"],
-    ["Weeks 4-8", "Sampling", "Bent-laminate arm trials, sailcloth, rope and foam samples"],
-    ["Weeks 9-14", "Prototype", "Two full chairs. Weigh, carry and sit tests"],
+    ["Weeks 1-2", "Sign-off", "Agree direction, flat pack and price point"],
+    ["Weeks 3-5", "Engineering", "CAD, arm section, pegged joints, recline notch"],
+    ["Weeks 4-8", "Sampling", "Arm laminate trials. Sailcloth, rope and foam samples"],
+    ["Weeks 9-14", "Prototype", "Two full chairs. Weigh, carry, assemble and sit tests"],
     ["Weeks 15-18", "Testing", "Load, salt and UV exposure. Design fixes"],
     ["Weeks 19-22", "Pilot run", "Small first batch and campaign photography"],
   ];
@@ -371,8 +370,8 @@ async function main() {
   s.addImage({ path: img("close.jpg"), x: 7.1, y: 1.7, w: 5.63, h: 4.9, objectName: "Hero render, Rust colourway" });
   const asks = [
     ["Direction", "Approve the arched arm loop with laced sail panels as the design to develop."],
-    ["Fold", "Choose between a simple fold-down back and a slimmer fold that costs more to engineer."],
-    ["Colourway", "Choose the lead colourway. We recommend Sail with navy rope."],
+    ["Flat pack", "Approve a chair that comes apart to carry, in place of a fold-down back."],
+    ["Price point", "Accept a $500-700 retail target. The $300 end of the brief is not realistic for this build."],
   ];
   asks.forEach(([h, t], i) => {
     const y = 1.8 + i * 1.6;

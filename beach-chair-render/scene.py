@@ -322,8 +322,8 @@ ECRU = (0.6, 0.54, 0.43)
 WHITE = (0.74, 0.72, 0.67)
 WAYS = {
     "sail": {"fabric": ECRU, "sail": WHITE, "rope": NAVY, "mark": NAVY, "canopy": NAVY},
-    "navy": {"fabric": NAVY, "sail": WHITE, "rope": HEMP, "mark": NAVY, "canopy": NAVY},
-    "rust": {"fabric": (0.5, 0.16, 0.055), "sail": ECRU, "rope": HEMP, "mark": (0.45, 0.14, 0.05), "canopy": (0.45, 0.14, 0.05)},
+    "navy": {"fabric": NAVY, "sail": WHITE, "rope": NAVY, "mark": NAVY, "canopy": NAVY},
+    "rust": {"fabric": (0.5, 0.16, 0.055), "sail": WHITE, "rope": NAVY, "mark": NAVY, "canopy": NAVY},
 }
 W = WAYS[WAY]
 M_FABRIC = fabric("fabric", W["fabric"])
@@ -332,6 +332,7 @@ M_ROPE = simple("rope", W["rope"], 0.9)
 M_MARK = simple("mark", W["mark"], 0.8)
 M_WOOD = wood("wood", (0.2, 0.1, 0.04), (0.5, 0.29, 0.13))
 M_TEAK = M_WOOD
+M_PEG = simple("peg", (0.1, 0.05, 0.02), 0.5)
 M_METAL = simple("metal", (0.9, 0.66, 0.33), 0.27, 1.0)
 M_STRAP = leather("strap", (0.15, 0.05, 0.016), (0.4, 0.155, 0.05), (0.62, 0.31, 0.12))
 
@@ -499,7 +500,7 @@ def build_sea():
 
 # ----------------------------------------------------------------- chair
 LOOP_X = 0.33
-ARM_W, ARM_T = 0.08, 0.032
+ARM_W, ARM_T = 0.07, 0.028
 BAR = (0.215, 0.43)
 PIVOT_Z = 0.17
 FRONT_RAIL = (-0.303, 0.25)
@@ -523,7 +524,7 @@ def resample(pts, n):
 
 
 def loop_profile_var():
-    corners = [np.array(c, dtype=float) for c in ((-0.24, 0.016), (-0.38, 0.54), (0.27, 0.43), (0.36, 0.016))]
+    corners = [np.array(c, dtype=float) for c in ((-0.24, 0.014), (-0.38, 0.54), (0.27, 0.43), (0.36, 0.014))]
     radii = [0.1, 0.15, 0.13, 0.1]
     out = []
     for i in range(4):
@@ -571,7 +572,7 @@ def grommet(pos, parent):
     return ring
 
 
-def side_panel(lp, sx, parent):
+def side_panel(lp, x, parent):
     """Interchangeable sailcloth panel laced into the arm loop."""
     ring = lp[:-1]
     nrm = normals2d(lp)[:-1]
@@ -580,7 +581,6 @@ def side_panel(lp, sx, parent):
     inward = nrm * flip
     edge = ring + inward * 0.062
     holes = ring + inward * 0.078
-    x = sx * LOOP_X
     new_obj("side_sail", [(x, p[0], p[1]) for p in edge], [tuple(range(len(edge)))], M_SAIL, smooth=False, parent=parent)
     n = 26
     idx = np.linspace(0, len(ring), n, endpoint=False).astype(int)
@@ -614,13 +614,13 @@ def build_chair(name, loc, rot_z, recline=118):
     for sx in (-1, 1):
         arm = strip("arm", lp, ARM_W, ARM_T, 0, M_WOOD, ex=0.4, en=0.55, k=32, parent=root)
         arm.location = (sx * LOOP_X, 0, 0)
-        side_panel(lp, sx, root)
-    reach = LOOP_X + ARM_W / 2 + 0.014
+        side_panel(lp, sx * LOOP_X, root)
+    reach = LOOP_X + ARM_W / 2 + 0.03
     for (y, z), r in ((FRONT_RAIL, 0.016), (REAR_RAIL, 0.016), (BAR, 0.015)):
         tube("rail", [(-reach, y, z), (reach, y, z)], r, M_WOOD, cyclic=False, parent=root)
         for sx in (-1, 1):
-            cap = lathe_x("cap", [(0, 0.0), (0, r + 0.002), (0.004, r + 0.002), (0.004, 0.0)], M_METAL, seg=24, smooth=False, parent=root)
-            cap.location = (sx * reach - (0.004 if sx < 0 else 0), y, z)
+            xp = sx * (reach - 0.014)
+            tube("peg", [(xp, y, z - 0.034), (xp, y, z + 0.034)], 0.0055, M_PEG, cyclic=False, parent=root)
 
     # Reclining back frame: two stiles, sail panel laced between them.
     sx_stile = 0.238
@@ -660,13 +660,6 @@ def build_chair(name, loc, rot_z, recline=118):
     c = piv + u * 0.3 - f * 0.003
     mark.matrix_basis = Matrix(((-1, 0, 0, 0), (0, u[0], -f[0], c[0]), (0, u[1], -f[1], c[1]), (0, 0, 0, 1)))
 
-    # Backpack straps.
-    t = np.linspace(0, 1, 40)[:, None]
-    strap = (piv + u * 0.06) + u * (BACK_LEN - 0.14) * t - f * (0.016 + 0.035 * np.sin(math.pi * t))
-    for sx in (-1, 1):
-        s = strip("strap", strap, 0.045, 0.005, 0, M_STRAP, ex=0.1, en=0.5, k=16, parent=root)
-        s.location = (sx * 0.135, 0, 0)
-
     # Seat sling under the cushion.
     sling = catmull([(FRONT_RAIL[0], FRONT_RAIL[1] + 0.019), (-0.12, 0.185), (0.1, 0.16), (REAR_RAIL[0], REAR_RAIL[1] + 0.019)], 80)
     strip("seat_sail", sling, 0.5, 0.003, 0, M_SAIL, ex=0.05, en=0.5, k=16, parent=root)
@@ -693,17 +686,54 @@ def build_chair(name, loc, rot_z, recline=118):
     near = lambda q: int(np.argmin(np.hypot(cp[:, 0] - q[0], cp[:, 1] - q[1])))
     i_top, i_crease, i_front = near(p2), near((p4 + p5) / 2), near(p8)
     cuts = [0, i_top, (i_top + i_crease) // 2, i_crease, (i_crease + i_front) // 2, i_front, len(cp) - 1]
-    gain = [1.0, 1.0, 1.0, 1.0, 1.0, 0.45]
+    gain = [1.25, 1.0, 1.0, 1.0, 1.0, 0.5]
     puff = np.zeros(len(cp))
     amp = np.zeros(len(cp))
     for (a, b), g in zip(zip(cuts[:-1], cuts[1:], strict=True), gain, strict=True):
         tt = np.linspace(0, 1, b - a + 1)
         puff[a : b + 1] = np.sin(math.pi * tt) ** 0.42
         amp[a : b + 1] = g
-    thick = 0.014 + 0.058 * puff * amp
+    thick = 0.012 + 0.038 * puff * amp
     width = 0.535 - 0.02 * (1 - puff)
     pad = strip("cushion", cp, width, thick, 0.005 + thick / 2, M_FABRIC, ex=0.3, en=0.6, k=56, parent=root)
     set_attr(pad, "crease", np.repeat((1 - puff) ** 3, 56))
+    return root
+
+
+def build_pack(loc, rot_z):
+    """The chair taken apart: arms, back frame and folded pad lashed flat."""
+    root = bpy.data.objects.new("pack", None)
+    coll.objects.link(root)
+    root.location = (loc[0], loc[1], float(sand_height(loc[0], loc[1])) + 0.004)
+    root.rotation_euler = (0, 0, rot_z)
+    lp = loop_profile_var()
+    gap = 0.115
+    for sx in (-1, 1):
+        arm = strip("arm", lp, ARM_W, ARM_T, 0, M_WOOD, ex=0.4, en=0.55, k=32, parent=root)
+        arm.location = (sx * gap, 0, 0)
+        side_panel(lp, sx * gap, root)
+    # Back frame lying flat against one arm.
+    xb = -gap + ARM_W / 2 + 0.014
+    for z0 in (0.07, 0.07 + 0.42):
+        st = strip("stile", np.linspace((-0.27, z0 + 0.02), (0.31, z0 - 0.02), 20), 0.022, 0.034, 0, M_WOOD, ex=0.4, en=0.55, k=24, parent=root)
+        st.location = (xb, 0, 0)
+    new_obj("back_sail", [(xb, -0.22, 0.11), (xb, 0.27, 0.08), (xb, 0.27, 0.45), (xb, -0.22, 0.49)], [(0, 1, 2, 3)], M_SAIL, smooth=False, parent=root)
+    # Pad folded in three.
+    for i in range(3):
+        layer = strip("pad", np.linspace((-0.23, 0.27), (0.25, 0.25), 24), 0.046, 0.4, 0, M_FABRIC, ex=0.5, en=0.25, k=40, parent=root)
+        layer.location = (xb + 0.04 + i * 0.048, 0, 0)
+    # Rails bundled on top, the lot lashed with its own rope.
+    for dx, dz in ((0.01, 0.0), (0.045, 0.0), (0.028, 0.03)):
+        tube("rail", [(dx, -0.36, 0.492 + dz), (dx, 0.4, 0.492 + dz)], 0.016, M_WOOD, cyclic=False, parent=root)
+    hx = gap + ARM_W / 2 + 0.004
+    for y in (-0.16, 0.14):
+        tube("lash", [(-hx, y, 0.06), (-hx, y, 0.543), (hx, y, 0.543), (hx, y, 0.06)], ROPE_R * 1.3, M_ROPE, cyclic=True, parent=root)
+    # Backpack straps on the outer face.
+    t = np.linspace(0, 1, 30)[:, None]
+    for y in (-0.1, 0.1):
+        line = np.array([y, 0.1]) + np.array([0.0, 0.36]) * t
+        st = strip("strap", line, 0.006, 0.05, 0, M_STRAP, ex=0.3, en=0.15, k=16, parent=root)
+        st.location = (-hx - 0.006, 0, 0)
     return root
 
 
@@ -793,16 +823,19 @@ def camera(loc, target, lens, fstop):
 build_sand()
 build_sea()
 REAR = SHOT == "rear"
-FOLD = SHOT == "fold"
+PACK = SHOT == "pack"
 TURN = math.pi if REAR else 0.0
-build_chair("hero", (0.0, 0.0), math.radians(14 if not REAR else -12) + TURN, recline=None if FOLD else 118)
+if PACK:
+    build_pack((0.0, 0.0), math.radians(118))
+else:
+    build_chair("hero", (0.0, 0.0), math.radians(14 if not REAR else -12) + TURN, recline=118)
 build_chair("pair", (2.0, 1.35), math.radians(-40) + TURN, recline=133)
 build_parasol((3.0, 2.6))
 build_world(sun_az=215 if REAR else 152, sun_el=15 if REAR else 13)
 
 SHOTS = {
     "hero": ((-2.05, -2.55, 0.95), (0.03, 0.05, 0.36), 62, 4.0, (1800, 1200)),
-    "fold": ((-1.75, -2.35, 1.75), (0.0, 0.0, 0.3), 62, 4.0, (1800, 1200)),
+    "pack": ((-2.05, -2.55, 1.0), (0.05, 0.1, 0.3), 62, 4.0, (1800, 1200)),
     "rear": ((-1.9, -2.6, 1.05), (0.03, 0.1, 0.38), 62, 4.0, (1800, 1200)),
     "wide": ((-3.6, -4.4, 1.25), (0.9, 0.9, 0.85), 40, 5.6, (1200, 1500)),
     "detail": ((-1.3, -1.0, 0.74), (-0.28, 0.0, 0.34), 60, 3.2, (1200, 1500)),

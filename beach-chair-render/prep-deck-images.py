@@ -15,7 +15,7 @@ r = lambda n: f"{src}/{names.get(n, n)}"
 crop(r("sail-hero.png"), "cover.jpg", 8.33 / 7.5)
 crop(r("sail-hero.png"), "hero.jpg", 1.5)
 crop(r("sail-rear.png"), "rear.jpg", 1.5)
-crop(r("sail-fold.png"), "fold.jpg", 1.5)
+crop(r("sail-pack.png"), "pack.jpg", 1.5)
 crop(r("sail-detail.png"), "detail.jpg", 0.8)
 crop(r("sail-wide.png"), "wide.jpg", 0.8)
 for w in ("sail", "navy", "rust"):
@@ -53,10 +53,5 @@ for ang, col in ((133, "#9DB3CC"), (102, "#5E86B0"), (118, "#14213D")):
     top = piv + np.array([math.sin(th), math.cos(th)]) * 0.6
     d.line([P(*piv), P(*top)], fill=col, width=18)
     x, y = P(*top); d.text((x + 18, y - 30), f"{ang}°", fill=col, font=font)
-piv = np.array([0.2, 0.2]); top = piv + np.array([-0.58, 0.06])
-pts = [P(*(piv + (top - piv) * t)) for t in np.linspace(0, 1, 15)]
-for a, b in zip(pts[::2], pts[1::2]):
-    d.line([a, b], fill="#B0672C", width=12)
-d.text((P(-0.36, 0.33)[0] - 330, P(-0.36, 0.33)[1] + 60), "folded", fill="#B0672C", font=font)
-d.text((70, 40), "Side view. Back shown at three recline angles and folded.", fill="#46505F", font=small)
+d.text((70, 40), "Side view. Back shown at three recline angles.", fill="#46505F", font=small)
 im.save(f"{out}/fold.png")
