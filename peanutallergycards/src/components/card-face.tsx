@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 /**
  * The printed surface of a card. It's a size container, so the card's
  * content adapts to how wide the card is shown, not to the screen width.
+ * (Card designs are placeholders until the real cards are designed.)
  */
 export const CardSurface = ({
   children,
@@ -14,33 +15,17 @@ export const CardSurface = ({
   lang: string;
 }) => (
   <div
-    className={`text-ink @container rounded-2xl border border-stone-200 bg-white p-5 shadow-sm sm:p-6 ${className}`}
+    className={`border-ink text-ink @container border-2 bg-white p-5 sm:p-6 ${className}`}
     lang={lang}
   >
     {children}
   </div>
 );
 
-/** One side of a card, with a caption saying which side it is. */
-export const CardFace = ({
-  children,
-  label,
-  lang,
-}: {
-  children: ReactNode;
-  label: string;
-  lang: string;
-}) => (
-  <figure>
-    <CardSurface lang={lang}>{children}</CardSurface>
-    <figcaption className="mt-2 text-sm text-stone-500">{label}</figcaption>
-  </figure>
-);
-
 /** Stands in for a side that hasn't been written yet. */
 export const MissingCardSurface = () => (
-  <div className="flex min-h-48 items-center justify-center rounded-2xl border-2 border-dashed border-stone-300 p-6 text-stone-500">
-    Not written yet.
+  <div className="border-ink font-pixel flex min-h-48 items-center justify-center border-2 border-dashed bg-white/60 p-6 text-lg">
+    Not written yet
   </div>
 );
 

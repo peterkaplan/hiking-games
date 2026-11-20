@@ -37,31 +37,29 @@ export const BuyBox = ({ state }: { state: TranslationState }) => {
   );
 
   return (
-    <div className="border-peanut-200 rounded-2xl border bg-white p-5 shadow-sm">
+    <div className="px-frame-raised bg-white p-5">
       <fieldset>
-        <legend className="text-sm font-semibold">Choose a format</legend>
-        <div className="mt-3 space-y-3">
+        <legend className="font-pixel text-lg">Pick a format</legend>
+        <div className="mt-4 space-y-5">
           {formats.map((format) => (
             <label
-              className="has-checked:border-ink has-checked:bg-peanut-50 has-checked:ring-ink flex cursor-pointer gap-3 rounded-xl border border-stone-200 p-4 transition has-checked:ring-1"
+              className="px-frame bg-paper has-checked:bg-butter has-focus-visible:outline-ink flex cursor-pointer gap-3 p-4 has-focus-visible:outline-3 has-focus-visible:outline-offset-8 has-focus-visible:outline-dashed"
               key={format.id}
             >
               <input
                 checked={format.id === formatId}
-                className="accent-ink mt-1"
+                className="border-ink checked:bg-go mt-1 size-5 shrink-0 cursor-pointer appearance-none border-[3px] bg-white"
                 name={radioName}
                 onChange={handleFormatChange}
                 type="radio"
                 value={format.id}
               />
               <span className="flex-1">
-                <span className="flex items-baseline justify-between gap-3 font-semibold">
+                <span className="font-pixel flex items-baseline justify-between gap-3 text-lg">
                   <span>{format.name}</span>
                   <span>{formatPrice(format.priceUsd)}</span>
                 </span>
-                <span className="mt-1 block text-sm text-stone-600">
-                  {format.description}
-                </span>
+                <span className="mt-1 block">{format.description}</span>
               </span>
             </label>
           ))}
@@ -69,24 +67,22 @@ export const BuyBox = ({ state }: { state: TranslationState }) => {
       </fieldset>
 
       {price === undefined ? null : (
-        <p className="mt-5 flex items-baseline justify-between">
-          <span className="text-stone-600">Total</span>
-          <span className="font-display text-2xl font-bold">
+        <p className="mt-6 flex items-baseline justify-between">
+          <span className="font-pixel text-lg">Total</span>
+          <span className="px-pop font-pixel text-4xl" key={price}>
             {formatPrice(price)}
           </span>
         </p>
       )}
       <button
-        className="bg-ink mt-4 w-full rounded-full px-6 py-3.5 font-semibold text-white transition hover:bg-stone-800 disabled:cursor-not-allowed disabled:bg-stone-200 disabled:text-stone-600"
+        className="px-btn mt-5 w-full justify-center"
         disabled
         type="button"
       >
         {buttonLabel[state]}
       </button>
       {state === "ready" ? null : (
-        <p className="mt-3 text-center text-sm text-stone-600">
-          {notReadyNote}
-        </p>
+        <p className="mt-4 text-center">{notReadyNote}</p>
       )}
     </div>
   );

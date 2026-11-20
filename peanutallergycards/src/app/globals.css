@@ -1,21 +1,23 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-display:
-    "Bricolage Grotesque Variable", "Inter Variable", ui-sans-serif, system-ui,
-    sans-serif;
+  --font-sans:
+    "Atkinson Hyperlegible Next Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-pixel: "Pixelify Sans Variable", ui-monospace, monospace;
 
-  /* Brand: warm paper, peanut tan, warning-sign red. */
-  --color-paper: #fffbf2;
-  --color-ink: #1f1a17;
-  --color-peanut-50: #fdf6e9;
-  --color-peanut-100: #f8ead2;
-  --color-peanut-200: #f0d6a8;
-  --color-peanut-400: #e3b06a;
-  --color-peanut-700: #9a6b2f;
-  --color-peanut-900: #5c3d17;
-  --color-alert: #d92323;
+  /* A small, game-like palette. Matches `palette` in components/pixel. */
+  --color-ink: #1d1b33;
+  --color-paper: #fff8ec;
+  --color-sky: #bde3ff;
+  --color-peach: #ffe2b8;
+  --color-mint: #c9f0d8;
+  --color-butter: #fff1b8;
+  --color-sun: #ffd23f;
+  --color-go: #19a35b;
+  --color-go-dark: #0f7a42;
+  --color-alert: #e83a4f;
+  --color-peanut: #e39a45;
+  --color-wood: #8a5426;
 }
 
 /* The site is light-only: the cards are printed objects, shown as on paper. */
@@ -26,4 +28,628 @@
 body {
   color: var(--color-ink);
   background: var(--color-paper);
+}
+
+/* Pixel frames and buttons ------------------------------------------------ */
+
+@layer components {
+  /* A 4px ink border with notched (pixel) corners. Leave 4px of room around it. */
+  .px-frame {
+    box-shadow:
+      0 -4px 0 0 var(--color-ink),
+      0 4px 0 0 var(--color-ink),
+      -4px 0 0 0 var(--color-ink),
+      4px 0 0 0 var(--color-ink);
+  }
+
+  /* The same border plus a stepped drop shadow. Leave 8px of room. */
+  .px-frame-raised {
+    box-shadow:
+      0 -4px 0 0 var(--color-ink),
+      0 4px 0 0 var(--color-ink),
+      -4px 0 0 0 var(--color-ink),
+      4px 0 0 0 var(--color-ink),
+      4px 8px 0 0 var(--color-ink),
+      8px 4px 0 0 var(--color-ink);
+  }
+
+  .px-btn {
+    display: inline-flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0.75rem 1.25rem;
+    font-family: var(--font-pixel);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    background: var(--color-sun);
+    box-shadow:
+      0 -4px 0 0 var(--color-ink),
+      0 4px 0 0 var(--color-ink),
+      -4px 0 0 0 var(--color-ink),
+      4px 0 0 0 var(--color-ink),
+      4px 8px 0 0 var(--color-ink),
+      8px 4px 0 0 var(--color-ink);
+    transition:
+      transform 120ms steps(2, end),
+      box-shadow 120ms steps(2, end);
+  }
+
+  .px-btn:hover {
+    transform: translate(-2px, -2px);
+  }
+
+  /* Pressed: the button drops into its shadow. */
+  .px-btn:active {
+    box-shadow:
+      0 -4px 0 0 var(--color-ink),
+      0 4px 0 0 var(--color-ink),
+      -4px 0 0 0 var(--color-ink),
+      4px 0 0 0 var(--color-ink);
+    transform: translate(4px, 4px);
+  }
+
+  .px-btn:focus-visible,
+  .px-focus:focus-visible {
+    outline: 3px dashed var(--color-ink);
+    outline-offset: 8px;
+  }
+
+  .px-btn:disabled {
+    color: #57534e;
+    cursor: not-allowed;
+    background: #e7e1d6;
+    transform: none;
+  }
+
+  /* Hover lift for tiles. */
+  .px-lift {
+    transition: transform 120ms steps(2, end);
+  }
+
+  .px-lift:hover {
+    transform: translate(-2px, -4px);
+  }
+
+  /* Headline beats, highlighted in turn in time with the hero scene. */
+  .beat {
+    background-image: linear-gradient(var(--color-sun), var(--color-sun));
+    background-repeat: no-repeat;
+    background-position: 0 85%;
+    background-size: 0% 40%;
+  }
+}
+
+/* Small loops ------------------------------------------------------------- */
+
+@keyframes px-bob {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-1px);
+  }
+}
+
+@keyframes px-wave {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(1px);
+  }
+}
+
+@keyframes px-steam {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  33% {
+    transform: translateY(-1px);
+  }
+  66% {
+    opacity: 0.6;
+    transform: translateY(-2px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes px-rise {
+  0% {
+    opacity: 1;
+    transform: translateY(2px);
+  }
+  25% {
+    transform: translateY(1px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  75% {
+    opacity: 1;
+    transform: translateY(-1px);
+  }
+  95%,
+  100% {
+    opacity: 0;
+    transform: translateY(-1px);
+  }
+}
+
+@keyframes px-dot-1 {
+  0%,
+  24% {
+    opacity: 0;
+  }
+  25%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes px-dot-2 {
+  0%,
+  49% {
+    opacity: 0;
+  }
+  50%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes px-dot-3 {
+  0%,
+  74% {
+    opacity: 0;
+  }
+  75%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes px-drift {
+  from {
+    transform: translateX(-12rem);
+  }
+  to {
+    transform: translateX(100vw);
+  }
+}
+
+@keyframes px-walk {
+  from {
+    transform: translateX(-3rem);
+  }
+  to {
+    transform: translateX(100vw);
+  }
+}
+
+@keyframes px-legs-a {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes px-legs-b {
+  0%,
+  49% {
+    opacity: 0;
+  }
+  50%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes px-card-flip {
+  0%,
+  40% {
+    transform: scaleX(1);
+  }
+  42% {
+    transform: scaleX(0.5);
+  }
+  44% {
+    transform: scaleX(0.05);
+  }
+  46% {
+    transform: scaleX(0.5);
+  }
+  48%,
+  90% {
+    transform: scaleX(1);
+  }
+  92% {
+    transform: scaleX(0.5);
+  }
+  94% {
+    transform: scaleX(0.05);
+  }
+  96% {
+    transform: scaleX(0.5);
+  }
+  98%,
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes px-face-front {
+  0%,
+  43% {
+    opacity: 1;
+  }
+  44%,
+  93% {
+    opacity: 0;
+  }
+  94%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes px-face-back {
+  0%,
+  43% {
+    opacity: 0;
+  }
+  44%,
+  93% {
+    opacity: 1;
+  }
+  94%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes px-flip-in {
+  0% {
+    transform: scaleX(0.1);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes px-pop {
+  0% {
+    transform: translateY(-6px);
+  }
+  50% {
+    transform: translateY(2px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes px-wiggle {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(-12deg);
+  }
+  75% {
+    transform: rotate(12deg);
+  }
+}
+
+.px-bob {
+  animation: px-bob 1s steps(1, end) infinite;
+}
+.px-wave {
+  animation: px-wave 1.2s steps(1, end) infinite;
+}
+.px-steam {
+  animation: px-steam 1.2s steps(1, end) infinite;
+}
+.px-rise {
+  animation: px-rise 1.6s steps(1, end) infinite;
+}
+.px-delay-half {
+  animation-delay: -0.5s;
+}
+.px-dot-1 {
+  animation: px-dot-1 1.6s steps(1, end) infinite;
+}
+.px-dot-2 {
+  animation: px-dot-2 1.6s steps(1, end) infinite;
+}
+.px-dot-3 {
+  animation: px-dot-3 1.6s steps(1, end) infinite;
+}
+.px-drift {
+  animation: px-drift 48s linear infinite;
+}
+.px-drift-slow {
+  animation-duration: 70s;
+  animation-delay: -30s;
+}
+.px-drift-late {
+  animation-duration: 60s;
+  animation-delay: -12s;
+}
+.px-walk {
+  animation: px-walk 26s linear infinite;
+}
+.px-legs-a {
+  animation: px-legs-a 0.5s steps(1, end) infinite;
+}
+.px-legs-b {
+  opacity: 0;
+  animation: px-legs-b 0.5s steps(1, end) infinite;
+}
+/* The flipping card fills its 40 × 28 viewBox, so its centre is (20, 14). */
+.px-card-flip {
+  transform-origin: 20px 14px;
+  animation: px-card-flip 7s steps(1, end) infinite;
+}
+.px-face-front {
+  animation: px-face-front 7s steps(1, end) infinite;
+}
+.px-face-back {
+  opacity: 0;
+  animation: px-face-back 7s steps(1, end) infinite;
+}
+.px-flip-in {
+  animation: px-flip-in 0.24s steps(3, end);
+}
+.px-pop {
+  display: inline-block;
+  animation: px-pop 0.24s steps(3, end);
+}
+.group:hover .px-wiggle {
+  animation: px-wiggle 0.4s steps(1, end) 2;
+}
+
+/* The hero scene: one 10s loop --------------------------------------------- */
+/* Base styles are the story's final frame, shown when motion is reduced. */
+
+.hero-card {
+  transform: translate(56px, -14px);
+  animation: hero-card 10s steps(1, end) infinite;
+}
+@keyframes hero-card {
+  0%,
+  6% {
+    transform: translate(0, 0);
+    animation-timing-function: steps(7, end);
+  }
+  16%,
+  94% {
+    transform: translate(56px, -14px);
+  }
+  95%,
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.hero-question {
+  opacity: 0;
+  animation: hero-question 10s steps(1, end) infinite;
+}
+@keyframes hero-question {
+  0%,
+  19% {
+    opacity: 0;
+  }
+  20%,
+  35% {
+    opacity: 1;
+  }
+  36%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.hero-yes {
+  animation: hero-yes 10s steps(1, end) infinite;
+}
+@keyframes hero-yes {
+  0%,
+  35% {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  36% {
+    opacity: 1;
+    transform: translateY(2px);
+  }
+  37%,
+  93% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  94%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.hero-smile {
+  animation: hero-smile 10s steps(1, end) infinite;
+}
+@keyframes hero-smile {
+  0%,
+  35% {
+    opacity: 0;
+  }
+  36%,
+  93% {
+    opacity: 1;
+  }
+  94%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.hero-mouth {
+  opacity: 0;
+  animation: hero-mouth 10s steps(1, end) infinite;
+}
+@keyframes hero-mouth {
+  0%,
+  35% {
+    opacity: 1;
+  }
+  36%,
+  93% {
+    opacity: 0;
+  }
+  94%,
+  100% {
+    opacity: 1;
+  }
+}
+
+.hero-bowl {
+  animation: hero-bowl 10s steps(1, end) infinite;
+}
+@keyframes hero-bowl {
+  0%,
+  47% {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  48% {
+    opacity: 1;
+    transform: translateX(24px);
+  }
+  52% {
+    opacity: 1;
+    transform: translateX(24px);
+    animation-timing-function: steps(3, end);
+  }
+  58%,
+  93% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  94%,
+  100% {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+}
+
+.hero-hearts {
+  opacity: 0;
+  animation: hero-hearts 10s steps(1, end) infinite;
+}
+@keyframes hero-hearts {
+  0%,
+  61% {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  62% {
+    opacity: 1;
+    transform: translateY(4px);
+    animation-timing-function: steps(4, end);
+  }
+  76%,
+  88% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  89%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* The headline beats share the scene's 10s clock. */
+.beat-1 {
+  animation: beat-1 10s steps(1, end) infinite;
+}
+@keyframes beat-1 {
+  0% {
+    background-size: 0% 40%;
+    animation-timing-function: steps(5, end);
+  }
+  5%,
+  33% {
+    background-size: 100% 40%;
+  }
+  34%,
+  100% {
+    background-size: 0% 40%;
+  }
+}
+
+.beat-2 {
+  animation: beat-2 10s steps(1, end) infinite;
+}
+@keyframes beat-2 {
+  0% {
+    background-size: 0% 40%;
+  }
+  35% {
+    background-size: 0% 40%;
+    animation-timing-function: steps(5, end);
+  }
+  40%,
+  58% {
+    background-size: 100% 40%;
+  }
+  59%,
+  100% {
+    background-size: 0% 40%;
+  }
+}
+
+.beat-3 {
+  animation: beat-3 10s steps(1, end) infinite;
+}
+@keyframes beat-3 {
+  0% {
+    background-size: 0% 40%;
+  }
+  60% {
+    background-size: 0% 40%;
+    animation-timing-function: steps(5, end);
+  }
+  65%,
+  93% {
+    background-size: 100% 40%;
+  }
+  94%,
+  100% {
+    background-size: 0% 40%;
+  }
+}
+
+/* Pixelify's "fi" ligature reads as a stray letter; spell pixel text out. */
+.font-pixel {
+  font-variant-ligatures: none;
+}
+
+/* Respect "reduce motion": everything rests on its final frame. ------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
 }

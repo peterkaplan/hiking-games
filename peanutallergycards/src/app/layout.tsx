@@ -1,5 +1,5 @@
-import "@fontsource-variable/bricolage-grotesque";
-import "@fontsource-variable/inter";
+import "@fontsource-variable/atkinson-hyperlegible-next";
+import "@fontsource-variable/pixelify-sans";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { SiteFooter } from "@/components/site-footer";
@@ -8,16 +8,16 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Peanut Allergy Cards: chef and emergency cards for travel",
+    default: "Peanut Allergy Cards: eat abroad with confidence",
     template: "%s | Peanut Allergy Cards",
   },
   description:
-    "Peanut allergy cards for travellers: a chef card for restaurants and an emergency card, in the local language with English on the back.",
+    "Peanut allergy cards in the local language. Show the card, get a clear yes or no from the kitchen, and eat with confidence.",
 };
 
 const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => (
   <html lang="en">
-    <body className="font-sans antialiased">
+    <body className="font-sans text-lg antialiased">
       <SiteHeader />
       {children}
       <SiteFooter />

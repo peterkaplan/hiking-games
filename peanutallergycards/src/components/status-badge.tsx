@@ -8,15 +8,15 @@ export const stateLabel: Record<TranslationState, string> = {
 };
 
 const stateStyle: Record<TranslationState, string> = {
-  missing: "bg-stone-100 text-stone-700",
-  "out-of-date": "bg-amber-100 text-amber-900",
-  draft: "bg-amber-100 text-amber-900",
-  ready: "bg-emerald-100 text-emerald-900",
+  missing: "bg-paper",
+  "out-of-date": "bg-butter",
+  draft: "bg-butter",
+  ready: "bg-go text-white",
 };
 
 export const StatusBadge = ({ state }: { state: TranslationState }) => (
   <span
-    className={`inline-flex shrink-0 items-center rounded-full px-2.5 py-1 text-xs font-medium ${stateStyle[state]}`}
+    className={`px-frame font-pixel inline-flex shrink-0 items-center px-2 py-0.5 text-sm ${stateStyle[state]}`}
   >
     {stateLabel[state]}
   </span>

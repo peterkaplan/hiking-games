@@ -1,6 +1,7 @@
 import type { ChefCardText, Translation } from "@/content/cards";
 import { Emoji } from "./card-face";
-import { NoPeanutIcon } from "./no-peanut-icon";
+import { PixelArt } from "./pixel/pixel";
+import { noPeanut } from "./pixel/sprites";
 
 /**
  * The content of one side of a chef card. Sizes follow the card's width
@@ -15,7 +16,7 @@ export const ChefCardFace = ({
 }) => (
   <div className="flex flex-col gap-4 @lg:flex-row @2xl:gap-6">
     <div className="flex shrink-0 flex-col items-center gap-3 @lg:w-28 @2xl:w-40">
-      <NoPeanutIcon className="size-16 @lg:size-24 @2xl:size-32" />
+      <PixelArt className="size-16 @lg:size-24 @2xl:size-32" rows={noPeanut} />
       {staffNotes.map((note) => (
         <p
           className="text-xs @2xl:text-sm"

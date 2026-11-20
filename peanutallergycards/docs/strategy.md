@@ -2,6 +2,16 @@
 
 _Last updated: 2026-11-20_
 
+## Value proposition
+
+**Eat abroad with confidence.** You show the card, the kitchen reads exactly
+what you can't eat in their own language, and they **confirm** whether they can
+make your meal safely. The point isn't translation; it's getting a clear
+yes or no so you know you can eat.
+
+The site's headline says it in three beats: _Show the card. Get a clear yes.
+Eat with confidence._
+
 ## Goal
 
 A small, low-maintenance side business. Optimise for low running costs and

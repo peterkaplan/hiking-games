@@ -7,19 +7,19 @@ export interface FaqItem {
 
 export const faqItems: readonly FaqItem[] = [
   {
+    question: "How do I know the kitchen really understood?",
+    answer:
+      "The chef card ends with one clear question: can you make this meal safe for me? Staff answer yes or no, so you get a real answer instead of a polite nod. If the answer is no, or they hesitate, thank them and eat somewhere else.",
+  },
+  {
     question: "Why two cards?",
     answer:
-      "They do different jobs. The chef card is for ordering: it tells the kitchen what to avoid and asks whether they can cook safely for you. The emergency card is for a reaction: it says you're having anaphylaxis and asks whoever reads it to call the local ambulance number.",
+      "The chef card is for every meal: it tells the kitchen what to avoid and asks for that yes or no. The emergency card is for if something goes wrong: it tells anyone nearby you're having a severe reaction and asks them to call the local ambulance number.",
   },
   {
     question: "Who translates the cards?",
     answer:
-      "Each card is translated from our English text and then checked by a native speaker. We don't sell a card until that check is done. The English on the back lets you read what you're handing over.",
-  },
-  {
-    question: "What does the chef card say about peanut oil?",
-    answer:
-      "It asks the kitchen to avoid peanuts in every form, including peanut oil, sauces and anything that has touched peanuts. Custom cards for different needs are planned.",
+      "Each card is translated from our English text, then checked by a native speaker. We don't sell a card until that check is done. English is on the back, so you always know what you're showing.",
   },
   {
     question: "Digital or printed?",

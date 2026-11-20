@@ -40,21 +40,6 @@ export const frontLanguages = (destination: Destination): Language[] => {
   );
 };
 
-/** A line of local-language text to show off a destination, if any exists. */
-export const sampleHeadline = (
-  destination: Destination
-): { language: Language; text: string } | null => {
-  const chef = destination.chefCard.front;
-  if (chef) {
-    return { language: chef.language, text: chef.text.headline };
-  }
-  const emergency = destination.emergencyCard.front;
-  if (emergency) {
-    return { language: emergency.language, text: emergency.text.headline };
-  }
-  return null;
-};
-
 export type TranslationState = "missing" | "draft" | "out-of-date" | "ready";
 
 /** Worst first: a destination takes the worst state of any of its parts. */

@@ -1,31 +1,33 @@
 import Link from "next/link";
-import { NoPeanutIcon } from "./no-peanut-icon";
+import { PixelArt } from "./pixel/pixel";
+import { noPeanut } from "./pixel/sprites";
 
 const navLinks = [
-  { href: "/#destinations", label: "Destinations" },
-  { href: "/#how-it-works", label: "How it works" },
-  { href: "/#faq", label: "FAQ" },
+  { href: "/#how-it-works", label: "How it works", always: false },
+  { href: "/#destinations", label: "Destinations", always: true },
+  { href: "/#faq", label: "FAQ", always: false },
 ] as const;
 
 export const SiteHeader = () => (
-  <header className="border-peanut-200/70 border-b">
-    <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4">
-      <Link className="flex items-center gap-2.5" href="/">
-        <NoPeanutIcon className="size-8" />
-        <span className="font-display text-lg font-bold tracking-tight">
-          Peanut Allergy Cards
+  <header className="bg-sky">
+    <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-5">
+      <Link className="group px-focus flex items-center gap-3" href="/">
+        <PixelArt className="px-wiggle size-9" rows={noPeanut} />
+        <span className="font-pixel text-lg font-semibold sm:text-xl">
+          peanut allergy cards
         </span>
       </Link>
       <nav aria-label="Main">
-        <ul className="flex items-center gap-6 text-sm">
+        <ul className="font-pixel flex items-center gap-6">
           {navLinks.map((link) => (
             <li
-              className={
-                link.href === "/#destinations" ? "" : "hidden sm:block"
-              }
+              className={link.always ? "" : "hidden md:block"}
               key={link.href}
             >
-              <Link className="hover:text-ink text-stone-700" href={link.href}>
+              <Link
+                className="px-focus underline-offset-4 hover:underline"
+                href={link.href}
+              >
                 {link.label}
               </Link>
             </li>

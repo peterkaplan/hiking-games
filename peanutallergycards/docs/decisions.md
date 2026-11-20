@@ -4,6 +4,20 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ---
 
+## 2026-11-20: Value prop is confirmation; pixel-art identity
+
+**Decision:** Lead with "eat abroad with confidence": the kitchen confirms
+yes or no, so you know you can eat. The site uses a pixel-art identity:
+pixel fonts and frames, a looping hero scene that acts out the value prop
+(show the card, the chef answers ✓, the food arrives), waving pixel flags, and
+small looping animations. Animations rest on their final frame when the visitor
+prefers reduced motion.
+**Why:** The first design looked generic and AI-made, and led with translation
+instead of confirmation. A distinct, playful identity is memorable and makes an
+anxious topic feel approachable.
+**Note:** The site says staff answer yes or no. The redesigned cards need an
+answer section built for that (see roadmap).
+
 ## 2026-11-20: Two cards per destination, local language front, English back
 
 **Decision:** We sell a chef card and an emergency card for each destination

@@ -26,7 +26,9 @@ Tick items off as they're done; add new ones as they come up.
 - [x] Homepage and destination buy page (`/thailand`, `/japan`): card viewer, format picker, FAQ
 - [ ] Set real prices in `src/content/pricing.ts` (currently placeholders: $8 digital, $18 printed)
 - [ ] Connect checkout to the buy button (Stripe Checkout, or link to the Etsy listing). It stays disabled until a destination is reviewed
-- [ ] Review the website copy: Thailand "where peanuts turn up" list, FAQ, how-to-use tips
+- [x] Redesign the site around "eat with confidence", with a pixel-art identity and micro-animations
+- [ ] Redesign the cards (current ones are placeholders). The chef card needs a clear yes / no answer section staff can point to, since the site promises a clear answer
+- [ ] Review the website copy: Thailand "where peanuts turn up" list, FAQ, meal steps
 - [ ] Disclaimer, About and Contact pages
 - [ ] SEO basics: titles, descriptions, sitemap, Open Graph images
 - [ ] Analytics (privacy-friendly, e.g. Plausible or Vercel Analytics)

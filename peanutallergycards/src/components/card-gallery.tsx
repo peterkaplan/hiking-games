@@ -9,7 +9,10 @@ export interface GalleryView {
   label: string;
 }
 
-/** Shows one card side at a time, with buttons to switch between sides. */
+/**
+ * Shows one card side at a time, with buttons to switch between sides.
+ * Switching replays a short pixel "flip".
+ */
 export const CardGallery = ({ views }: { views: readonly GalleryView[] }) => {
   const [selectedId, setSelectedId] = useState(views[0]?.id);
   const selected = views.find((view) => view.id === selectedId) ?? views[0];
@@ -21,14 +24,16 @@ export const CardGallery = ({ views }: { views: readonly GalleryView[] }) => {
 
   return (
     <div>
-      <div className="bg-peanut-100 rounded-3xl p-3 sm:p-8">
-        {selected?.content}
+      <div className="px-frame bg-peach p-4 sm:p-8">
+        <div className="px-flip-in" key={selected?.id}>
+          {selected?.content}
+        </div>
       </div>
-      <div className="mt-4 flex flex-wrap gap-2">
+      <div className="mt-8 flex flex-wrap gap-4">
         {views.map((view) => (
           <button
             aria-pressed={view.id === selected?.id}
-            className="border-peanut-200 hover:border-ink aria-pressed:border-ink aria-pressed:bg-ink rounded-full border bg-white px-4 py-2 text-sm transition aria-pressed:text-white"
+            className="px-frame px-focus font-pixel hover:bg-butter aria-pressed:bg-ink aria-pressed:text-paper bg-white px-3 py-1.5 transition-colors"
             key={view.id}
             onClick={handleSelect}
             type="button"

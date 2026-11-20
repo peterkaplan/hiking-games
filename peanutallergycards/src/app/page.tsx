@@ -1,127 +1,106 @@
 import Link from "next/link";
-import { CardSurface } from "@/components/card-face";
-import { ChefCardFace } from "@/components/chef-card";
-import { EmergencyCardFace } from "@/components/emergency-card";
 import { Faq } from "@/components/faq";
+import { MealSteps } from "@/components/meal-steps";
+import { DriftingClouds, PixelEdge } from "@/components/pixel/decor";
+import { HeroScene } from "@/components/pixel/hero-scene";
+import {
+  ChefCardPixel,
+  EmergencyCardPixel,
+} from "@/components/pixel/pack-cards";
+import { PixelArt, palette } from "@/components/pixel/pixel";
+import type { FlagId } from "@/components/pixel/sprites";
+import { check, isFlagId } from "@/components/pixel/sprites";
+import { WavingFlag } from "@/components/pixel/waving-flag";
 import { StatusBadge } from "@/components/status-badge";
 import type { Destination } from "@/content/cards";
 import {
-  cardBacks,
   destinationState,
   destinations,
-  findDestination,
   frontLanguages,
-  sampleHeadline,
 } from "@/content/cards";
 import { faqItems } from "@/content/faq";
 import { formatPrice, lowestPriceUsd } from "@/content/pricing";
 
 /** Planned next, from the language priority in docs/strategy.md. */
-const comingNext = ["China", "Mexico", "Italy"] as const;
+const comingNext: readonly { flag: FlagId; name: string }[] = [
+  { flag: "china", name: "China" },
+  { flag: "mexico", name: "Mexico" },
+  { flag: "italy", name: "Italy" },
+];
 
-const steps = [
-  {
-    title: "Pick where you're going",
-    body: "Each country gets its own pair of cards, in the local language and with the right emergency number.",
-  },
-  {
-    title: "Download or get them printed",
-    body: "Print at home and keep the images on your phone, or have laminated cards posted to you.",
-  },
-  {
-    title: "Show the card",
-    body: "Hand the chef card over when you order and ask for it to go to the kitchen. Keep the emergency card with your epinephrine.",
-  },
-] as const;
-
-const reasons = [
-  {
-    title: "Made for peanut",
-    body: "Not a generic allergy list. The cards cover peanut oil, sauces and cross-contact from shared woks, pans and mortars.",
-  },
-  {
-    title: "Checked by native speakers",
-    body: "A translation app can get the most important sentence wrong. We don't sell a card until a native speaker has checked it.",
-  },
-  {
-    title: "English on the back",
-    body: "You can read what you're handing over, and staff who read English get the message too.",
-  },
-] as const;
-
-const buttonPrimary =
-  "inline-flex items-center justify-center rounded-full bg-ink px-6 py-3.5 font-semibold text-white transition hover:bg-stone-800";
-const buttonSecondary =
-  "inline-flex items-center justify-center rounded-full border border-ink px-6 py-3.5 font-semibold transition hover:bg-white";
-
-/** The Thai chef card, front on top of the English back. */
-const HeroCards = () => {
-  const thailand = findDestination("thailand");
-  const front = thailand?.chefCard.front;
-  if (!(thailand && front)) {
-    return null;
-  }
-  return (
-    <div className="mx-auto w-full max-w-xl">
-      <div className="relative pr-4 sm:pr-8">
-        {/* The English back, peeking out behind the front. */}
-        <div
-          aria-hidden="true"
-          className="bg-peanut-50 absolute -top-3 right-0 bottom-3 left-10 rotate-[4deg] rounded-2xl border border-stone-200 shadow-lg"
-        />
-        <CardSurface
-          className="relative -rotate-1 shadow-xl"
-          lang={front.language.code}
-        >
-          <ChefCardFace text={front.text} />
-        </CardSurface>
+const Hero = () => (
+  <section className="bg-sky relative overflow-x-clip">
+    <DriftingClouds />
+    <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-4 pt-10 pb-20 lg:grid-cols-[1fr_1.15fr] lg:pt-16 lg:pb-28">
+      <div>
+        <h1 className="font-pixel text-4xl leading-[1.2] sm:text-6xl lg:text-[2.75rem] xl:text-5xl">
+          <span className="beat beat-1 block w-fit">Show the card.</span>
+          <span className="beat beat-2 block w-fit">Get a clear yes.</span>
+          <span className="beat beat-3 text-go-dark block w-fit whitespace-nowrap">
+            Eat with confidence.
+          </span>
+        </h1>
+        <p className="mt-8 max-w-md text-xl">
+          A peanut allergy card in the local language. The kitchen reads exactly
+          what you can&apos;t eat, then tells you yes or no. No guessing, no
+          polite nods.
+        </p>
+        <div className="mt-10 flex flex-wrap items-center gap-8">
+          <Link className="px-btn" href="#destinations">
+            Find your destination
+          </Link>
+          <Link
+            className="px-focus font-pixel text-lg underline decoration-2 underline-offset-4"
+            href="#how-it-works"
+          >
+            How it works
+          </Link>
+        </div>
       </div>
-      <p className="mt-12 text-center text-sm text-stone-600">
-        Chef card for Thailand: Thai on the front, English on the back
-      </p>
+      <div className="px-frame-raised bg-peach mr-2">
+        <HeroScene />
+      </div>
     </div>
-  );
-};
+  </section>
+);
 
 const DestinationTile = ({ destination }: { destination: Destination }) => {
-  const sample = sampleHeadline(destination);
+  const [mainLanguage] = frontLanguages(destination);
   const languages = frontLanguages(destination)
     .map((language) => language.name)
     .join(", ");
   return (
     <Link
-      className="group border-peanut-200 flex min-w-0 flex-col rounded-2xl border bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+      className="group px-frame-raised px-lift px-focus flex min-w-0 flex-col bg-white p-6"
       href={`/${destination.slug}`}
     >
       <div className="flex items-start justify-between gap-3">
-        <h3 className="font-display text-2xl font-bold">
-          {destination.country}
-        </h3>
+        {isFlagId(destination.slug) ? (
+          <WavingFlag className="size-16" id={destination.slug} />
+        ) : null}
         <StatusBadge state={destinationState(destination)} />
       </div>
-      {sample ? (
-        <p
-          className="mt-3 truncate text-lg text-stone-600"
-          lang={sample.language.code}
-        >
-          {sample.text}
+      <h3 className="font-pixel mt-4 text-3xl">{destination.country}</h3>
+      {mainLanguage ? (
+        <p className="mt-1 text-xl" lang={mainLanguage.code}>
+          {mainLanguage.nativeName}
         </p>
       ) : null}
-      <dl className="mt-6 grid grid-cols-2 gap-4 text-sm">
+      <dl className="mt-6 grid grid-cols-2 gap-4 text-base">
         <div>
-          <dt className="text-stone-500">Languages</dt>
-          <dd className="font-medium">{languages || "—"} + English</dd>
+          <dt className="font-pixel">Languages</dt>
+          <dd>{languages || "—"} + English</dd>
         </div>
         <div>
-          <dt className="text-stone-500">Ambulance</dt>
-          <dd className="font-medium">{destination.emergencyNumber}</dd>
+          <dt className="font-pixel">Ambulance</dt>
+          <dd>{destination.emergencyNumber}</dd>
         </div>
       </dl>
-      <p className="mt-6 font-semibold">
-        From {formatPrice(lowestPriceUsd)}{" "}
+      <p className="font-pixel mt-6 flex items-center justify-between text-lg">
+        From {formatPrice(lowestPriceUsd)}
         <span
           aria-hidden="true"
-          className="inline-block transition group-hover:translate-x-1"
+          className="transition-transform duration-150 group-hover:translate-x-1"
         >
           →
         </span>
@@ -130,191 +109,125 @@ const DestinationTile = ({ destination }: { destination: Destination }) => {
   );
 };
 
-const Home = () => {
-  const japanEmergency = findDestination("japan")?.emergencyCard.front;
-  const thailand = findDestination("thailand");
-
-  return (
-    <main>
-      {/* Hero */}
-      <section className="mx-auto grid max-w-6xl items-center gap-14 overflow-x-clip px-4 pt-12 pb-16 lg:grid-cols-2 lg:pt-20 lg:pb-24">
-        <div>
-          <p className="text-peanut-700 text-sm font-semibold tracking-widest uppercase">
-            Peanut allergy cards for travel
-          </p>
-          <h1 className="font-display mt-4 text-5xl leading-[1.05] font-bold tracking-tight sm:text-6xl">
-            Tell the kitchen about your peanut allergy, in their language.
-          </h1>
-          <p className="mt-6 max-w-xl text-lg text-stone-700">
-            Two cards for every country you visit: a chef card to hand to
-            restaurant staff, and an emergency card in case you react. The local
-            language is on the front, English on the back.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link className={buttonPrimary} href="#destinations">
-              Choose your destination
-            </Link>
-            <Link className={buttonSecondary} href="/thailand">
-              See the Thailand cards
-            </Link>
-          </div>
-        </div>
-        <HeroCards />
-      </section>
-
-      {/* Destinations */}
-      <section
-        aria-labelledby="destinations-heading"
-        className="bg-peanut-100/60 scroll-mt-8 py-20"
-        id="destinations"
-      >
-        <div className="mx-auto max-w-6xl px-4">
-          <h2
-            className="font-display text-4xl font-bold tracking-tight"
-            id="destinations-heading"
-          >
-            Where are you going?
-          </h2>
-          <p className="mt-3 max-w-2xl text-lg text-stone-700">
-            Each destination comes with both cards and the local ambulance
-            number.
-          </p>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {destinations.map((destination) => (
-              <DestinationTile
-                destination={destination}
-                key={destination.slug}
-              />
-            ))}
-            <div className="border-peanut-200 flex flex-col justify-center rounded-2xl border-2 border-dashed p-6">
-              <p className="font-display text-xl font-bold">Coming next</p>
-              <p className="mt-2 text-stone-700">{comingNext.join(" · ")}</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* How it works */}
-      <section
-        aria-labelledby="how-heading"
-        className="mx-auto max-w-6xl scroll-mt-8 px-4 py-20"
-        id="how-it-works"
-      >
+const Destinations = () => (
+  <>
+    <section
+      aria-labelledby="destinations-heading"
+      className="bg-peach scroll-mt-4"
+      id="destinations"
+    >
+      <div className="mx-auto max-w-6xl px-4 py-20">
         <h2
-          className="font-display text-4xl font-bold tracking-tight"
-          id="how-heading"
+          className="font-pixel text-4xl sm:text-5xl"
+          id="destinations-heading"
         >
-          How it works
+          Where are you headed?
         </h2>
-        <ol className="mt-10 grid gap-8 md:grid-cols-3">
-          {steps.map((step, index) => (
-            <li key={step.title}>
-              <span className="bg-ink font-display flex size-10 items-center justify-center rounded-full font-bold text-white">
-                {index + 1}
-              </span>
-              <h3 className="font-display mt-4 text-xl font-bold">
-                {step.title}
-              </h3>
-              <p className="mt-2 text-stone-700">{step.body}</p>
-            </li>
+        <p className="mt-4 max-w-2xl text-xl">
+          Each country gets its own pair of cards, in the local language, with
+          the local ambulance number.
+        </p>
+        <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+          {destinations.map((destination) => (
+            <DestinationTile destination={destination} key={destination.slug} />
           ))}
-        </ol>
-      </section>
-
-      {/* The two cards */}
-      <section
-        aria-labelledby="two-cards-heading"
-        className="mx-auto max-w-6xl px-4 py-20"
-      >
-        <h2
-          className="font-display text-4xl font-bold tracking-tight"
-          id="two-cards-heading"
-        >
-          Two cards, two jobs
-        </h2>
-        <div className="mt-10 grid gap-10 lg:grid-cols-2">
-          <div>
-            <h3 className="font-display text-2xl font-bold">The chef card</h3>
-            <p className="mt-2 text-stone-700">
-              For ordering. It tells the kitchen the allergy can kill, lists
-              peanut oil and sauces, asks for clean pans and fresh oil, and asks
-              whether they can make 100% safe food, with an easy way to say no.
-            </p>
-            {thailand ? (
-              <CardSurface className="mt-6" lang="en">
-                <ChefCardFace text={cardBacks(thailand).chef} />
-              </CardSurface>
-            ) : null}
-          </div>
-          <div>
-            <h3 className="font-display text-2xl font-bold">
-              The emergency card
-            </h3>
-            <p className="mt-2 text-stone-700">
-              For a reaction. It says you&apos;re having anaphylaxis and asks
-              whoever reads it to call the local ambulance number, so anyone
-              nearby can act fast.
-            </p>
-            {japanEmergency ? (
-              <figure className="mt-6">
-                <CardSurface lang={japanEmergency.language.code}>
-                  <EmergencyCardFace text={japanEmergency.text} />
-                </CardSurface>
-                <figcaption className="mt-2 text-sm text-stone-500">
-                  Emergency card for Japan, front
-                </figcaption>
-              </figure>
-            ) : null}
+          <div className="border-ink flex flex-col justify-center border-4 border-dashed p-6">
+            <p className="font-pixel text-2xl">Coming next</p>
+            <ul className="mt-4 space-y-3">
+              {comingNext.map((country) => (
+                <li className="flex items-center gap-3" key={country.name}>
+                  <WavingFlag className="size-10" id={country.flag} />
+                  <span className="font-pixel text-lg">{country.name}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
+    <PixelEdge color={palette.c} id="edge-destinations" />
+  </>
+);
 
-      {/* Why */}
-      <section
-        aria-labelledby="why-heading"
-        className="bg-ink py-20 text-white"
-      >
-        <div className="mx-auto max-w-6xl px-4">
-          <h2
-            className="font-display text-4xl font-bold tracking-tight"
-            id="why-heading"
-          >
-            Why these cards
-          </h2>
-          <div className="mt-10 grid gap-10 md:grid-cols-3">
-            {reasons.map((reason) => (
-              <div
-                className="border-peanut-400 border-t-2 pt-5"
-                key={reason.title}
-              >
-                <h3 className="font-display text-xl font-bold">
-                  {reason.title}
-                </h3>
-                <p className="mt-2 text-stone-300">{reason.body}</p>
-              </div>
-            ))}
-          </div>
+const Pack = () => (
+  <section
+    aria-labelledby="pack-heading"
+    className="mx-auto max-w-6xl px-4 py-20"
+  >
+    <h2 className="font-pixel text-4xl sm:text-5xl" id="pack-heading">
+      Two cards for every trip
+    </h2>
+    <div className="mt-12 grid gap-14 md:grid-cols-2">
+      <div>
+        <div className="px-frame bg-mint p-6 sm:p-10">
+          <ChefCardPixel />
         </div>
-      </section>
+        <h3 className="font-pixel mt-8 text-3xl">The chef card</h3>
+        <p className="mt-2 text-xl">
+          For every meal. It tells the kitchen, in their language, exactly what
+          you can&apos;t eat: peanuts, peanut oil, sauces, and anything that has
+          touched them. Then it asks for a clear yes or no.
+        </p>
+      </div>
+      <div>
+        <div className="px-frame bg-butter p-6 sm:p-10">
+          <EmergencyCardPixel />
+        </div>
+        <h3 className="font-pixel mt-8 text-3xl">The emergency card</h3>
+        <p className="mt-2 text-xl">
+          For if something goes wrong. It tells anyone nearby that you&apos;re
+          having a severe reaction, and asks them to call the local ambulance
+          number.
+        </p>
+      </div>
+    </div>
+    <ul className="font-pixel mt-14 grid gap-6 text-xl md:grid-cols-2">
+      <li className="flex items-center gap-4">
+        <PixelArt className="w-8 shrink-0" rows={check} />
+        English on the back, so you always know what you&apos;re showing
+      </li>
+      <li className="flex items-center gap-4">
+        <PixelArt className="w-8 shrink-0" rows={check} />
+        Checked by a native speaker before we sell it
+      </li>
+    </ul>
+  </section>
+);
 
-      {/* FAQ */}
-      <section
-        aria-labelledby="faq-heading"
-        className="mx-auto max-w-4xl scroll-mt-8 px-4 py-20"
-        id="faq"
-      >
-        <h2
-          className="font-display text-4xl font-bold tracking-tight"
-          id="faq-heading"
-        >
-          Questions
-        </h2>
-        <div className="mt-8">
-          <Faq items={faqItems} />
-        </div>
-      </section>
-    </main>
-  );
-};
+const Home = () => (
+  <main>
+    <Hero />
+    <PixelEdge color={palette.u} id="edge-hero" />
+
+    <section
+      aria-labelledby="how-heading"
+      className="mx-auto max-w-6xl scroll-mt-4 px-4 py-20"
+      id="how-it-works"
+    >
+      <h2 className="font-pixel text-4xl sm:text-5xl" id="how-heading">
+        How a meal goes
+      </h2>
+      <div className="mt-12">
+        <MealSteps />
+      </div>
+    </section>
+
+    <Destinations />
+    <Pack />
+
+    <section
+      aria-labelledby="faq-heading"
+      className="mx-auto max-w-4xl scroll-mt-4 px-4 py-20"
+      id="faq"
+    >
+      <h2 className="font-pixel text-4xl sm:text-5xl" id="faq-heading">
+        Questions
+      </h2>
+      <div className="mt-10">
+        <Faq items={faqItems} />
+      </div>
+    </section>
+  </main>
+);
 
 export default Home;
