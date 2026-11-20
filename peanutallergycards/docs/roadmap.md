@@ -7,32 +7,38 @@ Tick items off as they're done; add new ones as they come up.
 - [x] Competitive landscape ([research](research/2026-11-20-competitive-landscape.md))
 - [x] Search demand first pass ([research](research/2026-11-20-search-demand.md))
 - [x] Project folder, notes and website shell
+- [x] Card format: chef card and emergency card per destination, local language front, English back
+- [x] Owner's Thailand cards and Japan emergency card added as drafts, with preview pages
 - [ ] Check peanutallergycards.com is registered (and the .co.uk / .com.au if wanted)
 - [ ] Get real monthly search volumes from Google Keyword Planner (keyword list in the search-demand note)
 - [ ] Choose hosting (Vercel?) and connect the domain
 
-## Phase 1: Japanese launch
+## Phase 1: Japan launch (Thailand alongside if its review is done first)
 
-- [ ] Finalise the English source card (compare with FARE's chef card; decide peanut oil wording)
-- [ ] Find a native Japanese reviewer
-- [ ] Translate to Japanese and review it ([process](translation-process.md))
-- [ ] `/japanese` page: card preview, free PDF download, phone-sized image
+- [ ] Fix the existing Japan emergency card PDF: its English back says "call 1669" (Thailand's number); Japan is 119
+- [ ] Paste the Burmese kitchen-staff note for Thailand from the original Google Drawing
+- [ ] Write the Japanese chef card; adapt the kitchen lines for Japanese kitchens
+- [ ] Decide whether the English chef card should mention local items the Thai front adds (ground roasted peanuts, curry paste)
+- [ ] Finalise the English wording (compare with FARE's chef card; decide peanut oil wording)
+- [ ] Find native Japanese and Thai reviewers ([process](translation-process.md))
+- [ ] Decide the physical card size (e.g. credit card, A6/4×6 postcard) and design the print layout
+- [ ] Downloadable print-ready PDF (front and back, fonts embedded) and phone-sized images
 - [ ] Disclaimer, About and Contact pages
 - [ ] SEO basics: titles, descriptions, sitemap, Open Graph images
 - [ ] Analytics (privacy-friendly, e.g. Plausible or Vercel Analytics)
 - [ ] Launch, and post in relevant Reddit communities (e.g. Japan travel, food allergies)
 
-## Phase 2: More languages and the paid card
+## Phase 2: More destinations and the paid card
 
-- [ ] Chinese, Spanish, Thai, Italian (in that order)
+- [ ] China, Mexico, Italy (and Thailand if not launched in Phase 1)
+- [ ] Spanish-speaking countries share one translation but need their own emergency numbers (Mexico 911, Spain 112)
 - [ ] Custom card builder (name, peanut oil, tree nuts, emergency contact)
-- [ ] Emergency number per destination country (language ≠ country: Spanish covers Mexico 911 and Spain 112)
 - [ ] Payments (Stripe Checkout, or send buyers to Etsy at first)
 
 ## Phase 3: Etsy
 
 - [ ] Etsy shop set-up
-- [ ] Digital download listings per language, with mockups
+- [ ] Digital download listings per destination, with mockups
 - [ ] Listing copy and tags based on the keyword research
 
 ## Phase 4: Physical cards

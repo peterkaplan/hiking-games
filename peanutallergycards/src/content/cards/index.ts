@@ -1,21 +1,48 @@
-import { ENGLISH_SOURCE_VERSION, english } from "./en";
-import { japanese } from "./ja";
-import type { CardLanguage } from "./types";
+import {
+  ENGLISH_SOURCE_VERSION,
+  englishChefCard,
+  englishEmergencyCard,
+} from "./english";
+import { japan } from "./japan";
+import { thailand } from "./thailand";
+import type {
+  ChefCardText,
+  Destination,
+  EmergencyCardText,
+  Translation,
+} from "./types";
 
-export { ENGLISH_SOURCE_VERSION } from "./en";
-export type { CardLanguage, CardText, Review, Translation } from "./types";
+/** Every destination, in launch-priority order (see docs/strategy.md). */
+export const destinations: readonly Destination[] = [japan, thailand];
 
-/** Every language, in launch-priority order (see docs/strategy.md). */
-export const cardLanguages: readonly CardLanguage[] = [english, japanese];
+export const findDestination = (slug: string): Destination | undefined =>
+  destinations.find((destination) => destination.slug === slug);
+
+/** The English backs of a destination's two cards. */
+export const cardBacks = (
+  destination: Destination
+): { chef: ChefCardText; emergency: EmergencyCardText } => ({
+  chef: englishChefCard,
+  emergency: englishEmergencyCard(destination.emergencyNumber),
+});
 
 export type TranslationState = "missing" | "draft" | "out-of-date" | "ready";
 
+/** Worst first: a destination takes the worst state of any of its parts. */
+const stateOrder: readonly TranslationState[] = [
+  "missing",
+  "out-of-date",
+  "draft",
+  "ready",
+];
+
 /**
- * Where a language stands. Only "ready" cards may be offered to people as
- * safe to use: reviewed by a native speaker against the current English text.
+ * Where one translation stands. "ready" means reviewed by a native speaker
+ * against the current English text.
  */
-export const translationState = (language: CardLanguage): TranslationState => {
-  const { translation } = language;
+export const translationState = <T>(
+  translation: Translation<T> | null
+): TranslationState => {
   if (translation === null) {
     return "missing";
   }
@@ -28,5 +55,78 @@ export const translationState = (language: CardLanguage): TranslationState => {
   return "ready";
 };
 
-export const isReady = (language: CardLanguage): boolean =>
-  translationState(language) === "ready";
+/** The worst state across every translated part of a destination's cards. */
+export const destinationState = (
+  destination: Destination
+): TranslationState => {
+  const states = [
+    translationState(destination.chefCard.front),
+    translationState(destination.emergencyCard.front),
+    ...destination.chefCard.staffNotes.map(translationState),
+  ];
+  return stateOrder.find((state) => states.includes(state)) ?? "ready";
+};
+
+const countProblem = (
+  part: string,
+  actual: number,
+  expected: number
+): string[] =>
+  actual === expected
+    ? []
+    : [`${part} has ${actual} lines but the English has ${expected}`];
+
+/**
+ * Mistakes that must never reach a printed card, such as the wrong emergency
+ * number. Pages refuse to build while any destination has problems.
+ */
+export const contentProblems = (destination: Destination): string[] => {
+  const { country, emergencyNumber } = destination;
+  const problems: string[] = [];
+  const emergency = destination.emergencyCard.front;
+  if (emergency && !emergency.text.call.includes(emergencyNumber)) {
+    problems.push(
+      `${country}: the ${emergency.language.name} emergency card doesn't mention ${emergencyNumber}`
+    );
+  }
+  const chef = destination.chefCard.front;
+  if (chef) {
+    const label = `${country}: ${chef.language.name} chef card`;
+    problems.push(
+      ...countProblem(
+        `${label} risks`,
+        chef.text.risks.length,
+        englishChefCard.risks.length
+      ),
+      ...countProblem(
+        `${label} kitchen`,
+        chef.text.kitchen.length,
+        englishChefCard.kitchen.length
+      )
+    );
+  }
+  return problems;
+};
+
+/** Throws if any destination has content problems. Called at build time. */
+export const assertValidContent = (): void => {
+  const problems = destinations.flatMap(contentProblems);
+  if (problems.length > 0) {
+    throw new Error(`Card content problems:\n- ${problems.join("\n- ")}`);
+  }
+};
+
+/** Only offer a destination's cards to people as ready when this is true. */
+export const isReady = (destination: Destination): boolean =>
+  destinationState(destination) === "ready" &&
+  contentProblems(destination).length === 0;
+
+export { ENGLISH_SOURCE_VERSION } from "./english";
+export type {
+  ChefCardText,
+  Destination,
+  EmergencyCardText,
+  Language,
+  Review,
+  Translation,
+} from "./types";

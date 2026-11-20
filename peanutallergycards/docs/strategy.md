@@ -18,20 +18,30 @@ little ongoing work, not for growth at any cost.
 
 ## What we sell
 
-| Product                                                             | Price             | Purpose                                            |
-| ------------------------------------------------------------------- | ----------------- | -------------------------------------------------- |
-| Free card, one per language (PDF and phone image)                   | Free              | Matches "free" searches; brings people to the site |
-| Custom card (name, peanut oil yes/no, tree nuts, emergency contact) | One-off fee (TBD) | Main paid product                                  |
-| Multi-language bundle (e.g. a whole trip)                           | One-off fee (TBD) | Upsell                                             |
-| Printed, laminated card set                                         | TBD               | Later, once digital sells                          |
+The core product is a **pair of cards per destination**, each with the local
+language on the front and English on the back:
+
+- **Chef card:** handed to restaurant staff. Says the allergy can kill, lists
+  what to avoid, gives kitchen instructions, and asks whether they can make
+  100% safe food.
+- **Emergency card:** shown to anyone nearby during a reaction. Says it's
+  anaphylaxis and asks them to call the local ambulance number.
+
+| Product                                                              | Price             | Purpose                                            |
+| -------------------------------------------------------------------- | ----------------- | -------------------------------------------------- |
+| Free card pair, per destination (PDF and phone image)                | Free              | Matches "free" searches; brings people to the site |
+| Custom cards (name, peanut oil yes/no, tree nuts, emergency contact) | One-off fee (TBD) | Main paid product                                  |
+| Multi-destination bundle (e.g. a whole trip)                         | One-off fee (TBD) | Upsell                                             |
+| Printed, laminated card pair                                         | TBD               | Later, once digital sells                          |
 
 One-off prices, no subscriptions. The market leader's subscription pricing
 draws complaints (see [competitive landscape](research/2026-11-20-competitive-landscape.md)).
 
 ## Channels
 
-1. **Website.** One page per language (`/japanese`, `/thai`…), each
-   matching "peanut allergy card in X" searches.
+1. **Website.** One page per destination (`/japan`, `/thailand`…). Titles
+   should use both forms people search: "peanut allergy card japan" and
+   "japanese peanut allergy card".
 2. **Etsy.** Digital downloads first (no fulfilment cost); physical cards later.
    Etsy brings its own buyers, which matters while Google volume is small.
 3. **App: deferred.** Phone wallet passes, phone-sized images and an

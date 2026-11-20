@@ -20,8 +20,12 @@ People rely on these cards to avoid a serious allergic reaction.
 - Never mark a translation `reviewed` yourself. AI or machine drafts must stay
   `status: "draft"`. Only a named native-speaker reviewer moves a card to `reviewed`.
 - When you change English card wording, bump `ENGLISH_SOURCE_VERSION` in
-  `src/content/cards/en.ts` and say so in the commit message.
-- Only offer a card to users as ready when `isReady()` is true.
+  `src/content/cards/english.ts` and say so in the commit message.
+- Only offer a destination's cards as ready when `isReady(destination)` is true.
+- Never weaken `contentProblems()` in `src/content/cards/index.ts` to get a
+  build passing. Fix the content instead.
+- Don't copy Thai or Burmese text from PDFs without checking it; see
+  "Copying text from Google Drawings PDFs" in `docs/translation-process.md`.
 - Site copy must not give medical advice. Keep the "not medical advice"
   disclaimer on every page that shows a card.
 

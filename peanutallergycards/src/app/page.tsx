@@ -1,5 +1,7 @@
-import type { CardLanguage, TranslationState } from "@/content/cards";
-import { cardLanguages, translationState } from "@/content/cards";
+import Link from "next/link";
+import { Disclaimer } from "@/components/disclaimer";
+import type { Destination, TranslationState } from "@/content/cards";
+import { destinationState, destinations } from "@/content/cards";
 
 const stateLabel: Record<TranslationState, string> = {
   missing: "Coming soon",
@@ -8,15 +10,12 @@ const stateLabel: Record<TranslationState, string> = {
   ready: "Available",
 };
 
-const LanguageRow = ({ language }: { language: CardLanguage }) => (
+const DestinationRow = ({ destination }: { destination: Destination }) => (
   <li className="flex items-center justify-between border-b border-stone-300 py-3">
-    <span>
-      {language.name}{" "}
-      <span className="text-stone-500" lang={language.code}>
-        ({language.nativeName})
-      </span>
-    </span>
-    <span className="text-sm">{stateLabel[translationState(language)]}</span>
+    <Link className="underline" href={`/${destination.slug}`}>
+      {destination.country}
+    </Link>
+    <span className="text-sm">{stateLabel[destinationState(destination)]}</span>
   </li>
 );
 
@@ -24,20 +23,17 @@ const Home = () => (
   <main className="mx-auto max-w-2xl px-4 py-16">
     <h1 className="text-4xl font-bold">Peanut Allergy Cards</h1>
     <p className="mt-4 text-lg">
-      Show this card at restaurants so the kitchen knows about your peanut
-      allergy, in their own language.
+      Two cards for each country you visit: a chef card for restaurants, and an
+      emergency card in case of a reaction. The local language is on the front,
+      English on the back.
     </p>
-    <h2 className="mt-12 text-2xl font-semibold">Languages</h2>
+    <h2 className="mt-12 text-2xl font-semibold">Destinations</h2>
     <ul className="mt-4">
-      {cardLanguages.map((language) => (
-        <LanguageRow key={language.code} language={language} />
+      {destinations.map((destination) => (
+        <DestinationRow destination={destination} key={destination.slug} />
       ))}
     </ul>
-    <p className="mt-12 text-sm text-stone-500">
-      These cards help you communicate. They are not medical advice. Always
-      carry your prescribed medication and follow your doctor&apos;s allergy
-      plan.
-    </p>
+    <Disclaimer />
   </main>
 );
 

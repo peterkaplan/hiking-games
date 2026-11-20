@@ -4,6 +4,25 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ---
 
+## 2026-11-20: Two cards per destination, local language front, English back
+
+**Decision:** We sell a chef card and an emergency card for each destination
+country. The front is in the local language (plus an optional short note for
+kitchen staff in a second language, e.g. Burmese in Thailand); the back is English.
+Content is organised by destination, not by language.
+**Why:** This is the owner's existing card design. Destination is the right unit
+because the emergency number depends on the country, and one country can need
+more than one language.
+
+## 2026-11-20: English backs are generated; the build checks emergency numbers
+
+**Decision:** The English backs come from one source, with the emergency number
+filled in per destination. The build fails if a front's emergency card doesn't
+contain the destination's number, or a chef card is missing bullet points.
+**Why:** The owner's Japan emergency card had Thailand's number (1669) on its
+English back, a copy-paste error that could cost time in an emergency. Generating
+the backs and checking the fronts prevents that class of mistake.
+
 ## 2026-11-20: Card text is data, and translations must be reviewed
 
 **Decision:** All card wording lives in `src/content/cards/`. Each translation

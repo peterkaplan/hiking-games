@@ -33,12 +33,20 @@ npm run build
 
 ## How the card content works
 
-All card wording lives in `src/content/cards/`, one file per language. The
-English file is the source; every translation records which English version it
-came from and who reviewed it. A language only shows as **Available** when a
-native speaker has reviewed it against the current English text. Change the
-English wording → bump `ENGLISH_SOURCE_VERSION` → every translation shows as
-out of date until it's redone. Details in
+We sell **two cards per destination**: a **chef card** for restaurant staff and
+an **emergency card** for anyone nearby during a reaction. Each has the local
+language on the front and English on the back.
+
+All card wording lives in `src/content/cards/`:
+
+- `english.ts`: the English text, used for every back and as the source for translations;
+- one file per destination (`japan.ts`, `thailand.ts`): its fronts and emergency number;
+- `index.ts`: the destination list and the rules for when a card is ready.
+
+Every translation records which English version it came from and who reviewed
+it. A destination only shows as **Available** once a native speaker has
+reviewed every part against the current English. The build also fails on
+mistakes like the wrong emergency number. Details in
 [`docs/translation-process.md`](docs/translation-process.md).
 
 ## Moving to its own repo
