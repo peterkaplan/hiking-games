@@ -12,6 +12,7 @@ export const japan: Destination = {
   slug: "japan",
   country: "Japan",
   emergencyNumber: "119",
+  peanutFoods: [],
   chefCard: {
     front: null,
     staffNotes: [],

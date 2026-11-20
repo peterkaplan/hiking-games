@@ -16,6 +16,13 @@ export const thailand: Destination = {
   slug: "thailand",
   country: "Thailand",
   emergencyNumber: "1669",
+  peanutFoods: [
+    "Satay, served with a peanut dipping sauce",
+    "Pad thai, often topped or served with crushed peanuts",
+    "Som tam (papaya salad), often pounded with roasted peanuts in the same mortar used for every order",
+    "Massaman and panang curries, and some curry pastes",
+    "Street-food stalls, where one wok and one pot of oil are shared across dishes",
+  ],
   chefCard: {
     front: {
       language: thai,

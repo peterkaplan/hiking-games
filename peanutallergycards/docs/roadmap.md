@@ -23,6 +23,10 @@ Tick items off as they're done; add new ones as they come up.
 - [ ] Find native Japanese and Thai reviewers ([process](translation-process.md))
 - [ ] Decide the physical card size (e.g. credit card, A6/4×6 postcard) and design the print layout
 - [ ] Downloadable print-ready PDF (front and back, fonts embedded) and phone-sized images
+- [x] Homepage and destination buy page (`/thailand`, `/japan`): card viewer, format picker, FAQ
+- [ ] Set real prices in `src/content/pricing.ts` (currently placeholders: $8 digital, $18 printed)
+- [ ] Connect checkout to the buy button (Stripe Checkout, or link to the Etsy listing). It stays disabled until a destination is reviewed
+- [ ] Review the website copy: Thailand "where peanuts turn up" list, FAQ, how-to-use tips
 - [ ] Disclaimer, About and Contact pages
 - [ ] SEO basics: titles, descriptions, sitemap, Open Graph images
 - [ ] Analytics (privacy-friendly, e.g. Plausible or Vercel Analytics)

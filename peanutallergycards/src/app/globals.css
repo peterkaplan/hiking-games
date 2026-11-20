@@ -1,18 +1,29 @@
 @import "tailwindcss";
 
-:root {
-  --background: #fffdf7;
-  --foreground: #1c1917;
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display:
+    "Bricolage Grotesque Variable", "Inter Variable", ui-sans-serif, system-ui,
+    sans-serif;
+
+  /* Brand: warm paper, peanut tan, warning-sign red. */
+  --color-paper: #fffbf2;
+  --color-ink: #1f1a17;
+  --color-peanut-50: #fdf6e9;
+  --color-peanut-100: #f8ead2;
+  --color-peanut-200: #f0d6a8;
+  --color-peanut-400: #e3b06a;
+  --color-peanut-700: #9a6b2f;
+  --color-peanut-900: #5c3d17;
+  --color-alert: #d92323;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #1c1917;
-    --foreground: #fafaf9;
-  }
+/* The site is light-only: the cards are printed objects, shown as on paper. */
+:root {
+  color-scheme: light;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  color: var(--color-ink);
+  background: var(--color-paper);
 }

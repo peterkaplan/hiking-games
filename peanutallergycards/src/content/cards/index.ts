@@ -9,6 +9,7 @@ import type {
   ChefCardText,
   Destination,
   EmergencyCardText,
+  Language,
   Translation,
 } from "./types";
 
@@ -25,6 +26,34 @@ export const cardBacks = (
   chef: englishChefCard,
   emergency: englishEmergencyCard(destination.emergencyNumber),
 });
+
+/** The languages on a destination's card fronts, main language first. */
+export const frontLanguages = (destination: Destination): Language[] => {
+  const languages = [
+    destination.chefCard.front?.language,
+    destination.emergencyCard.front?.language,
+    ...destination.chefCard.staffNotes.map((note) => note.language),
+  ].filter((language) => language !== undefined);
+  return languages.filter(
+    (language, index) =>
+      languages.findIndex((other) => other.code === language.code) === index
+  );
+};
+
+/** A line of local-language text to show off a destination, if any exists. */
+export const sampleHeadline = (
+  destination: Destination
+): { language: Language; text: string } | null => {
+  const chef = destination.chefCard.front;
+  if (chef) {
+    return { language: chef.language, text: chef.text.headline };
+  }
+  const emergency = destination.emergencyCard.front;
+  if (emergency) {
+    return { language: emergency.language, text: emergency.text.headline };
+  }
+  return null;
+};
 
 export type TranslationState = "missing" | "draft" | "out-of-date" | "ready";
 

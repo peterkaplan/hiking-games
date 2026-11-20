@@ -92,6 +92,11 @@ export interface Destination {
   };
   /** The number to call for an ambulance, e.g. "1669" in Thailand. */
   emergencyNumber: string;
+  /**
+   * Website copy (not card text): where peanuts commonly turn up in local
+   * food. Empty hides the section.
+   */
+  peanutFoods: readonly string[];
   /** URL segment, e.g. "thailand" → /thailand. */
   slug: string;
 }
