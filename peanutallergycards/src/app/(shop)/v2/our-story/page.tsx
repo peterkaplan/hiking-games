@@ -108,7 +108,7 @@ const Journey = () => (
 const Note = () => (
   <section
     aria-labelledby="note-heading"
-    className="mx-auto max-w-7xl px-4 pt-24 sm:px-6"
+    className="mx-auto max-w-7xl overflow-x-clip px-4 pt-24 sm:px-6"
   >
     <div className="grid items-center gap-14 lg:grid-cols-2">
       <div className="relative">

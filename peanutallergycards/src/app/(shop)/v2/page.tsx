@@ -114,16 +114,16 @@ const Hero = () => {
 
 const Statement = () => (
   <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6">
-    <div className="relative">
-      <p className="max-w-5xl font-serif text-5xl leading-[1.02] tracking-tight sm:text-7xl">
+    <div className="flex items-end justify-between gap-10">
+      <p className="font-serif text-5xl leading-[1.12] tracking-tight sm:text-7xl sm:leading-[1.1]">
         One card. One question.{" "}
-        <span className="bg-shop-highlight text-shop-on-highlight box-decoration-clone px-2">
+        <span className="bg-shop-highlight text-shop-on-highlight inline-block px-3 whitespace-nowrap">
           A clear yes.
         </span>
       </p>
       <div
         aria-hidden="true"
-        className="absolute -top-10 right-0 hidden items-end gap-1 md:flex"
+        className="hidden shrink-0 items-end gap-1 xl:flex"
       >
         <PixelArt className="w-20" rows={bubbleYesLeft} />
         <PixelArt className="w-28" rows={chef} />

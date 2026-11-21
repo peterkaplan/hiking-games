@@ -34,7 +34,7 @@ export const ProductTile = ({ destination }: { destination: Destination }) => {
     <Link className="group block" href={`/v2/${destination.slug}`}>
       <div className="relative">
         <Backdrop
-          className={`${destinationTint(destination.slug)} aspect-square transition duration-300 [--shot-zoom:0.4] group-hover:rounded-[40px] sm:[--shot-zoom:0.3] lg:[--shot-zoom:0.4]`}
+          className={`${destinationTint(destination.slug)} aspect-square overflow-hidden transition duration-300 [--shot-zoom:0.32] group-hover:rounded-[40px] min-[380px]:[--shot-zoom:0.4] sm:[--shot-zoom:0.3] lg:[--shot-zoom:0.4]`}
         >
           <div className="transition duration-300 group-hover:scale-[1.03]">
             <CardSetShot destination={destination} />
