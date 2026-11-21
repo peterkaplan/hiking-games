@@ -1,7 +1,8 @@
 /**
  * "Us vs the alternatives" table, a common Shopify product-page section.
  * The first row is the headline difference and is shown largest.
- * Keep comparisons fair: describe kinds of alternatives, not named brands.
+ * "Other cards" means the typical generic allergy card. Rows are worded as
+ * things our set does that a generic card does not; never name a brand.
  */
 
 export type Mark = "yes" | "no" | "varies";
@@ -23,25 +24,25 @@ export const comparisonRows: readonly ComparisonRow[] = [
   {
     feature: "Made for peanuts only",
     us: "yes",
-    freeCard: "varies",
+    freeCard: "no",
     translationApp: "no",
   },
   {
-    feature: "Covers shared sauces and cross-contamination",
+    feature: "Spells out shared sauces, woks and cross-contamination",
     us: "yes",
-    freeCard: "varies",
+    freeCard: "no",
     translationApp: "no",
   },
   {
-    feature: "Asks the kitchen for a clear yes or no",
+    feature: "Ends with a yes-or-no question for the chef",
     us: "yes",
-    freeCard: "varies",
+    freeCard: "no",
     translationApp: "no",
   },
   {
-    feature: "Checked by a native speaker",
+    feature: "Every card checked by a native speaker",
     us: "yes",
-    freeCard: "varies",
+    freeCard: "no",
     translationApp: "no",
   },
   {
@@ -51,9 +52,15 @@ export const comparisonRows: readonly ComparisonRow[] = [
     translationApp: "no",
   },
   {
-    feature: "High-quality laminate, wipe-clean",
+    feature: "High-quality laminate, plus a copy for your phone",
     us: "yes",
-    freeCard: "varies",
+    freeCard: "no",
+    translationApp: "no",
+  },
+  {
+    feature: "Comes with a local peanut guide",
+    us: "yes",
+    freeCard: "no",
     translationApp: "no",
   },
   {
