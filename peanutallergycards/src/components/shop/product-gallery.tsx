@@ -70,7 +70,7 @@ export const ProductGallery = ({
             <div
               className={`${slide.backdrop} flex aspect-[4/3] items-center justify-center rounded-[28px] p-4 sm:aspect-auto sm:min-h-[560px] sm:p-12`}
             >
-              <div className="w-full max-w-xl [--shot-zoom:0.4] sm:[--shot-zoom:0.6] lg:[--shot-zoom:0.64]">
+              <div className="w-full max-w-xl [--shot-zoom:0.32] min-[380px]:[--shot-zoom:0.4] sm:[--shot-zoom:0.6] lg:[--shot-zoom:0.64]">
                 {slide.content}
               </div>
             </div>

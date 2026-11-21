@@ -237,7 +237,7 @@ export const JuliasCard = () => {
     return null;
   }
   return (
-    <figure className="[--shot-zoom:0.33] sm:[--shot-zoom:0.6] lg:[--shot-zoom:0.56]">
+    <figure className="min-w-0 [--shot-zoom:0.27] min-[380px]:[--shot-zoom:0.33] sm:[--shot-zoom:0.6] lg:[--shot-zoom:0.56]">
       <div className="bg-shop-backdrop-3 border-shop-ink flex justify-center rounded-[28px] border p-6 sm:p-10">
         <div className="w-fit">
           <ChefFrontCard
@@ -256,7 +256,7 @@ export const JuliasCard = () => {
 /** A short band on the homepage that points to the full story page. */
 export const StoryTeaser = () => (
   <div className="bg-shop-panel border-shop-ink grid items-center gap-10 rounded-[32px] border-2 p-6 sm:p-10 lg:grid-cols-[1.1fr_1fr] lg:p-14">
-    <div>
+    <div className="min-w-0">
       <p className="bg-shop-highlight text-shop-on-highlight inline-block rounded-full px-3 py-1 font-mono text-xs uppercase">
         {story.eyebrow}
       </p>
