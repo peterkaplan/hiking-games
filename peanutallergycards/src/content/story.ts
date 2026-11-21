@@ -3,17 +3,17 @@
  * (structure modelled on Ghia, Allbirds and Graza: mission headline, a
  * journey in steps, a signed note from the founder, named principles).
  *
- * Facts from the owner (2026-11-21): Julia has been allergic to peanuts her
- * whole life; on her honeymoon she went to Thailand and Japan and needed
- * these cards.
+ * Facts from the owners:
+ * - Julia has been allergic to peanuts her whole life; the trip was their
+ *   honeymoon in Thailand and Japan (2026-11-21).
+ * - Peter, her fiancé, made her the cards so she could feel safe eating.
+ *   They worked, and now she wants to share them with everyone (2026-11-21).
  *
- * Filled in by us and still TO CONFIRM with Julia:
- * - that she made her own cards for the trip (the Thai and Japanese cards
- *   in src/content/cards came from those originals);
+ * Filled in by us and still to confirm with Julia:
+ * - that Peter made them before the trip, while they were engaged;
  * - "read every label, ask every server" as her routine at home;
- * - that the language barrier in Japan made questions harder;
  * - that the cards "came to every meal";
- * - the whole of the note below, which is in her voice.
+ * - the exact wording of the note below, which is in her voice.
  * The Thailand food details come from our own "where peanuts hide" list.
  */
 
@@ -31,9 +31,10 @@ const note: FounderNote = {
   approvedByJulia: false,
   greeting: "Hi, I'm Julia.",
   paragraphs: [
-    "I've been allergic to peanuts my whole life, so I'm used to asking questions. At home that works. On our honeymoon in Thailand and Japan, it didn't: the menus were new, the language was new, and a nod from a busy server isn't the same as knowing.",
-    "So I made two cards. One asked the kitchen, in their own language, whether they could make my food safely, and made it easy to say no. The other was for an emergency. Having them changed how every meal felt.",
-    "I hope they do the same for you.",
+    "I've been allergic to peanuts my whole life, so eating out has always meant asking a lot of questions. That works at home. In a restaurant in Thailand or Japan, where I can't read the menu or speak to the chef, it doesn't.",
+    "Before our honeymoon, my fiancé Peter made me two cards so I could feel safe when I was eating. One asked the kitchen, in their own language, whether they could cook for me. The other was for an emergency.",
+    "They worked. I handed one to the waiter at every restaurant, got a straight answer every time, and ate things I would never have risked.",
+    "Now I want to share them with everyone else.",
   ],
   signOff: "Julia",
   role: "Founder, Peanut Allergy Cards",
@@ -41,13 +42,13 @@ const note: FounderNote = {
 
 export const story = {
   eyebrow: "Our story",
-  heading: "Made by Julia, who's been allergic to peanuts her whole life.",
+  heading: "Made by Peter, for Julia. Now for you.",
   mission:
-    "We make the cards she needed on her honeymoon, so every meal abroad can start with a clear yes.",
+    "Julia has been allergic to peanuts her whole life. Her fiancé made her these cards so she could eat abroad and feel safe. They worked.",
 
   /** Homepage teaser. */
   teaser:
-    "On her honeymoon in Thailand and Japan, asking “is there peanut in this?” wasn't enough. So she made her own cards.",
+    "Julia has been allergic to peanuts her whole life. Before their honeymoon in Thailand and Japan, her fiancé Peter made her two cards so she could feel safe eating out. They worked, and now she's sharing them.",
 
   /** The journey, in order. */
   journey: [
@@ -56,16 +57,16 @@ export const story = {
       body: "Julia has had a peanut allergy for as long as she can remember. At home she knows the drill: read every label, ask every server.",
     },
     {
-      title: "The honeymoon",
-      body: "Thailand and Japan. Peanuts in satay, pad thai, curry pastes and the mortar used for every som tam, and a language barrier at every meal.",
+      title: "Peter makes two cards",
+      body: "A honeymoon in Thailand and Japan was coming, and Julia couldn't ask those questions in Thai or Japanese. So her fiancé made her a card for the chef and a card for emergencies.",
     },
     {
-      title: "Her own cards",
-      body: "One for the chef, asking for a straight yes or no. One for emergencies, with the local ambulance number. They came to every meal.",
+      title: "They work",
+      body: "Satay, pad thai, curry pastes, the mortar used for every som tam: peanuts were everywhere. Julia handed the card to the waiter at every meal, got a clear yes or no, and ate with confidence.",
     },
     {
-      title: "Peanut Allergy Cards",
-      body: "Those same cards, checked by native speakers, for every traveller who needs them.",
+      title: "Now they're yours",
+      body: "Julia wanted everyone with a peanut allergy to have what she had. Those same cards, checked by native speakers, for wherever you're eating next.",
     },
   ],
 
@@ -88,5 +89,5 @@ export const story = {
   ],
 
   /** Caption for Julia's original card. */
-  cardCaption: "Julia's Thai chef card, from the honeymoon",
+  cardCaption: "The Thai chef card Peter made for Julia",
 };

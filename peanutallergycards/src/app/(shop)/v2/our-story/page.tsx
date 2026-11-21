@@ -10,7 +10,7 @@ import { LAUNCH_PREVIEW } from "@/content/launch-preview";
 import { story } from "@/content/story";
 
 export const metadata: Metadata = {
-  title: "Our story: made by Julia",
+  title: "Our story: made by Peter, for Julia",
   description: `${story.heading} ${story.mission}`,
 };
 
@@ -175,7 +175,7 @@ const BackToShop = () => (
   <section className="bg-shop-band text-shop-on-band mx-4 mt-24 rounded-[32px] sm:mx-6">
     <div className="mx-auto max-w-3xl px-6 py-16 text-center">
       <h2 className="font-serif text-4xl leading-tight sm:text-5xl">
-        The cards from the honeymoon, ready for your trip.
+        The cards Peter made for Julia, ready for your trip.
       </h2>
       <Link
         className="bg-shop-bg text-shop-ink hover:bg-shop-panel focus-visible:outline-shop-on-band mt-8 inline-flex items-center gap-2 rounded-full px-7 py-4 font-semibold focus-visible:outline-3 focus-visible:outline-offset-4"
