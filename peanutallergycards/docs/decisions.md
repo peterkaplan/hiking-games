@@ -4,6 +4,17 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ---
 
+## 2026-11-21: Full catalogue switched off until the cards exist
+
+- We only have Thailand and Japan, so the store sells only those. The
+  100-country list, search, region filters and sample-card pages stay in the
+  code, switched off.
+- `catalogue` in `src/content/catalogue.ts` is now just the countries with
+  card text. Search and filters appear by themselves once more than 8
+  countries are on sale; the trip-pack discount only advertises tiers that
+  can be reached.
+- To preview the full catalogue: `NEXT_PUBLIC_FULL_CATALOGUE=on`.
+
 ## 2026-11-21: The store is built for 100 countries
 
 - Owner's direction: assume 100 countries and build as if they exist now.

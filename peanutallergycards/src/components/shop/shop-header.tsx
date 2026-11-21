@@ -2,11 +2,9 @@ import Link from "next/link";
 import { MobileMenu } from "@/components/mobile-menu";
 import { CartCount } from "@/components/shop/cart-view";
 import { LAUNCH_PREVIEW } from "@/content/launch-preview";
-import { bundleTiers } from "@/content/pricing";
+import { maxSaving, maxSavingCountries } from "@/content/pricing";
 
 /** The best multi-country saving, e.g. 25. */
-const maxSaving = Math.max(...bundleTiers.map((tier) => tier.discountPercent));
-const maxCountries = Math.max(...bundleTiers.map((tier) => tier.countries));
 
 const navLinks = [
   { href: "/v2#destinations", label: "Shop by country" },
@@ -26,7 +24,7 @@ export const AnnouncementBar = () => (
         Trip pack: save {maxSaving}% · instant download
       </span>
       <span className="hidden sm:inline">
-        Trip pack: {maxCountries} countries, save {maxSaving}% · Instant
+        Trip pack: {maxSavingCountries} countries, save {maxSaving}% · Instant
         download · Every card checked by a native speaker
       </span>
     </p>

@@ -6,6 +6,8 @@
  * cards sell for about $6–10 on Etsy, a printed card for about $19.
  */
 
+import { catalogue } from "./catalogue";
+
 export type FormatId = "digital" | "printed";
 
 export interface Format {
@@ -63,11 +65,24 @@ export const bundleTiers: readonly BundleTier[] = [
   { countries: 3, discountPercent: 25, tag: "Save 25%" },
 ];
 
+/** The tiers a customer can actually reach with the countries on sale. */
+export const availableTiers = bundleTiers.filter(
+  (tier) => tier.countries <= catalogue.length
+);
+
+/** The biggest multi-country saving on offer, and the countries it takes. */
+export const maxSaving = Math.max(
+  ...availableTiers.map((tier) => tier.discountPercent)
+);
+export const maxSavingCountries = Math.max(
+  ...availableTiers.map((tier) => tier.countries)
+);
+
 /** The discount for this many countries: the best tier they reach. */
 export const discountPercentFor = (countries: number): number =>
   Math.max(
     0,
-    ...bundleTiers
+    ...availableTiers
       .filter((tier) => countries >= tier.countries)
       .map((tier) => tier.discountPercent)
   );

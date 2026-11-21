@@ -2,9 +2,14 @@ import type { Destination } from "./cards";
 import { findDestination } from "./cards";
 
 /**
- * Every country the store sells a set for. The store is designed around this
- * list (search, regions, the add-a-country picker), so it works the same for
- * 2 countries or 200.
+ * Every country the store can sell a set for. The store is designed around
+ * this list (search, regions, the add-a-country picker), so it works the
+ * same for 2 countries or 200.
+ *
+ * SWITCHED OFF FOR NOW: only countries whose cards are written (in
+ * src/content/cards) are on sale, so `catalogue` below is just those. The
+ * full list stays here, and the search and filter UI is built and waiting.
+ * To switch it all on, set NEXT_PUBLIC_FULL_CATALOGUE=on.
  *
  * A catalogue entry is shop data only: name, flag, language, region. The
  * card text itself lives in src/content/cards, one file per destination, and
@@ -34,7 +39,7 @@ export interface CatalogueCountry {
   slug: string;
 }
 
-export const catalogue: readonly CatalogueCountry[] = [
+const allCountries: readonly CatalogueCountry[] = [
   {
     slug: "japan",
     name: "Japan",
@@ -836,6 +841,17 @@ export const catalogue: readonly CatalogueCountry[] = [
     popular: false,
   },
 ];
+
+/** On: sell every country in the list above. Off: only those with cards. */
+export const FULL_CATALOGUE = process.env.NEXT_PUBLIC_FULL_CATALOGUE === "on";
+
+/** The countries on sale. */
+export const catalogue: readonly CatalogueCountry[] = FULL_CATALOGUE
+  ? allCountries
+  : allCountries.filter((country) => findDestination(country.slug));
+
+/** Whether there are enough countries that people need search and filters. */
+export const NEEDS_SEARCH = catalogue.length > 8;
 
 export const findCountry = (slug: string): CatalogueCountry | undefined =>
   catalogue.find((country) => country.slug === slug);

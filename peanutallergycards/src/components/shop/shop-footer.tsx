@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { Disclaimer } from "@/components/disclaimer";
 import { destinations } from "@/content/cards";
-import { catalogue } from "@/content/catalogue";
+import { catalogue, NEEDS_SEARCH } from "@/content/catalogue";
 import { LAUNCH_PREVIEW } from "@/content/launch-preview";
-import { bundleTiers } from "@/content/pricing";
+import { maxSaving } from "@/content/pricing";
 import { NewsletterForm } from "./newsletter-form";
 
 /*
@@ -13,8 +13,6 @@ import { NewsletterForm } from "./newsletter-form";
  * name as large as the page allows (Ghia, Graza), and a small legal row.
  * Only real pages are linked: no social accounts or policies we don't have.
  */
-
-const maxSaving = Math.max(...bundleTiers.map((tier) => tier.discountPercent));
 
 interface FooterLink {
   href: string;
@@ -30,7 +28,12 @@ const columns: readonly { heading: string; links: readonly FooterLink[] }[] = [
         label: `The ${destination.country} Set`,
       })),
       { href: "/v2#trip-pack", label: `Trip pack: save ${maxSaving}%` },
-      { href: "/v2#destinations", label: `All ${catalogue.length} countries` },
+      {
+        href: "/v2#destinations",
+        label: NEEDS_SEARCH
+          ? `All ${catalogue.length} countries`
+          : "All countries",
+      },
     ],
   },
   {

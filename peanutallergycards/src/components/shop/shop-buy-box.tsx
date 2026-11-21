@@ -4,10 +4,10 @@ import Link from "next/link";
 import type { ChangeEvent, MouseEvent } from "react";
 import { useCallback, useId, useMemo, useState } from "react";
 import type { TranslationState } from "@/content/cards";
-import { findCountry } from "@/content/catalogue";
+import { catalogue, findCountry } from "@/content/catalogue";
 import type { CartLine, FormatId } from "@/content/pricing";
 import {
-  bundleTiers,
+  availableTiers,
   cartTotals,
   formatPrice,
   formats,
@@ -33,7 +33,7 @@ const formatTag: Record<FormatId, string> = {
 const optionClass =
   "relative flex cursor-pointer flex-col rounded-2xl border-2 border-shop-ink bg-shop-panel p-4 transition hover:border-shop-ink has-checked:border-shop-ink has-checked:bg-shop-selected has-focus-visible:outline-3 has-focus-visible:outline-shop-ink has-focus-visible:outline-offset-2";
 
-const savings = bundleTiers
+const savings = availableTiers
   .filter((tier) => tier.discountPercent > 0)
   .map(
     (tier, index, tiers) =>
@@ -123,7 +123,7 @@ export const ShopBuyBox = ({
         </div>
       </fieldset>
 
-      <div className="mt-6">
+      <div className="mt-6" hidden={catalogue.length < 2}>
         <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
           <h3 className="font-mono text-xs tracking-widest uppercase">
             Visiting more than one country?

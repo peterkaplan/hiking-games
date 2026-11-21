@@ -3,10 +3,10 @@
 import Link from "next/link";
 import type { ChangeEvent, MouseEvent } from "react";
 import { useCallback, useMemo, useState } from "react";
-import { findCountry } from "@/content/catalogue";
+import { catalogue, findCountry } from "@/content/catalogue";
 import type { CartLine, FormatId } from "@/content/pricing";
 import {
-  bundleTiers,
+  availableTiers,
   cartTotals,
   formatPrice,
   formats,
@@ -24,7 +24,7 @@ import { Flag } from "./flags";
 
 /** "Add 1 more country to save 15%", or nothing at the top tier. */
 const nextSaving = (count: number): string | null => {
-  const next = bundleTiers.find((tier) => tier.countries > count);
+  const next = availableTiers.find((tier) => tier.countries > count);
   if (!next) {
     return null;
   }
@@ -145,7 +145,7 @@ export const CartView = () => {
             <Line key={line.slug} line={line} />
           ))}
         </ul>
-        <div className="mt-8">
+        <div className="mt-8" hidden={lines.length >= catalogue.length}>
           <h2 className="font-mono text-xs tracking-widest uppercase">
             Add another country
           </h2>

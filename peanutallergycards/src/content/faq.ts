@@ -1,6 +1,6 @@
 /** Website FAQ copy. Not card text, but keep it accurate and non-medical. */
 
-import { catalogue } from "./catalogue";
+import { catalogue, NEEDS_SEARCH } from "./catalogue";
 import { CONTACT_EMAIL } from "./contact";
 
 export interface FaqItem {
@@ -41,6 +41,8 @@ export const faqItems: readonly FaqItem[] = [
   },
   {
     question: "My destination isn't listed. Can I still get cards?",
-    answer: `We cover ${catalogue.length} countries and add more all the time. Don't see yours? Email us at ${CONTACT_EMAIL} to request a card.`,
+    answer: NEEDS_SEARCH
+      ? `We cover ${catalogue.length} countries and add more all the time. Don't see yours? Email us at ${CONTACT_EMAIL} to request a card.`
+      : `We're adding cards frequently! Email us at ${CONTACT_EMAIL} to request a card.`,
   },
 ];

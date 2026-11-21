@@ -3,7 +3,7 @@
 import type { ChangeEvent, MouseEvent } from "react";
 import { useCallback, useId, useMemo, useState } from "react";
 import type { CatalogueCountry } from "@/content/catalogue";
-import { catalogue } from "@/content/catalogue";
+import { catalogue, NEEDS_SEARCH } from "@/content/catalogue";
 import { CONTACT_EMAIL } from "@/content/contact";
 import { Flag } from "./flags";
 
@@ -87,6 +87,7 @@ export const CountryPicker = ({
       <input
         autoComplete="off"
         className="border-shop-ink bg-shop-panel placeholder:text-shop-ink focus-visible:outline-shop-ink w-full rounded-full border-2 px-5 py-3 focus-visible:outline-3 focus-visible:outline-offset-2"
+        hidden={!NEEDS_SEARCH}
         id={inputId}
         onChange={handleQuery}
         placeholder={`Search ${catalogue.length} countries…`}
@@ -114,11 +115,12 @@ export const CountryPicker = ({
             </li>
           ))}
         </ul>
-      ) : (
+      ) : null}
+      {results.length === 0 && query.trim() ? (
         <p className="mt-3 text-base" role="status">
           No match. Email {CONTACT_EMAIL} and we&apos;ll add it.
         </p>
-      )}
+      ) : null}
     </div>
   );
 };

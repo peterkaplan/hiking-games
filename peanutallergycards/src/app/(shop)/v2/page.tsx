@@ -27,10 +27,21 @@ import {
 } from "@/components/shop/sections";
 import { destinations, findDestination } from "@/content/cards";
 import { englishChefCard } from "@/content/cards/english";
-import { catalogue, findCountry, languageCount } from "@/content/catalogue";
+import {
+  catalogue,
+  findCountry,
+  languageCount,
+  NEEDS_SEARCH,
+} from "@/content/catalogue";
+import { CONTACT_EMAIL } from "@/content/contact";
 import { faqItems } from "@/content/faq";
 import { LAUNCH_PREVIEW } from "@/content/launch-preview";
-import { bundleTiers, formatPrice, lowestPriceUsd } from "@/content/pricing";
+import {
+  formatPrice,
+  lowestPriceUsd,
+  maxSaving,
+  maxSavingCountries,
+} from "@/content/pricing";
 
 export const metadata: Metadata = {
   title: {
@@ -49,8 +60,6 @@ const benefits = [
   "No wifi",
   "Local peanut guide included",
 ] as const;
-
-const maxSaving = Math.max(...bundleTiers.map((tier) => tier.discountPercent));
 
 const Hero = () => {
   const showcase = findDestination("thailand") ?? destinations[0];
@@ -129,6 +138,8 @@ const Statement = () => (
   </section>
 );
 
+const countWords: Record<number, string> = { 2: "Two", 3: "Three" };
+
 /** Each card is adapted to how that country cooks, not only its language. */
 const LocalKitchen = () => {
   const example = findDestination("thailand");
@@ -186,7 +197,8 @@ const TripPack = () => {
             The trip pack
           </p>
           <h2 className="mt-4 font-serif text-5xl leading-none sm:text-6xl">
-            Three countries. {maxSaving}% off.
+            {countWords[maxSavingCountries] ?? maxSavingCountries} countries.{" "}
+            {maxSaving}% off.
           </h2>
           <p className="text-shop-on-band mt-6 max-w-md text-xl">
             One trip, a few borders. Both cards for every stop, printed or
@@ -234,7 +246,9 @@ const ShopHome = () => (
           Shop by country
         </h2>
         <p className="text-shop-ink font-mono text-sm uppercase">
-          {catalogue.length} countries · {languageCount} languages
+          {NEEDS_SEARCH
+            ? `${catalogue.length} countries · ${languageCount} languages`
+            : "More countries added all the time"}
         </p>
       </div>
       <div className="mt-12 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
@@ -242,12 +256,27 @@ const ShopHome = () => (
           <ProductTile destination={destination} key={destination.slug} />
         ))}
       </div>
-      <h3 className="mt-20 font-serif text-3xl sm:text-4xl">
-        Now speaking {languageCount} languages.
-      </h3>
-      <div className="mt-6">
-        <CountryBrowser />
-      </div>
+      {NEEDS_SEARCH ? (
+        <>
+          <h3 className="mt-20 font-serif text-3xl sm:text-4xl">
+            Now speaking {languageCount} languages.
+          </h3>
+          <div className="mt-6">
+            <CountryBrowser />
+          </div>
+        </>
+      ) : (
+        <p className="mt-14 text-xl">
+          Going somewhere else? Email{" "}
+          <a
+            className="font-semibold underline decoration-2 underline-offset-4"
+            href={`mailto:${CONTACT_EMAIL}`}
+          >
+            {CONTACT_EMAIL}
+          </a>{" "}
+          and we&apos;ll make your card next.
+        </p>
+      )}
     </section>
 
     <Statement />
