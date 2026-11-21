@@ -150,9 +150,8 @@ const LocalKitchen = () => {
     >
       <div className="bg-shop-panel border-shop-ink grid items-center gap-10 rounded-[32px] border-2 p-6 sm:p-10 lg:grid-cols-2 lg:p-14">
         <div>
-          <Eyebrow>Not just translated</Eyebrow>
           <h2
-            className="mt-5 font-serif text-4xl leading-[1.05] tracking-tight sm:text-5xl"
+            className="font-serif text-4xl leading-[1.05] tracking-tight sm:text-5xl"
             id="kitchen-heading"
           >
             Written for the kitchen, not just the language.
