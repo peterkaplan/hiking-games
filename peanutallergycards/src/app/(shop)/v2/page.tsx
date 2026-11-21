@@ -10,6 +10,7 @@ import {
   Marquee,
   Sticker,
 } from "@/components/shop/bits";
+import { Flag } from "@/components/shop/flags";
 import {
   Backdrop,
   CardSetShot,
@@ -25,6 +26,7 @@ import {
   StoryTeaser,
 } from "@/components/shop/sections";
 import { destinations, findDestination, frontLanguages } from "@/content/cards";
+import { englishChefCard } from "@/content/cards/english";
 import { CONTACT_EMAIL } from "@/content/contact";
 import { faqItems } from "@/content/faq";
 import { LAUNCH_PREVIEW } from "@/content/launch-preview";
@@ -143,6 +145,50 @@ const Statement = () => (
   </section>
 );
 
+/** Each card is adapted to how that country cooks, not only its language. */
+const LocalKitchen = () => {
+  const example = findDestination("thailand");
+  return (
+    <section
+      aria-labelledby="kitchen-heading"
+      className="mx-auto max-w-7xl px-4 pb-24 sm:px-6"
+    >
+      <div className="bg-shop-panel border-shop-ink grid items-center gap-10 rounded-[32px] border-2 p-6 sm:p-10 lg:grid-cols-2 lg:p-14">
+        <div>
+          <Eyebrow>Not just translated</Eyebrow>
+          <h2
+            className="mt-5 font-serif text-4xl leading-[1.05] tracking-tight sm:text-5xl"
+            id="kitchen-heading"
+          >
+            Written for the kitchen, not just the language.
+          </h2>
+          <p className="mt-5 max-w-lg text-xl">
+            Every country cooks differently, so every card is different. Each
+            one names the cooking styles and equipment your waiter and chef
+            actually use, so there&apos;s no doubt about what you mean.
+          </p>
+        </div>
+        {example ? (
+          <figure className="bg-shop-highlight text-shop-on-highlight rotate-1 rounded-[24px] p-6 sm:p-8">
+            <figcaption className="flex items-center gap-3 font-mono text-xs tracking-[0.18em] uppercase">
+              <Flag
+                className="border-shop-ink w-10 rounded-md border"
+                country={example.slug}
+              />
+              On the {example.country} card
+            </figcaption>
+            <ul className="mt-5 space-y-4 font-serif text-2xl leading-snug sm:text-3xl">
+              {englishChefCard.kitchen.map((line) => (
+                <li key={line}>“{line}”</li>
+              ))}
+            </ul>
+          </figure>
+        ) : null}
+      </div>
+    </section>
+  );
+};
+
 const TripPack = () => {
   const showcase = findDestination("thailand") ?? destinations[0];
   return (
@@ -215,6 +261,8 @@ const ShopHome = () => (
     </section>
 
     <Statement />
+
+    <LocalKitchen />
 
     <section
       aria-labelledby="how-heading"

@@ -214,7 +214,7 @@ const ProductPage = async ({ params }: PageProps) => {
           <h2 className="mt-6 font-semibold">Three things in every set</h2>
           <ul className="mt-3 space-y-2.5">
             {[
-              "Chef card: tells the kitchen what you can't eat, then asks if they can cook for you",
+              `Chef card: written for how ${destination.country} cooks${destination.kitchenFocus ? `, down to ${destination.kitchenFocus}` : ""}. It asks if they can cook for you`,
               `Emergency card: gets someone to call ${destination.emergencyNumber}, fast`,
               `Peanut guide: how to say it and where it hides in ${destination.country}`,
             ].map((point) => (
@@ -264,7 +264,8 @@ const ProductPage = async ({ params }: PageProps) => {
           One card, two sides
         </h2>
         <p className="text-shop-ink mx-auto mt-4 max-w-xl text-center text-xl">
-          The kitchen reads {language}. You read English. Nothing gets lost.
+          Written for how {destination.country} cooks, not just translated. The
+          kitchen reads {language}. You read English. Nothing gets lost.
         </p>
         <div className="mt-12 grid items-start gap-10 md:grid-cols-2">
           <figure>

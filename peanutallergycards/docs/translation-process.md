@@ -38,6 +38,24 @@ The build fails if any destination has:
 These catch copy-paste mistakes, like an English back saying "call 1669"
 (Thailand's number) on a Japan card. They don't replace the native-speaker review.
 
+## Cards are adapted to each country's kitchens
+
+A card is not only a translation. Its kitchen instructions must name the
+cooking styles and equipment a waiter and chef in that country will
+recognise. The Thailand card asks for a clean wok and fresh oil and says never
+to use a mortar and pestle that has been used for peanuts; other countries
+need their own equivalents (for example shared fryers, grills or sauces).
+
+- Research the country's common cross-contact risks before writing its card,
+  and record the sources in `docs/research/`.
+- Have the native-speaker reviewer confirm the equipment words are the ones
+  kitchens use.
+- Set `kitchenFocus` on the destination so the store can say what the card
+  covers.
+- Today the English back and its kitchen lines are shared by every country
+  (`english.ts`) and are written for Thailand. Before adding a country with
+  different kitchen lines, make them per-destination (see `docs/roadmap.md`).
+
 ## Adding a destination or updating a translation
 
 1. Add or edit the destination file in `src/content/cards/` (copy `thailand.ts`

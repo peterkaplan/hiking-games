@@ -40,6 +40,7 @@ Tick items off as they're done; add new ones as they come up.
 - [ ] Julia to approve or rewrite her note, then set `approvedByJulia: true` in `src/content/story.ts` (removes the draft tag); confirm the other details marked "to confirm" there
 - [ ] Write the local peanut guide for each country (promised on the store; see `docs/content-to-make.md` #8)
 - [ ] Before going live: set up the hello@peanutallergycards.com mailbox and connect the email sign-up form (it currently saves nothing)
+- [ ] Make the chef card's kitchen lines per-country (they are shared and Thailand-specific today), then write Japan's for Japanese kitchens
 - [ ] A photo of Julia (or of the original cards from the trip) for the story page, if she's happy to share one
 - [ ] If possible, a named allergist or dietitian who has looked at the cards
 - [x] Store review (2026-11-21): mobile menus, product first on phones, contrast, favicon, fonts via next/font (no layout shift). Lighthouse 94–97 performance and 100 accessibility / best practices / SEO on all four pages; axe-core: no violations

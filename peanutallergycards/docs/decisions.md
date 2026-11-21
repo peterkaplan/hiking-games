@@ -4,6 +4,14 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ---
 
+## 2026-11-21: Cards are adapted to each country's cooking, not only its language
+
+- Owner's direction: each card must speak to the waiter and chef in terms of
+  that country's cooking styles and equipment (Thailand: shared wok, fresh
+  oil, the mortar and pestle). The store now says so on the homepage, product
+  pages, comparison chart, FAQ and story page.
+- New cards must follow this; see `docs/translation-process.md`.
+
 ## 2026-11-21: The store shows its launch-day look ("launch preview")
 
 - The owner wants the store written and shown as the finished business, not

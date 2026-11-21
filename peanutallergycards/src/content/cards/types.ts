@@ -93,6 +93,12 @@ export interface Destination {
   /** The number to call for an ambulance, e.g. "1669" in Thailand. */
   emergencyNumber: string;
   /**
+   * Website copy (not card text): the local cooking equipment and habits
+   * this country's chef card addresses, to finish the sentence "written for
+   * Thai kitchens, down to …". Leave out until the card's kitchen lines exist.
+   */
+  kitchenFocus?: string;
+  /**
    * Website copy (not card text): where peanuts commonly turn up in local
    * food. Empty hides the section.
    */

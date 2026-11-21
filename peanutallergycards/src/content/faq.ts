@@ -14,6 +14,11 @@ export const faqItems: readonly FaqItem[] = [
       "The chef card ends with one clear question: can you make this meal safe for me? Staff answer yes or no, so you get a real answer, with nothing lost in translation. If the answer is no, or they hesitate, thank them and eat somewhere else.",
   },
   {
+    question: "Is it just a translation?",
+    answer:
+      "No. Each card is adapted to how that country cooks, not only to its language. The Thailand card asks for a clean wok and fresh oil, and tells the kitchen never to use a mortar and pestle that has been used for peanuts. Every country's card names the cooking styles and equipment your waiter and chef will recognise.",
+  },
+  {
     question: "Why two cards?",
     answer:
       "The chef card is for every meal: it tells the kitchen what to avoid and asks for that yes or no. The emergency card is for if something goes wrong: it tells anyone nearby you're having a severe reaction and asks them to call the local ambulance number.",

@@ -28,6 +28,12 @@ export const comparisonRows: readonly ComparisonRow[] = [
     translationApp: "no",
   },
   {
+    feature: "Adapted to each country's cooking style and equipment",
+    us: "yes",
+    freeCard: "no",
+    translationApp: "no",
+  },
+  {
     feature: "Spells out shared sauces, woks and cross-contamination",
     us: "yes",
     freeCard: "no",

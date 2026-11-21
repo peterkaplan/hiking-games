@@ -16,6 +16,7 @@ export const thailand: Destination = {
   slug: "thailand",
   country: "Thailand",
   emergencyNumber: "1669",
+  kitchenFocus: "the shared wok, the shared oil and the mortar and pestle",
   peanutFoods: [
     "Satay, served with a peanut dipping sauce",
     "Pad thai, often topped or served with crushed peanuts",

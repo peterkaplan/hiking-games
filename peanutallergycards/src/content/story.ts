@@ -79,8 +79,8 @@ export const story = {
       body: "Every chef card asks one question a restaurant kitchen can actually answer.",
     },
     {
-      title: "Two cards, two jobs.",
-      body: "One for the kitchen, one for an emergency. Each has English on the back, so you know what it says.",
+      title: "Written for the kitchen, not just the language.",
+      body: "Each card names the way that country cooks: in Thailand, the shared wok and the mortar and pestle.",
     },
     {
       title: "Made for peanuts only.",
