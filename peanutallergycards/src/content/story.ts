@@ -74,8 +74,8 @@ export const story = {
   /** What we believe, in three named principles. */
   principles: [
     {
-      title: "A clear yes, not a polite nod.",
-      body: "Every chef card asks one question the kitchen can actually answer.",
+      title: "A clear yes, with nothing lost in translation.",
+      body: "Every chef card asks one question a restaurant kitchen can actually answer.",
     },
     {
       title: "Two cards, two jobs.",

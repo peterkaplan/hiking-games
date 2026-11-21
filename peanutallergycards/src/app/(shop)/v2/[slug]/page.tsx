@@ -58,7 +58,7 @@ export const generateMetadata = async ({
   const language = languageName(destination);
   return {
     title: `${language} Peanut Allergy Card for ${destination.country}: Chef Card + Emergency Card`,
-    description: `Show it before you order: a ${language} chef card that asks the kitchen for a clear yes or no, plus an emergency card with ${destination.country}'s ambulance number (${destination.emergencyNumber}). English on the back. Checked by a native speaker.`,
+    description: `Hand it to your waiter before you order: a ${language} chef card that asks the kitchen for a clear yes or no, plus an emergency card with ${destination.country}'s ambulance number (${destination.emergencyNumber}). Comes with a local peanut guide. English on the back.`,
   };
 };
 
@@ -192,7 +192,8 @@ const ProductPage = async ({ params }: PageProps) => {
             {title}
           </h1>
           <p className="mt-2 font-mono text-sm uppercase">
-            Peanut allergy chef card + emergency card · {language} and English
+            Chef card + emergency card + local peanut guide · {language} and
+            English
           </p>
           <p className="mt-4 flex flex-wrap items-baseline gap-x-4 gap-y-1">
             <span className="font-serif text-3xl">
@@ -206,8 +207,9 @@ const ProductPage = async ({ params }: PageProps) => {
           </p>
           <p className="text-shop-ink mt-5 text-xl">
             A chef card and an emergency card in {language}, with English on the
-            back. Show it before you order, get a clear yes or no, and eat with
-            confidence.
+            back. Hand it to your waiter before you order, get a clear yes or no
+            from the chef, and eat with confidence. Comes with a local peanut
+            guide to {destination.country}.
           </p>
           <h2 className="mt-6 font-semibold">Why it works</h2>
           <ul className="mt-3 space-y-2.5">
@@ -215,6 +217,7 @@ const ProductPage = async ({ params }: PageProps) => {
               "Spells out peanut, peanut oil, sauces and shared cookware",
               "Asks the kitchen for a clear yes or no",
               `Emergency card asks people to call ${destination.emergencyNumber}`,
+              `Peanut guide to ${destination.country}: how to say it, where it hides`,
             ].map((point) => (
               <li className="flex gap-3" key={point}>
                 <CheckIcon className="mt-1 size-5 shrink-0" />
@@ -229,10 +232,10 @@ const ProductPage = async ({ params }: PageProps) => {
 
           <div className="mt-6">
             <Accordion open title="What's inside">
-              {`Chef card and emergency card for ${destination.country}. ${language} on the front, English on the back. Digital: a print-ready PDF and phone-sized images. Printed: both cards laminated and posted to you, plus the digital files.`}
+              {`Chef card, emergency card and a local peanut guide for ${destination.country}. ${language} on the front, English on the back. The guide covers how to say and spot "peanut" in ${language}, and the dishes where peanuts hide. Digital: a print-ready PDF and phone-sized images. Printed: both cards laminated and posted to you, plus the digital files.`}
             </Accordion>
             <Accordion title="Details">
-              {`Includes: 1 chef card and 1 emergency card. Languages: ${language} on the front, English on the back. Emergency number: ${destination.emergencyNumber} (${destination.country}). Card size: 85.6 × 54 mm, the size of a bank card. Printed cards are laminated and wipe-clean.`}
+              {`Includes: 1 chef card, 1 emergency card and 1 local peanut guide (PDF). Languages: ${language} on the front, English on the back. Emergency number: ${destination.emergencyNumber} (${destination.country}). Card size: 85.6 × 54 mm, the size of a bank card. Printed cards are laminated and wipe-clean.`}
             </Accordion>
             <Accordion title="Delivery">
               Digital: your download link arrives straight after you buy.
@@ -240,9 +243,10 @@ const ProductPage = async ({ params }: PageProps) => {
               Printed sets leave within two working days.
             </Accordion>
             <Accordion title="How to use them">
-              Hand the chef card over before you order and ask for it to go to
-              the kitchen. If they say no or hesitate, eat somewhere else. Keep
-              the emergency card with your epinephrine.
+              At the restaurant, hand the chef card to your waiter, server or
+              bartender before you order and ask them to take it to the chef. If
+              they say no or hesitate, eat somewhere else. Keep the emergency
+              card with your epinephrine.
             </Accordion>
             <Accordion title="How we check translations">
               Every card is translated from our English text and checked by a
@@ -296,7 +300,13 @@ const ProductPage = async ({ params }: PageProps) => {
       {destination.peanutFoods.length > 0 ? (
         <section aria-labelledby="foods-heading" className="pt-28">
           <div className="bg-shop-band text-shop-on-band rounded-[32px] px-6 py-14 sm:px-12">
-            <h2 className="font-serif text-4xl sm:text-5xl" id="foods-heading">
+            <p className="text-shop-highlight font-mono text-xs tracking-[0.18em] uppercase">
+              From the local peanut guide that comes with your cards
+            </p>
+            <h2
+              className="mt-4 font-serif text-4xl sm:text-5xl"
+              id="foods-heading"
+            >
               Where peanuts hide in {destination.country}
             </h2>
             <ul className="mt-10 flex flex-wrap gap-3">

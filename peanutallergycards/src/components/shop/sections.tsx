@@ -128,18 +128,18 @@ export const LanguagesCovered = ({
 
 const steps: readonly { body: string; scene: ReactNode; title: string }[] = [
   {
-    title: "Show the card",
-    body: "Hand it over before you order and ask for it to go to the kitchen.",
+    title: "Hand it to your waiter",
+    body: "At the restaurant, before you order. Ask your waiter or server to take it to the chef.",
     scene: <ShowVignette tint="var(--color-shop-panel)" />,
   },
   {
-    title: "They read it",
+    title: "The chef reads it",
     body: "In their own language: peanuts, peanut oil, sauces, shared woks.",
     scene: <ReadVignette tint="var(--color-shop-backdrop-1)" />,
   },
   {
     title: "They say yes or no",
-    body: "One clear question gets a real answer, not a polite nod.",
+    body: "One clear question gets a real answer. No miscommunication.",
     scene: <AnswerVignette tint="var(--color-shop-highlight)" />,
   },
   {

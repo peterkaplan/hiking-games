@@ -150,7 +150,7 @@ export const ShopBuyBox = ({ state }: { state: TranslationState }) => {
         {[
           "Checked by a native speaker",
           "English on the back",
-          "Works offline",
+          "Local peanut guide included",
         ].map((item) => (
           <li className="flex flex-col items-center gap-2" key={item}>
             <CheckIcon className="size-6" />

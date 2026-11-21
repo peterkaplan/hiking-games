@@ -7,9 +7,9 @@ export interface FaqItem {
 
 export const faqItems: readonly FaqItem[] = [
   {
-    question: "How do I know the kitchen really understood?",
+    question: "How do I know the restaurant really understood?",
     answer:
-      "The chef card ends with one clear question: can you make this meal safe for me? Staff answer yes or no, so you get a real answer instead of a polite nod. If the answer is no, or they hesitate, thank them and eat somewhere else.",
+      "The chef card ends with one clear question: can you make this meal safe for me? Staff answer yes or no, so you get a real answer, with nothing lost in translation. If the answer is no, or they hesitate, thank them and eat somewhere else.",
   },
   {
     question: "Why two cards?",

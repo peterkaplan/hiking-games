@@ -32,19 +32,19 @@ import { bundleTiers, formatPrice, lowestPriceUsd } from "@/content/pricing";
 export const metadata: Metadata = {
   title: {
     absolute:
-      "Peanut Allergy Cards for Travel: Japanese, Thai and more | Eat abroad with confidence",
+      "Peanut Allergy Cards for Restaurants Abroad: Japanese, Thai and more",
   },
   description:
-    "Peanut allergy cards in the local language, with English on the back. Show the chef card, get a clear yes or no from the kitchen, and eat with confidence. Emergency card included.",
+    "Peanut allergy cards for eating in restaurants abroad. Hand the card to your waiter, get a clear yes or no from the kitchen, and eat with confidence. Emergency card and local peanut guide included.",
 };
 
 const benefits = [
-  "Hand it over",
-  "Get a straight answer",
-  "No polite nods",
-  "No pointing at menus",
-  "No signal needed",
-  "Ambulance number on the card",
+  "Hand it to your waiter",
+  "Get a straight answer from the kitchen",
+  "No miscommunication",
+  "No translator app",
+  "No wifi",
+  "Local peanut guide included",
 ] as const;
 
 const comingNext = [
@@ -70,14 +70,14 @@ const Hero = () => {
   return (
     <section className="mx-auto grid max-w-7xl items-center gap-12 overflow-x-clip px-4 pt-10 pb-16 sm:px-6 lg:grid-cols-[1fr_1.05fr] lg:pt-16 lg:pb-24">
       <div>
-        <Eyebrow>Peanut allergy cards for travel</Eyebrow>
-        <h1 className="mt-5 font-serif text-[3.25rem] leading-[0.98] tracking-tight sm:text-7xl">
-          Eat abroad with confidence.
+        <Eyebrow>Peanut allergy cards for restaurants abroad</Eyebrow>
+        <h1 className="mt-5 font-serif text-[3.25rem] leading-[0.98] tracking-tight sm:text-6xl xl:text-[4rem]">
+          Eat in restaurants abroad with confidence.
         </h1>
         <p className="text-shop-ink mt-6 max-w-lg text-xl">
-          A peanut allergy card in the local language. Hand it over, get a clear
-          yes or no from the kitchen, and enjoy the meal. No guessing, no polite
-          nods.
+          A peanut allergy card in the local language. Hand it to your waiter,
+          get a clear yes or no from the chef, and enjoy the meal. No guessing,
+          no miscommunication.
         </p>
         <div className="mt-9 flex flex-wrap gap-4">
           <Link className={buttonPrimary} href="#destinations">
@@ -89,8 +89,8 @@ const Hero = () => {
         </div>
         <ul className="mt-9 flex flex-wrap gap-x-6 gap-y-3 text-base">
           {[
-            "A straight yes or no, in their language",
-            "Local ambulance number on the card",
+            "A straight yes or no from the kitchen",
+            "Comes with a local peanut guide",
             `On your phone in minutes, from ${formatPrice(lowestPriceUsd)}`,
           ].map((item) => (
             <li className="flex items-center gap-2" key={item}>
@@ -105,11 +105,11 @@ const Hero = () => {
           <Backdrop className="bg-shop-backdrop-1">
             <CardSetShot destination={showcase} />
           </Backdrop>
-          <Sticker className="text-shop-highlight absolute -top-8 -left-2 z-10 rotate-[-10deg] max-sm:size-24 sm:-top-6 sm:-left-8">
-            No polite nods
+          <Sticker className="text-shop-highlight absolute -top-8 -left-2 z-10 size-32 rotate-[-10deg] sm:-top-8 sm:-left-10">
+            No miscom&shy;munication
           </Sticker>
           <Sticker className="text-shop-panel absolute -right-1 -bottom-10 z-10 size-24 rotate-[8deg] sm:-right-6 sm:-bottom-8">
-            Works with no signal
+            No app. No wifi.
           </Sticker>
         </div>
       ) : null}
@@ -135,8 +135,9 @@ const Statement = () => (
       </div>
     </div>
     <p className="text-shop-ink mt-8 max-w-2xl text-xl">
-      An app tells the kitchen what you can&apos;t eat. Our card asks if they
-      can cook for you. Sit down knowing, not hoping.
+      Hand it to your waiter, server or bartender. It tells the chef what you
+      can&apos;t eat, then asks if they can cook for you. Sit down knowing, not
+      hoping.
     </p>
   </section>
 );
