@@ -1,8 +1,21 @@
 @import "tailwindcss";
 
+/*
+ * Font families point at variables set by next/font (src/fonts/*), which each
+ * variant's layout applies to its own wrapper. `inline` makes utilities use
+ * these values directly, so they resolve on that wrapper, not on :root.
+ */
+@theme inline {
+  --font-sans: var(--font-atkinson), ui-sans-serif, system-ui, sans-serif;
+  --font-pixel: var(--font-jersey-15), ui-monospace, monospace;
+  --font-tiny: var(--font-tiny5), ui-monospace, monospace;
+  --font-serif: var(--font-young-serif), ui-serif, Georgia, serif;
+  --font-mono: var(--font-dm-mono), ui-monospace, monospace;
+  --font-shop:
+    var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
 @theme {
-  --font-sans:
-    "Atkinson Hyperlegible Next Variable", ui-sans-serif, system-ui, sans-serif;
   /*
    * Pixel fonts are only crisp when their pixel grid lands on whole screen
    * pixels, so they come with a fixed type scale:
@@ -10,8 +23,6 @@
    * - Tiny5 (small labels): 8px grid → 16px or 24px only.
    * Line heights are whole pixels too. Never bold a pixel font.
    */
-  --font-pixel: "Jersey 15", ui-monospace, monospace;
-  --font-tiny: "Tiny5", ui-monospace, monospace;
   --text-px1: 27px;
   --text-px1--line-height: 32px;
   --text-px2: 54px;
@@ -36,14 +47,12 @@
   --color-wood: #8a5426;
 
   /* Variant 2 (shop): a Shopify-style store. */
-  --font-serif: "Young Serif", ui-serif, Georgia, serif;
-  --font-mono: "DM Mono", ui-monospace, monospace;
-  --font-shop: "Instrument Sans Variable", ui-sans-serif, system-ui, sans-serif;
   --color-shop-ink: #14213d;
   --color-shop-cream: #fbf6ea;
   --color-shop-sand: #f1e6cf;
-  --color-shop-yes: #1e9e5a;
-  --color-shop-yes-dark: #13703f;
+  /* Dark enough for white text (5:1). */
+  --color-shop-yes: #15803d;
+  --color-shop-yes-dark: #0f5f2e;
   --color-shop-mint: #c8f2d6;
   --color-shop-tomato: #ef4b3f;
   --color-shop-sun: #ffcc33;
@@ -90,7 +99,7 @@ body {
     gap: 0.5rem;
     align-items: center;
     padding: 0.75rem 1.25rem;
-    font-family: var(--font-pixel);
+    font-family: var(--font-jersey-15), monospace;
     font-size: var(--text-px1);
     line-height: var(--text-px1--line-height);
     color: var(--color-ink);

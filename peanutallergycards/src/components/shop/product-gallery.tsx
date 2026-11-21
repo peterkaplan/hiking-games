@@ -30,9 +30,8 @@ export const ProductGallery = ({
       <div className="flex gap-3 overflow-x-auto pb-1 md:w-24 md:shrink-0 md:flex-col md:overflow-visible md:pb-0">
         {slides.map((slide) => (
           <button
-            aria-label={slide.label}
             aria-pressed={slide.id === selected?.id}
-            className={`${slide.backdrop} hover:ring-shop-ink/40 focus-visible:outline-shop-yes aria-pressed:ring-shop-ink relative size-20 shrink-0 overflow-hidden rounded-2xl ring-2 ring-transparent transition focus-visible:outline-3 md:size-24`}
+            className={`${slide.backdrop} hover:ring-shop-ink/40 focus-visible:outline-shop-yes aria-pressed:ring-shop-ink relative size-16 shrink-0 overflow-hidden rounded-2xl ring-2 ring-transparent transition focus-visible:outline-3 md:size-24`}
             key={slide.id}
             onClick={handleSelect}
             type="button"
@@ -45,12 +44,13 @@ export const ProductGallery = ({
             >
               {slide.content}
             </span>
+            <span className="sr-only">{slide.label}</span>
           </button>
         ))}
       </div>
       <figure className="flex-1">
         <div
-          className={`${selected?.backdrop ?? ""} flex min-h-[420px] items-center justify-center rounded-[28px] p-6 sm:min-h-[560px] sm:p-12`}
+          className={`${selected?.backdrop ?? ""} flex aspect-[4/3] items-center justify-center rounded-[28px] p-4 sm:aspect-auto sm:min-h-[560px] sm:p-12`}
         >
           <div
             className="w-full max-w-xl [--shot-zoom:0.4] sm:[--shot-zoom:0.6] lg:[--shot-zoom:0.64]"
@@ -59,7 +59,7 @@ export const ProductGallery = ({
             {selected?.content}
           </div>
         </div>
-        <figcaption className="text-shop-ink/60 mt-3 font-mono text-xs tracking-widest uppercase">
+        <figcaption className="text-shop-ink/75 mt-3 hidden font-mono text-xs tracking-widest uppercase sm:block">
           {selected?.label}
         </figcaption>
       </figure>

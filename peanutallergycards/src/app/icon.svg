@@ -1,0 +1,82 @@
+<svg
+  shape-rendering="crispEdges"
+  viewBox="0 0 16 16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title>Peanut Allergy Cards</title>
+  <rect fill="#e83a4f" height="1" width="4" x="6" y="0" />
+  <rect fill="#e83a4f" height="1" width="8" x="4" y="1" />
+  <rect fill="#e83a4f" height="1" width="3" x="3" y="2" />
+  <rect fill="#fff8ec" height="1" width="4" x="6" y="2" />
+  <rect fill="#e83a4f" height="1" width="3" x="10" y="2" />
+  <rect fill="#e83a4f" height="1" width="3" x="2" y="3" />
+  <rect fill="#fff8ec" height="1" width="3" x="5" y="3" />
+  <rect fill="#8a5426" height="1" width="2" x="8" y="3" />
+  <rect fill="#e39a45" height="1" width="2" x="10" y="3" />
+  <rect fill="#e83a4f" height="1" width="2" x="12" y="3" />
+  <rect fill="#e83a4f" height="1" width="2" x="1" y="4" />
+  <rect fill="#fff8ec" height="1" width="1" x="3" y="4" />
+  <rect fill="#e83a4f" height="1" width="2" x="4" y="4" />
+  <rect fill="#fff8ec" height="1" width="2" x="6" y="4" />
+  <rect fill="#8a5426" height="1" width="1" x="8" y="4" />
+  <rect fill="#e39a45" height="1" width="4" x="9" y="4" />
+  <rect fill="#e83a4f" height="1" width="2" x="13" y="4" />
+  <rect fill="#e83a4f" height="1" width="2" x="1" y="5" />
+  <rect fill="#fff8ec" height="1" width="2" x="3" y="5" />
+  <rect fill="#e83a4f" height="1" width="2" x="5" y="5" />
+  <rect fill="#fff8ec" height="1" width="1" x="7" y="5" />
+  <rect fill="#8a5426" height="1" width="1" x="8" y="5" />
+  <rect fill="#e39a45" height="1" width="4" x="9" y="5" />
+  <rect fill="#e83a4f" height="1" width="2" x="13" y="5" />
+  <rect fill="#e83a4f" height="1" width="2" x="0" y="6" />
+  <rect fill="#fff8ec" height="1" width="4" x="2" y="6" />
+  <rect fill="#e83a4f" height="1" width="2" x="6" y="6" />
+  <rect fill="#8a5426" height="1" width="1" x="8" y="6" />
+  <rect fill="#e39a45" height="1" width="3" x="9" y="6" />
+  <rect fill="#8a5426" height="1" width="1" x="12" y="6" />
+  <rect fill="#fff8ec" height="1" width="1" x="13" y="6" />
+  <rect fill="#e83a4f" height="1" width="2" x="14" y="6" />
+  <rect fill="#e83a4f" height="1" width="2" x="0" y="7" />
+  <rect fill="#fff8ec" height="1" width="5" x="2" y="7" />
+  <rect fill="#e83a4f" height="1" width="2" x="7" y="7" />
+  <rect fill="#8a5426" height="1" width="4" x="9" y="7" />
+  <rect fill="#fff8ec" height="1" width="1" x="13" y="7" />
+  <rect fill="#e83a4f" height="1" width="2" x="14" y="7" />
+  <rect fill="#e83a4f" height="1" width="2" x="0" y="8" />
+  <rect fill="#fff8ec" height="1" width="1" x="2" y="8" />
+  <rect fill="#8a5426" height="1" width="5" x="3" y="8" />
+  <rect fill="#e83a4f" height="1" width="2" x="8" y="8" />
+  <rect fill="#fff8ec" height="1" width="4" x="10" y="8" />
+  <rect fill="#e83a4f" height="1" width="2" x="14" y="8" />
+  <rect fill="#e83a4f" height="1" width="2" x="0" y="9" />
+  <rect fill="#fff8ec" height="1" width="1" x="2" y="9" />
+  <rect fill="#8a5426" height="1" width="1" x="3" y="9" />
+  <rect fill="#e39a45" height="1" width="3" x="4" y="9" />
+  <rect fill="#8a5426" height="1" width="1" x="7" y="9" />
+  <rect fill="#fff8ec" height="1" width="1" x="8" y="9" />
+  <rect fill="#e83a4f" height="1" width="2" x="9" y="9" />
+  <rect fill="#fff8ec" height="1" width="3" x="11" y="9" />
+  <rect fill="#e83a4f" height="1" width="2" x="14" y="9" />
+  <rect fill="#e83a4f" height="1" width="2" x="1" y="10" />
+  <rect fill="#e39a45" height="1" width="4" x="3" y="10" />
+  <rect fill="#8a5426" height="1" width="1" x="7" y="10" />
+  <rect fill="#fff8ec" height="1" width="2" x="8" y="10" />
+  <rect fill="#e83a4f" height="1" width="2" x="10" y="10" />
+  <rect fill="#fff8ec" height="1" width="1" x="12" y="10" />
+  <rect fill="#e83a4f" height="1" width="2" x="13" y="10" />
+  <rect fill="#e83a4f" height="1" width="2" x="1" y="11" />
+  <rect fill="#e39a45" height="1" width="4" x="3" y="11" />
+  <rect fill="#8a5426" height="1" width="1" x="7" y="11" />
+  <rect fill="#fff8ec" height="1" width="3" x="8" y="11" />
+  <rect fill="#e83a4f" height="1" width="4" x="11" y="11" />
+  <rect fill="#e83a4f" height="1" width="2" x="2" y="12" />
+  <rect fill="#e39a45" height="1" width="2" x="4" y="12" />
+  <rect fill="#8a5426" height="1" width="2" x="6" y="12" />
+  <rect fill="#fff8ec" height="1" width="4" x="8" y="12" />
+  <rect fill="#e83a4f" height="1" width="2" x="12" y="12" />
+  <rect fill="#e83a4f" height="1" width="3" x="3" y="13" />
+  <rect fill="#fff8ec" height="1" width="4" x="6" y="13" />
+  <rect fill="#e83a4f" height="1" width="3" x="10" y="13" />
+  <rect fill="#e83a4f" height="1" width="8" x="4" y="14" />
+  <rect fill="#e83a4f" height="1" width="4" x="6" y="15" />
+</svg>

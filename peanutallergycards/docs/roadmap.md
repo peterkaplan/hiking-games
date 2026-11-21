@@ -32,6 +32,8 @@ Tick items off as they're done; add new ones as they come up.
 - [ ] Choose a variant (or merge the best of both) and delete the other
 - [ ] Product photography of the real printed cards, to replace the staged card shots in variant 2
 - [ ] Collect real reviews after launch; until then keep the "No reviews yet" and placeholder labels
+- [ ] Trust content to replace missing reviews: who is behind the store and why (founder story), and if possible a named allergist or dietitian who has looked at the cards
+- [x] Store review (2026-11-21): mobile menus, product first on phones, contrast, favicon, fonts via next/font (no layout shift). Lighthouse 94–97 performance and 100 accessibility / best practices / SEO on all four pages; axe-core: no violations
 - [ ] Redesign the cards (current ones are placeholders). The chef card needs a clear yes / no answer section staff can point to, since the site promises a clear answer
 - [ ] Review the website copy: Thailand "where peanuts turn up" list, FAQ, meal steps
 - [ ] Disclaimer, About and Contact pages

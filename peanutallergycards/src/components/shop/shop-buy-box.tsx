@@ -125,7 +125,7 @@ export const ShopBuyBox = ({ state }: { state: TranslationState }) => {
             {formatPrice(price.total)}
           </span>
           {price.total < price.full ? (
-            <span className="text-shop-ink/50 text-xl line-through">
+            <span className="text-shop-ink/70 text-xl line-through">
               {formatPrice(price.full)}
             </span>
           ) : null}
@@ -133,7 +133,7 @@ export const ShopBuyBox = ({ state }: { state: TranslationState }) => {
       ) : null}
 
       <button
-        className="bg-shop-yes disabled:bg-shop-sand disabled:text-shop-ink/60 mt-4 w-full rounded-full px-7 py-4 text-lg font-semibold text-white shadow-[0_4px_0_0_var(--color-shop-yes-dark)] disabled:cursor-not-allowed disabled:shadow-none"
+        className="bg-shop-yes disabled:bg-shop-sand disabled:text-shop-ink/75 mt-4 w-full rounded-full px-7 py-4 text-lg font-semibold text-white shadow-[0_4px_0_0_var(--color-shop-yes-dark)] disabled:cursor-not-allowed disabled:shadow-none"
         disabled
         id={BUY_BUTTON_ID}
         type="button"

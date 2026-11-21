@@ -149,7 +149,7 @@ const ProductPage = async ({ params }: PageProps) => {
     <main className="mx-auto max-w-7xl px-4 pt-6 sm:px-6">
       <nav
         aria-label="Breadcrumb"
-        className="text-shop-ink/70 font-mono text-xs uppercase"
+        className="text-shop-ink/70 hidden font-mono text-xs uppercase sm:block"
       >
         <ol className="flex gap-2">
           <li>
@@ -169,13 +169,13 @@ const ProductPage = async ({ params }: PageProps) => {
       </nav>
 
       {state === "ready" ? null : (
-        <p className="bg-shop-sun/60 mt-5 rounded-2xl px-5 py-3 text-base">
-          <strong>Preview.</strong> These cards haven&apos;t been checked by a
-          native speaker yet, so they aren&apos;t on sale.
+        <p className="bg-shop-sun/60 rounded-2xl px-4 py-2 text-sm sm:mt-5 sm:px-5 sm:py-3 sm:text-base">
+          <strong>Preview:</strong> not yet checked by a native speaker, so not
+          on sale.
         </p>
       )}
 
-      <div className="mt-8 grid gap-12 lg:grid-cols-12">
+      <div className="mt-4 grid gap-6 sm:mt-8 sm:gap-8 lg:grid-cols-12 lg:gap-12">
         <div className="min-w-0 lg:col-span-7">
           <div className="lg:sticky lg:top-24">
             <ProductGallery slides={slidesFor(destination)} />
@@ -183,14 +183,19 @@ const ProductPage = async ({ params }: PageProps) => {
         </div>
 
         <div className="min-w-0 lg:col-span-5">
-          <p className="border-shop-ink inline-block rounded-full border px-3 py-1 font-mono text-xs uppercase">
+          <p className="border-shop-ink hidden rounded-full border px-3 py-1 font-mono text-xs uppercase sm:inline-block">
             {stateLabel[state]}
           </p>
-          <h1 className="mt-4 font-serif text-5xl leading-[1.02] tracking-tight">
+          <h1 className="font-serif text-4xl leading-[1.02] tracking-tight sm:mt-4 sm:text-5xl">
             {title}
           </h1>
-          <p className="text-shop-ink/60 mt-3 font-mono text-sm">
-            No reviews yet
+          <p className="mt-4 flex flex-wrap items-baseline gap-x-4 gap-y-1">
+            <span className="font-serif text-3xl">
+              From {formatPrice(lowestPriceUsd)}
+            </span>
+            <span className="text-shop-ink/75 font-mono text-sm">
+              No reviews yet
+            </span>
           </p>
           <p className="text-shop-ink/85 mt-5 text-xl">
             A chef card and an emergency card in {language}, with English on the

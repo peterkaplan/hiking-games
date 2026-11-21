@@ -19,7 +19,7 @@ export const ShopFooter = () => (
       </div>
       <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
         <div>
-          <h3 className="text-shop-ink/60 font-mono text-xs tracking-widest uppercase">
+          <h3 className="text-shop-ink/75 font-mono text-xs tracking-widest uppercase">
             Shop
           </h3>
           <ul className="mt-4 space-y-2">
@@ -36,7 +36,7 @@ export const ShopFooter = () => (
           </ul>
         </div>
         <div>
-          <h3 className="text-shop-ink/60 font-mono text-xs tracking-widest uppercase">
+          <h3 className="text-shop-ink/75 font-mono text-xs tracking-widest uppercase">
             Help
           </h3>
           <ul className="mt-4 space-y-2">
@@ -53,7 +53,7 @@ export const ShopFooter = () => (
           </ul>
         </div>
         <div>
-          <h3 className="text-shop-ink/60 font-mono text-xs tracking-widest uppercase">
+          <h3 className="text-shop-ink/75 font-mono text-xs tracking-widest uppercase">
             Design
           </h3>
           <ul className="mt-4 space-y-2">
@@ -68,7 +68,7 @@ export const ShopFooter = () => (
     </div>
     <div className="mx-auto max-w-7xl px-4 sm:px-6">
       <Disclaimer />
-      <p className="text-shop-ink/60 mt-4 font-mono text-xs">
+      <p className="text-shop-ink/75 mt-4 font-mono text-xs">
         © 2026 Peanut Allergy Cards
       </p>
     </div>

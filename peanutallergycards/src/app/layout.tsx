@@ -1,9 +1,3 @@
-import "@fontsource-variable/atkinson-hyperlegible-next";
-import "@fontsource-variable/instrument-sans";
-import "@fontsource/dm-mono";
-import "@fontsource/jersey-15";
-import "@fontsource/tiny5";
-import "@fontsource/young-serif";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";

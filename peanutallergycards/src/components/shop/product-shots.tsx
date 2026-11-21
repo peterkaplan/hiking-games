@@ -144,7 +144,7 @@ export const PhoneShot = ({ destination }: { destination: Destination }) => {
             <EmergencyCardFace text={text} />
           </PhotoCard>
         </div>
-        <p className="text-shop-ink/60 mt-3 text-center font-mono text-[10px] uppercase">
+        <p className="text-shop-ink/75 mt-3 text-center font-mono text-[10px] uppercase">
           Saved to photos · works offline
         </p>
       </div>

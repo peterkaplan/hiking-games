@@ -40,7 +40,7 @@ export const ProductTile = ({ destination }: { destination: Destination }) => {
           from {formatPrice(lowestPriceUsd)}
         </span>
       </div>
-      <p className="text-shop-ink/60 mt-5 font-mono text-xs tracking-widest uppercase">
+      <p className="text-shop-ink/75 mt-5 font-mono text-xs tracking-widest uppercase">
         {languages || "Local language"} + English
       </p>
       <h3 className="mt-1 font-serif text-3xl underline-offset-4 group-hover:underline">
@@ -108,13 +108,13 @@ const MarkCell = ({ mark }: { mark: Mark }) => {
   }
   if (mark === "no") {
     return (
-      <span className="text-shop-ink/40 font-mono text-xl">
+      <span className="text-shop-ink/70 font-mono text-xl">
         <span aria-hidden="true">✕</span>
         <span className="sr-only">No</span>
       </span>
     );
   }
-  return <span className="text-shop-ink/60 font-mono text-sm">Varies</span>;
+  return <span className="text-shop-ink/75 font-mono text-sm">Varies</span>;
 };
 
 export const ComparisonTable = () => (
@@ -185,7 +185,7 @@ export const PlaceholderReviews = () => (
         >
           <p className="font-serif text-2xl">{review.title}</p>
           <p className="text-shop-ink/70 mt-3 flex-1 italic">{review.quote}</p>
-          <p className="text-shop-ink/60 mt-6 font-mono text-xs uppercase">
+          <p className="text-shop-ink/75 mt-6 font-mono text-xs uppercase">
             {review.trip}
           </p>
         </li>

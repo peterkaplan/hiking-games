@@ -78,7 +78,7 @@ const Hero = () => {
         </ul>
       </div>
       {showcase ? (
-        <div className="relative [--shot-zoom:0.4] sm:[--shot-zoom:0.62] lg:[--shot-zoom:0.66]">
+        <div className="relative order-first [--shot-zoom:0.4] sm:[--shot-zoom:0.62] lg:order-none lg:[--shot-zoom:0.66]">
           <Backdrop className="bg-shop-mint">
             <CardSetShot destination={showcase} />
           </Backdrop>
@@ -123,13 +123,13 @@ const TripPack = () => {
     <section className="bg-shop-yes mx-4 rounded-[32px] text-white sm:mx-6">
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 lg:grid-cols-2 lg:px-12">
         <div>
-          <p className="font-mono text-xs tracking-[0.18em] text-white/80 uppercase">
+          <p className="font-mono text-xs tracking-[0.18em] text-white uppercase">
             The trip pack
           </p>
           <h2 className="mt-4 font-serif text-5xl leading-none sm:text-6xl">
             Going to more than one country?
           </h2>
-          <p className="mt-6 max-w-md text-xl text-white/90">
+          <p className="mt-6 max-w-md text-xl text-white">
             Add up to three destinations and save {maxSaving}%. Each comes with
             both cards, printed or digital.
           </p>
