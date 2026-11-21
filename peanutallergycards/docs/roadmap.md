@@ -29,7 +29,7 @@ Tick items off as they're done; add new ones as they come up.
 - [x] Redesign the site around "eat with confidence", with a pixel-art identity and micro-animations
 - [x] Fix the blurry pixel font (grid-aligned Jersey 15 and Tiny5)
 - [x] Variant 2: Shopify-style store at `/v2` ([research](research/2026-11-21-shopify-store-patterns.md))
-- [ ] Choose a variant (or merge the best of both) and delete the other
+- [x] Choose a variant: the store; the pixel variant is deleted
 - [ ] Product photography of the real printed cards, to replace the staged card shots in variant 2
 - [ ] Collect real reviews after launch; until then keep the "No reviews yet" and placeholder labels
 - [x] Copy and sections review against the Shopify stores ([notes](research/2026-11-21-copy-review.md)): offer in the announcement bar and header, tile buttons, translation desk, product nickname, Details and Delivery
