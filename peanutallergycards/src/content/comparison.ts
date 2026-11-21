@@ -15,7 +15,7 @@ export interface ComparisonRow {
 
 export const comparisonColumns = {
   us: "Peanut Allergy Cards",
-  freeCard: "Free printable card",
+  freeCard: "Other cards",
   translationApp: "Translation app",
 } as const;
 
@@ -48,6 +48,12 @@ export const comparisonRows: readonly ComparisonRow[] = [
     feature: "Local ambulance number on the card",
     us: "yes",
     freeCard: "no",
+    translationApp: "no",
+  },
+  {
+    feature: "High-quality laminate, wipe-clean",
+    us: "yes",
+    freeCard: "varies",
     translationApp: "no",
   },
   {
