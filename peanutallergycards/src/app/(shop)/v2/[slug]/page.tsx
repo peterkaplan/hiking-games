@@ -218,7 +218,10 @@ const ProductPage = async ({ params }: PageProps) => {
       <div className="mt-4 grid gap-6 sm:mt-8 sm:gap-8 lg:grid-cols-12 lg:gap-12">
         <div className="min-w-0 lg:col-span-7">
           <div className="lg:sticky lg:top-24">
-            <ProductGallery slides={slidesFor(destination)} />
+            <ProductGallery
+              name="product-images"
+              slides={slidesFor(destination)}
+            />
           </div>
         </div>
 
@@ -230,8 +233,7 @@ const ProductPage = async ({ params }: PageProps) => {
             {title}
           </h1>
           <p className="mt-2 font-mono text-sm uppercase">
-            Chef card + emergency card + local peanut guide · {language} and
-            English
+            Chef card + emergency card + peanut guide · {language} and English
           </p>
           <p className="mt-4 flex flex-wrap items-baseline gap-x-4 gap-y-1">
             <span className="font-serif text-3xl">
@@ -243,13 +245,15 @@ const ProductPage = async ({ params }: PageProps) => {
               </span>
             )}
           </p>
-          <p className="text-shop-ink mt-5 text-xl">
-            Two cards that do the talking in {language}. Hand one to your
-            waiter, get a clear yes or no from the chef, and order like
-            you&apos;re at home. Comes with a local peanut guide to{" "}
-            {destination.country}.
+          <p className="text-shop-ink mt-4 text-xl">
+            Hand one to your waiter. Get a clear yes or no from the chef.
           </p>
-          <h2 className="mt-6 font-semibold">Three things in every set</h2>
+
+          <div className="mt-6">
+            <ShopBuyBox slug={destination.slug} state={state} />
+          </div>
+
+          <h2 className="mt-8 font-semibold">Three things in every set</h2>
           <ul className="mt-3 space-y-2.5">
             {[
               `Chef card: written for how ${destination.country} cooks${destination.kitchenFocus ? `, down to ${destination.kitchenFocus}` : ""}. It asks if they can cook for you`,
@@ -262,10 +266,6 @@ const ProductPage = async ({ params }: PageProps) => {
               </li>
             ))}
           </ul>
-
-          <div className="mt-8">
-            <ShopBuyBox slug={destination.slug} state={state} />
-          </div>
 
           <div className="mt-6">
             <Accordion open title="What's inside">

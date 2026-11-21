@@ -125,9 +125,9 @@ export const ShopBuyBox = ({
 
       <div className="mt-6" hidden={catalogue.length < 2}>
         <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-          <h3 className="font-mono text-xs tracking-widest uppercase">
+          <p className="font-mono text-xs tracking-widest uppercase">
             Visiting more than one country?
-          </h3>
+          </p>
           <p className="bg-shop-highlight text-shop-on-highlight rounded-full px-2.5 py-0.5 font-mono text-[10px] uppercase">
             {savings}
           </p>
