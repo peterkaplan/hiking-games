@@ -33,7 +33,6 @@ import {
   languageCount,
   NEEDS_SEARCH,
 } from "@/content/catalogue";
-import { CONTACT_EMAIL } from "@/content/contact";
 import { faqItems } from "@/content/faq";
 import { LAUNCH_PREVIEW } from "@/content/launch-preview";
 import {
@@ -265,18 +264,7 @@ const ShopHome = () => (
             <CountryBrowser />
           </div>
         </>
-      ) : (
-        <p className="mt-14 text-xl">
-          Going somewhere else? Email{" "}
-          <a
-            className="font-semibold underline decoration-2 underline-offset-4"
-            href={`mailto:${CONTACT_EMAIL}`}
-          >
-            {CONTACT_EMAIL}
-          </a>{" "}
-          and we&apos;ll make your card next.
-        </p>
-      )}
+      ) : null}
     </section>
 
     <Statement />
