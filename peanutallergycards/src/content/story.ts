@@ -83,8 +83,8 @@ export const story = {
       body: "One for the kitchen, one for an emergency. Each has English on the back, so you know what it says.",
     },
     {
-      title: "Made for peanut.",
-      body: "Peanut oil, sauces, shared woks and mortars: the details generic allergy cards miss.",
+      title: "Made for peanuts only.",
+      body: "Shared sauces, shared woks, cross-contamination: the details generic allergy cards miss.",
     },
   ],
 

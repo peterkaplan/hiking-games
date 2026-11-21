@@ -1,5 +1,6 @@
 /**
  * "Us vs the alternatives" table, a common Shopify product-page section.
+ * The first row is the headline difference and is shown largest.
  * Keep comparisons fair: describe kinds of alternatives, not named brands.
  */
 
@@ -20,7 +21,13 @@ export const comparisonColumns = {
 
 export const comparisonRows: readonly ComparisonRow[] = [
   {
-    feature: "Written for peanut (oil, sauces, cross-contact)",
+    feature: "Made for peanuts only",
+    us: "yes",
+    freeCard: "varies",
+    translationApp: "no",
+  },
+  {
+    feature: "Covers shared sauces and cross-contamination",
     us: "yes",
     freeCard: "varies",
     translationApp: "no",

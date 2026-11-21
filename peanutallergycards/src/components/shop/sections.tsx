@@ -222,7 +222,10 @@ export const ComparisonTable = () => (
             className="border-shop-ink border-b last:border-b-0"
             key={row.feature}
           >
-            <th className="p-4 font-medium sm:p-5" scope="row">
+            <th
+              className="p-4 font-medium sm:p-5 [tr:first-child>&]:font-serif [tr:first-child>&]:text-2xl [tr:first-child>&]:font-normal sm:[tr:first-child>&]:text-3xl"
+              scope="row"
+            >
               {row.feature}
             </th>
             <td className="bg-shop-selected p-4 text-center sm:p-5">
