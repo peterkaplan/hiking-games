@@ -27,7 +27,7 @@ const columns: readonly { heading: string; links: readonly FooterLink[] }[] = [
         href: `/v2/${destination.slug}`,
         label: `The ${destination.country} Set`,
       })),
-      { href: "/v2#trip-pack", label: `Trip pack: save ${maxSaving}%` },
+      { href: "/v2/trip-pack", label: `The Trip Pack: save ${maxSaving}%` },
       {
         href: "/v2#destinations",
         label: NEEDS_SEARCH

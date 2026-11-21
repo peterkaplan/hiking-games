@@ -8,12 +8,12 @@ import {
 } from "@/components/pixel/vignettes";
 import { stateLabel } from "@/components/status-badge";
 import type { Destination } from "@/content/cards";
-import { findDestination, frontLanguages } from "@/content/cards";
+import { destinations, findDestination, frontLanguages } from "@/content/cards";
 import type { Mark } from "@/content/comparison";
 import { comparisonColumns, comparisonRows } from "@/content/comparison";
 import type { FaqItem } from "@/content/faq";
 import { displayState } from "@/content/launch-preview";
-import { formatPrice, lowestPriceUsd } from "@/content/pricing";
+import { formatPrice, lowestPriceUsd, maxSaving } from "@/content/pricing";
 import { placeholderReviews } from "@/content/reviews";
 import { story } from "@/content/story";
 import { CheckIcon } from "./bits";
@@ -58,6 +58,40 @@ export const ProductTile = ({ destination }: { destination: Destination }) => {
       </p>
       <span className="border-shop-ink group-hover:bg-shop-ink group-hover:text-shop-bg mt-5 inline-flex items-center gap-2 rounded-full border-2 px-5 py-2.5 font-semibold transition">
         See the {destination.country} cards <span aria-hidden="true">→</span>
+      </span>
+    </Link>
+  );
+};
+
+/* Trip pack tile ----------------------------------------------------------- */
+
+/** The bundle, as a product tile beside the countries. */
+export const TripPackTile = () => {
+  const [first, second] = destinations;
+  return (
+    <Link className="group block" href="/v2/trip-pack">
+      <div className="relative">
+        <Backdrop className="bg-shop-highlight aspect-square overflow-hidden transition duration-300 [--shot-zoom:0.2] group-hover:rounded-[40px] min-[380px]:[--shot-zoom:0.25] sm:[--shot-zoom:0.19] lg:[--shot-zoom:0.25]">
+          <div className="space-y-4 transition duration-300 group-hover:scale-[1.03]">
+            {first ? <CardSetShot destination={first} /> : null}
+            {second ? <CardSetShot destination={second} /> : null}
+          </div>
+        </Backdrop>
+        <span className="border-shop-ink bg-shop-bg absolute top-4 left-4 rounded-full border px-3 py-1 font-mono text-xs uppercase">
+          Save {maxSaving}%
+        </span>
+      </div>
+      <p className="text-shop-ink mt-5 font-mono text-xs tracking-widest uppercase">
+        Every country on your trip
+      </p>
+      <h3 className="mt-1 font-serif text-3xl underline-offset-4 group-hover:underline">
+        The Trip Pack
+      </h3>
+      <p className="text-shop-ink mt-2">
+        Both cards and a peanut guide for every stop
+      </p>
+      <span className="border-shop-ink group-hover:bg-shop-ink group-hover:text-shop-bg mt-4 inline-flex items-center gap-2 rounded-full border-2 px-5 py-2.5 font-semibold transition">
+        Build your trip pack <span aria-hidden="true">→</span>
       </span>
     </Link>
   );

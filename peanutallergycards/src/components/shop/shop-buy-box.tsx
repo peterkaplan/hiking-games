@@ -1,21 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import type { ChangeEvent, MouseEvent } from "react";
-import { useCallback, useId, useMemo, useState } from "react";
+import type { MouseEvent } from "react";
+import { useCallback, useMemo, useState } from "react";
 import type { TranslationState } from "@/content/cards";
 import { catalogue, findCountry } from "@/content/catalogue";
 import type { CartLine, FormatId } from "@/content/pricing";
-import {
-  availableTiers,
-  cartTotals,
-  formatPrice,
-  formats,
-} from "@/content/pricing";
+import { cartTotals, formats } from "@/content/pricing";
 import { CheckIcon } from "./bits";
 import { addToCart } from "./cart-store";
 import { CountryPicker } from "./country-picker";
-import { Flag } from "./flags";
+import { FormatOptions, PriceLine } from "./format-options";
+import { savingsSummary } from "./trip-pack-builder";
 
 /** The buy button is only live once a destination's cards can be sold. */
 const buttonLabel: Record<TranslationState, string> = {
@@ -24,22 +20,6 @@ const buttonLabel: Record<TranslationState, string> = {
   draft: "Available once reviewed",
   ready: "Add to cart",
 };
-
-const formatTag: Record<FormatId, string> = {
-  digital: "Instant",
-  printed: "Digital free",
-};
-
-const optionClass =
-  "relative flex cursor-pointer flex-col rounded-2xl border-2 border-shop-ink bg-shop-panel p-4 transition hover:border-shop-ink has-checked:border-shop-ink has-checked:bg-shop-selected has-focus-visible:outline-3 has-focus-visible:outline-shop-ink has-focus-visible:outline-offset-2";
-
-const savings = availableTiers
-  .filter((tier) => tier.discountPercent > 0)
-  .map(
-    (tier, index, tiers) =>
-      `${tier.countries}${index === tiers.length - 1 ? "+" : ""} countries: ${tier.discountPercent}% off`
-  )
-  .join(" · ");
 
 export const BUY_BUTTON_ID = "buy-button";
 
@@ -59,7 +39,6 @@ export const ShopBuyBox = ({
   );
   const [extras, setExtras] = useState<readonly string[]>([]);
   const [added, setAdded] = useState(0);
-  const formatName = useId();
 
   const lines = useMemo<CartLine[]>(
     () => [slug, ...extras].map((item) => ({ slug: item, format: formatId })),
@@ -68,12 +47,9 @@ export const ShopBuyBox = ({
   const chosen = useMemo(() => [slug, ...extras], [slug, extras]);
   const totals = cartTotals(lines);
 
-  const handleFormat = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    const picked = formats.find((f) => f.id === event.currentTarget.value);
-    if (picked) {
-      setFormatId(picked.id);
-      setAdded(0);
-    }
+  const handleFormat = useCallback((format: FormatId) => {
+    setFormatId(format);
+    setAdded(0);
   }, []);
   const handleAddCountry = useCallback((country: string) => {
     setExtras((current) =>
@@ -96,39 +72,7 @@ export const ShopBuyBox = ({
 
   return (
     <div>
-      <fieldset>
-        <legend className="font-mono text-xs tracking-widest uppercase">
-          Format
-        </legend>
-        <div className="mt-3 grid grid-cols-2 gap-3">
-          {formats.map((format) => (
-            <label className={optionClass} key={format.id}>
-              <input
-                checked={format.id === formatId}
-                className="sr-only"
-                name={formatName}
-                onChange={handleFormat}
-                type="radio"
-                value={format.id}
-              />
-              <span className="bg-shop-ink text-shop-bg absolute -top-3 right-3 rounded-full px-2 py-0.5 font-mono text-[10px] uppercase">
-                {formatTag[format.id]}
-              </span>
-              <span className="font-semibold">{format.name}</span>
-              <span className="text-shop-ink mt-1 text-base">
-                {formatPrice(format.priceUsd)}{" "}
-                {format.compareAtUsd ? (
-                  <s>
-                    <span className="sr-only">instead of </span>
-                    {formatPrice(format.compareAtUsd)}
-                  </s>
-                ) : null}{" "}
-                per country
-              </span>
-            </label>
-          ))}
-        </div>
-      </fieldset>
+      <FormatOptions onChange={handleFormat} value={formatId} />
 
       <div className="mt-6" hidden={catalogue.length < 2}>
         <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
@@ -136,7 +80,7 @@ export const ShopBuyBox = ({
             Visiting more than one country?
           </p>
           <p className="bg-shop-highlight text-shop-on-highlight rounded-full px-2.5 py-0.5 font-mono text-[10px] uppercase">
-            {savings}
+            {savingsSummary}
           </p>
         </div>
         {extras.length > 0 ? (
@@ -145,13 +89,9 @@ export const ShopBuyBox = ({
               const country = findCountry(item);
               return country ? (
                 <li
-                  className="bg-shop-selected border-shop-ink flex items-center gap-2 rounded-full border-2 py-1 pr-1 pl-2 text-base font-semibold"
+                  className="bg-shop-selected border-shop-ink flex items-center gap-2 rounded-full border-2 py-1 pr-1 pl-4 text-base font-semibold"
                   key={item}
                 >
-                  <Flag
-                    className="border-shop-ink h-5 w-auto rounded-sm border"
-                    code={country.code}
-                  />
                   {country.name}
                   <button
                     className="hover:bg-shop-panel focus-visible:outline-shop-ink grid size-7 place-items-center rounded-full focus-visible:outline-3"
@@ -176,20 +116,12 @@ export const ShopBuyBox = ({
         </div>
       </div>
 
-      <p className="mt-7 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-        <span className="font-serif text-4xl">{formatPrice(totals.total)}</span>
-        {totals.compareAt > totals.total ? (
-          <s className="text-shop-ink text-xl">
-            <span className="sr-only">instead of </span>
-            {formatPrice(totals.compareAt)}
-          </s>
-        ) : null}
-        {totals.discount > 0 ? (
-          <span className="bg-shop-highlight text-shop-on-highlight rounded-full px-2.5 py-0.5 font-mono text-xs uppercase">
-            {totals.discountPercent}% off {lines.length} countries
-          </span>
-        ) : null}
-      </p>
+      <PriceLine
+        compareAt={totals.compareAt}
+        countries={lines.length}
+        discountPercent={totals.discountPercent}
+        total={totals.total}
+      />
 
       <button
         className="bg-shop-cta disabled:bg-shop-panel disabled:text-shop-ink text-shop-on-cta mt-4 w-full rounded-full px-7 py-4 text-lg font-semibold shadow-[0_4px_0_0_var(--color-shop-ink)] disabled:cursor-not-allowed disabled:shadow-none"

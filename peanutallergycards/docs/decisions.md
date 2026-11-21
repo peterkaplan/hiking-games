@@ -4,6 +4,16 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ---
 
+## 2026-11-21: The Trip Pack is its own product
+
+- A bundle page at `/v2/trip-pack`: tick the countries on your trip (search
+  once the list is long), choose a format, add them all in one go. It sits
+  beside the countries on the homepage and is linked from the header and
+  footer.
+- It uses the same cart lines and the same discount as adding countries on a
+  product page, so there is one set of pricing rules.
+- No flags in the add-a-country picker (owner's call).
+
 ## 2026-11-21: Full catalogue switched off until the cards exist
 
 - We only have Thailand and Japan, so the store sells only those. The

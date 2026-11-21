@@ -24,6 +24,7 @@ import {
   ProductTile,
   ShopFaq,
   StoryTeaser,
+  TripPackTile,
 } from "@/components/shop/sections";
 import { destinations, findDestination } from "@/content/cards";
 import { englishChefCard } from "@/content/cards/english";
@@ -205,7 +206,7 @@ const TripPack = () => {
           </p>
           <Link
             className="bg-shop-bg text-shop-ink hover:bg-shop-panel focus-visible:outline-shop-on-band mt-9 inline-flex rounded-full px-7 py-4 font-semibold focus-visible:outline-3 focus-visible:outline-offset-4"
-            href="#destinations"
+            href="/v2/trip-pack"
           >
             Build your trip pack
           </Link>
@@ -254,6 +255,7 @@ const ShopHome = () => (
         {destinations.map((destination) => (
           <ProductTile destination={destination} key={destination.slug} />
         ))}
+        <TripPackTile />
       </div>
       {NEEDS_SEARCH ? (
         <>

@@ -75,7 +75,7 @@ export const ShopHeader = () => (
       <div className="flex items-center gap-3">
         <Link
           className="bg-shop-highlight text-shop-on-highlight hidden rounded-full px-4 py-2 font-mono text-xs uppercase hover:underline xl:inline-block"
-          href="/v2#trip-pack"
+          href="/v2/trip-pack"
         >
           Trip pack · save {maxSaving}%
         </Link>

@@ -5,7 +5,6 @@ import { useCallback, useId, useMemo, useState } from "react";
 import type { CatalogueCountry } from "@/content/catalogue";
 import { catalogue, NEEDS_SEARCH } from "@/content/catalogue";
 import { CONTACT_EMAIL } from "@/content/contact";
-import { Flag } from "./flags";
 
 const MAX_RESULTS = 6;
 
@@ -99,15 +98,11 @@ export const CountryPicker = ({
           {results.map((country) => (
             <li key={country.slug}>
               <button
-                className="border-shop-ink bg-shop-panel hover:bg-shop-selected focus-visible:outline-shop-ink flex items-center gap-2 rounded-full border py-1.5 pr-3.5 pl-2 text-base focus-visible:outline-3 focus-visible:outline-offset-2"
+                className="border-shop-ink bg-shop-panel hover:bg-shop-selected focus-visible:outline-shop-ink flex items-center gap-2 rounded-full border px-4 py-1.5 text-base focus-visible:outline-3 focus-visible:outline-offset-2"
                 data-slug={country.slug}
                 onClick={handleAdd}
                 type="button"
               >
-                <Flag
-                  className="border-shop-ink h-5 w-auto rounded-sm border"
-                  code={country.code}
-                />
                 <span aria-hidden="true">+</span>
                 <span className="sr-only">Add</span>
                 {country.name}
