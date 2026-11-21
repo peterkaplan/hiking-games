@@ -17,11 +17,11 @@ import {
 } from "@/components/shop/product-shots";
 import {
   ComparisonTable,
-  FounderStory,
   HowItWorks,
   PlaceholderReviews,
   ProductTile,
   ShopFaq,
+  StoryTeaser,
   TranslationDesk,
 } from "@/components/shop/sections";
 import { destinations, findDestination } from "@/content/cards";
@@ -251,7 +251,7 @@ const ShopHome = () => (
       className="mx-auto max-w-7xl scroll-mt-24 px-4 pt-28 sm:px-6"
       id="story"
     >
-      <FounderStory />
+      <StoryTeaser />
     </section>
 
     <section

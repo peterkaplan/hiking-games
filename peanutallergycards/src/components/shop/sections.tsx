@@ -308,43 +308,52 @@ export const ShopFaq = ({ items }: { items: readonly FaqItem[] }) => (
   </div>
 );
 
-/* Founder story ----------------------------------------------------------- */
+/* Founder story: homepage teaser ---------------------------------------- */
 
-export const FounderStory = () => {
+/** Julia's original Thai chef card, staged as a product shot. */
+export const JuliasCard = () => {
   const thailand = findDestination("thailand");
+  if (!thailand?.chefCard.front) {
+    return null;
+  }
   return (
-    <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_1fr]">
-      <div>
-        <p className="font-mono text-xs tracking-[0.18em] uppercase">
-          {story.eyebrow}
-        </p>
-        <h2
-          className="mt-4 font-serif text-4xl leading-[1.05] tracking-tight sm:text-5xl"
-          id="story-heading"
-        >
-          {story.heading}
-        </h2>
-        <div className="mt-6 max-w-xl space-y-4 text-xl">
-          {story.paragraphs.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
+    <figure className="[--shot-zoom:0.33] sm:[--shot-zoom:0.6] lg:[--shot-zoom:0.56]">
+      <div className="bg-shop-backdrop-3 border-shop-ink flex justify-center rounded-[28px] border p-6 sm:p-10">
+        <div className="w-fit">
+          <ChefFrontCard
+            className="w-[760px] rotate-2 [zoom:var(--shot-zoom)]"
+            destination={thailand}
+          />
         </div>
       </div>
-      {thailand?.chefCard.front ? (
-        <figure className="[--shot-zoom:0.42] sm:[--shot-zoom:0.6] lg:[--shot-zoom:0.56]">
-          <div className="bg-shop-backdrop-3 border-shop-ink flex justify-center rounded-[28px] border p-6 sm:p-10">
-            <div className="w-fit">
-              <ChefFrontCard
-                className="w-[760px] rotate-2 [zoom:var(--shot-zoom)]"
-                destination={thailand}
-              />
-            </div>
-          </div>
-          <figcaption className="mt-3 font-mono text-xs tracking-widest uppercase">
-            {story.cardCaption}
-          </figcaption>
-        </figure>
-      ) : null}
-    </div>
+      <figcaption className="mt-3 font-mono text-xs tracking-widest uppercase">
+        {story.cardCaption}
+      </figcaption>
+    </figure>
   );
 };
+
+/** A short band on the homepage that points to the full story page. */
+export const StoryTeaser = () => (
+  <div className="bg-shop-panel border-shop-ink grid items-center gap-10 rounded-[32px] border-2 p-6 sm:p-10 lg:grid-cols-[1.1fr_1fr] lg:p-14">
+    <div>
+      <p className="bg-shop-highlight text-shop-on-highlight inline-block rounded-full px-3 py-1 font-mono text-xs uppercase">
+        {story.eyebrow}
+      </p>
+      <h2
+        className="mt-5 font-serif text-4xl leading-[1.05] tracking-tight sm:text-5xl"
+        id="story-heading"
+      >
+        {story.heading}
+      </h2>
+      <p className="mt-5 max-w-lg text-xl">{story.teaser}</p>
+      <Link
+        className="bg-shop-cta text-shop-on-cta focus-visible:outline-shop-ink mt-8 inline-flex items-center gap-2 rounded-full px-7 py-4 font-semibold focus-visible:outline-3 focus-visible:outline-offset-4"
+        href="/v2/our-story"
+      >
+        Read Julia&apos;s story <span aria-hidden="true">→</span>
+      </Link>
+    </div>
+    <JuliasCard />
+  </div>
+);

@@ -7,9 +7,12 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 ## 2026-11-21: Founder story on the homepage; no guarantee for now
 
 **Decision:** The store tells Julia's story: allergic to peanuts her whole
-life, she needed these cards on her honeymoon in Thailand and Japan. It sits
-above the reviews, beside her original Thai chef card. We are not offering a
-guarantee for now.
+life, she needed these cards on her honeymoon in Thailand and Japan. As on
+every reference store, the homepage has only a short teaser (above the
+reviews) and the full story has its own page in the main menu, with a
+mission headline, a four-step journey, a signed note from Julia (Ghia
+pattern), three named principles and a way back to the shop. We are not
+offering a guarantee for now.
 **Why:** A maker's story is the strongest trust section the reference stores
 have that we lacked (e.g. Graza's "Made by people who take olives very
 seriously"), and it's true. The owner doesn't want a guarantee at this stage.
