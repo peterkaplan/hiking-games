@@ -21,13 +21,19 @@ import {
   PlaceholderReviews,
   ProductTile,
   ShopFaq,
+  TranslationDesk,
 } from "@/components/shop/sections";
 import { destinations, findDestination } from "@/content/cards";
 import { faqItems } from "@/content/faq";
 import { bundleTiers, formatPrice, lowestPriceUsd } from "@/content/pricing";
 
 export const metadata: Metadata = {
-  title: "Shop peanut allergy cards (variant 2)",
+  title: {
+    absolute:
+      "Peanut Allergy Cards for Travel: Japanese, Thai and more | Eat abroad with confidence",
+  },
+  description:
+    "Peanut allergy cards in the local language, with English on the back. Show the chef card, get a clear yes or no from the kitchen, and eat with confidence. Emergency card included.",
 };
 
 const benefits = [
@@ -53,12 +59,13 @@ const Hero = () => {
           Eat abroad with confidence.
         </h1>
         <p className="text-shop-ink mt-6 max-w-lg text-xl">
-          A peanut allergy card in the local language. Show it, get a clear yes
-          or no from the kitchen, and enjoy the meal.
+          A peanut allergy card in the local language. Hand it over, get a clear
+          yes or no from the kitchen, and enjoy the meal. No guessing, no polite
+          nods.
         </p>
         <div className="mt-9 flex flex-wrap gap-4">
           <Link className={buttonPrimary} href="#destinations">
-            Shop destinations
+            Shop by country
           </Link>
           <Link className={buttonSecondary} href="#how-it-works">
             How it works
@@ -122,7 +129,10 @@ const Statement = () => (
 const TripPack = () => {
   const showcase = findDestination("thailand") ?? destinations[0];
   return (
-    <section className="bg-shop-band text-shop-on-band mx-4 rounded-[32px] sm:mx-6">
+    <section
+      className="bg-shop-band text-shop-on-band mx-4 scroll-mt-24 rounded-[32px] sm:mx-6"
+      id="trip-pack"
+    >
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 lg:grid-cols-2 lg:px-12">
         <div>
           <p className="text-shop-on-band font-mono text-xs tracking-[0.18em] uppercase">
@@ -174,7 +184,7 @@ const ShopHome = () => (
           className="font-serif text-5xl tracking-tight sm:text-6xl"
           id="destinations-heading"
         >
-          Shop by destination
+          Shop by country
         </h2>
         <p className="text-shop-ink font-mono text-sm uppercase">
           Coming next: {comingNext.join(" · ")}
@@ -216,6 +226,22 @@ const ShopHome = () => (
       </h2>
       <div className="mt-10">
         <ComparisonTable />
+      </div>
+    </section>
+
+    <section
+      aria-labelledby="desk-heading"
+      className="mx-auto max-w-5xl px-4 pt-24 sm:px-6"
+    >
+      <h2 className="font-serif text-4xl sm:text-5xl" id="desk-heading">
+        The translation desk
+      </h2>
+      <p className="text-shop-ink mt-4 max-w-2xl text-xl">
+        Every card is checked by a native speaker before it goes on sale.
+        Here&apos;s where each one stands today.
+      </p>
+      <div className="mt-8">
+        <TranslationDesk />
       </div>
     </section>
 

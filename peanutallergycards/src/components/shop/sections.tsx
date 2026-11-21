@@ -7,8 +7,13 @@ import {
   ShowVignette,
 } from "@/components/pixel/vignettes";
 import { stateLabel } from "@/components/status-badge";
-import type { Destination } from "@/content/cards";
-import { destinationState, frontLanguages } from "@/content/cards";
+import type { Destination, TranslationState } from "@/content/cards";
+import {
+  destinationState,
+  destinations,
+  frontLanguages,
+  translationState,
+} from "@/content/cards";
 import type { Mark } from "@/content/comparison";
 import { comparisonColumns, comparisonRows } from "@/content/comparison";
 import type { FaqItem } from "@/content/faq";
@@ -49,9 +54,90 @@ export const ProductTile = ({ destination }: { destination: Destination }) => {
       <p className="text-shop-ink mt-1">
         Chef card + emergency card · ambulance {destination.emergencyNumber}
       </p>
+      <span className="border-shop-ink group-hover:bg-shop-ink group-hover:text-shop-bg mt-5 inline-flex items-center gap-2 rounded-full border-2 px-5 py-2.5 font-semibold transition">
+        See the {destination.country} cards <span aria-hidden="true">→</span>
+      </span>
     </Link>
   );
 };
+
+/* Translation desk -------------------------------------------------------- */
+
+/*
+ * Like a "now harvesting" strip on a food store, but for translations: the
+ * honest review status of every card, straight from src/content/cards.
+ */
+const deskLabel: Record<TranslationState, string> = {
+  missing: "Being written",
+  draft: "Awaiting native-speaker check",
+  "out-of-date": "Being updated",
+  ready: "Checked by a native speaker",
+};
+
+const deskStyle: Record<TranslationState, string> = {
+  missing: "border-shop-ink bg-shop-bg border",
+  draft: "bg-shop-highlight text-shop-on-highlight",
+  "out-of-date": "bg-shop-highlight text-shop-on-highlight",
+  ready: "bg-shop-tick text-shop-on-tick",
+};
+
+const DeskStatus = ({ state }: { state: TranslationState }) => (
+  <span
+    className={`inline-block rounded-full px-3 py-1 font-mono text-xs uppercase ${deskStyle[state]}`}
+  >
+    {deskLabel[state]}
+  </span>
+);
+
+export const TranslationDesk = () => (
+  <div className="border-shop-ink bg-shop-panel relative overflow-x-auto rounded-[24px] border-2">
+    <table className="w-full min-w-[620px] border-collapse text-left">
+      <thead>
+        <tr className="border-shop-ink border-b-2 font-mono text-sm uppercase">
+          <th className="p-4 font-normal sm:p-5" scope="col">
+            Country
+          </th>
+          <th className="p-4 font-normal sm:p-5" scope="col">
+            Chef card
+          </th>
+          <th className="p-4 font-normal sm:p-5" scope="col">
+            Emergency card
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {destinations.map((destination) => {
+          const language = frontLanguages(destination)[0]?.name;
+          return (
+            <tr
+              className="border-shop-ink border-b last:border-b-0"
+              key={destination.slug}
+            >
+              <th className="p-4 font-normal sm:p-5" scope="row">
+                <span className="block font-serif text-xl">
+                  {destination.country}
+                </span>
+                <span className="font-mono text-sm">
+                  {language ?? "Local language"} + English
+                </span>
+              </th>
+              <td className="p-4 sm:p-5">
+                <DeskStatus
+                  state={translationState(destination.chefCard.front)}
+                />
+              </td>
+              <td className="p-4 sm:p-5">
+                <DeskStatus
+                  state={translationState(destination.emergencyCard.front)}
+                />
+              </td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  </div>
+);
 
 /* How it works ------------------------------------------------------------ */
 

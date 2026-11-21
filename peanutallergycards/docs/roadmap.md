@@ -32,6 +32,10 @@ Tick items off as they're done; add new ones as they come up.
 - [ ] Choose a variant (or merge the best of both) and delete the other
 - [ ] Product photography of the real printed cards, to replace the staged card shots in variant 2
 - [ ] Collect real reviews after launch; until then keep the "No reviews yet" and placeholder labels
+- [x] Copy and sections review against the Shopify stores ([notes](research/2026-11-21-copy-review.md)): offer in the announcement bar and header, tile buttons, translation desk, product nickname, Details and Delivery
+- [ ] Decide a guarantee (e.g. "wrong translation? we fix it and refund you") and add it to the store
+- [ ] Card size and printed-shipping details, to replace "to be confirmed" on product pages
+- [ ] Travel guides (e.g. "Eating in Thailand with a peanut allergy"), the store's version of recipes and blogs
 - [ ] Trust content to replace missing reviews: who is behind the store and why (founder story), and if possible a named allergist or dietitian who has looked at the cards
 - [x] Store review (2026-11-21): mobile menus, product first on phones, contrast, favicon, fonts via next/font (no layout shift). Lighthouse 94–97 performance and 100 accessibility / best practices / SEO on all four pages; axe-core: no violations
 - [ ] Redesign the cards (current ones are placeholders). The chef card needs a clear yes / no answer section staff can point to, since the site promises a clear answer

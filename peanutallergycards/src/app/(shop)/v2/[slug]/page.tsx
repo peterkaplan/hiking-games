@@ -55,8 +55,10 @@ export const generateMetadata = async ({
   if (!destination) {
     return {};
   }
+  const language = languageName(destination);
   return {
-    title: `${destination.country} peanut allergy card set (variant 2)`,
+    title: `${language} Peanut Allergy Card for ${destination.country}: Chef Card + Emergency Card`,
+    description: `Show it before you order: a ${language} chef card that asks the kitchen for a clear yes or no, plus an emergency card with ${destination.country}'s ambulance number (${destination.emergencyNumber}). English on the back. Checked by a native speaker.`,
   };
 };
 
@@ -140,7 +142,7 @@ const ProductPage = async ({ params }: PageProps) => {
   }
   const state = destinationState(destination);
   const language = languageName(destination);
-  const title = `${destination.country} Peanut Allergy Card Set`;
+  const title = `The ${destination.country} Set`;
   const others = destinations.filter(
     (other) => other.slug !== destination.slug
   );
@@ -189,6 +191,9 @@ const ProductPage = async ({ params }: PageProps) => {
           <h1 className="font-serif text-4xl leading-[1.02] tracking-tight sm:mt-4 sm:text-5xl">
             {title}
           </h1>
+          <p className="mt-2 font-mono text-sm uppercase">
+            Peanut allergy chef card + emergency card · {language} and English
+          </p>
           <p className="mt-4 flex flex-wrap items-baseline gap-x-4 gap-y-1">
             <span className="font-serif text-3xl">
               From {formatPrice(lowestPriceUsd)}
@@ -202,7 +207,8 @@ const ProductPage = async ({ params }: PageProps) => {
             back. Show it before you order, get a clear yes or no, and eat with
             confidence.
           </p>
-          <ul className="mt-6 space-y-2.5">
+          <h2 className="mt-6 font-semibold">Why it works</h2>
+          <ul className="mt-3 space-y-2.5">
             {[
               "Spells out peanut, peanut oil, sauces and shared cookware",
               "Asks the kitchen for a clear yes or no",
@@ -223,12 +229,20 @@ const ProductPage = async ({ params }: PageProps) => {
             <Accordion open title="What's inside">
               {`Chef card and emergency card for ${destination.country}. ${language} on the front, English on the back. Digital: a print-ready PDF and phone-sized images. Printed: both cards laminated and posted to you, plus the digital files.`}
             </Accordion>
+            <Accordion title="Details">
+              {`Includes: 1 chef card and 1 emergency card. Languages: ${language} on the front, English on the back. Emergency number: ${destination.emergencyNumber} (${destination.country}). Card size: to be confirmed. Printed cards are laminated and wipe-clean.`}
+            </Accordion>
+            <Accordion title="Delivery">
+              Digital: your download link arrives straight after you buy.
+              Printed: posted to you, with the digital files sent straight away.
+              Shipping times and costs to be confirmed.
+            </Accordion>
             <Accordion title="How to use them">
               Hand the chef card over before you order and ask for it to go to
               the kitchen. If they say no or hesitate, eat somewhere else. Keep
               the emergency card with your epinephrine.
             </Accordion>
-            <Accordion title="How we translate">
+            <Accordion title="How we check translations">
               Every card is translated from our English text and checked by a
               native speaker before we sell it.
             </Accordion>

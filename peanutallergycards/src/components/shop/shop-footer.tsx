@@ -8,10 +8,11 @@ export const ShopFooter = () => (
     <div className="mx-auto grid max-w-7xl gap-12 px-4 py-14 sm:px-6 lg:grid-cols-2">
       <div>
         <h2 className="font-serif text-3xl">
-          New countries and travel tips, straight to you.
+          Be first to know when your country is ready.
         </h2>
         <p className="text-shop-ink mt-3 max-w-md">
-          We&apos;ll email you when a new destination is checked and ready.
+          One email when a new country has been checked by a native speaker,
+          plus the occasional tip for eating out abroad. Nothing else.
         </p>
         <div className="mt-6 max-w-lg">
           <NewsletterForm />

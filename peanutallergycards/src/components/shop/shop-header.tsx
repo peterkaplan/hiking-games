@@ -1,8 +1,13 @@
 import Link from "next/link";
 import { MobileMenu } from "@/components/mobile-menu";
+import { bundleTiers } from "@/content/pricing";
+
+/** The best multi-country saving, e.g. 25. */
+const maxSaving = Math.max(...bundleTiers.map((tier) => tier.discountPercent));
+const maxCountries = Math.max(...bundleTiers.map((tier) => tier.countries));
 
 const navLinks = [
-  { href: "/v2#destinations", label: "Shop destinations" },
+  { href: "/v2#destinations", label: "Shop by country" },
   { href: "/v2#how-it-works", label: "How it works" },
   { href: "/v2#reviews", label: "Reviews" },
   { href: "/v2#faq", label: "FAQ" },
@@ -14,9 +19,12 @@ export const AnnouncementBar = () => (
     className="bg-shop-band text-shop-on-band px-4 py-2.5 text-center font-mono text-xs tracking-wider uppercase"
   >
     <p>
-      <span className="sm:hidden">Instant download · printed + digital</span>
+      <span className="sm:hidden">
+        Trip pack: save {maxSaving}% · instant download
+      </span>
       <span className="hidden sm:inline">
-        Instant download · Printed sets include the digital files
+        Trip pack: {maxCountries} countries, save {maxSaving}% · Instant
+        download · Every card checked by a native speaker
       </span>
     </p>
   </aside>
@@ -63,16 +71,24 @@ export const ShopHeader = () => (
           ))}
         </ul>
       </nav>
-      <Link
-        aria-label="Cart, 0 items"
-        className="hover:bg-shop-panel relative rounded-full p-2"
-        href="/v2#destinations"
-      >
-        <CartIcon />
-        <span className="bg-shop-cta text-shop-on-cta absolute -top-0.5 -right-0.5 grid size-5 place-items-center rounded-full font-mono text-[10px]">
-          0
-        </span>
-      </Link>
+      <div className="flex items-center gap-3">
+        <Link
+          className="bg-shop-highlight text-shop-on-highlight hidden rounded-full px-4 py-2 font-mono text-xs uppercase hover:underline xl:inline-block"
+          href="/v2#trip-pack"
+        >
+          Trip pack · save {maxSaving}%
+        </Link>
+        <Link
+          aria-label="Cart, 0 items"
+          className="hover:bg-shop-panel relative rounded-full p-2"
+          href="/v2#destinations"
+        >
+          <CartIcon />
+          <span className="bg-shop-cta text-shop-on-cta absolute -top-0.5 -right-0.5 grid size-5 place-items-center rounded-full font-mono text-[10px]">
+            0
+          </span>
+        </Link>
+      </div>
     </div>
   </header>
 );
