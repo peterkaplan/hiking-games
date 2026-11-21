@@ -78,8 +78,8 @@ export const story = {
       body: "Every chef card asks one question the kitchen can actually answer.",
     },
     {
-      title: "Checked, not machine-translated.",
-      body: "A native speaker checks every card before we sell it.",
+      title: "Two cards, two jobs.",
+      body: "One for the kitchen, one for an emergency. Each has English on the back, so you know what it says.",
     },
     {
       title: "Made for peanut.",
