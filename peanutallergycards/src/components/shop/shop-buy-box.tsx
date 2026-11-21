@@ -38,8 +38,8 @@ export const ShopBuyBox = ({ state }: { state: TranslationState }) => {
   const formatName = useId();
   const tierName = useId();
 
-  const chosenFormat = formats.find((format) => format.id === formatId);
-  const unitPrice = chosenFormat?.priceUsd ?? 0;
+  const unitPrice =
+    formats.find((format) => format.id === formatId)?.priceUsd ?? 0;
   const tier =
     bundleTiers.find((option) => option.countries === countries) ??
     bundleTiers[0];
@@ -82,11 +82,6 @@ export const ShopBuyBox = ({ state }: { state: TranslationState }) => {
             </label>
           ))}
         </div>
-        {chosenFormat ? (
-          <p className="text-shop-ink mt-3 text-base">
-            {chosenFormat.description}
-          </p>
-        ) : null}
       </fieldset>
 
       <fieldset className="mt-6">
