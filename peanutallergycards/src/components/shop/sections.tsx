@@ -123,17 +123,25 @@ const steps: readonly { body: string; scene: ReactNode; title: string }[] = [
 ];
 
 export const HowItWorks = () => (
-  <ol className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+  <ol className="grid gap-7 sm:grid-cols-2 sm:gap-10 lg:grid-cols-4">
     {steps.map((step, index) => (
-      <li key={step.title}>
-        <div className="ring-shop-ink overflow-hidden rounded-[24px] ring-2">
+      // On phones each step is a row (picture beside the words) to save height.
+      <li
+        className="grid grid-cols-[7.5rem_1fr] items-center gap-4 sm:block"
+        key={step.title}
+      >
+        <div className="ring-shop-ink overflow-hidden rounded-2xl ring-2 sm:rounded-[24px]">
           {step.scene}
         </div>
-        <p className="text-shop-ink mt-5 font-mono text-xs tracking-widest uppercase">
-          Step {index + 1}
-        </p>
-        <h3 className="mt-1 font-serif text-2xl">{step.title}</h3>
-        <p className="text-shop-ink mt-2">{step.body}</p>
+        <div className="min-w-0">
+          <p className="text-shop-ink font-mono text-xs tracking-widest uppercase sm:mt-5">
+            Step {index + 1}
+          </p>
+          <h3 className="mt-1 font-serif text-2xl">{step.title}</h3>
+          <p className="text-shop-ink mt-1 text-base sm:mt-2 sm:text-lg">
+            {step.body}
+          </p>
+        </div>
       </li>
     ))}
   </ol>

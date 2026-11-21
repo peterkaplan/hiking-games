@@ -18,7 +18,6 @@ import {
   PhoneShot,
 } from "@/components/shop/product-shots";
 import {
-  ComparisonTable,
   HowItWorks,
   PlaceholderReviews,
   ProductTile,
@@ -34,7 +33,7 @@ import {
   languageCount,
   NEEDS_SEARCH,
 } from "@/content/catalogue";
-import { faqItems } from "@/content/faq";
+import { homeFaqItems } from "@/content/faq";
 import { LAUNCH_PREVIEW } from "@/content/launch-preview";
 import {
   formatPrice,
@@ -183,11 +182,12 @@ const LocalKitchen = () => {
   );
 };
 
+/** Wider screens only: on phones the Trip Pack tile above does this job. */
 const TripPack = () => {
   const showcase = findDestination("thailand") ?? destinations[0];
   return (
     <section
-      className="bg-shop-band text-shop-on-band mx-4 scroll-mt-24 rounded-[32px] sm:mx-6"
+      className="bg-shop-band text-shop-on-band mx-4 hidden scroll-mt-24 rounded-[32px] sm:mx-6 md:block"
       id="trip-pack"
     >
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 lg:grid-cols-2 lg:px-12">
@@ -288,22 +288,6 @@ const ShopHome = () => (
     <TripPack />
 
     <section
-      aria-labelledby="compare-heading"
-      className="mx-auto max-w-5xl scroll-mt-24 px-4 pt-24 sm:px-6"
-      id="compare"
-    >
-      <h2
-        className="text-center font-serif text-4xl sm:text-5xl"
-        id="compare-heading"
-      >
-        An app translates. A card asks.
-      </h2>
-      <div className="mt-10">
-        <ComparisonTable />
-      </div>
-    </section>
-
-    <section
       aria-labelledby="story-heading"
       className="mx-auto max-w-7xl scroll-mt-24 px-4 pt-28 sm:px-6"
       id="story"
@@ -335,7 +319,7 @@ const ShopHome = () => (
         Good questions
       </h2>
       <div className="mt-8">
-        <ShopFaq items={faqItems} />
+        <ShopFaq items={homeFaqItems} />
       </div>
     </section>
   </main>

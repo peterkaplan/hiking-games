@@ -5,6 +5,8 @@ import { CONTACT_EMAIL } from "./contact";
 
 export interface FaqItem {
   answer: string;
+  /** Shown on product pages only; the homepage keeps a shorter list. */
+  productOnly?: boolean;
   question: string;
 }
 
@@ -16,16 +18,19 @@ export const faqItems: readonly FaqItem[] = [
   },
   {
     question: "Is it just a translation?",
+    productOnly: true,
     answer:
       "No. Each card is adapted to how that country cooks, not only to its language. The Thailand card asks for a clean wok and fresh oil, and tells the kitchen never to use a mortar and pestle that has been used for peanuts. Every country's card names the cooking styles and equipment your waiter and chef will recognise.",
   },
   {
     question: "Why two cards?",
+    productOnly: true,
     answer:
       "The chef card is for every meal: it tells the kitchen what to avoid and asks for that yes or no. The emergency card is for if something goes wrong: it tells anyone nearby you're having a severe reaction and asks them to call the local ambulance number.",
   },
   {
     question: "Who translates the cards?",
+    productOnly: true,
     answer:
       "Native speakers check every card, word by word. English is on the back, so you always know what you're showing.",
   },
@@ -46,3 +51,6 @@ export const faqItems: readonly FaqItem[] = [
       : `We're adding cards frequently! Email us at ${CONTACT_EMAIL} to request a card.`,
   },
 ];
+
+/** The short list for the homepage. */
+export const homeFaqItems = faqItems.filter((item) => !item.productOnly);

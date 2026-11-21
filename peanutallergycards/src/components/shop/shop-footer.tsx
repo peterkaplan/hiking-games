@@ -47,7 +47,6 @@ const columns: readonly { heading: string; links: readonly FooterLink[] }[] = [
     heading: "Help",
     links: [
       { href: "/v2#how-it-works", label: "How the cards work" },
-      { href: "/v2#compare", label: "Card or app?" },
       { href: "/v2#faq", label: "FAQ" },
     ],
   },
