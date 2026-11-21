@@ -24,7 +24,7 @@ import {
   ShopFaq,
   StoryTeaser,
 } from "@/components/shop/sections";
-import { destinations, findDestination } from "@/content/cards";
+import { destinations, findDestination, frontLanguages } from "@/content/cards";
 import { faqItems } from "@/content/faq";
 import { bundleTiers, formatPrice, lowestPriceUsd } from "@/content/pricing";
 
@@ -51,6 +51,16 @@ const comingNext = [
   { country: "Mexico", language: "Spanish", slug: "mexico" },
   { country: "Italy", language: "Italian", slug: "italy" },
 ] as const;
+
+const listFormat = new Intl.ListFormat("en", { type: "conjunction" });
+
+/** "Japanese and Thai": the languages we have cards for. */
+const speaking = listFormat.format(
+  destinations.flatMap(
+    (destination) => frontLanguages(destination).at(0)?.name ?? []
+  )
+);
+const learning = listFormat.format(comingNext.map((next) => next.language));
 
 const maxSaving = Math.max(...bundleTiers.map((tier) => tier.discountPercent));
 
@@ -124,9 +134,8 @@ const Statement = () => (
       </div>
     </div>
     <p className="text-shop-ink mt-8 max-w-2xl text-xl">
-      Translation apps can tell a kitchen what you can&apos;t eat. Our cards
-      also ask the question that matters: can you make this safe for me? So you
-      sit down knowing, not hoping.
+      An app tells the kitchen what you can&apos;t eat. Our card asks if they
+      can cook for you. Sit down knowing, not hoping.
     </p>
   </section>
 );
@@ -144,11 +153,11 @@ const TripPack = () => {
             The trip pack
           </p>
           <h2 className="mt-4 font-serif text-5xl leading-none sm:text-6xl">
-            Going to more than one country?
+            Three countries. {maxSaving}% off.
           </h2>
           <p className="text-shop-on-band mt-6 max-w-md text-xl">
-            Add up to three destinations and save {maxSaving}%. Each comes with
-            both cards, printed or digital.
+            One trip, a few borders. Both cards for every stop, printed or
+            digital.
           </p>
           <Link
             className="bg-shop-bg text-shop-ink hover:bg-shop-panel focus-visible:outline-shop-on-band mt-9 inline-flex rounded-full px-7 py-4 font-semibold focus-visible:outline-3 focus-visible:outline-offset-4"
@@ -210,7 +219,7 @@ const ShopHome = () => (
       id="how-it-works"
     >
       <h2 className="font-serif text-4xl sm:text-5xl" id="how-heading">
-        How a meal goes
+        Show it. Hear yes. Dig in.
       </h2>
       <div className="mt-10">
         <HowItWorks />
@@ -228,7 +237,7 @@ const ShopHome = () => (
         className="text-center font-serif text-4xl sm:text-5xl"
         id="compare-heading"
       >
-        Why not just use an app?
+        An app translates. A card asks.
       </h2>
       <div className="mt-10">
         <ComparisonTable />
@@ -241,12 +250,10 @@ const ShopHome = () => (
       id="languages"
     >
       <h2 className="font-serif text-4xl sm:text-5xl" id="languages-heading">
-        Where are you eating next?
+        Now speaking {speaking}.
       </h2>
       <p className="text-shop-ink mt-4 max-w-2xl text-xl">
-        {destinations.length} languages so far, each with English on the back.
-        We add one country at a time, because a native speaker checks every card
-        before it goes on sale.
+        {learning} are learning their lines.
       </p>
       <div className="mt-10">
         <LanguagesCovered comingNext={comingNext} />
@@ -280,7 +287,7 @@ const ShopHome = () => (
       id="faq"
     >
       <h2 className="font-serif text-4xl sm:text-5xl" id="faq-heading">
-        Questions
+        Good questions
       </h2>
       <div className="mt-8">
         <ShopFaq items={faqItems} />

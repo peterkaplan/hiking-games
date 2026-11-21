@@ -313,7 +313,7 @@ const ProductPage = async ({ params }: PageProps) => {
 
       <section aria-labelledby="how-heading" className="pt-28">
         <h2 className="font-serif text-4xl sm:text-5xl" id="how-heading">
-          How a meal goes
+          Show it. Hear yes. Dig in.
         </h2>
         <div className="mt-10">
           <HowItWorks />
@@ -328,7 +328,7 @@ const ProductPage = async ({ params }: PageProps) => {
           className="text-center font-serif text-4xl sm:text-5xl"
           id="compare-heading"
         >
-          Why not just use an app?
+          An app translates. A card asks.
         </h2>
         <div className="mt-10">
           <ComparisonTable />
@@ -362,7 +362,7 @@ const ProductPage = async ({ params }: PageProps) => {
         className="mx-auto max-w-4xl pt-28"
       >
         <h2 className="font-serif text-4xl sm:text-5xl" id="faq-heading">
-          Questions
+          Good questions
         </h2>
         <div className="mt-8">
           <ShopFaq items={faqItems} />
