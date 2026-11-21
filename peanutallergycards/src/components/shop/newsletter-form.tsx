@@ -4,8 +4,8 @@ import type { FormEvent } from "react";
 import { useCallback, useId, useState } from "react";
 
 /**
- * Email sign-up. Not connected to an email service yet: it only confirms
- * locally, and says so.
+ * Email sign-up. NOT CONNECTED to an email service yet: it only confirms
+ * locally and saves nothing. Connect it before the site goes live.
  */
 export const NewsletterForm = () => {
   const inputId = useId();
@@ -21,7 +21,7 @@ export const NewsletterForm = () => {
         className="bg-shop-highlight text-shop-on-highlight rounded-2xl px-5 py-4"
         role="status"
       >
-        Thanks! (Sign-up isn&apos;t connected to an email service yet.)
+        You&apos;re on the list. Talk soon!
       </p>
     );
   }

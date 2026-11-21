@@ -25,6 +25,7 @@ import {
   StoryTeaser,
 } from "@/components/shop/sections";
 import { destinations, findDestination, frontLanguages } from "@/content/cards";
+import { CONTACT_EMAIL } from "@/content/contact";
 import { faqItems } from "@/content/faq";
 import { LAUNCH_PREVIEW } from "@/content/launch-preview";
 import { bundleTiers, formatPrice, lowestPriceUsd } from "@/content/pricing";
@@ -255,7 +256,14 @@ const ShopHome = () => (
         Now speaking {speaking}.
       </h2>
       <p className="text-shop-ink mt-4 max-w-2xl text-xl">
-        {learning} are learning their lines.
+        {learning} are learning their lines. Going somewhere else? Email{" "}
+        <a
+          className="font-semibold underline decoration-2 underline-offset-4"
+          href={`mailto:${CONTACT_EMAIL}`}
+        >
+          {CONTACT_EMAIL}
+        </a>{" "}
+        and we&apos;ll add it.
       </p>
       <div className="mt-10">
         <LanguagesCovered comingNext={comingNext} />

@@ -249,8 +249,8 @@ const ProductPage = async ({ params }: PageProps) => {
               card with your epinephrine.
             </Accordion>
             <Accordion title="How we check translations">
-              Every card is translated from our English text and checked by a
-              native speaker before we sell it.
+              Native speakers check every card, word by word, against the
+              English on the back.
             </Accordion>
           </div>
         </div>

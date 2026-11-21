@@ -128,8 +128,8 @@ export const ShopFooter = () => (
           <span className="whitespace-nowrap">peanut-free.</span>
         </h2>
         <p className="mt-5 max-w-md">
-          One email when a new country has been checked by a native speaker,
-          plus the occasional tip for eating out abroad. Nothing else.
+          New countries, peanut guides and tips for eating out abroad. Nothing
+          else.
         </p>
         <div className="mt-8 max-w-xl">
           <NewsletterForm />

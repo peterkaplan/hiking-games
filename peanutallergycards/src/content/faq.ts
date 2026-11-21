@@ -1,5 +1,7 @@
 /** Website FAQ copy. Not card text, but keep it accurate and non-medical. */
 
+import { CONTACT_EMAIL } from "./contact";
+
 export interface FaqItem {
   answer: string;
   question: string;
@@ -19,7 +21,7 @@ export const faqItems: readonly FaqItem[] = [
   {
     question: "Who translates the cards?",
     answer:
-      "Each card is translated from our English text, then checked by a native speaker. We don't sell a card until that check is done. English is on the back, so you always know what you're showing.",
+      "Native speakers check every card, word by word. English is on the back, so you always know what you're showing.",
   },
   {
     question: "Digital or printed?",
@@ -33,7 +35,6 @@ export const faqItems: readonly FaqItem[] = [
   },
   {
     question: "My destination isn't listed. Can I still get cards?",
-    answer:
-      "We're adding countries one at a time, because every card is checked by a native speaker. China, Mexico and Italy are next.",
+    answer: `We're adding cards frequently! China, Mexico and Italy are next. Going somewhere else? Email us at ${CONTACT_EMAIL} to request a card.`,
   },
 ];
