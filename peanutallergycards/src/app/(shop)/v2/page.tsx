@@ -220,9 +220,9 @@ const TripPack = () => {
             <PhoneShot destination={showcase} />
             <div className="bg-shop-bg text-shop-ink -rotate-2 rounded-[24px] p-5">
               <PixelArt className="size-12" rows={noPeanut} />
-              <p className="mt-3 font-serif text-2xl">Printed + laminated</p>
+              <p className="mt-3 font-serif text-2xl">Laminated + digital</p>
               <p className="text-shop-ink mt-1 text-base">
-                Wipe-clean cards for your wallet, plus the digital files.
+                Wipe-clean cards for your wallet. The digital set comes free.
               </p>
             </div>
           </div>

@@ -71,7 +71,8 @@ Tick items off as they're done; add new ones as they come up.
 
 ## Later (only if demand shows)
 
-- [ ] Apple Wallet and Google Wallet passes
+- [ ] Apple Wallet pass for each card (promised on the store). Needs an Apple Developer account ($99/year), a Pass Type ID certificate and a signing step, or a hosted pass service. Build one test pass first: the front of a pass only fits short fields, so check the full card text reads well
+- [ ] Google Wallet pass for Android (separate system from Apple's)
 - [ ] Installable, offline-ready website (PWA)
 - [ ] Native app
 - [ ] School and caregiver cards for parents

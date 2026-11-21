@@ -22,7 +22,7 @@ const buttonLabel: Record<TranslationState, string> = {
 
 const formatTag: Record<FormatId, string> = {
   digital: "Instant",
-  printed: "+ digital",
+  printed: "Digital free",
 };
 
 const optionClass =
@@ -31,13 +31,15 @@ const optionClass =
 export const BUY_BUTTON_ID = "buy-button";
 
 export const ShopBuyBox = ({ state }: { state: TranslationState }) => {
-  const [formatId, setFormatId] = useState<FormatId>("digital");
+  const [formatId, setFormatId] = useState<FormatId>(
+    formats.at(0)?.id ?? "printed"
+  );
   const [countries, setCountries] = useState(1);
   const formatName = useId();
   const tierName = useId();
 
-  const unitPrice =
-    formats.find((format) => format.id === formatId)?.priceUsd ?? 0;
+  const chosenFormat = formats.find((format) => format.id === formatId);
+  const unitPrice = chosenFormat?.priceUsd ?? 0;
   const tier =
     bundleTiers.find((option) => option.countries === countries) ??
     bundleTiers[0];
@@ -80,6 +82,11 @@ export const ShopBuyBox = ({ state }: { state: TranslationState }) => {
             </label>
           ))}
         </div>
+        {chosenFormat ? (
+          <p className="text-shop-ink mt-3 text-base">
+            {chosenFormat.description}
+          </p>
+        ) : null}
       </fieldset>
 
       <fieldset className="mt-6">
@@ -150,7 +157,7 @@ export const ShopBuyBox = ({ state }: { state: TranslationState }) => {
         {[
           "Checked by a native speaker",
           "English on the back",
-          "Local peanut guide included",
+          "Works in Apple Wallet",
         ].map((item) => (
           <li className="flex flex-col items-center gap-2" key={item}>
             <CheckIcon className="size-6" />

@@ -15,20 +15,21 @@ export interface Format {
   priceUsd: number;
 }
 
+/** The first format is the one selected when the page opens. */
 export const formats: readonly Format[] = [
   {
-    id: "digital",
-    name: "Digital download",
+    id: "printed",
+    name: "Laminated cards + digital",
     description:
-      "Print-ready PDF of both cards, plus phone-sized images to show on your screen.",
-    priceUsd: 8,
+      "Both cards printed double-sided, laminated and posted to you. The digital set comes free.",
+    priceUsd: 18,
   },
   {
-    id: "printed",
-    name: "Printed and laminated",
+    id: "digital",
+    name: "Digital only",
     description:
-      "Both cards printed double-sided, laminated and posted to you. Includes the digital download.",
-    priceUsd: 18,
+      "Both cards for your phone and Apple Wallet, plus a print-ready PDF.",
+    priceUsd: 8,
   },
 ];
 

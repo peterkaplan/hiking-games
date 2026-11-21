@@ -231,10 +231,10 @@ const ProductPage = async ({ params }: PageProps) => {
 
           <div className="mt-6">
             <Accordion open title="What's inside">
-              {`Two cards and a guide. The chef card and emergency card are in ${language}, with English on the back. Your peanut guide to ${destination.country} covers how to say and spot "peanut", and the dishes where it hides. Go digital and it's on your phone in minutes. Go printed and we laminate and post both cards, with the digital files thrown in.`}
+              {`Two cards and a guide. The chef card and emergency card are in ${language}, with English on the back. Your peanut guide to ${destination.country} covers how to say and spot "peanut", and the dishes where it hides. Go laminated and we print, laminate and post both cards, and the digital set comes free. Or go digital only: on your phone and in Apple Wallet in minutes.`}
             </Accordion>
             <Accordion title="Details">
-              {`Includes: 1 chef card, 1 emergency card and 1 local peanut guide (PDF). Languages: ${language} on the front, English on the back. Emergency number: ${destination.emergencyNumber} (${destination.country}). Card size: 85.6 × 54 mm, the size of a bank card. Printed cards are laminated and wipe-clean.`}
+              {`Includes: 1 chef card, 1 emergency card and 1 local peanut guide (PDF). Digital set: phone images, an Apple Wallet pass and a print-ready PDF. Languages: ${language} on the front, English on the back. Emergency number: ${destination.emergencyNumber} (${destination.country}). Card size: 85.6 × 54 mm, the size of a bank card. Printed cards are laminated and wipe-clean.`}
             </Accordion>
             <Accordion title="Delivery">
               Digital lands in your inbox the moment you buy. Printed sets leave

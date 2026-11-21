@@ -29,9 +29,9 @@ export const faqItems: readonly FaqItem[] = [
       "Native speakers check every card, word by word. English is on the back, so you always know what you're showing.",
   },
   {
-    question: "Digital or printed?",
+    question: "Laminated or digital?",
     answer:
-      "The digital download is a print-ready PDF plus phone-sized images, so you can print at home and keep a copy on your phone. The printed set is laminated and posted to you, and includes the digital files.",
+      "Most people take both: the laminated cards come with the digital set for free. The laminated cards are wipe-clean and easy to hand to a waiter. The digital set puts both cards on your phone and in Apple Wallet, with a print-ready PDF. You can also buy the digital set on its own.",
   },
   {
     question: "Do these cards replace my epinephrine or medical ID?",
