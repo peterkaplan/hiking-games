@@ -89,7 +89,7 @@ const slidesFor = (destination: Destination): GallerySlide[] => {
     slides.push({
       id: "emergency-front",
       label: `Emergency card, front (${language})`,
-      backdrop: "bg-shop-blush",
+      backdrop: "bg-shop-accent",
       content: <EmergencyFrontCard destination={destination} />,
     });
   }
@@ -97,13 +97,13 @@ const slidesFor = (destination: Destination): GallerySlide[] => {
     {
       id: "emergency-back",
       label: "Emergency card, back (English)",
-      backdrop: "bg-shop-blush",
+      backdrop: "bg-shop-accent",
       content: <EmergencyBackCard destination={destination} />,
     },
     {
       id: "phone",
       label: "Digital: saved to your phone",
-      backdrop: "bg-shop-sky",
+      backdrop: "bg-shop-accent",
       content: <PhoneShot destination={destination} />,
     }
   );
@@ -119,8 +119,8 @@ const Accordion = ({
   open?: boolean;
   title: string;
 }) => (
-  <details className="group border-shop-ink/15 border-b" open={open}>
-    <summary className="focus-visible:outline-shop-yes flex cursor-pointer list-none items-center justify-between py-4 font-semibold focus-visible:outline-3">
+  <details className="group border-shop-ink border-b" open={open}>
+    <summary className="focus-visible:outline-shop-ink flex cursor-pointer list-none items-center justify-between py-4 font-semibold focus-visible:outline-3">
       {title}
       <span
         aria-hidden="true"
@@ -129,7 +129,7 @@ const Accordion = ({
         +
       </span>
     </summary>
-    <p className="text-shop-ink/80 pb-5 text-base">{children}</p>
+    <p className="text-shop-ink pb-5 text-base">{children}</p>
   </details>
 );
 
@@ -149,7 +149,7 @@ const ProductPage = async ({ params }: PageProps) => {
     <main className="mx-auto max-w-7xl px-4 pt-6 sm:px-6">
       <nav
         aria-label="Breadcrumb"
-        className="text-shop-ink/80 hidden font-mono text-xs uppercase sm:block"
+        className="text-shop-ink hidden font-mono text-xs uppercase sm:block"
       >
         <ol className="flex gap-2">
           <li>
@@ -169,7 +169,7 @@ const ProductPage = async ({ params }: PageProps) => {
       </nav>
 
       {state === "ready" ? null : (
-        <p className="bg-shop-sun/60 rounded-2xl px-4 py-2 text-sm sm:mt-5 sm:px-5 sm:py-3 sm:text-base">
+        <p className="bg-shop-accent rounded-2xl px-4 py-2 text-sm sm:mt-5 sm:px-5 sm:py-3 sm:text-base">
           <strong>Preview:</strong> not yet checked by a native speaker, so not
           on sale.
         </p>
@@ -193,11 +193,11 @@ const ProductPage = async ({ params }: PageProps) => {
             <span className="font-serif text-3xl">
               From {formatPrice(lowestPriceUsd)}
             </span>
-            <span className="text-shop-ink/85 font-mono text-sm">
+            <span className="text-shop-ink font-mono text-sm">
               No reviews yet
             </span>
           </p>
-          <p className="text-shop-ink/85 mt-5 text-xl">
+          <p className="text-shop-ink mt-5 text-xl">
             A chef card and an emergency card in {language}, with English on the
             back. Show it before you order, get a clear yes or no, and eat with
             confidence.
@@ -209,7 +209,7 @@ const ProductPage = async ({ params }: PageProps) => {
               `Emergency card asks people to call ${destination.emergencyNumber}`,
             ].map((point) => (
               <li className="flex gap-3" key={point}>
-                <CheckIcon className="text-shop-yes mt-1 size-5 shrink-0" />
+                <CheckIcon className="mt-1 size-5 shrink-0" />
                 {point}
               </li>
             ))}
@@ -244,7 +244,7 @@ const ProductPage = async ({ params }: PageProps) => {
         >
           One card, two sides
         </h2>
-        <p className="text-shop-ink/80 mx-auto mt-4 max-w-xl text-center text-xl">
+        <p className="text-shop-ink mx-auto mt-4 max-w-xl text-center text-xl">
           The kitchen reads {language}. You read English. Nothing gets lost.
         </p>
         <div className="mt-12 grid items-start gap-10 md:grid-cols-2">
@@ -286,7 +286,7 @@ const ProductPage = async ({ params }: PageProps) => {
             <ul className="mt-10 flex flex-wrap gap-3">
               {destination.peanutFoods.map((food) => (
                 <li
-                  className="border-shop-cream/40 rounded-full border px-5 py-2.5 text-base"
+                  className="border-shop-cream rounded-full border px-5 py-2.5 text-base"
                   key={food}
                 >
                   {food}

@@ -40,10 +40,10 @@ export const StickyBuyBar = ({
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
         <div className="min-w-0">
           <p className="truncate font-serif text-xl">{title}</p>
-          <p className="text-shop-ink/80 font-mono text-sm">{priceLabel}</p>
+          <p className="text-shop-ink font-mono text-sm">{priceLabel}</p>
         </div>
         <a
-          className="bg-shop-ink text-shop-cream hover:bg-shop-yes-dark shrink-0 rounded-full px-6 py-3 font-semibold"
+          className="bg-shop-ink text-shop-cream hover:bg-shop-accent hover:text-shop-ink shrink-0 rounded-full px-6 py-3 font-semibold"
           href={`#${buyButtonId}`}
         >
           Choose options

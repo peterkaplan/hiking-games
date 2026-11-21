@@ -21,6 +21,7 @@ export const PhotoCard = ({
 }) => (
   <div
     className={`text-shop-ink @container relative overflow-hidden rounded-[14px] bg-white p-4 shadow-[0_18px_40px_-14px_rgba(60,66,46,0.45)] ring-1 ring-black/5 sm:p-5 ${className}`}
+    data-product-shot
     lang={lang}
   >
     {children}
@@ -144,7 +145,7 @@ export const PhoneShot = ({ destination }: { destination: Destination }) => {
             <EmergencyCardFace text={text} />
           </PhotoCard>
         </div>
-        <p className="text-shop-ink/85 mt-3 text-center font-mono text-[10px] uppercase">
+        <p className="text-shop-ink mt-3 text-center font-mono text-[10px] uppercase">
           Saved to photos · works offline
         </p>
       </div>
@@ -170,7 +171,7 @@ export const Backdrop = ({
 /** Backdrop colour per destination. */
 export const destinationTint = (slug: string): string => {
   if (slug === "japan") {
-    return "bg-shop-sky";
+    return "bg-shop-accent";
   }
   if (slug === "thailand") {
     return "bg-shop-mint";

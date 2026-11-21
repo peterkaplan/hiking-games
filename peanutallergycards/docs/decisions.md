@@ -4,19 +4,21 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ---
 
-## 2026-11-21: Variant 2 uses Graza's colour palette
+## 2026-11-21: Variant 2 uses Graza's colour palette, exactly
 
-**Decision:** The store variant takes Graza's colours, sampled from their
-site: blush cream `#f6e6d9`, deep olive ink `#3c422e`, chartreuse `#d1e030`,
-light green `#9eef80`, and lighter panels `#fff4ec`. We add a deep green,
-`#3f6212`, for check icons and emphasis.
-**Why:** Of the five stores studied, it suits us best: green already means
-"safe / yes" in our story, and it's fresh and food-friendly. (Ghia's
-maroon and coral would blur with our red allergy warnings.)
-**Rules:** chartreuse always takes olive text, never white (white is 1.5:1).
-Faded olive text needs at least 85% opacity to stay readable.
-**Note:** We use the colours only. Our fonts, logo and layout are our own,
-so the store doesn't look like Graza's brand.
+**Decision:** The store uses only Graza's five swatches, sampled from
+graza.co (homepage and product page, desktop and phone): blush cream
+`#f6e6d9`, olive ink `#3c422e`, chartreuse `#d1e030`, light cream `#fff4ec`
+and light green `#9eef80`. No extra colours and no faded versions; the only
+exception is the white of the printed cards themselves (the product).
+**Why:** The owner wanted one reference store matched exactly, not a palette
+"inspired by" it. (A first pass added a deep green, a blush and a pale
+chartreuse of our own; those are gone.)
+**Rules:** chartreuse and light green always take olive text. Ticks are an
+olive check on a light-green disc; emphasis is a chartreuse highlight.
+**Check:** a browser audit of every painted colour on /v2, /v2/thailand and
+/v2/japan (desktop and phone) finds only these five.
+**Note:** We use the colours only. Our fonts, logo and layout are our own.
 
 ## 2026-11-21: Two design variants side by side
 

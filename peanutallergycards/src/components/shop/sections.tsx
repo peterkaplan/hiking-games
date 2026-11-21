@@ -40,13 +40,13 @@ export const ProductTile = ({ destination }: { destination: Destination }) => {
           from {formatPrice(lowestPriceUsd)}
         </span>
       </div>
-      <p className="text-shop-ink/85 mt-5 font-mono text-xs tracking-widest uppercase">
+      <p className="text-shop-ink mt-5 font-mono text-xs tracking-widest uppercase">
         {languages || "Local language"} + English
       </p>
       <h3 className="mt-1 font-serif text-3xl underline-offset-4 group-hover:underline">
         {destination.country}
       </h3>
-      <p className="text-shop-ink/80 mt-1">
+      <p className="text-shop-ink mt-1">
         Chef card + emergency card · ambulance {destination.emergencyNumber}
       </p>
     </Link>
@@ -59,22 +59,22 @@ const steps: readonly { body: string; scene: ReactNode; title: string }[] = [
   {
     title: "Show the card",
     body: "Hand it over before you order and ask for it to go to the kitchen.",
-    scene: <ShowVignette tint="#eaf0b4" />,
+    scene: <ShowVignette tint="#fff4ec" />,
   },
   {
     title: "They read it",
     body: "In their own language: peanuts, peanut oil, sauces, shared woks.",
-    scene: <ReadVignette tint="#f2d3be" />,
+    scene: <ReadVignette tint="#9eef80" />,
   },
   {
     title: "They say yes or no",
     body: "One clear question gets a real answer, not a polite nod.",
-    scene: <AnswerVignette tint="#9eef80" />,
+    scene: <AnswerVignette tint="#d1e030" />,
   },
   {
     title: "You eat with confidence",
     body: "A yes means it's confirmed. A no means you find somewhere that can.",
-    scene: <EatVignette tint="#d1e030" />,
+    scene: <EatVignette tint="#9eef80" />,
   },
 ];
 
@@ -85,11 +85,11 @@ export const HowItWorks = () => (
         <div className="ring-shop-ink overflow-hidden rounded-[24px] ring-2">
           {step.scene}
         </div>
-        <p className="text-shop-yes-dark mt-5 font-mono text-xs tracking-widest uppercase">
+        <p className="text-shop-ink mt-5 font-mono text-xs tracking-widest uppercase">
           Step {index + 1}
         </p>
         <h3 className="mt-1 font-serif text-2xl">{step.title}</h3>
-        <p className="text-shop-ink/80 mt-2">{step.body}</p>
+        <p className="text-shop-ink mt-2">{step.body}</p>
       </li>
     ))}
   </ol>
@@ -100,7 +100,7 @@ export const HowItWorks = () => (
 const MarkCell = ({ mark }: { mark: Mark }) => {
   if (mark === "yes") {
     return (
-      <span className="text-shop-yes inline-flex">
+      <span className="inline-flex">
         <CheckIcon className="size-6" />
         <span className="sr-only">Yes</span>
       </span>
@@ -108,13 +108,13 @@ const MarkCell = ({ mark }: { mark: Mark }) => {
   }
   if (mark === "no") {
     return (
-      <span className="text-shop-ink/80 font-mono text-xl">
+      <span className="text-shop-ink font-mono text-xl">
         <span aria-hidden="true">✕</span>
         <span className="sr-only">No</span>
       </span>
     );
   }
-  return <span className="text-shop-ink/85 font-mono text-sm">Varies</span>;
+  return <span className="text-shop-ink font-mono text-sm">Varies</span>;
 };
 
 export const ComparisonTable = () => (
@@ -148,13 +148,13 @@ export const ComparisonTable = () => (
       <tbody>
         {comparisonRows.map((row) => (
           <tr
-            className="border-shop-ink/15 border-b last:border-b-0"
+            className="border-shop-ink border-b last:border-b-0"
             key={row.feature}
           >
             <th className="p-4 font-medium sm:p-5" scope="row">
               {row.feature}
             </th>
-            <td className="bg-shop-mint/60 p-4 text-center sm:p-5">
+            <td className="bg-shop-mint p-4 text-center sm:p-5">
               <MarkCell mark={row.us} />
             </td>
             <td className="p-4 text-center sm:p-5">
@@ -174,18 +174,18 @@ export const ComparisonTable = () => (
 
 export const PlaceholderReviews = () => (
   <div>
-    <p className="bg-shop-sun inline-block rounded-full px-3 py-1 font-mono text-xs uppercase">
+    <p className="bg-shop-accent inline-block rounded-full px-3 py-1 font-mono text-xs uppercase">
       Placeholder reviews: replace with real ones before launch
     </p>
     <ul className="mt-8 grid gap-6 md:grid-cols-3">
       {placeholderReviews.map((review) => (
         <li
-          className="border-shop-ink/80 bg-shop-sand flex flex-col rounded-[24px] border-2 border-dashed p-6"
+          className="border-shop-ink bg-shop-sand flex flex-col rounded-[24px] border-2 border-dashed p-6"
           key={review.title}
         >
           <p className="font-serif text-2xl">{review.title}</p>
-          <p className="text-shop-ink/80 mt-3 flex-1 italic">{review.quote}</p>
-          <p className="text-shop-ink/85 mt-6 font-mono text-xs uppercase">
+          <p className="text-shop-ink mt-3 flex-1 italic">{review.quote}</p>
+          <p className="text-shop-ink mt-6 font-mono text-xs uppercase">
             {review.trip}
           </p>
         </li>
@@ -200,7 +200,7 @@ export const ShopFaq = ({ items }: { items: readonly FaqItem[] }) => (
   <div className="divide-shop-ink border-shop-ink divide-y-2 border-y-2">
     {items.map((item) => (
       <details className="group" key={item.question}>
-        <summary className="focus-visible:outline-shop-yes flex cursor-pointer list-none items-center justify-between gap-6 py-6 font-serif text-xl focus-visible:outline-3 sm:text-2xl">
+        <summary className="focus-visible:outline-shop-ink flex cursor-pointer list-none items-center justify-between gap-6 py-6 font-serif text-xl focus-visible:outline-3 sm:text-2xl">
           {item.question}
           <span
             aria-hidden="true"
@@ -209,7 +209,7 @@ export const ShopFaq = ({ items }: { items: readonly FaqItem[] }) => (
             +
           </span>
         </summary>
-        <p className="text-shop-ink/80 max-w-3xl pb-6">{item.answer}</p>
+        <p className="text-shop-ink max-w-3xl pb-6">{item.answer}</p>
       </details>
     ))}
   </div>

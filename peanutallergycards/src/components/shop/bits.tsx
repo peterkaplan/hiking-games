@@ -35,7 +35,7 @@ export const Sticker = ({
 
 /** A scrolling strip of short benefits. */
 export const Marquee = ({ items }: { items: readonly string[] }) => (
-  <div className="border-shop-ink bg-shop-sun overflow-hidden border-y-2 py-3">
+  <div className="border-shop-ink bg-shop-accent overflow-hidden border-y-2 py-3">
     <div className="shop-marquee flex w-max">
       {[0, 1].map((copy) => (
         <ul
@@ -57,10 +57,10 @@ export const Marquee = ({ items }: { items: readonly string[] }) => (
 
 export const CheckIcon = ({ className = "size-5" }: { className?: string }) => (
   <svg aria-hidden="true" className={className} fill="none" viewBox="0 0 20 20">
-    <circle cx="10" cy="10" fill="currentColor" r="10" />
+    <circle className="fill-shop-mint" cx="10" cy="10" r="10" />
     <path
+      className="stroke-shop-ink"
       d="m5.5 10.5 3 3 6-7"
-      stroke="#fff"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth="2"
@@ -70,14 +70,14 @@ export const CheckIcon = ({ className = "size-5" }: { className?: string }) => (
 
 /** Primary and secondary pill buttons. */
 export const buttonPrimary =
-  "inline-flex items-center justify-center gap-2 rounded-full bg-shop-accent px-7 py-4 font-semibold text-shop-ink shadow-[0_4px_0_0_var(--color-shop-accent-dark)] transition hover:-translate-y-px hover:shadow-[0_5px_0_0_var(--color-shop-accent-dark)] active:translate-y-1 active:shadow-none focus-visible:outline-3 focus-visible:outline-shop-ink focus-visible:outline-offset-4";
+  "inline-flex items-center justify-center gap-2 rounded-full bg-shop-accent px-7 py-4 font-semibold text-shop-ink shadow-[0_4px_0_0_var(--color-shop-ink)] transition hover:-translate-y-px hover:shadow-[0_5px_0_0_var(--color-shop-ink)] active:translate-y-1 active:shadow-none focus-visible:outline-3 focus-visible:outline-shop-ink focus-visible:outline-offset-4";
 
 export const buttonSecondary =
   "inline-flex items-center justify-center gap-2 rounded-full border-2 border-shop-ink px-7 py-3.5 font-semibold transition hover:bg-shop-ink hover:text-shop-cream focus-visible:outline-3 focus-visible:outline-shop-ink focus-visible:outline-offset-4";
 
 /** A small label in the mono face, e.g. "THE TRIP PACK". */
 export const Eyebrow = ({ children }: { children: ReactNode }) => (
-  <p className="text-shop-ink/80 font-mono text-xs tracking-[0.18em] uppercase">
+  <p className="text-shop-ink font-mono text-xs tracking-[0.18em] uppercase">
     {children}
   </p>
 );

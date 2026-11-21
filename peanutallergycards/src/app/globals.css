@@ -46,25 +46,18 @@
   --color-peanut: #e39a45;
   --color-wood: #8a5426;
 
-  /* Variant 2 (shop): a Shopify-style store. */
   /*
-   * Colours taken from Graza's store (sampled from screenshots): blush
-   * cream, deep olive ink, chartreuse and light green. `shop-yes` is a deep
-   * green added for icons and emphasis, because chartreuse is too light to
-   * read on cream. Chartreuse always takes ink text, never white.
+   * Variant 2 (shop): Graza's palette, exactly. These five swatches were
+   * sampled from graza.co (homepage and product page, desktop and phone)
+   * and are the only colours the store uses, apart from the white of the
+   * printed cards themselves. Use them solid, not faded: chartreuse and
+   * light green always take olive text.
    */
-  --color-shop-ink: #3c422e;
-  --color-shop-cream: #f6e6d9;
-  --color-shop-sand: #fff4ec;
-  --color-shop-accent: #d1e030;
-  --color-shop-accent-dark: #a5b21c;
-  --color-shop-yes: #3f6212;
-  --color-shop-yes-dark: #2c4a0b;
-  --color-shop-mint: #9eef80;
-  --color-shop-blush: #f2d3be;
-  --color-shop-tomato: #ef4b3f;
-  --color-shop-sun: #d1e030;
-  --color-shop-sky: #eaf0b4;
+  --color-shop-cream: #f6e6d9; /* page background */
+  --color-shop-ink: #3c422e; /* text, lines, dark bands */
+  --color-shop-accent: #d1e030; /* chartreuse: buttons, bands, highlights */
+  --color-shop-sand: #fff4ec; /* light cream: panels and cards */
+  --color-shop-mint: #9eef80; /* light green: selected options, ticks */
 }
 
 /* The site is light-only: the cards are printed objects, shown as on paper. */

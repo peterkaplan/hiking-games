@@ -31,7 +31,7 @@ export const ProductGallery = ({
         {slides.map((slide) => (
           <button
             aria-pressed={slide.id === selected?.id}
-            className={`${slide.backdrop} hover:ring-shop-ink/40 focus-visible:outline-shop-yes aria-pressed:ring-shop-ink relative size-16 shrink-0 overflow-hidden rounded-2xl ring-2 ring-transparent transition focus-visible:outline-3 md:size-24`}
+            className={`${slide.backdrop} hover:ring-shop-ink focus-visible:outline-shop-ink aria-pressed:ring-shop-ink relative size-16 shrink-0 overflow-hidden rounded-2xl ring-2 ring-transparent transition focus-visible:outline-3 md:size-24`}
             key={slide.id}
             onClick={handleSelect}
             type="button"
@@ -59,7 +59,7 @@ export const ProductGallery = ({
             {selected?.content}
           </div>
         </div>
-        <figcaption className="text-shop-ink/85 mt-3 hidden font-mono text-xs tracking-widest uppercase sm:block">
+        <figcaption className="text-shop-ink mt-3 hidden font-mono text-xs tracking-widest uppercase sm:block">
           {selected?.label}
         </figcaption>
       </figure>

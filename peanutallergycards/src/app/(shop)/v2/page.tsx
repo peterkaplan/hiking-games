@@ -52,7 +52,7 @@ const Hero = () => {
         <h1 className="mt-5 font-serif text-[3.25rem] leading-[0.98] tracking-tight sm:text-7xl">
           Eat abroad with confidence.
         </h1>
-        <p className="text-shop-ink/85 mt-6 max-w-lg text-xl">
+        <p className="text-shop-ink mt-6 max-w-lg text-xl">
           A peanut allergy card in the local language. Show it, get a clear yes
           or no from the kitchen, and enjoy the meal.
         </p>
@@ -71,7 +71,7 @@ const Hero = () => {
             `From ${formatPrice(lowestPriceUsd)}`,
           ].map((item) => (
             <li className="flex items-center gap-2" key={item}>
-              <CheckIcon className="text-shop-yes size-5" />
+              <CheckIcon className="size-5" />
               {item}
             </li>
           ))}
@@ -82,7 +82,7 @@ const Hero = () => {
           <Backdrop className="bg-shop-mint">
             <CardSetShot destination={showcase} />
           </Backdrop>
-          <Sticker className="text-shop-sun absolute -top-6 -left-4 rotate-[-10deg] sm:-left-8">
+          <Sticker className="text-shop-accent absolute -top-6 -left-4 rotate-[-10deg] sm:-left-8">
             Checked by a native speaker
           </Sticker>
           <Sticker className="text-shop-mint absolute -right-3 -bottom-8 size-24 rotate-[8deg] sm:-right-6">
@@ -99,7 +99,9 @@ const Statement = () => (
     <div className="relative">
       <p className="max-w-5xl font-serif text-5xl leading-[1.02] tracking-tight sm:text-7xl">
         One card. One question.{" "}
-        <span className="text-shop-yes">A clear yes.</span>
+        <span className="bg-shop-accent box-decoration-clone px-2">
+          A clear yes.
+        </span>
       </p>
       <div
         aria-hidden="true"
@@ -109,7 +111,7 @@ const Statement = () => (
         <PixelArt className="w-28" rows={chef} />
       </div>
     </div>
-    <p className="text-shop-ink/80 mt-8 max-w-2xl text-xl">
+    <p className="text-shop-ink mt-8 max-w-2xl text-xl">
       Translation apps can tell a kitchen what you can&apos;t eat. Our cards
       also ask the question that matters: can you make this safe for me? So you
       sit down knowing, not hoping.
@@ -146,7 +148,7 @@ const TripPack = () => {
             <div className="bg-shop-cream text-shop-ink -rotate-2 rounded-[24px] p-5">
               <PixelArt className="size-12" rows={noPeanut} />
               <p className="mt-3 font-serif text-2xl">Printed + laminated</p>
-              <p className="text-shop-ink/80 mt-1 text-base">
+              <p className="text-shop-ink mt-1 text-base">
                 Wipe-clean cards for your wallet, plus the digital files.
               </p>
             </div>
@@ -174,7 +176,7 @@ const ShopHome = () => (
         >
           Shop by destination
         </h2>
-        <p className="text-shop-ink/80 font-mono text-sm uppercase">
+        <p className="text-shop-ink font-mono text-sm uppercase">
           Coming next: {comingNext.join(" · ")}
         </p>
       </div>

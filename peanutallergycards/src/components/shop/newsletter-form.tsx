@@ -30,14 +30,14 @@ export const NewsletterForm = () => {
       </label>
       <input
         autoComplete="email"
-        className="border-shop-ink placeholder:text-shop-ink/50 focus-visible:outline-shop-yes bg-shop-sand min-w-0 flex-1 rounded-full border-2 px-5 py-3.5 focus-visible:outline-3 focus-visible:outline-offset-2"
+        className="border-shop-ink placeholder:text-shop-ink focus-visible:outline-shop-ink bg-shop-sand min-w-0 flex-1 rounded-full border-2 px-5 py-3.5 focus-visible:outline-3 focus-visible:outline-offset-2"
         id={inputId}
         placeholder="you@example.com"
         required
         type="email"
       />
       <button
-        className="bg-shop-ink text-shop-cream hover:bg-shop-yes-dark focus-visible:outline-shop-yes rounded-full px-7 py-3.5 font-semibold focus-visible:outline-3 focus-visible:outline-offset-2"
+        className="bg-shop-ink text-shop-cream hover:bg-shop-accent hover:text-shop-ink focus-visible:outline-shop-ink rounded-full px-7 py-3.5 font-semibold focus-visible:outline-3 focus-visible:outline-offset-2"
         type="submit"
       >
         Sign up

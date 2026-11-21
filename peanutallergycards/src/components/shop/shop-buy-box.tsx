@@ -26,7 +26,7 @@ const formatTag: Record<FormatId, string> = {
 };
 
 const optionClass =
-  "relative flex cursor-pointer flex-col rounded-2xl border-2 border-shop-ink/20 bg-shop-sand p-4 transition hover:border-shop-ink/60 has-checked:border-shop-ink has-checked:bg-shop-mint/50 has-focus-visible:outline-3 has-focus-visible:outline-shop-yes has-focus-visible:outline-offset-2";
+  "relative flex cursor-pointer flex-col rounded-2xl border-2 border-shop-ink bg-shop-sand p-4 transition hover:border-shop-ink has-checked:border-shop-ink has-checked:bg-shop-mint has-focus-visible:outline-3 has-focus-visible:outline-shop-ink has-focus-visible:outline-offset-2";
 
 export const BUY_BUTTON_ID = "buy-button";
 
@@ -74,7 +74,7 @@ export const ShopBuyBox = ({ state }: { state: TranslationState }) => {
                 {formatTag[format.id]}
               </span>
               <span className="font-semibold">{format.name}</span>
-              <span className="text-shop-ink/80 mt-1 text-base">
+              <span className="text-shop-ink mt-1 text-base">
                 {formatPrice(format.priceUsd)} per country
               </span>
             </label>
@@ -101,19 +101,19 @@ export const ShopBuyBox = ({ state }: { state: TranslationState }) => {
                 value={option.countries}
               />
               {option.tag ? (
-                <span className="bg-shop-sun absolute -top-3 rounded-full px-2 py-0.5 font-mono text-[10px] uppercase">
+                <span className="bg-shop-accent absolute -top-3 rounded-full px-2 py-0.5 font-mono text-[10px] uppercase">
                   {option.tag}
                 </span>
               ) : null}
               <span className="font-serif text-3xl">{option.countries}</span>
-              <span className="text-shop-ink/80 text-sm">
+              <span className="text-shop-ink text-sm">
                 {option.countries === 1 ? "country" : "countries"}
               </span>
             </label>
           ))}
         </div>
         {countries > 1 ? (
-          <p className="text-shop-ink/80 mt-3 text-base">
+          <p className="text-shop-ink mt-3 text-base">
             You&apos;ll choose the other countries at checkout.
           </p>
         ) : null}
@@ -125,7 +125,7 @@ export const ShopBuyBox = ({ state }: { state: TranslationState }) => {
             {formatPrice(price.total)}
           </span>
           {price.total < price.full ? (
-            <span className="text-shop-ink/80 text-xl line-through">
+            <span className="text-shop-ink text-xl line-through">
               {formatPrice(price.full)}
             </span>
           ) : null}
@@ -133,7 +133,7 @@ export const ShopBuyBox = ({ state }: { state: TranslationState }) => {
       ) : null}
 
       <button
-        className="bg-shop-accent disabled:bg-shop-sand disabled:text-shop-ink/85 text-shop-ink mt-4 w-full rounded-full px-7 py-4 text-lg font-semibold shadow-[0_4px_0_0_var(--color-shop-accent-dark)] disabled:cursor-not-allowed disabled:shadow-none"
+        className="bg-shop-accent disabled:bg-shop-sand disabled:text-shop-ink text-shop-ink mt-4 w-full rounded-full px-7 py-4 text-lg font-semibold shadow-[0_4px_0_0_var(--color-shop-ink)] disabled:cursor-not-allowed disabled:shadow-none"
         disabled
         id={BUY_BUTTON_ID}
         type="button"
@@ -141,19 +141,19 @@ export const ShopBuyBox = ({ state }: { state: TranslationState }) => {
         {buttonLabel[state]}
       </button>
       {state === "ready" ? null : (
-        <p className="text-shop-ink/80 mt-3 text-center text-base">
+        <p className="text-shop-ink mt-3 text-center text-base">
           We only sell a card once a native speaker has checked it.
         </p>
       )}
 
-      <ul className="border-shop-ink/15 mt-7 grid grid-cols-3 gap-3 border-y py-5 text-center text-sm">
+      <ul className="border-shop-ink mt-7 grid grid-cols-3 gap-3 border-y py-5 text-center text-sm">
         {[
           "Checked by a native speaker",
           "English on the back",
           "Works offline",
         ].map((item) => (
           <li className="flex flex-col items-center gap-2" key={item}>
-            <CheckIcon className="text-shop-yes size-6" />
+            <CheckIcon className="size-6" />
             {item}
           </li>
         ))}

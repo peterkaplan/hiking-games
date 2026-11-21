@@ -10,7 +10,7 @@ export const ShopFooter = () => (
         <h2 className="font-serif text-3xl">
           New countries and travel tips, straight to you.
         </h2>
-        <p className="text-shop-ink/80 mt-3 max-w-md">
+        <p className="text-shop-ink mt-3 max-w-md">
           We&apos;ll email you when a new destination is checked and ready.
         </p>
         <div className="mt-6 max-w-lg">
@@ -19,7 +19,7 @@ export const ShopFooter = () => (
       </div>
       <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
         <div>
-          <h3 className="text-shop-ink/85 font-mono text-xs tracking-widest uppercase">
+          <h3 className="text-shop-ink font-mono text-xs tracking-widest uppercase">
             Shop
           </h3>
           <ul className="mt-4 space-y-2">
@@ -36,7 +36,7 @@ export const ShopFooter = () => (
           </ul>
         </div>
         <div>
-          <h3 className="text-shop-ink/85 font-mono text-xs tracking-widest uppercase">
+          <h3 className="text-shop-ink font-mono text-xs tracking-widest uppercase">
             Help
           </h3>
           <ul className="mt-4 space-y-2">
@@ -53,7 +53,7 @@ export const ShopFooter = () => (
           </ul>
         </div>
         <div>
-          <h3 className="text-shop-ink/85 font-mono text-xs tracking-widest uppercase">
+          <h3 className="text-shop-ink font-mono text-xs tracking-widest uppercase">
             Design
           </h3>
           <ul className="mt-4 space-y-2">
@@ -68,13 +68,13 @@ export const ShopFooter = () => (
     </div>
     <div className="mx-auto max-w-7xl px-4 sm:px-6">
       <Disclaimer />
-      <p className="text-shop-ink/85 mt-4 font-mono text-xs">
+      <p className="text-shop-ink mt-4 font-mono text-xs">
         © 2026 Peanut Allergy Cards
       </p>
     </div>
     <p
       aria-hidden="true"
-      className="text-shop-yes mt-6 overflow-hidden px-2 text-center font-serif text-[9vw] leading-[0.85] tracking-tight whitespace-nowrap select-none"
+      className="text-shop-ink mt-6 overflow-hidden px-2 text-center font-serif text-[9vw] leading-[0.85] tracking-tight whitespace-nowrap select-none"
     >
       Eat with confidence
     </p>

@@ -34,10 +34,10 @@ const CartIcon = () => (
 );
 
 export const ShopHeader = () => (
-  <header className="border-shop-ink/10 bg-shop-cream/95 sticky top-0 z-30 border-b backdrop-blur">
+  <header className="border-shop-ink bg-shop-cream sticky top-0 z-30 border-b backdrop-blur">
     <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
       <MobileMenu
-        buttonClassName="hover:bg-shop-sand rounded-full p-2 focus-visible:outline-3 focus-visible:outline-shop-yes"
+        buttonClassName="hover:bg-shop-sand rounded-full p-2 focus-visible:outline-3 focus-visible:outline-shop-ink"
         className="lg:hidden"
         linkClassName="block px-6 py-4 font-serif text-2xl hover:bg-shop-sand"
         links={navLinks}
