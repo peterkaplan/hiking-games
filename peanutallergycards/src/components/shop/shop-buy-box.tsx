@@ -116,7 +116,14 @@ export const ShopBuyBox = ({
               </span>
               <span className="font-semibold">{format.name}</span>
               <span className="text-shop-ink mt-1 text-base">
-                {formatPrice(format.priceUsd)} per country
+                {formatPrice(format.priceUsd)}{" "}
+                {format.compareAtUsd ? (
+                  <s>
+                    <span className="sr-only">instead of </span>
+                    {formatPrice(format.compareAtUsd)}
+                  </s>
+                ) : null}{" "}
+                per country
               </span>
             </label>
           ))}
@@ -171,15 +178,16 @@ export const ShopBuyBox = ({
 
       <p className="mt-7 flex flex-wrap items-baseline gap-x-3 gap-y-1">
         <span className="font-serif text-4xl">{formatPrice(totals.total)}</span>
+        {totals.compareAt > totals.total ? (
+          <s className="text-shop-ink text-xl">
+            <span className="sr-only">instead of </span>
+            {formatPrice(totals.compareAt)}
+          </s>
+        ) : null}
         {totals.discount > 0 ? (
-          <>
-            <span className="text-shop-ink text-xl line-through">
-              {formatPrice(totals.subtotal)}
-            </span>
-            <span className="bg-shop-highlight text-shop-on-highlight rounded-full px-2.5 py-0.5 font-mono text-xs uppercase">
-              {totals.discountPercent}% off {lines.length} countries
-            </span>
-          </>
+          <span className="bg-shop-highlight text-shop-on-highlight rounded-full px-2.5 py-0.5 font-mono text-xs uppercase">
+            {totals.discountPercent}% off {lines.length} countries
+          </span>
         ) : null}
       </p>
 

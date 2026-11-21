@@ -8,6 +8,7 @@ import type { CartLine, FormatId } from "@/content/pricing";
 import {
   availableTiers,
   cartTotals,
+  compareAtOf,
   formatPrice,
   formats,
   priceOf,
@@ -70,7 +71,15 @@ const Line = ({ line }: { line: CartLine }) => {
           {country.language} and English
         </p>
       </div>
-      <p className="font-serif text-2xl">{formatPrice(priceOf(line.format))}</p>
+      <p className="font-serif text-2xl">
+        {compareAtOf(line.format) > priceOf(line.format) ? (
+          <s className="font-shop mr-2 text-base">
+            <span className="sr-only">instead of </span>
+            {formatPrice(compareAtOf(line.format))}
+          </s>
+        ) : null}
+        {formatPrice(priceOf(line.format))}
+      </p>
       <div className="col-span-3 flex flex-wrap items-center justify-between gap-3">
         <div>
           <label className="sr-only" htmlFor={selectId}>

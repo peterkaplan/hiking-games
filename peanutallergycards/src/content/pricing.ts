@@ -11,6 +11,12 @@ import { catalogue } from "./catalogue";
 export type FormatId = "digital" | "printed";
 
 export interface Format {
+  /**
+   * The struck-through price. It must be a real sum, never an invented
+   * "was" price: for the laminated set it is the laminated cards plus the
+   * digital set bought on its own, because the digital set comes free.
+   */
+  compareAtUsd?: number;
   description: string;
   id: FormatId;
   name: string;
@@ -25,6 +31,7 @@ export const formats: readonly Format[] = [
     description:
       "Both cards printed double-sided, laminated and posted to you. The digital set comes free.",
     priceUsd: 18,
+    compareAtUsd: 18 + 8,
   },
   {
     id: "digital",
@@ -97,7 +104,15 @@ export interface CartLine {
 export const priceOf = (formatId: FormatId): number =>
   formats.find((format) => format.id === formatId)?.priceUsd ?? 0;
 
+/** The struck-through price for a format: its own price if it has none. */
+export const compareAtOf = (formatId: FormatId): number => {
+  const format = formats.find((item) => item.id === formatId);
+  return format?.compareAtUsd ?? format?.priceUsd ?? 0;
+};
+
 export interface CartTotals {
+  /** What the lines would cost at their struck-through prices. */
+  compareAt: number;
   discount: number;
   discountPercent: number;
   subtotal: number;
@@ -109,5 +124,15 @@ export const cartTotals = (lines: readonly CartLine[]): CartTotals => {
   const subtotal = lines.reduce((sum, line) => sum + priceOf(line.format), 0);
   const discountPercent = discountPercentFor(lines.length);
   const discount = Math.round((subtotal * discountPercent) / 100);
-  return { subtotal, discountPercent, discount, total: subtotal - discount };
+  const compareAt = lines.reduce(
+    (sum, line) => sum + compareAtOf(line.format),
+    0
+  );
+  return {
+    compareAt,
+    subtotal,
+    discountPercent,
+    discount,
+    total: subtotal - discount,
+  };
 };

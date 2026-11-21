@@ -50,6 +50,7 @@ export const generateStaticParams = () => {
 
 /** The price of the format that is selected when the page opens. */
 const defaultPrice = formats.at(0)?.priceUsd ?? lowestPriceUsd;
+const defaultCompareAt = formats.at(0)?.compareAtUsd ?? defaultPrice;
 
 const languageName = (destination: Destination): string =>
   frontLanguages(destination).at(0)?.name ??
@@ -242,6 +243,12 @@ const ProductPage = async ({ params }: PageProps) => {
             <span className="font-serif text-3xl">
               {formatPrice(defaultPrice)}
             </span>
+            {defaultCompareAt > defaultPrice ? (
+              <s className="text-shop-ink text-xl">
+                <span className="sr-only">instead of </span>
+                {formatPrice(defaultCompareAt)}
+              </s>
+            ) : null}
             <span className="text-shop-ink font-mono text-sm uppercase">
               Digital only {formatPrice(lowestPriceUsd)}
             </span>
