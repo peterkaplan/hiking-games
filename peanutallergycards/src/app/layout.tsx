@@ -1,5 +1,6 @@
 import "@fontsource-variable/atkinson-hyperlegible-next";
-import "@fontsource-variable/pixelify-sans";
+import "@fontsource/jersey-15";
+import "@fontsource/tiny5";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { SiteFooter } from "@/components/site-footer";

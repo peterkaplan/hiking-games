@@ -41,8 +41,10 @@ export const MealSteps = () => (
     {steps.map((step, index) => (
       <li key={step.title}>
         <div className="px-frame">{step.scene}</div>
-        <p className="font-pixel text-go-dark mt-6">Step {index + 1}</p>
-        <h3 className="font-pixel mt-1 text-2xl">{step.title}</h3>
+        <p className="font-tiny text-tiny2 text-go-dark mt-6">
+          Step {index + 1}
+        </p>
+        <h3 className="font-pixel text-px1 mt-2">{step.title}</h3>
         <p className="mt-2 text-lg">{step.body}</p>
       </li>
     ))}

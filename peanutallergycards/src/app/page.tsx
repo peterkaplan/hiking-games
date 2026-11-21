@@ -33,11 +33,12 @@ const Hero = () => (
     <DriftingClouds />
     <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-4 pt-10 pb-20 lg:grid-cols-[1fr_1.15fr] lg:pt-16 lg:pb-28">
       <div>
-        <h1 className="font-pixel text-4xl leading-[1.2] sm:text-6xl lg:text-[2.75rem] xl:text-5xl">
+        <h1 className="font-pixel text-px2">
           <span className="beat beat-1 block w-fit">Show the card.</span>
           <span className="beat beat-2 block w-fit">Get a clear yes.</span>
-          <span className="beat beat-3 text-go-dark block w-fit whitespace-nowrap">
-            Eat with confidence.
+          <span className="text-go-dark block">
+            <span className="beat beat-3 whitespace-nowrap">Eat with</span>{" "}
+            <span className="beat beat-3 whitespace-nowrap">confidence.</span>
           </span>
         </h1>
         <p className="mt-8 max-w-md text-xl">
@@ -50,7 +51,7 @@ const Hero = () => (
             Find your destination
           </Link>
           <Link
-            className="px-focus font-pixel text-lg underline decoration-2 underline-offset-4"
+            className="px-focus font-pixel text-px1 underline decoration-2 underline-offset-4"
             href="#how-it-works"
           >
             How it works
@@ -80,7 +81,7 @@ const DestinationTile = ({ destination }: { destination: Destination }) => {
         ) : null}
         <StatusBadge state={destinationState(destination)} />
       </div>
-      <h3 className="font-pixel mt-4 text-3xl">{destination.country}</h3>
+      <h3 className="font-pixel text-px2 mt-4">{destination.country}</h3>
       {mainLanguage ? (
         <p className="mt-1 text-xl" lang={mainLanguage.code}>
           {mainLanguage.nativeName}
@@ -88,15 +89,15 @@ const DestinationTile = ({ destination }: { destination: Destination }) => {
       ) : null}
       <dl className="mt-6 grid grid-cols-2 gap-4 text-base">
         <div>
-          <dt className="font-pixel">Languages</dt>
+          <dt className="font-tiny text-tiny2">Languages</dt>
           <dd>{languages || "—"} + English</dd>
         </div>
         <div>
-          <dt className="font-pixel">Ambulance</dt>
+          <dt className="font-tiny text-tiny2">Ambulance</dt>
           <dd>{destination.emergencyNumber}</dd>
         </div>
       </dl>
-      <p className="font-pixel mt-6 flex items-center justify-between text-lg">
+      <p className="font-pixel text-px1 mt-6 flex items-center justify-between">
         From {formatPrice(lowestPriceUsd)}
         <span
           aria-hidden="true"
@@ -118,7 +119,7 @@ const Destinations = () => (
     >
       <div className="mx-auto max-w-6xl px-4 py-20">
         <h2
-          className="font-pixel text-4xl sm:text-5xl"
+          className="font-pixel text-px1 sm:text-px2"
           id="destinations-heading"
         >
           Where are you headed?
@@ -132,12 +133,12 @@ const Destinations = () => (
             <DestinationTile destination={destination} key={destination.slug} />
           ))}
           <div className="border-ink flex flex-col justify-center border-4 border-dashed p-6">
-            <p className="font-pixel text-2xl">Coming next</p>
+            <p className="font-pixel text-px1">Coming next</p>
             <ul className="mt-4 space-y-3">
               {comingNext.map((country) => (
                 <li className="flex items-center gap-3" key={country.name}>
                   <WavingFlag className="size-10" id={country.flag} />
-                  <span className="font-pixel text-lg">{country.name}</span>
+                  <span className="font-pixel text-px1">{country.name}</span>
                 </li>
               ))}
             </ul>
@@ -154,7 +155,7 @@ const Pack = () => (
     aria-labelledby="pack-heading"
     className="mx-auto max-w-6xl px-4 py-20"
   >
-    <h2 className="font-pixel text-4xl sm:text-5xl" id="pack-heading">
+    <h2 className="font-pixel text-px1 sm:text-px2" id="pack-heading">
       Two cards for every trip
     </h2>
     <div className="mt-12 grid gap-14 md:grid-cols-2">
@@ -162,7 +163,7 @@ const Pack = () => (
         <div className="px-frame bg-mint p-6 sm:p-10">
           <ChefCardPixel />
         </div>
-        <h3 className="font-pixel mt-8 text-3xl">The chef card</h3>
+        <h3 className="font-pixel text-px1 mt-8">The chef card</h3>
         <p className="mt-2 text-xl">
           For every meal. It tells the kitchen, in their language, exactly what
           you can&apos;t eat: peanuts, peanut oil, sauces, and anything that has
@@ -173,7 +174,7 @@ const Pack = () => (
         <div className="px-frame bg-butter p-6 sm:p-10">
           <EmergencyCardPixel />
         </div>
-        <h3 className="font-pixel mt-8 text-3xl">The emergency card</h3>
+        <h3 className="font-pixel text-px1 mt-8">The emergency card</h3>
         <p className="mt-2 text-xl">
           For if something goes wrong. It tells anyone nearby that you&apos;re
           having a severe reaction, and asks them to call the local ambulance
@@ -181,7 +182,7 @@ const Pack = () => (
         </p>
       </div>
     </div>
-    <ul className="font-pixel mt-14 grid gap-6 text-xl md:grid-cols-2">
+    <ul className="font-pixel text-px1 mt-14 grid gap-6 md:grid-cols-2">
       <li className="flex items-center gap-4">
         <PixelArt className="w-8 shrink-0" rows={check} />
         English on the back, so you always know what you&apos;re showing
@@ -204,7 +205,7 @@ const Home = () => (
       className="mx-auto max-w-6xl scroll-mt-4 px-4 py-20"
       id="how-it-works"
     >
-      <h2 className="font-pixel text-4xl sm:text-5xl" id="how-heading">
+      <h2 className="font-pixel text-px1 sm:text-px2" id="how-heading">
         How a meal goes
       </h2>
       <div className="mt-12">
@@ -220,7 +221,7 @@ const Home = () => (
       className="mx-auto max-w-4xl scroll-mt-4 px-4 py-20"
       id="faq"
     >
-      <h2 className="font-pixel text-4xl sm:text-5xl" id="faq-heading">
+      <h2 className="font-pixel text-px1 sm:text-px2" id="faq-heading">
         Questions
       </h2>
       <div className="mt-10">

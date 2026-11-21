@@ -39,7 +39,7 @@ export const BuyBox = ({ state }: { state: TranslationState }) => {
   return (
     <div className="px-frame-raised bg-white p-5">
       <fieldset>
-        <legend className="font-pixel text-lg">Pick a format</legend>
+        <legend className="font-pixel text-px1">Pick a format</legend>
         <div className="mt-4 space-y-5">
           {formats.map((format) => (
             <label
@@ -55,7 +55,7 @@ export const BuyBox = ({ state }: { state: TranslationState }) => {
                 value={format.id}
               />
               <span className="flex-1">
-                <span className="font-pixel flex items-baseline justify-between gap-3 text-lg">
+                <span className="font-pixel text-px1 flex items-baseline justify-between gap-3">
                   <span>{format.name}</span>
                   <span>{formatPrice(format.priceUsd)}</span>
                 </span>
@@ -68,8 +68,8 @@ export const BuyBox = ({ state }: { state: TranslationState }) => {
 
       {price === undefined ? null : (
         <p className="mt-6 flex items-baseline justify-between">
-          <span className="font-pixel text-lg">Total</span>
-          <span className="px-pop font-pixel text-4xl" key={price}>
+          <span className="font-pixel text-px1">Total</span>
+          <span className="px-pop font-pixel text-px2" key={price}>
             {formatPrice(price)}
           </span>
         </p>

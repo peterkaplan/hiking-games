@@ -6,12 +6,12 @@ export const SiteFooter = () => (
     <Walker />
     <Grass />
     <div className="mx-auto max-w-6xl px-4 py-12">
-      <p className="font-pixel text-2xl">peanut allergy cards</p>
+      <p className="font-pixel text-px1">peanut allergy cards</p>
       <p className="text-paper/80 mt-2 max-w-xl">
         Show the card. Get a clear yes. Eat with confidence.
       </p>
       <Disclaimer />
-      <p className="font-pixel text-paper/60 mt-8 text-sm">
+      <p className="font-tiny text-tiny2 text-paper/60 mt-8">
         © 2026 Peanut Allergy Cards
       </p>
     </div>

@@ -33,7 +33,7 @@ export const CardGallery = ({ views }: { views: readonly GalleryView[] }) => {
         {views.map((view) => (
           <button
             aria-pressed={view.id === selected?.id}
-            className="px-frame px-focus font-pixel hover:bg-butter aria-pressed:bg-ink aria-pressed:text-paper bg-white px-3 py-1.5 transition-colors"
+            className="px-frame px-focus font-pixel text-px1 hover:bg-butter aria-pressed:bg-ink aria-pressed:text-paper bg-white px-3 py-1.5 transition-colors"
             key={view.id}
             onClick={handleSelect}
             type="button"

@@ -16,7 +16,7 @@ const stateStyle: Record<TranslationState, string> = {
 
 export const StatusBadge = ({ state }: { state: TranslationState }) => (
   <span
-    className={`px-frame font-pixel inline-flex shrink-0 items-center px-2 py-0.5 text-sm ${stateStyle[state]}`}
+    className={`px-frame font-tiny text-tiny2 inline-flex shrink-0 items-center px-2 py-1 ${stateStyle[state]}`}
   >
     {stateLabel[state]}
   </span>

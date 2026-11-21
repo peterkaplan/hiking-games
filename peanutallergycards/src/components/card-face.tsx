@@ -24,7 +24,7 @@ export const CardSurface = ({
 
 /** Stands in for a side that hasn't been written yet. */
 export const MissingCardSurface = () => (
-  <div className="border-ink font-pixel flex min-h-48 items-center justify-center border-2 border-dashed bg-white/60 p-6 text-lg">
+  <div className="border-ink font-pixel text-px1 flex min-h-48 items-center justify-center border-2 border-dashed bg-white/60 p-6">
     Not written yet
   </div>
 );

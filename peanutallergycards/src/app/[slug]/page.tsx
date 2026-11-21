@@ -107,9 +107,9 @@ const galleryViews = (destination: Destination): GalleryView[] => {
 
 const PreviewNotice = () => (
   <p className="px-frame bg-butter px-4 py-3">
-    <strong className="font-pixel">Preview.</strong> These cards haven&apos;t
-    been checked by a native speaker yet, so they aren&apos;t on sale.
-    Don&apos;t rely on them.
+    <strong className="font-pixel text-px1 block">Preview</strong> These cards
+    haven&apos;t been checked by a native speaker yet, so they aren&apos;t on
+    sale. Don&apos;t rely on them.
   </p>
 );
 
@@ -128,7 +128,7 @@ const DestinationPage = async ({ params }: PageProps) => {
     <main>
       <div className="bg-sky">
         <div className="mx-auto max-w-6xl px-4 pt-2 pb-16">
-          <nav aria-label="Breadcrumb" className="font-pixel">
+          <nav aria-label="Breadcrumb" className="font-tiny text-tiny2">
             <ol className="flex gap-2">
               <li>
                 <Link className="px-focus hover:underline" href="/">
@@ -169,7 +169,7 @@ const DestinationPage = async ({ params }: PageProps) => {
                 ) : null}
                 <StatusBadge state={state} />
               </div>
-              <h1 className="font-pixel mt-4 text-5xl sm:text-6xl">
+              <h1 className="font-pixel text-px2 mt-4">
                 {destination.country}
               </h1>
               <p className="mt-3 text-xl">
@@ -182,23 +182,19 @@ const DestinationPage = async ({ params }: PageProps) => {
                 <BuyBox state={state} />
               </div>
 
-              <h2 className="font-pixel mt-12 text-2xl">What&apos;s inside</h2>
+              <h2 className="font-pixel text-px1 mt-12">What&apos;s inside</h2>
               <ul className="mt-4 space-y-4">
                 <li>
-                  <strong className="font-pixel">Chef card.</strong> Tells the
-                  kitchen exactly what you can&apos;t eat and asks for a clear
-                  yes or no.
+                  <strong>Chef card.</strong> Tells the kitchen exactly what you
+                  can&apos;t eat and asks for a clear yes or no.
                   {staffLanguages.length > 0
                     ? ` Includes a short note in ${staffLanguages.join(" and ")} for kitchen staff.`
                     : ""}
                 </li>
                 <li>
-                  <strong className="font-pixel">Emergency card.</strong> Asks
-                  anyone nearby to call{" "}
-                  <strong className="font-pixel">
-                    {destination.emergencyNumber}
-                  </strong>{" "}
-                  for an ambulance.
+                  <strong>Emergency card.</strong> Asks anyone nearby to call{" "}
+                  <strong>{destination.emergencyNumber}</strong> for an
+                  ambulance.
                 </li>
               </ul>
             </div>
@@ -213,7 +209,10 @@ const DestinationPage = async ({ params }: PageProps) => {
         >
           <div className="grid gap-10 lg:grid-cols-5">
             <div className="lg:col-span-2">
-              <h2 className="font-pixel text-4xl" id="peanut-foods-heading">
+              <h2
+                className="font-pixel text-px1 sm:text-px2"
+                id="peanut-foods-heading"
+              >
                 Where peanuts turn up in {destination.country}
               </h2>
               <p className="mt-4 text-xl">
@@ -240,7 +239,7 @@ const DestinationPage = async ({ params }: PageProps) => {
         aria-labelledby="how-heading"
         className="mx-auto max-w-6xl px-4 pt-20"
       >
-        <h2 className="font-pixel text-4xl" id="how-heading">
+        <h2 className="font-pixel text-px1 sm:text-px2" id="how-heading">
           How a meal goes
         </h2>
         <div className="mt-10">
@@ -252,7 +251,7 @@ const DestinationPage = async ({ params }: PageProps) => {
         aria-labelledby="faq-heading"
         className="mx-auto max-w-4xl px-4 pt-20"
       >
-        <h2 className="font-pixel text-4xl" id="faq-heading">
+        <h2 className="font-pixel text-px1 sm:text-px2" id="faq-heading">
           Questions
         </h2>
         <div className="mt-10">

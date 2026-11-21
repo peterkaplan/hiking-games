@@ -13,12 +13,10 @@ export const SiteHeader = () => (
     <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-5">
       <Link className="group px-focus flex items-center gap-3" href="/">
         <PixelArt className="px-wiggle size-9" rows={noPeanut} />
-        <span className="font-pixel text-lg font-semibold sm:text-xl">
-          peanut allergy cards
-        </span>
+        <span className="font-pixel text-px1">peanut allergy cards</span>
       </Link>
       <nav aria-label="Main">
-        <ul className="font-pixel flex items-center gap-6">
+        <ul className="font-pixel text-px1 hidden items-center gap-6 sm:flex">
           {navLinks.map((link) => (
             <li
               className={link.always ? "" : "hidden md:block"}

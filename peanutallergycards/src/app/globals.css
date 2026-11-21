@@ -3,7 +3,23 @@
 @theme {
   --font-sans:
     "Atkinson Hyperlegible Next Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-pixel: "Pixelify Sans Variable", ui-monospace, monospace;
+  /*
+   * Pixel fonts are only crisp when their pixel grid lands on whole screen
+   * pixels, so they come with a fixed type scale:
+   * - Jersey 15 (headings, buttons): 27px grid → 27px or 54px only.
+   * - Tiny5 (small labels): 8px grid → 16px or 24px only.
+   * Line heights are whole pixels too. Never bold a pixel font.
+   */
+  --font-pixel: "Jersey 15", ui-monospace, monospace;
+  --font-tiny: "Tiny5", ui-monospace, monospace;
+  --text-px1: 27px;
+  --text-px1--line-height: 32px;
+  --text-px2: 54px;
+  --text-px2--line-height: 56px;
+  --text-tiny2: 16px;
+  --text-tiny2--line-height: 20px;
+  --text-tiny3: 24px;
+  --text-tiny3--line-height: 28px;
 
   /* A small, game-like palette. Matches `palette` in components/pixel. */
   --color-ink: #1d1b33;
@@ -26,6 +42,8 @@
 }
 
 body {
+  /* Pixel fonts have one weight; a faked bold smears them. */
+  font-synthesis: none;
   color: var(--color-ink);
   background: var(--color-paper);
 }
@@ -59,8 +77,8 @@ body {
     align-items: center;
     padding: 0.75rem 1.25rem;
     font-family: var(--font-pixel);
-    font-size: 1.125rem;
-    font-weight: 600;
+    font-size: var(--text-px1);
+    line-height: var(--text-px1--line-height);
     color: var(--color-ink);
     background: var(--color-sun);
     box-shadow:
