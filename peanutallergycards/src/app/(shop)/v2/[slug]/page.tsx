@@ -35,7 +35,7 @@ import type { CatalogueCountry } from "@/content/catalogue";
 import { catalogue, findCountry, shopDestination } from "@/content/catalogue";
 import { faqItems } from "@/content/faq";
 import { displayState, LAUNCH_PREVIEW } from "@/content/launch-preview";
-import { formatPrice, lowestPriceUsd } from "@/content/pricing";
+import { formatPrice, formats, lowestPriceUsd } from "@/content/pricing";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -47,6 +47,9 @@ export const generateStaticParams = () => {
   assertValidContent();
   return catalogue.map(({ slug }) => ({ slug }));
 };
+
+/** The price of the format that is selected when the page opens. */
+const defaultPrice = formats.at(0)?.priceUsd ?? lowestPriceUsd;
 
 const languageName = (destination: Destination): string =>
   frontLanguages(destination).at(0)?.name ??
@@ -237,7 +240,10 @@ const ProductPage = async ({ params }: PageProps) => {
           </p>
           <p className="mt-4 flex flex-wrap items-baseline gap-x-4 gap-y-1">
             <span className="font-serif text-3xl">
-              From {formatPrice(lowestPriceUsd)}
+              {formatPrice(defaultPrice)}
+            </span>
+            <span className="text-shop-ink font-mono text-sm uppercase">
+              Digital only {formatPrice(lowestPriceUsd)}
             </span>
             {LAUNCH_PREVIEW ? null : (
               <span className="text-shop-ink font-mono text-sm">
@@ -427,7 +433,7 @@ const ProductPage = async ({ params }: PageProps) => {
 
       <StickyBuyBar
         buyButtonId={BUY_BUTTON_ID}
-        priceLabel={`From ${formatPrice(lowestPriceUsd)}`}
+        priceLabel={formatPrice(defaultPrice)}
         title={title}
       />
     </main>
