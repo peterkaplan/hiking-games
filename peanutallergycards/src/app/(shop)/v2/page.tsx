@@ -217,7 +217,8 @@ const ShopHome = () => (
 
     <section
       aria-labelledby="compare-heading"
-      className="mx-auto max-w-5xl px-4 pt-24 sm:px-6"
+      className="mx-auto max-w-5xl scroll-mt-24 px-4 pt-24 sm:px-6"
+      id="compare"
     >
       <h2
         className="text-center font-serif text-4xl sm:text-5xl"
@@ -232,7 +233,8 @@ const ShopHome = () => (
 
     <section
       aria-labelledby="desk-heading"
-      className="mx-auto max-w-5xl px-4 pt-24 sm:px-6"
+      className="mx-auto max-w-5xl scroll-mt-24 px-4 pt-24 sm:px-6"
+      id="translation-desk"
     >
       <h2 className="font-serif text-4xl sm:text-5xl" id="desk-heading">
         The translation desk

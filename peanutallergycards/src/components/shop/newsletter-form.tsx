@@ -17,30 +17,36 @@ export const NewsletterForm = () => {
 
   if (sent) {
     return (
-      <p className="bg-shop-selected rounded-2xl px-5 py-4" role="status">
+      <p
+        className="bg-shop-highlight text-shop-on-highlight rounded-2xl px-5 py-4"
+        role="status"
+      >
         Thanks! (Sign-up isn&apos;t connected to an email service yet.)
       </p>
     );
   }
 
   return (
-    <form className="flex flex-col gap-3 sm:flex-row" onSubmit={handleSubmit}>
+    <form
+      className="border-shop-on-band flex items-center gap-3 border-b-2 pb-3"
+      onSubmit={handleSubmit}
+    >
       <label className="sr-only" htmlFor={inputId}>
         Email address
       </label>
       <input
         autoComplete="email"
-        className="border-shop-ink placeholder:text-shop-ink focus-visible:outline-shop-ink bg-shop-panel min-w-0 flex-1 rounded-full border-2 px-5 py-3.5 focus-visible:outline-3 focus-visible:outline-offset-2"
+        className="placeholder:text-shop-highlight text-shop-on-band focus-visible:outline-shop-highlight min-w-0 flex-1 rounded-sm bg-transparent py-2 font-serif text-2xl focus-visible:outline-3 focus-visible:outline-offset-4 sm:text-3xl"
         id={inputId}
-        placeholder="you@example.com"
+        placeholder="Your email…"
         required
         type="email"
       />
       <button
-        className="bg-shop-ink text-shop-bg hover:bg-shop-cta hover:text-shop-on-cta focus-visible:outline-shop-ink rounded-full px-7 py-3.5 font-semibold focus-visible:outline-3 focus-visible:outline-offset-2"
+        className="bg-shop-highlight text-shop-on-highlight hover:bg-shop-on-band focus-visible:outline-shop-on-band shrink-0 rounded-full px-6 py-3 font-semibold focus-visible:outline-3 focus-visible:outline-offset-2"
         type="submit"
       >
-        Sign up
+        Sign up <span aria-hidden="true">→</span>
       </button>
     </form>
   );

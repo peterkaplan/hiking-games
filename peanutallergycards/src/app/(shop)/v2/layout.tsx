@@ -11,6 +11,7 @@ const ShopLayout = ({ children }: Readonly<{ children: ReactNode }>) => (
   <div
     className={`${shopFontVariables} bg-shop-bg font-shop text-shop-ink min-h-screen text-lg`}
     data-palette="greatjones"
+    id="top"
   >
     <AnnouncementBar />
     <ShopHeader />

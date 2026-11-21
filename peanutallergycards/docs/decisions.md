@@ -4,6 +4,21 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ---
 
+## 2026-11-21: Store footer and story page rebuilt against the reference stores
+
+- **Footer:** a full-width dark band, a turning "Eat with confidence" stamp
+  breaking the top edge, a playful sign-up headline ("Our emails are 100%
+  peanut-free."), three link columns, and the name as wide as the page.
+  Reason: next to Ghia, Great Jones, Graza and Allbirds, ours read as an
+  afterthought (same colour as the page, 5 links, no mark).
+- **Only real links.** No social icons, policies or contact pages until they
+  exist. The link to the pixel variant is gone from the footer.
+- **Story page:** a two-colour split opener with the cards from the trip, a
+  numbered journey, coloured principle tiles. Reason: the stores' pages work
+  through colour blocks and big images; ours was text in boxes.
+- **Still missing: photography.** Their pages are mostly photos. Ours uses the
+  cards as its only images until we have photos of Julia and the trip.
+
 ## 2026-11-21: Founder story on the homepage; no guarantee for now
 
 **Decision:** The store tells Julia's story: allergic to peanuts her whole
