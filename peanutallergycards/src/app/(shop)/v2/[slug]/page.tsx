@@ -89,7 +89,7 @@ const slidesFor = (destination: Destination): GallerySlide[] => {
     slides.push({
       id: "emergency-front",
       label: `Emergency card, front (${language})`,
-      backdrop: "bg-[#ffd9d4]",
+      backdrop: "bg-shop-blush",
       content: <EmergencyFrontCard destination={destination} />,
     });
   }
@@ -97,7 +97,7 @@ const slidesFor = (destination: Destination): GallerySlide[] => {
     {
       id: "emergency-back",
       label: "Emergency card, back (English)",
-      backdrop: "bg-[#ffd9d4]",
+      backdrop: "bg-shop-blush",
       content: <EmergencyBackCard destination={destination} />,
     },
     {
@@ -149,7 +149,7 @@ const ProductPage = async ({ params }: PageProps) => {
     <main className="mx-auto max-w-7xl px-4 pt-6 sm:px-6">
       <nav
         aria-label="Breadcrumb"
-        className="text-shop-ink/70 hidden font-mono text-xs uppercase sm:block"
+        className="text-shop-ink/80 hidden font-mono text-xs uppercase sm:block"
       >
         <ol className="flex gap-2">
           <li>
@@ -193,7 +193,7 @@ const ProductPage = async ({ params }: PageProps) => {
             <span className="font-serif text-3xl">
               From {formatPrice(lowestPriceUsd)}
             </span>
-            <span className="text-shop-ink/75 font-mono text-sm">
+            <span className="text-shop-ink/85 font-mono text-sm">
               No reviews yet
             </span>
           </p>

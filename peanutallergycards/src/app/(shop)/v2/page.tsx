@@ -85,7 +85,7 @@ const Hero = () => {
           <Sticker className="text-shop-sun absolute -top-6 -left-4 rotate-[-10deg] sm:-left-8">
             Checked by a native speaker
           </Sticker>
-          <Sticker className="absolute -right-3 -bottom-8 size-24 rotate-[8deg] text-white sm:-right-6">
+          <Sticker className="text-shop-mint absolute -right-3 -bottom-8 size-24 rotate-[8deg] sm:-right-6">
             English on the back
           </Sticker>
         </div>
@@ -120,21 +120,21 @@ const Statement = () => (
 const TripPack = () => {
   const showcase = findDestination("thailand") ?? destinations[0];
   return (
-    <section className="bg-shop-yes mx-4 rounded-[32px] text-white sm:mx-6">
+    <section className="bg-shop-accent text-shop-ink mx-4 rounded-[32px] sm:mx-6">
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 lg:grid-cols-2 lg:px-12">
         <div>
-          <p className="font-mono text-xs tracking-[0.18em] text-white uppercase">
+          <p className="text-shop-ink font-mono text-xs tracking-[0.18em] uppercase">
             The trip pack
           </p>
           <h2 className="mt-4 font-serif text-5xl leading-none sm:text-6xl">
             Going to more than one country?
           </h2>
-          <p className="mt-6 max-w-md text-xl text-white">
+          <p className="text-shop-ink mt-6 max-w-md text-xl">
             Add up to three destinations and save {maxSaving}%. Each comes with
             both cards, printed or digital.
           </p>
           <Link
-            className="bg-shop-cream text-shop-ink mt-9 inline-flex rounded-full px-7 py-4 font-semibold hover:bg-white focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-white"
+            className="bg-shop-cream text-shop-ink hover:bg-shop-sand focus-visible:outline-shop-ink mt-9 inline-flex rounded-full px-7 py-4 font-semibold focus-visible:outline-3 focus-visible:outline-offset-4"
             href="#destinations"
           >
             Build your trip pack
@@ -174,7 +174,7 @@ const ShopHome = () => (
         >
           Shop by destination
         </h2>
-        <p className="text-shop-ink/70 font-mono text-sm uppercase">
+        <p className="text-shop-ink/80 font-mono text-sm uppercase">
           Coming next: {comingNext.join(" · ")}
         </p>
       </div>

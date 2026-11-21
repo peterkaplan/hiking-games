@@ -30,7 +30,7 @@ export const NewsletterForm = () => {
       </label>
       <input
         autoComplete="email"
-        className="border-shop-ink placeholder:text-shop-ink/50 focus-visible:outline-shop-yes min-w-0 flex-1 rounded-full border-2 bg-white px-5 py-3.5 focus-visible:outline-3 focus-visible:outline-offset-2"
+        className="border-shop-ink placeholder:text-shop-ink/50 focus-visible:outline-shop-yes bg-shop-sand min-w-0 flex-1 rounded-full border-2 px-5 py-3.5 focus-visible:outline-3 focus-visible:outline-offset-2"
         id={inputId}
         placeholder="you@example.com"
         required

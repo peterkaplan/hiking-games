@@ -40,7 +40,7 @@ export const ProductTile = ({ destination }: { destination: Destination }) => {
           from {formatPrice(lowestPriceUsd)}
         </span>
       </div>
-      <p className="text-shop-ink/75 mt-5 font-mono text-xs tracking-widest uppercase">
+      <p className="text-shop-ink/85 mt-5 font-mono text-xs tracking-widest uppercase">
         {languages || "Local language"} + English
       </p>
       <h3 className="mt-1 font-serif text-3xl underline-offset-4 group-hover:underline">
@@ -59,22 +59,22 @@ const steps: readonly { body: string; scene: ReactNode; title: string }[] = [
   {
     title: "Show the card",
     body: "Hand it over before you order and ask for it to go to the kitchen.",
-    scene: <ShowVignette />,
+    scene: <ShowVignette tint="#eaf0b4" />,
   },
   {
     title: "They read it",
     body: "In their own language: peanuts, peanut oil, sauces, shared woks.",
-    scene: <ReadVignette />,
+    scene: <ReadVignette tint="#f2d3be" />,
   },
   {
     title: "They say yes or no",
     body: "One clear question gets a real answer, not a polite nod.",
-    scene: <AnswerVignette />,
+    scene: <AnswerVignette tint="#9eef80" />,
   },
   {
     title: "You eat with confidence",
     body: "A yes means it's confirmed. A no means you find somewhere that can.",
-    scene: <EatVignette />,
+    scene: <EatVignette tint="#d1e030" />,
   },
 ];
 
@@ -108,17 +108,17 @@ const MarkCell = ({ mark }: { mark: Mark }) => {
   }
   if (mark === "no") {
     return (
-      <span className="text-shop-ink/70 font-mono text-xl">
+      <span className="text-shop-ink/80 font-mono text-xl">
         <span aria-hidden="true">✕</span>
         <span className="sr-only">No</span>
       </span>
     );
   }
-  return <span className="text-shop-ink/75 font-mono text-sm">Varies</span>;
+  return <span className="text-shop-ink/85 font-mono text-sm">Varies</span>;
 };
 
 export const ComparisonTable = () => (
-  <div className="border-shop-ink relative overflow-x-auto rounded-[24px] border-2 bg-white">
+  <div className="border-shop-ink bg-shop-sand relative overflow-x-auto rounded-[24px] border-2">
     <table className="w-full min-w-[620px] border-collapse text-left">
       <thead>
         <tr className="border-shop-ink border-b-2">
@@ -180,12 +180,12 @@ export const PlaceholderReviews = () => (
     <ul className="mt-8 grid gap-6 md:grid-cols-3">
       {placeholderReviews.map((review) => (
         <li
-          className="border-shop-ink/80 flex flex-col rounded-[24px] border-2 border-dashed bg-white p-6"
+          className="border-shop-ink/80 bg-shop-sand flex flex-col rounded-[24px] border-2 border-dashed p-6"
           key={review.title}
         >
           <p className="font-serif text-2xl">{review.title}</p>
-          <p className="text-shop-ink/70 mt-3 flex-1 italic">{review.quote}</p>
-          <p className="text-shop-ink/75 mt-6 font-mono text-xs uppercase">
+          <p className="text-shop-ink/80 mt-3 flex-1 italic">{review.quote}</p>
+          <p className="text-shop-ink/85 mt-6 font-mono text-xs uppercase">
             {review.trip}
           </p>
         </li>

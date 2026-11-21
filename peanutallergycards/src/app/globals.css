@@ -47,16 +47,24 @@
   --color-wood: #8a5426;
 
   /* Variant 2 (shop): a Shopify-style store. */
-  --color-shop-ink: #14213d;
-  --color-shop-cream: #fbf6ea;
-  --color-shop-sand: #f1e6cf;
-  /* Dark enough for white text (5:1). */
-  --color-shop-yes: #15803d;
-  --color-shop-yes-dark: #0f5f2e;
-  --color-shop-mint: #c8f2d6;
+  /*
+   * Colours taken from Graza's store (sampled from screenshots): blush
+   * cream, deep olive ink, chartreuse and light green. `shop-yes` is a deep
+   * green added for icons and emphasis, because chartreuse is too light to
+   * read on cream. Chartreuse always takes ink text, never white.
+   */
+  --color-shop-ink: #3c422e;
+  --color-shop-cream: #f6e6d9;
+  --color-shop-sand: #fff4ec;
+  --color-shop-accent: #d1e030;
+  --color-shop-accent-dark: #a5b21c;
+  --color-shop-yes: #3f6212;
+  --color-shop-yes-dark: #2c4a0b;
+  --color-shop-mint: #9eef80;
+  --color-shop-blush: #f2d3be;
   --color-shop-tomato: #ef4b3f;
-  --color-shop-sun: #ffcc33;
-  --color-shop-sky: #cfe6ff;
+  --color-shop-sun: #d1e030;
+  --color-shop-sky: #eaf0b4;
 }
 
 /* The site is light-only: the cards are printed objects, shown as on paper. */

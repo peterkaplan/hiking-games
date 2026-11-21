@@ -70,14 +70,14 @@ export const CheckIcon = ({ className = "size-5" }: { className?: string }) => (
 
 /** Primary and secondary pill buttons. */
 export const buttonPrimary =
-  "inline-flex items-center justify-center gap-2 rounded-full bg-shop-yes px-7 py-4 font-semibold text-white shadow-[0_4px_0_0_var(--color-shop-yes-dark)] transition hover:-translate-y-px hover:shadow-[0_5px_0_0_var(--color-shop-yes-dark)] active:translate-y-1 active:shadow-none focus-visible:outline-3 focus-visible:outline-shop-ink focus-visible:outline-offset-4";
+  "inline-flex items-center justify-center gap-2 rounded-full bg-shop-accent px-7 py-4 font-semibold text-shop-ink shadow-[0_4px_0_0_var(--color-shop-accent-dark)] transition hover:-translate-y-px hover:shadow-[0_5px_0_0_var(--color-shop-accent-dark)] active:translate-y-1 active:shadow-none focus-visible:outline-3 focus-visible:outline-shop-ink focus-visible:outline-offset-4";
 
 export const buttonSecondary =
   "inline-flex items-center justify-center gap-2 rounded-full border-2 border-shop-ink px-7 py-3.5 font-semibold transition hover:bg-shop-ink hover:text-shop-cream focus-visible:outline-3 focus-visible:outline-shop-ink focus-visible:outline-offset-4";
 
 /** A small label in the mono face, e.g. "THE TRIP PACK". */
 export const Eyebrow = ({ children }: { children: ReactNode }) => (
-  <p className="text-shop-ink/70 font-mono text-xs tracking-[0.18em] uppercase">
+  <p className="text-shop-ink/80 font-mono text-xs tracking-[0.18em] uppercase">
     {children}
   </p>
 );

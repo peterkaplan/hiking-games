@@ -59,7 +59,7 @@ export const ProductGallery = ({
             {selected?.content}
           </div>
         </div>
-        <figcaption className="text-shop-ink/75 mt-3 hidden font-mono text-xs tracking-widest uppercase sm:block">
+        <figcaption className="text-shop-ink/85 mt-3 hidden font-mono text-xs tracking-widest uppercase sm:block">
           {selected?.label}
         </figcaption>
       </figure>

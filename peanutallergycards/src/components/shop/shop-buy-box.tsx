@@ -26,7 +26,7 @@ const formatTag: Record<FormatId, string> = {
 };
 
 const optionClass =
-  "relative flex cursor-pointer flex-col rounded-2xl border-2 border-shop-ink/20 bg-white p-4 transition hover:border-shop-ink/60 has-checked:border-shop-ink has-checked:bg-shop-mint/50 has-focus-visible:outline-3 has-focus-visible:outline-shop-yes has-focus-visible:outline-offset-2";
+  "relative flex cursor-pointer flex-col rounded-2xl border-2 border-shop-ink/20 bg-shop-sand p-4 transition hover:border-shop-ink/60 has-checked:border-shop-ink has-checked:bg-shop-mint/50 has-focus-visible:outline-3 has-focus-visible:outline-shop-yes has-focus-visible:outline-offset-2";
 
 export const BUY_BUTTON_ID = "buy-button";
 
@@ -74,7 +74,7 @@ export const ShopBuyBox = ({ state }: { state: TranslationState }) => {
                 {formatTag[format.id]}
               </span>
               <span className="font-semibold">{format.name}</span>
-              <span className="text-shop-ink/70 mt-1 text-base">
+              <span className="text-shop-ink/80 mt-1 text-base">
                 {formatPrice(format.priceUsd)} per country
               </span>
             </label>
@@ -106,14 +106,14 @@ export const ShopBuyBox = ({ state }: { state: TranslationState }) => {
                 </span>
               ) : null}
               <span className="font-serif text-3xl">{option.countries}</span>
-              <span className="text-shop-ink/70 text-sm">
+              <span className="text-shop-ink/80 text-sm">
                 {option.countries === 1 ? "country" : "countries"}
               </span>
             </label>
           ))}
         </div>
         {countries > 1 ? (
-          <p className="text-shop-ink/70 mt-3 text-base">
+          <p className="text-shop-ink/80 mt-3 text-base">
             You&apos;ll choose the other countries at checkout.
           </p>
         ) : null}
@@ -125,7 +125,7 @@ export const ShopBuyBox = ({ state }: { state: TranslationState }) => {
             {formatPrice(price.total)}
           </span>
           {price.total < price.full ? (
-            <span className="text-shop-ink/70 text-xl line-through">
+            <span className="text-shop-ink/80 text-xl line-through">
               {formatPrice(price.full)}
             </span>
           ) : null}
@@ -133,7 +133,7 @@ export const ShopBuyBox = ({ state }: { state: TranslationState }) => {
       ) : null}
 
       <button
-        className="bg-shop-yes disabled:bg-shop-sand disabled:text-shop-ink/75 mt-4 w-full rounded-full px-7 py-4 text-lg font-semibold text-white shadow-[0_4px_0_0_var(--color-shop-yes-dark)] disabled:cursor-not-allowed disabled:shadow-none"
+        className="bg-shop-accent disabled:bg-shop-sand disabled:text-shop-ink/85 text-shop-ink mt-4 w-full rounded-full px-7 py-4 text-lg font-semibold shadow-[0_4px_0_0_var(--color-shop-accent-dark)] disabled:cursor-not-allowed disabled:shadow-none"
         disabled
         id={BUY_BUTTON_ID}
         type="button"
@@ -141,7 +141,7 @@ export const ShopBuyBox = ({ state }: { state: TranslationState }) => {
         {buttonLabel[state]}
       </button>
       {state === "ready" ? null : (
-        <p className="text-shop-ink/70 mt-3 text-center text-base">
+        <p className="text-shop-ink/80 mt-3 text-center text-base">
           We only sell a card once a native speaker has checked it.
         </p>
       )}

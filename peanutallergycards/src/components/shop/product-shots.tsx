@@ -20,7 +20,7 @@ export const PhotoCard = ({
   lang: string;
 }) => (
   <div
-    className={`text-shop-ink @container relative overflow-hidden rounded-[14px] bg-white p-4 shadow-[0_18px_40px_-14px_rgba(20,33,61,0.45)] ring-1 ring-black/5 sm:p-5 ${className}`}
+    className={`text-shop-ink @container relative overflow-hidden rounded-[14px] bg-white p-4 shadow-[0_18px_40px_-14px_rgba(60,66,46,0.45)] ring-1 ring-black/5 sm:p-5 ${className}`}
     lang={lang}
   >
     {children}
@@ -133,7 +133,7 @@ export const PhoneShot = ({ destination }: { destination: Destination }) => {
   const { front } = destination.emergencyCard;
   const text = front?.text ?? cardBacks(destination).emergency;
   return (
-    <div className="bg-shop-ink mx-auto w-[230px] rounded-[2.4rem] p-2.5 shadow-[0_24px_50px_-18px_rgba(20,33,61,0.6)]">
+    <div className="bg-shop-ink mx-auto w-[230px] rounded-[2.4rem] p-2.5 shadow-[0_24px_50px_-18px_rgba(60,66,46,0.6)]">
       <div className="bg-shop-cream flex aspect-[9/18] flex-col rounded-[1.9rem] px-3 pt-3 pb-6">
         <div className="bg-shop-ink mx-auto h-4 w-16 rounded-full" />
         <div className="mt-auto">
@@ -144,7 +144,7 @@ export const PhoneShot = ({ destination }: { destination: Destination }) => {
             <EmergencyCardFace text={text} />
           </PhotoCard>
         </div>
-        <p className="text-shop-ink/75 mt-3 text-center font-mono text-[10px] uppercase">
+        <p className="text-shop-ink/85 mt-3 text-center font-mono text-[10px] uppercase">
           Saved to photos · works offline
         </p>
       </div>

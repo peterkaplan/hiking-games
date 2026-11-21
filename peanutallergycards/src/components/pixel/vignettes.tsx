@@ -13,7 +13,10 @@ import {
   traveller,
 } from "./sprites";
 
-/** Small looping scenes, 48 × 32, one per step of a meal. */
+/**
+ * Small looping scenes, 48 × 32, one per step of a meal. `tint` sets the
+ * background, so each design variant can use its own palette.
+ */
 
 const Stage = ({
   background,
@@ -33,16 +36,16 @@ const Stage = ({
   </svg>
 );
 
-export const ShowVignette = () => (
-  <Stage background={palette.u}>
+export const ShowVignette = ({ tint = palette.u }: { tint?: string }) => (
+  <Stage background={tint}>
     <rect fill={palette.m} height={2} width={48} y={30} />
     <Sprite rows={traveller} x={8} y={8} />
     <Sprite className="px-bob" rows={card} x={24} y={15} />
   </Stage>
 );
 
-export const ReadVignette = () => (
-  <Stage background={palette.c}>
+export const ReadVignette = ({ tint = palette.c }: { tint?: string }) => (
+  <Stage background={tint}>
     <Sprite rows={chef} x={24} y={10} />
     <Sprite rows={chefMouthNeutral} x={29} y={19} />
     <Sprite rows={card} x={16} y={22} />
@@ -74,8 +77,8 @@ export const ReadVignette = () => (
   </Stage>
 );
 
-export const AnswerVignette = () => (
-  <Stage background={palette.m}>
+export const AnswerVignette = ({ tint = palette.m }: { tint?: string }) => (
+  <Stage background={tint}>
     <Sprite rows={chef} x={24} y={10} />
     <Sprite rows={chefMouthSmile} x={29} y={19} />
     <Sprite rows={card} x={16} y={22} />
@@ -83,8 +86,8 @@ export const AnswerVignette = () => (
   </Stage>
 );
 
-export const EatVignette = () => (
-  <Stage background={palette.Y}>
+export const EatVignette = ({ tint = palette.Y }: { tint?: string }) => (
+  <Stage background={tint}>
     <rect fill={palette.O} height={4} width={48} y={28} />
     <Sprite rows={bowl} x={17} y={20} />
     <Sprite className="px-steam" rows={steam} x={20} y={13} />

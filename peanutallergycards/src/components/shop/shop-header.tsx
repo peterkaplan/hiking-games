@@ -69,7 +69,7 @@ export const ShopHeader = () => (
         href="/v2#destinations"
       >
         <CartIcon />
-        <span className="bg-shop-yes absolute -top-0.5 -right-0.5 grid size-5 place-items-center rounded-full font-mono text-[10px] text-white">
+        <span className="bg-shop-accent text-shop-ink absolute -top-0.5 -right-0.5 grid size-5 place-items-center rounded-full font-mono text-[10px]">
           0
         </span>
       </Link>

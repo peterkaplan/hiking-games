@@ -4,6 +4,20 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ---
 
+## 2026-11-21: Variant 2 uses Graza's colour palette
+
+**Decision:** The store variant takes Graza's colours, sampled from their
+site: blush cream `#f6e6d9`, deep olive ink `#3c422e`, chartreuse `#d1e030`,
+light green `#9eef80`, and lighter panels `#fff4ec`. We add a deep green,
+`#3f6212`, for check icons and emphasis.
+**Why:** Of the five stores studied, it suits us best: green already means
+"safe / yes" in our story, and it's fresh and food-friendly. (Ghia's
+maroon and coral would blur with our red allergy warnings.)
+**Rules:** chartreuse always takes olive text, never white (white is 1.5:1).
+Faded olive text needs at least 85% opacity to stay readable.
+**Note:** We use the colours only. Our fonts, logo and layout are our own,
+so the store doesn't look like Graza's brand.
+
 ## 2026-11-21: Two design variants side by side
 
 **Decision:** Keep the pixel-art site (variant 1, at `/`) and add a
