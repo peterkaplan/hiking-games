@@ -35,7 +35,7 @@ export interface CatalogueCountry {
   /** Shown first in pickers and on the homepage. */
   popular: boolean;
   region: RegionId;
-  /** URL segment: /v2/italy. */
+  /** URL segment: /italy. */
   slug: string;
 }
 

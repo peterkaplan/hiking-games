@@ -63,7 +63,7 @@ const Line = ({ line }: { line: CartLine }) => {
       <div className="min-w-0">
         <Link
           className="font-serif text-2xl leading-tight hover:underline"
-          href={`/v2/${country.slug}`}
+          href={`/${country.slug}`}
         >
           The {country.name} Set
         </Link>

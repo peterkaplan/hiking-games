@@ -4,6 +4,20 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ---
 
+## 2026-11-21: The store is the site; hosting on Cloudflare
+
+- The store moved from `/v2` to `/`, and the pixel-art variant was deleted
+  (the owner had moved on from it). It is still in git history.
+- The site is exported as plain files (`output: "export"`) and served by
+  Cloudflare Workers static assets. Reason: every page is static and the cart
+  runs in the browser, so no server is needed until checkout. Cloudflare's
+  docs point Next.js apps that need a server at vinext; revisit that if we
+  ever need server rendering.
+- Search engines are blocked (`robots.txt`) until `NEXT_PUBLIC_SITE_LIVE=on`,
+  so a half-finished store can't be indexed.
+- Payments: Stripe Checkout through a Cloudflare Worker (planned). The Worker
+  sets prices and must refuse countries where `isReady()` is false.
+
 ## 2026-11-21: The Trip Pack is its own product
 
 - A bundle page at `/v2/trip-pack`: tick the countries on your trip (search

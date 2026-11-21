@@ -722,7 +722,7 @@ body {
 /*
  * Store palettes. Great Jones is the default (in @theme above); Allbirds is
  * the one alternative. Switch with data-palette on the store wrapper
- * (src/app/(shop)/v2/layout.tsx).
+ * (src/app/(shop)/layout.tsx).
  */
 [data-palette="allbirds"] {
   --color-shop-bg: #ece9e2;

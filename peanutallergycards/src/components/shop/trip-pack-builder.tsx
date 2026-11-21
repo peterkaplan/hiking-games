@@ -147,7 +147,7 @@ export const TripPackBuilder = () => {
             Added {added} sets to your cart.{" "}
             <Link
               className="font-semibold underline decoration-2 underline-offset-4"
-              href="/v2/cart"
+              href="/cart"
             >
               View cart <span aria-hidden="true">→</span>
             </Link>

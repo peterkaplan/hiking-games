@@ -197,13 +197,13 @@ const ProductPage = async ({ params }: PageProps) => {
       >
         <ol className="flex gap-2">
           <li>
-            <Link className="hover:underline" href="/v2">
+            <Link className="hover:underline" href="/">
               Home
             </Link>
           </li>
           <li aria-hidden="true">/</li>
           <li>
-            <Link className="hover:underline" href="/v2#destinations">
+            <Link className="hover:underline" href="/#destinations">
               Shop by country
             </Link>
           </li>

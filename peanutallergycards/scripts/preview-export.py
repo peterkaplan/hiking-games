@@ -1,6 +1,6 @@
 """Make a preview of the store that runs from plain files in any folder.
 
-    PREVIEW_EXPORT=1 NEXT_PUBLIC_ASSET_BASE="" npx next build
+    NEXT_PUBLIC_ASSET_BASE="" npx next build
     python3 scripts/preview-export.py out <folder>
 
 Turns the export in out/ into a flat folder: every page beside index.html,
@@ -11,16 +11,16 @@ src, dst = sys.argv[1], sys.argv[2]
 shutil.rmtree(dst, ignore_errors=True); os.makedirs(dst)
 shutil.copytree(os.path.join(src,'_next'), os.path.join(dst,'_next'))
 shutil.copytree(os.path.join(src,'flags'), os.path.join(dst,'flags'))
-pages={'v2.html':'home.html'}
-for f in os.listdir(os.path.join(src,'v2')):
-    if f.endswith('.html'): pages['v2/'+f]=f
+pages={'index.html':'home.html'}
+for f in os.listdir(src):
+    if f.endswith('.html') and f not in ('index.html','404.html','_not-found.html'): pages[f]=f
 NAV='''<script>
 // Preview build: pages are flat files, so turn site paths into file names.
 (() => {
   const toFile = (href) => {
     const url = new URL(href, 'https://site.invalid/');
     if (url.origin !== 'https://site.invalid') return null;
-    const match = url.pathname.match(/^\\/v2(?:\\/([a-z0-9-]+))?\\/?$/);
+    const match = url.pathname.match(/^\\/([a-z0-9-]+)?\\/?$/);
     if (!match) return null;
     return (match[1] ? match[1] + '.html' : 'home.html') + url.hash;
   };

@@ -5,9 +5,10 @@
   "scripts": {
     "build": "next build",
     "check": "ultracite check",
+    "deploy": "npm run build && wrangler deploy",
     "dev": "next dev",
     "fix": "ultracite fix",
-    "start": "next start",
+    "preview": "npm run build && wrangler dev",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -24,6 +25,7 @@
     "country-flag-icons": "1.6.20",
     "tailwindcss": "4.3.5",
     "typescript": "5.9.3",
-    "ultracite": "8.3.1"
+    "ultracite": "8.3.1",
+    "wrangler": "4.158.0"
   }
 }

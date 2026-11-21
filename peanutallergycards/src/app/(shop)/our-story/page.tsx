@@ -179,7 +179,7 @@ const BackToShop = () => (
       </h2>
       <Link
         className="bg-shop-bg text-shop-ink hover:bg-shop-panel focus-visible:outline-shop-on-band mt-8 inline-flex items-center gap-2 rounded-full px-7 py-4 font-semibold focus-visible:outline-3 focus-visible:outline-offset-4"
-        href="/v2#destinations"
+        href="/#destinations"
       >
         Shop by country <span aria-hidden="true">→</span>
       </Link>

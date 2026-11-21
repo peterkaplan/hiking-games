@@ -24,12 +24,12 @@ const columns: readonly { heading: string; links: readonly FooterLink[] }[] = [
     heading: "Shop",
     links: [
       ...destinations.map((destination) => ({
-        href: `/v2/${destination.slug}`,
+        href: `/${destination.slug}`,
         label: `The ${destination.country} Set`,
       })),
-      { href: "/v2/trip-pack", label: `The Trip Pack: save ${maxSaving}%` },
+      { href: "/trip-pack", label: `The Trip Pack: save ${maxSaving}%` },
       {
-        href: "/v2#destinations",
+        href: "/#destinations",
         label: NEEDS_SEARCH
           ? `All ${catalogue.length} countries`
           : "All countries",
@@ -39,15 +39,15 @@ const columns: readonly { heading: string; links: readonly FooterLink[] }[] = [
   {
     heading: "About",
     links: [
-      { href: "/v2/our-story", label: "Our story" },
-      ...(LAUNCH_PREVIEW ? [] : [{ href: "/v2#reviews", label: "Reviews" }]),
+      { href: "/our-story", label: "Our story" },
+      ...(LAUNCH_PREVIEW ? [] : [{ href: "/#reviews", label: "Reviews" }]),
     ],
   },
   {
     heading: "Help",
     links: [
-      { href: "/v2#how-it-works", label: "How the cards work" },
-      { href: "/v2#faq", label: "FAQ" },
+      { href: "/#how-it-works", label: "How the cards work" },
+      { href: "/#faq", label: "FAQ" },
     ],
   },
 ];

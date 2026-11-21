@@ -89,7 +89,7 @@ export const CountryBrowser = () => {
             <li className="border-shop-ink border-b" key={country.slug}>
               <Link
                 className="group focus-visible:outline-shop-ink flex items-center gap-3 rounded-sm py-3 focus-visible:outline-3"
-                href={`/v2/${country.slug}`}
+                href={`/${country.slug}`}
               >
                 <Flag
                   className="border-shop-ink h-7 w-auto shrink-0 rounded-md border"

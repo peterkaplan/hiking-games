@@ -205,7 +205,7 @@ const TripPack = () => {
           </p>
           <Link
             className="bg-shop-bg text-shop-ink hover:bg-shop-panel focus-visible:outline-shop-on-band mt-9 inline-flex rounded-full px-7 py-4 font-semibold focus-visible:outline-3 focus-visible:outline-offset-4"
-            href="/v2/trip-pack"
+            href="/trip-pack"
           >
             Build your trip pack
           </Link>

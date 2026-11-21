@@ -7,11 +7,11 @@ import { maxSaving, maxSavingCountries } from "@/content/pricing";
 /** The best multi-country saving, e.g. 25. */
 
 const navLinks = [
-  { href: "/v2#destinations", label: "Shop by country" },
-  { href: "/v2#how-it-works", label: "How it works" },
-  { href: "/v2/our-story", label: "Our story" },
-  ...(LAUNCH_PREVIEW ? [] : [{ href: "/v2#reviews", label: "Reviews" }]),
-  { href: "/v2#faq", label: "FAQ" },
+  { href: "/#destinations", label: "Shop by country" },
+  { href: "/#how-it-works", label: "How it works" },
+  { href: "/our-story", label: "Our story" },
+  ...(LAUNCH_PREVIEW ? [] : [{ href: "/#reviews", label: "Reviews" }]),
+  { href: "/#faq", label: "FAQ" },
 ] as const;
 
 export const AnnouncementBar = () => (
@@ -54,7 +54,7 @@ export const ShopHeader = () => (
       />
       <Link
         className="font-serif text-2xl leading-none tracking-tight"
-        href="/v2"
+        href="/"
       >
         Peanut Allergy Cards
       </Link>
@@ -75,13 +75,13 @@ export const ShopHeader = () => (
       <div className="flex items-center gap-3">
         <Link
           className="bg-shop-highlight text-shop-on-highlight hidden rounded-full px-4 py-2 font-mono text-xs uppercase hover:underline xl:inline-block"
-          href="/v2/trip-pack"
+          href="/trip-pack"
         >
           Trip pack · save {maxSaving}%
         </Link>
         <Link
           className="hover:bg-shop-panel relative rounded-full p-2"
-          href="/v2/cart"
+          href="/cart"
         >
           <CartIcon />
           <CartCount />

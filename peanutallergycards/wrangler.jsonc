@@ -1,0 +1,14 @@
+{
+  // Cloudflare Workers, serving the built site (out/) as static files.
+  // Build: `npm run build`. Deploy: `npm run deploy`, or let Cloudflare build
+  // from GitHub with the same two commands.
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "peanutallergycards",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./out",
+    // /thailand is served from thailand.html.
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}

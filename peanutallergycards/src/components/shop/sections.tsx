@@ -31,7 +31,7 @@ export const ProductTile = ({ destination }: { destination: Destination }) => {
     .map((language) => language.name)
     .join(" + ");
   return (
-    <Link className="group block" href={`/v2/${destination.slug}`}>
+    <Link className="group block" href={`/${destination.slug}`}>
       <div className="relative">
         <Backdrop
           className={`${destinationTint(destination.slug)} aspect-square overflow-hidden transition duration-300 [--shot-zoom:0.32] group-hover:rounded-[40px] min-[380px]:[--shot-zoom:0.4] sm:[--shot-zoom:0.3] lg:[--shot-zoom:0.4]`}
@@ -69,7 +69,7 @@ export const ProductTile = ({ destination }: { destination: Destination }) => {
 export const TripPackTile = () => {
   const [first, second] = destinations;
   return (
-    <Link className="group block" href="/v2/trip-pack">
+    <Link className="group block" href="/trip-pack">
       <div className="relative">
         <Backdrop className="bg-shop-highlight aspect-square overflow-hidden transition duration-300 [--shot-zoom:0.2] group-hover:rounded-[40px] min-[380px]:[--shot-zoom:0.25] sm:[--shot-zoom:0.19] lg:[--shot-zoom:0.25]">
           <div className="space-y-4 transition duration-300 group-hover:scale-[1.03]">
@@ -311,7 +311,7 @@ export const StoryTeaser = () => (
       <p className="mt-5 max-w-lg text-xl">{story.teaser}</p>
       <Link
         className="bg-shop-cta text-shop-on-cta focus-visible:outline-shop-ink mt-8 inline-flex items-center gap-2 rounded-full px-7 py-4 font-semibold focus-visible:outline-3 focus-visible:outline-offset-4"
-        href="/v2/our-story"
+        href="/our-story"
       >
         Read Julia&apos;s story <span aria-hidden="true">→</span>
       </Link>

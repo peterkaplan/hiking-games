@@ -4,7 +4,7 @@
 people travelling and eating out. A small side business: a website with free
 and paid cards, plus an Etsy store.
 
-**Status:** setup. This project lives in the `hiking-games` repo for now and
+**Status:** pre-launch. This project lives in the `hiking-games` repo for now and
 moves to its own repo later (see [Moving to its own repo](#moving-to-its-own-repo)).
 
 ## Where things are
@@ -20,15 +20,6 @@ moves to its own repo later (see [Moving to its own repo](#moving-to-its-own-rep
 | [`src/content/cards/`](src/content/cards/)                   | Card text for every language: the single source of truth         |
 | [`src/app/`](src/app/)                                       | The website (Next.js)                                            |
 
-## Design variants
-
-Two designs are being compared, sharing the same content:
-
-| Variant                | URLs                               | Code                                        |
-| ---------------------- | ---------------------------------- | ------------------------------------------- |
-| 1: pixel art           | `/`, `/thailand`, `/japan`         | `src/app/(pixel)/`, `src/components/pixel/` |
-| 2: Shopify-style store | `/v2`, `/v2/thailand`, `/v2/japan` | `src/app/(shop)/`, `src/components/shop/`   |
-
 ## Run it
 
 ```bash
@@ -38,8 +29,34 @@ npm run dev        # http://localhost:3000
 npm run check      # lint and format check (Biome, via Ultracite)
 npm run fix        # apply lint and format fixes
 npm run typecheck
-npm run build
+npm run build      # writes the whole site to out/ as plain files
+npm run preview    # build, then serve out/ the way Cloudflare will
 ```
+
+## Hosting: Cloudflare
+
+Every page is built ahead of time, so the site is plain files in `out/`,
+served by Cloudflare Workers static assets (`wrangler.jsonc`). There is no
+server yet; checkout will add a small Worker.
+
+To let Cloudflare build from GitHub, import the repository under
+Workers & Pages and set:
+
+| Setting        | Value                 |
+| -------------- | --------------------- |
+| Root directory | `peanutallergycards`  |
+| Build command  | `npm run build`       |
+| Deploy command | `npx wrangler deploy` |
+
+Or deploy by hand with `npm run deploy` (needs `wrangler login` or a
+`CLOUDFLARE_API_TOKEN`).
+
+Two switches, set as build variables in Cloudflare:
+
+- `NEXT_PUBLIC_SITE_LIVE=on` lets search engines in. Leave it off until the
+  store is really open: `robots.txt` blocks everything without it.
+- `NEXT_PUBLIC_LAUNCH_PREVIEW=off` shows each card's real review state
+  instead of the launch-day look.
 
 ## How the card content works
 

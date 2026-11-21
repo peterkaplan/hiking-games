@@ -43,6 +43,10 @@ Tick items off as they're done; add new ones as they come up.
 - [ ] Make the chef card's kitchen lines per-country (they are shared and Thailand-specific today), then write Japan's for Japanese kitchens
 - [ ] Connect checkout (Shopify or Stripe) to the cart; it must refuse any country where `isReady()` is false
 - [ ] Confirm the language for each catalogue country before writing its cards (`src/content/catalogue.ts`)
+- [ ] Cloudflare: import the repo (settings in the README), then attach peanutallergycards.com
+- [ ] Stripe: account, then the checkout Worker (test mode first), thank-you page and order email
+- [ ] Privacy, terms, and refunds and shipping pages
+- [ ] Before opening: `NEXT_PUBLIC_LAUNCH_PREVIEW=off` and `NEXT_PUBLIC_SITE_LIVE=on`
 - [ ] A photo of Julia (or of the original cards from the trip) for the story page, if she's happy to share one
 - [ ] If possible, a named allergist or dietitian who has looked at the cards
 - [x] Store review (2026-11-21): mobile menus, product first on phones, contrast, favicon, fonts via next/font (no layout shift). Lighthouse 94–97 performance and 100 accessibility / best practices / SEO on all four pages; axe-core: no violations

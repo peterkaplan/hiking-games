@@ -2,20 +2,17 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
 
-/*
- * Two design variants share this root:
- * - (pixel): the pixel-art site at / and /[destination];
- * - (shop): a Shopify-style store at /v2 and /v2/[destination].
- * Each route group has its own layout with its own header and footer.
- */
+/** The address the site will live at: used for links in search results. */
+const SITE_URL = "https://peanutallergycards.com";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Peanut Allergy Cards: eat abroad with confidence",
+    default: "Peanut Allergy Cards: eat in restaurants abroad with confidence",
     template: "%s | Peanut Allergy Cards",
   },
   description:
-    "Peanut allergy cards in the local language. Show the card, get a clear yes or no from the kitchen, and eat with confidence.",
+    "Peanut allergy cards in the local language. Hand the card to your waiter, get a clear yes or no from the kitchen, and eat with confidence.",
 };
 
 const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => (
