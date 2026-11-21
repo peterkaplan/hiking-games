@@ -79,13 +79,13 @@ const Hero = () => {
       </div>
       {showcase ? (
         <div className="relative order-first [--shot-zoom:0.4] sm:[--shot-zoom:0.62] lg:order-none lg:[--shot-zoom:0.66]">
-          <Backdrop className="bg-shop-mint">
+          <Backdrop className="bg-shop-backdrop-1">
             <CardSetShot destination={showcase} />
           </Backdrop>
-          <Sticker className="text-shop-accent absolute -top-6 -left-4 rotate-[-10deg] sm:-left-8">
+          <Sticker className="text-shop-highlight absolute -top-6 -left-4 rotate-[-10deg] sm:-left-8">
             Checked by a native speaker
           </Sticker>
-          <Sticker className="text-shop-mint absolute -right-3 -bottom-8 size-24 rotate-[8deg] sm:-right-6">
+          <Sticker className="text-shop-panel absolute -right-3 -bottom-8 size-24 rotate-[8deg] sm:-right-6">
             English on the back
           </Sticker>
         </div>
@@ -99,7 +99,7 @@ const Statement = () => (
     <div className="relative">
       <p className="max-w-5xl font-serif text-5xl leading-[1.02] tracking-tight sm:text-7xl">
         One card. One question.{" "}
-        <span className="bg-shop-accent box-decoration-clone px-2">
+        <span className="bg-shop-highlight text-shop-on-highlight box-decoration-clone px-2">
           A clear yes.
         </span>
       </p>
@@ -122,21 +122,21 @@ const Statement = () => (
 const TripPack = () => {
   const showcase = findDestination("thailand") ?? destinations[0];
   return (
-    <section className="bg-shop-accent text-shop-ink mx-4 rounded-[32px] sm:mx-6">
+    <section className="bg-shop-band text-shop-on-band mx-4 rounded-[32px] sm:mx-6">
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 lg:grid-cols-2 lg:px-12">
         <div>
-          <p className="text-shop-ink font-mono text-xs tracking-[0.18em] uppercase">
+          <p className="text-shop-on-band font-mono text-xs tracking-[0.18em] uppercase">
             The trip pack
           </p>
           <h2 className="mt-4 font-serif text-5xl leading-none sm:text-6xl">
             Going to more than one country?
           </h2>
-          <p className="text-shop-ink mt-6 max-w-md text-xl">
+          <p className="text-shop-on-band mt-6 max-w-md text-xl">
             Add up to three destinations and save {maxSaving}%. Each comes with
             both cards, printed or digital.
           </p>
           <Link
-            className="bg-shop-cream text-shop-ink hover:bg-shop-sand focus-visible:outline-shop-ink mt-9 inline-flex rounded-full px-7 py-4 font-semibold focus-visible:outline-3 focus-visible:outline-offset-4"
+            className="bg-shop-bg text-shop-ink hover:bg-shop-panel focus-visible:outline-shop-on-band mt-9 inline-flex rounded-full px-7 py-4 font-semibold focus-visible:outline-3 focus-visible:outline-offset-4"
             href="#destinations"
           >
             Build your trip pack
@@ -145,7 +145,7 @@ const TripPack = () => {
         {showcase ? (
           <div className="grid items-center gap-10 sm:grid-cols-2 sm:gap-6">
             <PhoneShot destination={showcase} />
-            <div className="bg-shop-cream text-shop-ink -rotate-2 rounded-[24px] p-5">
+            <div className="bg-shop-bg text-shop-ink -rotate-2 rounded-[24px] p-5">
               <PixelArt className="size-12" rows={noPeanut} />
               <p className="mt-3 font-serif text-2xl">Printed + laminated</p>
               <p className="text-shop-ink mt-1 text-base">

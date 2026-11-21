@@ -31,7 +31,7 @@ const Stage = ({
     shapeRendering="crispEdges"
     viewBox="0 0 48 32"
   >
-    <rect fill={background} height={32} width={48} />
+    <rect height={32} style={{ fill: background }} width={48} />
     {children}
   </svg>
 );

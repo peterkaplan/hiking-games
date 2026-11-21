@@ -34,7 +34,7 @@ export const StickyBuyBar = ({
 
   return (
     <div
-      className={`border-shop-ink bg-shop-cream fixed inset-x-0 bottom-0 z-40 border-t-2 transition-transform duration-300 ${visible ? "translate-y-0" : "translate-y-full"}`}
+      className={`border-shop-ink bg-shop-bg fixed inset-x-0 bottom-0 z-40 border-t-2 transition-transform duration-300 ${visible ? "translate-y-0" : "translate-y-full"}`}
       inert={!visible}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
@@ -43,7 +43,7 @@ export const StickyBuyBar = ({
           <p className="text-shop-ink font-mono text-sm">{priceLabel}</p>
         </div>
         <a
-          className="bg-shop-ink text-shop-cream hover:bg-shop-accent hover:text-shop-ink shrink-0 rounded-full px-6 py-3 font-semibold"
+          className="bg-shop-ink text-shop-bg hover:bg-shop-cta hover:text-shop-on-cta shrink-0 rounded-full px-6 py-3 font-semibold"
           href={`#${buyButtonId}`}
         >
           Choose options

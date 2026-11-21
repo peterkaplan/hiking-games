@@ -17,7 +17,7 @@ export const NewsletterForm = () => {
 
   if (sent) {
     return (
-      <p className="bg-shop-mint rounded-2xl px-5 py-4" role="status">
+      <p className="bg-shop-selected rounded-2xl px-5 py-4" role="status">
         Thanks! (Sign-up isn&apos;t connected to an email service yet.)
       </p>
     );
@@ -30,14 +30,14 @@ export const NewsletterForm = () => {
       </label>
       <input
         autoComplete="email"
-        className="border-shop-ink placeholder:text-shop-ink focus-visible:outline-shop-ink bg-shop-sand min-w-0 flex-1 rounded-full border-2 px-5 py-3.5 focus-visible:outline-3 focus-visible:outline-offset-2"
+        className="border-shop-ink placeholder:text-shop-ink focus-visible:outline-shop-ink bg-shop-panel min-w-0 flex-1 rounded-full border-2 px-5 py-3.5 focus-visible:outline-3 focus-visible:outline-offset-2"
         id={inputId}
         placeholder="you@example.com"
         required
         type="email"
       />
       <button
-        className="bg-shop-ink text-shop-cream hover:bg-shop-accent hover:text-shop-ink focus-visible:outline-shop-ink rounded-full px-7 py-3.5 font-semibold focus-visible:outline-3 focus-visible:outline-offset-2"
+        className="bg-shop-ink text-shop-bg hover:bg-shop-cta hover:text-shop-on-cta focus-visible:outline-shop-ink rounded-full px-7 py-3.5 font-semibold focus-visible:outline-3 focus-visible:outline-offset-2"
         type="submit"
       >
         Sign up

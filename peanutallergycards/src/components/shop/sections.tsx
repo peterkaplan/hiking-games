@@ -33,10 +33,10 @@ export const ProductTile = ({ destination }: { destination: Destination }) => {
             <CardSetShot destination={destination} />
           </div>
         </Backdrop>
-        <span className="border-shop-ink bg-shop-cream absolute top-4 left-4 rounded-full border px-3 py-1 font-mono text-xs uppercase">
+        <span className="border-shop-ink bg-shop-bg absolute top-4 left-4 rounded-full border px-3 py-1 font-mono text-xs uppercase">
           {stateLabel[destinationState(destination)]}
         </span>
-        <span className="absolute top-4 right-4 font-mono text-sm">
+        <span className="border-shop-ink bg-shop-bg absolute top-4 right-4 rounded-full border px-3 py-1 font-mono text-sm">
           from {formatPrice(lowestPriceUsd)}
         </span>
       </div>
@@ -59,22 +59,22 @@ const steps: readonly { body: string; scene: ReactNode; title: string }[] = [
   {
     title: "Show the card",
     body: "Hand it over before you order and ask for it to go to the kitchen.",
-    scene: <ShowVignette tint="#fff4ec" />,
+    scene: <ShowVignette tint="var(--color-shop-panel)" />,
   },
   {
     title: "They read it",
     body: "In their own language: peanuts, peanut oil, sauces, shared woks.",
-    scene: <ReadVignette tint="#9eef80" />,
+    scene: <ReadVignette tint="var(--color-shop-backdrop-1)" />,
   },
   {
     title: "They say yes or no",
     body: "One clear question gets a real answer, not a polite nod.",
-    scene: <AnswerVignette tint="#d1e030" />,
+    scene: <AnswerVignette tint="var(--color-shop-highlight)" />,
   },
   {
     title: "You eat with confidence",
     body: "A yes means it's confirmed. A no means you find somewhere that can.",
-    scene: <EatVignette tint="#9eef80" />,
+    scene: <EatVignette tint="var(--color-shop-backdrop-1)" />,
   },
 ];
 
@@ -118,7 +118,7 @@ const MarkCell = ({ mark }: { mark: Mark }) => {
 };
 
 export const ComparisonTable = () => (
-  <div className="border-shop-ink bg-shop-sand relative overflow-x-auto rounded-[24px] border-2">
+  <div className="border-shop-ink bg-shop-panel relative overflow-x-auto rounded-[24px] border-2">
     <table className="w-full min-w-[620px] border-collapse text-left">
       <thead>
         <tr className="border-shop-ink border-b-2">
@@ -126,7 +126,7 @@ export const ComparisonTable = () => (
             <span className="sr-only">Feature</span>
           </th>
           <th
-            className="bg-shop-mint p-4 text-center font-serif text-lg sm:p-5"
+            className="bg-shop-selected p-4 text-center font-serif text-lg sm:p-5"
             scope="col"
           >
             {comparisonColumns.us}
@@ -154,7 +154,7 @@ export const ComparisonTable = () => (
             <th className="p-4 font-medium sm:p-5" scope="row">
               {row.feature}
             </th>
-            <td className="bg-shop-mint p-4 text-center sm:p-5">
+            <td className="bg-shop-selected p-4 text-center sm:p-5">
               <MarkCell mark={row.us} />
             </td>
             <td className="p-4 text-center sm:p-5">
@@ -174,13 +174,13 @@ export const ComparisonTable = () => (
 
 export const PlaceholderReviews = () => (
   <div>
-    <p className="bg-shop-accent inline-block rounded-full px-3 py-1 font-mono text-xs uppercase">
+    <p className="bg-shop-highlight text-shop-on-highlight inline-block rounded-full px-3 py-1 font-mono text-xs uppercase">
       Placeholder reviews: replace with real ones before launch
     </p>
     <ul className="mt-8 grid gap-6 md:grid-cols-3">
       {placeholderReviews.map((review) => (
         <li
-          className="border-shop-ink bg-shop-sand flex flex-col rounded-[24px] border-2 border-dashed p-6"
+          className="border-shop-ink bg-shop-panel flex flex-col rounded-[24px] border-2 border-dashed p-6"
           key={review.title}
         >
           <p className="font-serif text-2xl">{review.title}</p>
@@ -204,7 +204,7 @@ export const ShopFaq = ({ items }: { items: readonly FaqItem[] }) => (
           {item.question}
           <span
             aria-hidden="true"
-            className="border-shop-ink group-open:bg-shop-ink group-open:text-shop-cream grid size-9 shrink-0 place-items-center rounded-full border-2 font-mono text-xl transition group-open:rotate-45"
+            className="border-shop-ink group-open:bg-shop-ink group-open:text-shop-bg grid size-9 shrink-0 place-items-center rounded-full border-2 font-mono text-xl transition group-open:rotate-45"
           >
             +
           </span>

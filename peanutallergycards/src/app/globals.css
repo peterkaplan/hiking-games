@@ -47,17 +47,27 @@
   --color-wood: #8a5426;
 
   /*
-   * Variant 2 (shop): Graza's palette, exactly. These five swatches were
-   * sampled from graza.co (homepage and product page, desktop and phone)
-   * and are the only colours the store uses, apart from the white of the
-   * printed cards themselves. Use them solid, not faded: chartreuse and
-   * light green always take olive text.
+   * Variant 2 (shop). Colours are named for their job, not their hue, so a
+   * whole store palette can be swapped. Each palette below is an exact copy
+   * of a reference store's swatches (sampled from their sites); the store
+   * uses Great Jones by default. Never use these faded: "on-*" colours are
+   * the text colour that goes on top of the matching fill.
    */
-  --color-shop-cream: #f6e6d9; /* page background */
-  --color-shop-ink: #3c422e; /* text, lines, dark bands */
-  --color-shop-accent: #d1e030; /* chartreuse: buttons, bands, highlights */
-  --color-shop-sand: #fff4ec; /* light cream: panels and cards */
-  --color-shop-mint: #9eef80; /* light green: selected options, ticks */
+  --color-shop-bg: #faeddf; /* page background */
+  --color-shop-ink: #000000; /* text and lines */
+  --color-shop-panel: #fffaf5; /* cards, inputs, options */
+  --color-shop-cta: #0e5540; /* buttons, cart badge */
+  --color-shop-on-cta: #ffffff;
+  --color-shop-band: #0e5540; /* bundle band, announcement bar, dark section */
+  --color-shop-on-band: #ffffff;
+  --color-shop-highlight: #ffc933; /* tags, marquee, notices, emphasis */
+  --color-shop-on-highlight: #000000;
+  --color-shop-selected: #ffc933; /* chosen options, comparison column */
+  --color-shop-tick: #0e5540; /* check icons */
+  --color-shop-on-tick: #ffffff;
+  --color-shop-backdrop-1: #0e5540; /* product-photo backdrops */
+  --color-shop-backdrop-2: #ffffff;
+  --color-shop-backdrop-3: #fffaf5;
 }
 
 /* The site is light-only: the cards are printed objects, shown as on paper. */
@@ -707,4 +717,44 @@ body {
     transition: none !important;
     animation: none !important;
   }
+}
+
+/*
+ * Store palettes. Great Jones is the default (in @theme above). Switch with
+ * data-palette on the store wrapper (src/app/(shop)/v2/layout.tsx).
+ */
+[data-palette="graza"] {
+  --color-shop-bg: #f6e6d9;
+  --color-shop-ink: #3c422e;
+  --color-shop-panel: #fff4ec;
+  --color-shop-cta: #d1e030;
+  --color-shop-on-cta: #3c422e;
+  --color-shop-band: #d1e030;
+  --color-shop-on-band: #3c422e;
+  --color-shop-highlight: #d1e030;
+  --color-shop-on-highlight: #3c422e;
+  --color-shop-selected: #9eef80;
+  --color-shop-tick: #9eef80;
+  --color-shop-on-tick: #3c422e;
+  --color-shop-backdrop-1: #9eef80;
+  --color-shop-backdrop-2: #d1e030;
+  --color-shop-backdrop-3: #fff4ec;
+}
+
+[data-palette="allbirds"] {
+  --color-shop-bg: #ece9e2;
+  --color-shop-ink: #212121;
+  --color-shop-panel: #ffffff;
+  --color-shop-cta: #212121;
+  --color-shop-on-cta: #ffffff;
+  --color-shop-band: #212121;
+  --color-shop-on-band: #ffffff;
+  --color-shop-highlight: #c8c5b9;
+  --color-shop-on-highlight: #212121;
+  --color-shop-selected: #c8c5b9;
+  --color-shop-tick: #212121;
+  --color-shop-on-tick: #ffffff;
+  --color-shop-backdrop-1: #ffffff;
+  --color-shop-backdrop-2: #c8c5b9;
+  --color-shop-backdrop-3: #ffffff;
 }

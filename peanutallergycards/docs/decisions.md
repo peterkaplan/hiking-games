@@ -4,21 +4,25 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ---
 
-## 2026-11-21: Variant 2 uses Graza's colour palette, exactly
+## 2026-11-21: Variant 2 uses Great Jones's palette, exactly
 
-**Decision:** The store uses only Graza's five swatches, sampled from
-graza.co (homepage and product page, desktop and phone): blush cream
-`#f6e6d9`, olive ink `#3c422e`, chartreuse `#d1e030`, light cream `#fff4ec`
-and light green `#9eef80`. No extra colours and no faded versions; the only
-exception is the white of the printed cards themselves (the product).
-**Why:** The owner wanted one reference store matched exactly, not a palette
-"inspired by" it. (A first pass added a deep green, a blush and a pale
-chartreuse of our own; those are gone.)
-**Rules:** chartreuse and light green always take olive text. Ticks are an
-olive check on a light-green disc; emphasis is a chartreuse highlight.
+**Decision:** The store uses Great Jones's swatches, sampled from
+greatjonesgoods.com: cream `#faeddf`, deep forest green `#0e5540`, mustard
+`#ffc933`, black `#000000`, white `#ffffff` and light cream `#fffaf5`. Their
+cobalt blue is left out. Graza's and Allbirds's palettes are kept as exact
+alternatives, switched with `data-palette` on the store wrapper
+(`src/app/(shop)/v2/layout.tsx`).
+**Why:** Graza's chartreuse and light-green backgrounds felt too harsh for
+an allergy-safety product. Great Jones is calmer: a deep, grounded green
+that still says "safe / yes", with mustard only in small doses.
+**How:** Colours are named for their job (page background, panel, button,
+band, highlight, selected, tick, product backdrops), each with an "on-*"
+text colour, so a palette is just a list of exact hex values.
 **Check:** a browser audit of every painted colour on /v2, /v2/thailand and
-/v2/japan (desktop and phone) finds only these five.
-**Note:** We use the colours only. Our fonts, logo and layout are our own.
+/v2/japan (desktop and phone) finds only each palette's own swatches, and
+axe-core finds no accessibility violations, for all three palettes.
+**History:** Graza's palette was used first (and before that, a mix with
+colours of our own); the owner found the green too harsh.
 
 ## 2026-11-21: Two design variants side by side
 

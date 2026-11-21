@@ -4,7 +4,7 @@ import { destinations } from "@/content/cards";
 import { NewsletterForm } from "./newsletter-form";
 
 export const ShopFooter = () => (
-  <footer className="border-shop-ink bg-shop-cream mt-28 border-t-2">
+  <footer className="border-shop-ink bg-shop-bg mt-28 border-t-2">
     <div className="mx-auto grid max-w-7xl gap-12 px-4 py-14 sm:px-6 lg:grid-cols-2">
       <div>
         <h2 className="font-serif text-3xl">

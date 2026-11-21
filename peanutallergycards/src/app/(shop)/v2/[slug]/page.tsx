@@ -75,21 +75,21 @@ const slidesFor = (destination: Destination): GallerySlide[] => {
     slides.push({
       id: "chef-front",
       label: `Chef card, front (${language})`,
-      backdrop: "bg-shop-sand",
+      backdrop: "bg-shop-backdrop-3",
       content: <ChefFrontCard destination={destination} />,
     });
   }
   slides.push({
     id: "chef-back",
     label: "Chef card, back (English)",
-    backdrop: "bg-shop-sand",
+    backdrop: "bg-shop-backdrop-3",
     content: <ChefBackCard destination={destination} />,
   });
   if (destination.emergencyCard.front) {
     slides.push({
       id: "emergency-front",
       label: `Emergency card, front (${language})`,
-      backdrop: "bg-shop-accent",
+      backdrop: "bg-shop-backdrop-2",
       content: <EmergencyFrontCard destination={destination} />,
     });
   }
@@ -97,13 +97,13 @@ const slidesFor = (destination: Destination): GallerySlide[] => {
     {
       id: "emergency-back",
       label: "Emergency card, back (English)",
-      backdrop: "bg-shop-accent",
+      backdrop: "bg-shop-backdrop-2",
       content: <EmergencyBackCard destination={destination} />,
     },
     {
       id: "phone",
       label: "Digital: saved to your phone",
-      backdrop: "bg-shop-accent",
+      backdrop: "bg-shop-backdrop-2",
       content: <PhoneShot destination={destination} />,
     }
   );
@@ -169,7 +169,7 @@ const ProductPage = async ({ params }: PageProps) => {
       </nav>
 
       {state === "ready" ? null : (
-        <p className="bg-shop-accent rounded-2xl px-4 py-2 text-sm sm:mt-5 sm:px-5 sm:py-3 sm:text-base">
+        <p className="bg-shop-highlight text-shop-on-highlight rounded-2xl px-4 py-2 text-sm sm:mt-5 sm:px-5 sm:py-3 sm:text-base">
           <strong>Preview:</strong> not yet checked by a native speaker, so not
           on sale.
         </p>
@@ -266,7 +266,7 @@ const ProductPage = async ({ params }: PageProps) => {
             <p className="mb-4 text-center font-mono text-xs tracking-widest uppercase">
               Back · for you
             </p>
-            <div className="bg-shop-sand rounded-[28px] p-6 sm:p-10">
+            <div className="bg-shop-backdrop-3 rounded-[28px] p-6 sm:p-10">
               {destination.chefCard.front ? (
                 <ChefBackCard destination={destination} />
               ) : (
@@ -279,14 +279,14 @@ const ProductPage = async ({ params }: PageProps) => {
 
       {destination.peanutFoods.length > 0 ? (
         <section aria-labelledby="foods-heading" className="pt-28">
-          <div className="bg-shop-ink text-shop-cream rounded-[32px] px-6 py-14 sm:px-12">
+          <div className="bg-shop-band text-shop-on-band rounded-[32px] px-6 py-14 sm:px-12">
             <h2 className="font-serif text-4xl sm:text-5xl" id="foods-heading">
               Where peanuts hide in {destination.country}
             </h2>
             <ul className="mt-10 flex flex-wrap gap-3">
               {destination.peanutFoods.map((food) => (
                 <li
-                  className="border-shop-cream rounded-full border px-5 py-2.5 text-base"
+                  className="border-shop-on-band rounded-full border px-5 py-2.5 text-base"
                   key={food}
                 >
                   {food}

@@ -11,7 +11,7 @@ const navLinks = [
 export const AnnouncementBar = () => (
   <aside
     aria-label="Store announcement"
-    className="bg-shop-ink text-shop-cream px-4 py-2.5 text-center font-mono text-xs tracking-wider uppercase"
+    className="bg-shop-band text-shop-on-band px-4 py-2.5 text-center font-mono text-xs tracking-wider uppercase"
   >
     <p>
       <span className="sm:hidden">Instant download · printed + digital</span>
@@ -34,14 +34,14 @@ const CartIcon = () => (
 );
 
 export const ShopHeader = () => (
-  <header className="border-shop-ink bg-shop-cream sticky top-0 z-30 border-b backdrop-blur">
+  <header className="border-shop-ink bg-shop-bg sticky top-0 z-30 border-b backdrop-blur">
     <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
       <MobileMenu
-        buttonClassName="hover:bg-shop-sand rounded-full p-2 focus-visible:outline-3 focus-visible:outline-shop-ink"
+        buttonClassName="hover:bg-shop-panel rounded-full p-2 focus-visible:outline-3 focus-visible:outline-shop-ink"
         className="lg:hidden"
-        linkClassName="block px-6 py-4 font-serif text-2xl hover:bg-shop-sand"
+        linkClassName="block px-6 py-4 font-serif text-2xl hover:bg-shop-panel"
         links={navLinks}
-        panelClassName="absolute inset-x-0 top-full border-shop-ink border-b-2 bg-shop-cream py-2"
+        panelClassName="absolute inset-x-0 top-full border-shop-ink border-b-2 bg-shop-bg py-2"
       />
       <Link
         className="font-serif text-2xl leading-none tracking-tight"
@@ -65,11 +65,11 @@ export const ShopHeader = () => (
       </nav>
       <Link
         aria-label="Cart, 0 items"
-        className="hover:bg-shop-sand relative rounded-full p-2"
+        className="hover:bg-shop-panel relative rounded-full p-2"
         href="/v2#destinations"
       >
         <CartIcon />
-        <span className="bg-shop-accent text-shop-ink absolute -top-0.5 -right-0.5 grid size-5 place-items-center rounded-full font-mono text-[10px]">
+        <span className="bg-shop-cta text-shop-on-cta absolute -top-0.5 -right-0.5 grid size-5 place-items-center rounded-full font-mono text-[10px]">
           0
         </span>
       </Link>
