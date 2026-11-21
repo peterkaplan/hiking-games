@@ -6,6 +6,7 @@ import {
 } from "@/components/shop/product-shots";
 import { JuliasCard } from "@/components/shop/sections";
 import { findDestination } from "@/content/cards";
+import { LAUNCH_PREVIEW } from "@/content/launch-preview";
 import { story } from "@/content/story";
 
 export const metadata: Metadata = {
@@ -111,7 +112,7 @@ const Note = () => (
   >
     <div className="grid items-center gap-14 lg:grid-cols-2">
       <div className="relative">
-        {story.note.approvedByJulia ? null : (
+        {story.note.approvedByJulia || LAUNCH_PREVIEW ? null : (
           <p className="bg-shop-ink text-shop-bg absolute -top-4 right-4 z-10 rounded-full px-3 py-1 font-mono text-xs uppercase">
             Draft: awaiting Julia&apos;s OK
           </p>

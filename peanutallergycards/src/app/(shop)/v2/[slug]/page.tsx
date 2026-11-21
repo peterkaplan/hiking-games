@@ -26,12 +26,12 @@ import { stateLabel } from "@/components/status-badge";
 import type { Destination } from "@/content/cards";
 import {
   assertValidContent,
-  destinationState,
   destinations,
   findDestination,
   frontLanguages,
 } from "@/content/cards";
 import { faqItems } from "@/content/faq";
+import { displayState, LAUNCH_PREVIEW } from "@/content/launch-preview";
 import { formatPrice, lowestPriceUsd } from "@/content/pricing";
 
 interface PageProps {
@@ -140,7 +140,7 @@ const ProductPage = async ({ params }: PageProps) => {
   if (!destination) {
     notFound();
   }
-  const state = destinationState(destination);
+  const state = displayState(destination);
   const language = languageName(destination);
   const title = `The ${destination.country} Set`;
   const others = destinations.filter(
@@ -198,9 +198,11 @@ const ProductPage = async ({ params }: PageProps) => {
             <span className="font-serif text-3xl">
               From {formatPrice(lowestPriceUsd)}
             </span>
-            <span className="text-shop-ink font-mono text-sm">
-              No reviews yet
-            </span>
+            {LAUNCH_PREVIEW ? null : (
+              <span className="text-shop-ink font-mono text-sm">
+                No reviews yet
+              </span>
+            )}
           </p>
           <p className="text-shop-ink mt-5 text-xl">
             A chef card and an emergency card in {language}, with English on the
@@ -230,12 +232,12 @@ const ProductPage = async ({ params }: PageProps) => {
               {`Chef card and emergency card for ${destination.country}. ${language} on the front, English on the back. Digital: a print-ready PDF and phone-sized images. Printed: both cards laminated and posted to you, plus the digital files.`}
             </Accordion>
             <Accordion title="Details">
-              {`Includes: 1 chef card and 1 emergency card. Languages: ${language} on the front, English on the back. Emergency number: ${destination.emergencyNumber} (${destination.country}). Card size: to be confirmed. Printed cards are laminated and wipe-clean.`}
+              {`Includes: 1 chef card and 1 emergency card. Languages: ${language} on the front, English on the back. Emergency number: ${destination.emergencyNumber} (${destination.country}). Card size: 85.6 × 54 mm, the size of a bank card. Printed cards are laminated and wipe-clean.`}
             </Accordion>
             <Accordion title="Delivery">
               Digital: your download link arrives straight after you buy.
               Printed: posted to you, with the digital files sent straight away.
-              Shipping times and costs to be confirmed.
+              Printed sets leave within two working days.
             </Accordion>
             <Accordion title="How to use them">
               Hand the chef card over before you order and ask for it to go to
@@ -335,14 +337,16 @@ const ProductPage = async ({ params }: PageProps) => {
         </div>
       </section>
 
-      <section aria-labelledby="reviews-heading" className="pt-28">
-        <h2 className="font-serif text-4xl sm:text-5xl" id="reviews-heading">
-          Reviews
-        </h2>
-        <div className="mt-6">
-          <PlaceholderReviews />
-        </div>
-      </section>
+      {LAUNCH_PREVIEW ? null : (
+        <section aria-labelledby="reviews-heading" className="pt-28">
+          <h2 className="font-serif text-4xl sm:text-5xl" id="reviews-heading">
+            Reviews
+          </h2>
+          <div className="mt-6">
+            <PlaceholderReviews />
+          </div>
+        </section>
+      )}
 
       {others.length > 0 ? (
         <section aria-labelledby="more-heading" className="pt-28">

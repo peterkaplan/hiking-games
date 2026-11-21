@@ -4,6 +4,18 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ---
 
+## 2026-11-21: The store shows its launch-day look ("launch preview")
+
+- The owner wants the store written and shown as the finished business, not
+  as today's state. `src/content/launch-preview.ts` switches the _display_:
+  statuses read "Available", preview and draft notices are hidden, the buy
+  button looks live, and the placeholder reviews section is hidden.
+- It does not touch the card data or `isReady()`. Checkout, when built, must
+  use `isReady()` so an unchecked card can't be sold.
+- Reviews are hidden rather than invented. Card size (85.6 × 54 mm) and
+  "printed sets leave within two working days" are our working assumptions.
+- Set `NEXT_PUBLIC_LAUNCH_PREVIEW=off` to see the real state.
+
 ## 2026-11-21: Store footer and story page rebuilt against the reference stores
 
 - **Footer:** a full-width dark band, a turning "Eat with confidence" stamp

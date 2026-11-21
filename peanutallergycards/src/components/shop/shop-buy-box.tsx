@@ -134,7 +134,7 @@ export const ShopBuyBox = ({ state }: { state: TranslationState }) => {
 
       <button
         className="bg-shop-cta disabled:bg-shop-panel disabled:text-shop-ink text-shop-on-cta mt-4 w-full rounded-full px-7 py-4 text-lg font-semibold shadow-[0_4px_0_0_var(--color-shop-ink)] disabled:cursor-not-allowed disabled:shadow-none"
-        disabled
+        disabled={state !== "ready"}
         id={BUY_BUTTON_ID}
         type="button"
       >

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Disclaimer } from "@/components/disclaimer";
 import { destinations } from "@/content/cards";
+import { LAUNCH_PREVIEW } from "@/content/launch-preview";
 import { bundleTiers } from "@/content/pricing";
 import { NewsletterForm } from "./newsletter-form";
 
@@ -36,7 +37,7 @@ const columns: readonly { heading: string; links: readonly FooterLink[] }[] = [
     links: [
       { href: "/v2/our-story", label: "Our story" },
       { href: "/v2#languages", label: "Languages we cover" },
-      { href: "/v2#reviews", label: "Reviews" },
+      ...(LAUNCH_PREVIEW ? [] : [{ href: "/v2#reviews", label: "Reviews" }]),
     ],
   },
   {

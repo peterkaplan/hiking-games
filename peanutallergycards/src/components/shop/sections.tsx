@@ -8,15 +8,11 @@ import {
 } from "@/components/pixel/vignettes";
 import { stateLabel } from "@/components/status-badge";
 import type { Destination } from "@/content/cards";
-import {
-  destinationState,
-  destinations,
-  findDestination,
-  frontLanguages,
-} from "@/content/cards";
+import { destinations, findDestination, frontLanguages } from "@/content/cards";
 import type { Mark } from "@/content/comparison";
 import { comparisonColumns, comparisonRows } from "@/content/comparison";
 import type { FaqItem } from "@/content/faq";
+import { displayState } from "@/content/launch-preview";
 import { formatPrice, lowestPriceUsd } from "@/content/pricing";
 import { placeholderReviews } from "@/content/reviews";
 import { story } from "@/content/story";
@@ -46,7 +42,7 @@ export const ProductTile = ({ destination }: { destination: Destination }) => {
           </div>
         </Backdrop>
         <span className="border-shop-ink bg-shop-bg absolute top-4 left-4 rounded-full border px-3 py-1 font-mono text-xs uppercase">
-          {stateLabel[destinationState(destination)]}
+          {stateLabel[displayState(destination)]}
         </span>
         <span className="border-shop-ink bg-shop-bg absolute top-4 right-4 rounded-full border px-3 py-1 font-mono text-sm">
           from {formatPrice(lowestPriceUsd)}
@@ -106,7 +102,7 @@ export const LanguagesCovered = ({
             <p
               className={`bg-shop-highlight text-shop-on-highlight mt-3 inline-block ${languagePill}`}
             >
-              {stateLabel[destinationState(destination)]}
+              {stateLabel[displayState(destination)]}
             </p>
           </Link>
         </li>

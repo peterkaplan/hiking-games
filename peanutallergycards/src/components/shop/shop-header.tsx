@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { MobileMenu } from "@/components/mobile-menu";
+import { LAUNCH_PREVIEW } from "@/content/launch-preview";
 import { bundleTiers } from "@/content/pricing";
 
 /** The best multi-country saving, e.g. 25. */
@@ -10,7 +11,7 @@ const navLinks = [
   { href: "/v2#destinations", label: "Shop by country" },
   { href: "/v2#how-it-works", label: "How it works" },
   { href: "/v2/our-story", label: "Our story" },
-  { href: "/v2#reviews", label: "Reviews" },
+  ...(LAUNCH_PREVIEW ? [] : [{ href: "/v2#reviews", label: "Reviews" }]),
   { href: "/v2#faq", label: "FAQ" },
 ] as const;
 

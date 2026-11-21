@@ -26,6 +26,7 @@ import {
 } from "@/components/shop/sections";
 import { destinations, findDestination, frontLanguages } from "@/content/cards";
 import { faqItems } from "@/content/faq";
+import { LAUNCH_PREVIEW } from "@/content/launch-preview";
 import { bundleTiers, formatPrice, lowestPriceUsd } from "@/content/pricing";
 
 export const metadata: Metadata = {
@@ -268,18 +269,20 @@ const ShopHome = () => (
       <StoryTeaser />
     </section>
 
-    <section
-      aria-labelledby="reviews-heading"
-      className="mx-auto max-w-7xl scroll-mt-24 px-4 pt-24 sm:px-6"
-      id="reviews"
-    >
-      <h2 className="font-serif text-4xl sm:text-5xl" id="reviews-heading">
-        From travellers
-      </h2>
-      <div className="mt-6">
-        <PlaceholderReviews />
-      </div>
-    </section>
+    {LAUNCH_PREVIEW ? null : (
+      <section
+        aria-labelledby="reviews-heading"
+        className="mx-auto max-w-7xl scroll-mt-24 px-4 pt-24 sm:px-6"
+        id="reviews"
+      >
+        <h2 className="font-serif text-4xl sm:text-5xl" id="reviews-heading">
+          From travellers
+        </h2>
+        <div className="mt-6">
+          <PlaceholderReviews />
+        </div>
+      </section>
+    )}
 
     <section
       aria-labelledby="faq-heading"
