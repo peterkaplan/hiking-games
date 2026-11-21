@@ -7,13 +7,12 @@ import {
   ShowVignette,
 } from "@/components/pixel/vignettes";
 import { stateLabel } from "@/components/status-badge";
-import type { Destination, TranslationState } from "@/content/cards";
+import type { Destination } from "@/content/cards";
 import {
   destinationState,
   destinations,
   findDestination,
   frontLanguages,
-  translationState,
 } from "@/content/cards";
 import type { Mark } from "@/content/comparison";
 import { comparisonColumns, comparisonRows } from "@/content/comparison";
@@ -22,6 +21,7 @@ import { formatPrice, lowestPriceUsd } from "@/content/pricing";
 import { placeholderReviews } from "@/content/reviews";
 import { story } from "@/content/story";
 import { CheckIcon } from "./bits";
+import { Flag } from "./flags";
 import {
   Backdrop,
   CardSetShot,
@@ -68,82 +68,64 @@ export const ProductTile = ({ destination }: { destination: Destination }) => {
   );
 };
 
-/* Translation desk -------------------------------------------------------- */
+/* Languages covered -------------------------------------------------------- */
 
-/*
- * Like a "now harvesting" strip on a food store, but for translations: the
- * honest review status of every card, straight from src/content/cards.
+const languagePill =
+  "border-shop-ink rounded-full border px-2.5 py-1 font-mono text-xs uppercase";
+
+/**
+ * Which languages we cover, as flags: the destinations we have cards for
+ * (with their honest state from src/content/cards), then the ones coming.
  */
-const deskLabel: Record<TranslationState, string> = {
-  missing: "Being written",
-  draft: "Awaiting native-speaker check",
-  "out-of-date": "Being updated",
-  ready: "Checked by a native speaker",
-};
-
-const deskStyle: Record<TranslationState, string> = {
-  missing: "border-shop-ink bg-shop-bg border",
-  draft: "bg-shop-highlight text-shop-on-highlight",
-  "out-of-date": "bg-shop-highlight text-shop-on-highlight",
-  ready: "bg-shop-tick text-shop-on-tick",
-};
-
-const DeskStatus = ({ state }: { state: TranslationState }) => (
-  <span
-    className={`inline-block rounded-2xl px-3 py-1 font-mono text-[11px] uppercase sm:rounded-full sm:text-xs ${deskStyle[state]}`}
-  >
-    {deskLabel[state]}
-  </span>
-);
-
-export const TranslationDesk = () => (
-  <div className="border-shop-ink bg-shop-panel relative overflow-x-auto rounded-[24px] border-2">
-    <table className="w-full border-collapse text-left">
-      <thead>
-        <tr className="border-shop-ink border-b-2 font-mono text-sm uppercase">
-          <th className="p-4 font-normal sm:p-5" scope="col">
-            Country
-          </th>
-          <th className="p-4 font-normal sm:p-5" scope="col">
-            Chef card
-          </th>
-          <th className="p-4 font-normal sm:p-5" scope="col">
-            Emergency card
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {destinations.map((destination) => {
-          const language = frontLanguages(destination)[0]?.name;
-          return (
-            <tr
-              className="border-shop-ink border-b last:border-b-0"
-              key={destination.slug}
+export const LanguagesCovered = ({
+  comingNext,
+}: {
+  comingNext: readonly { country: string; language: string; slug: string }[];
+}) => (
+  <ul className="grid grid-cols-2 gap-x-5 gap-y-10 sm:grid-cols-3 lg:grid-cols-5">
+    {destinations.map((destination) => {
+      const [language] = frontLanguages(destination);
+      return (
+        <li key={destination.slug}>
+          <Link
+            className="group focus-visible:outline-shop-ink block rounded-2xl focus-visible:outline-3 focus-visible:outline-offset-4"
+            href={`/v2/${destination.slug}`}
+          >
+            <Flag
+              className="border-shop-ink w-full rounded-2xl border-2 transition-transform group-hover:-rotate-2"
+              country={destination.slug}
+            />
+            <p className="mt-4 font-serif text-2xl leading-tight group-hover:underline">
+              {destination.country}
+            </p>
+            {language ? (
+              <p className="mt-1" lang={language.code}>
+                {language.nativeName} <span lang="en">· {language.name}</span>
+              </p>
+            ) : null}
+            <p
+              className={`bg-shop-highlight text-shop-on-highlight mt-3 inline-block ${languagePill}`}
             >
-              <th className="p-4 font-normal sm:p-5" scope="row">
-                <span className="block font-serif text-xl">
-                  {destination.country}
-                </span>
-                <span className="font-mono text-sm">
-                  {language ?? "Local language"} + English
-                </span>
-              </th>
-              <td className="p-4 sm:p-5">
-                <DeskStatus
-                  state={translationState(destination.chefCard.front)}
-                />
-              </td>
-              <td className="p-4 sm:p-5">
-                <DeskStatus
-                  state={translationState(destination.emergencyCard.front)}
-                />
-              </td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
-  </div>
+              {stateLabel[destinationState(destination)]}
+            </p>
+          </Link>
+        </li>
+      );
+    })}
+    {comingNext.map((next) => (
+      <li key={next.slug}>
+        <Flag
+          className="border-shop-ink w-full rounded-2xl border-2"
+          country={next.slug}
+        />
+        <p className="mt-4 font-serif text-2xl leading-tight">{next.country}</p>
+        <p className="mt-1">{next.language}</p>
+        <p className={`bg-shop-panel mt-3 inline-block ${languagePill}`}>
+          Coming next
+        </p>
+      </li>
+    ))}
+  </ul>
 );
 
 /* How it works ------------------------------------------------------------ */

@@ -35,7 +35,7 @@ const columns: readonly { heading: string; links: readonly FooterLink[] }[] = [
     heading: "About",
     links: [
       { href: "/v2/our-story", label: "Our story" },
-      { href: "/v2#translation-desk", label: "The translation desk" },
+      { href: "/v2#languages", label: "Languages we cover" },
       { href: "/v2#reviews", label: "Reviews" },
     ],
   },

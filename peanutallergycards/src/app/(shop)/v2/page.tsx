@@ -18,11 +18,11 @@ import {
 import {
   ComparisonTable,
   HowItWorks,
+  LanguagesCovered,
   PlaceholderReviews,
   ProductTile,
   ShopFaq,
   StoryTeaser,
-  TranslationDesk,
 } from "@/components/shop/sections";
 import { destinations, findDestination } from "@/content/cards";
 import { faqItems } from "@/content/faq";
@@ -38,15 +38,19 @@ export const metadata: Metadata = {
 };
 
 const benefits = [
-  "Checked by native speakers",
-  "English on the back",
-  "Local ambulance number",
-  "Instant download",
-  "Works with no signal",
-  "Made for peanut",
+  "Hand it over",
+  "Get a straight answer",
+  "No polite nods",
+  "No pointing at menus",
+  "No signal needed",
+  "Ambulance number on the card",
 ] as const;
 
-const comingNext = ["China", "Mexico", "Italy"] as const;
+const comingNext = [
+  { country: "China", language: "Chinese", slug: "china" },
+  { country: "Mexico", language: "Spanish", slug: "mexico" },
+  { country: "Italy", language: "Italian", slug: "italy" },
+] as const;
 
 const maxSaving = Math.max(...bundleTiers.map((tier) => tier.discountPercent));
 
@@ -74,9 +78,9 @@ const Hero = () => {
         </div>
         <ul className="mt-9 flex flex-wrap gap-x-6 gap-y-3 text-base">
           {[
-            "Checked by native speakers",
-            "English on the back",
-            `From ${formatPrice(lowestPriceUsd)}`,
+            "A straight yes or no, in their language",
+            "Local ambulance number on the card",
+            `On your phone in minutes, from ${formatPrice(lowestPriceUsd)}`,
           ].map((item) => (
             <li className="flex items-center gap-2" key={item}>
               <CheckIcon className="size-5" />
@@ -90,11 +94,11 @@ const Hero = () => {
           <Backdrop className="bg-shop-backdrop-1">
             <CardSetShot destination={showcase} />
           </Backdrop>
-          <Sticker className="text-shop-highlight absolute -top-6 -left-4 rotate-[-10deg] sm:-left-8">
-            Checked by a native speaker
+          <Sticker className="text-shop-highlight absolute -top-8 -left-2 z-10 rotate-[-10deg] max-sm:size-24 sm:-top-6 sm:-left-8">
+            No polite nods
           </Sticker>
-          <Sticker className="text-shop-panel absolute -right-3 -bottom-8 size-24 rotate-[8deg] sm:-right-6">
-            English on the back
+          <Sticker className="text-shop-panel absolute -right-1 -bottom-10 z-10 size-24 rotate-[8deg] sm:-right-6 sm:-bottom-8">
+            Works with no signal
           </Sticker>
         </div>
       ) : null}
@@ -188,7 +192,7 @@ const ShopHome = () => (
           Shop by country
         </h2>
         <p className="text-shop-ink font-mono text-sm uppercase">
-          Coming next: {comingNext.join(" · ")}
+          Coming next: {comingNext.map((next) => next.country).join(" · ")}
         </p>
       </div>
       <div className="mt-12 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
@@ -232,19 +236,20 @@ const ShopHome = () => (
     </section>
 
     <section
-      aria-labelledby="desk-heading"
-      className="mx-auto max-w-5xl scroll-mt-24 px-4 pt-24 sm:px-6"
-      id="translation-desk"
+      aria-labelledby="languages-heading"
+      className="mx-auto max-w-7xl scroll-mt-24 px-4 pt-24 sm:px-6"
+      id="languages"
     >
-      <h2 className="font-serif text-4xl sm:text-5xl" id="desk-heading">
-        The translation desk
+      <h2 className="font-serif text-4xl sm:text-5xl" id="languages-heading">
+        Where are you eating next?
       </h2>
       <p className="text-shop-ink mt-4 max-w-2xl text-xl">
-        Every card is checked by a native speaker before it goes on sale.
-        Here&apos;s where each one stands today.
+        {destinations.length} languages so far, each with English on the back.
+        We add one country at a time, because a native speaker checks every card
+        before it goes on sale.
       </p>
-      <div className="mt-8">
-        <TranslationDesk />
+      <div className="mt-10">
+        <LanguagesCovered comingNext={comingNext} />
       </div>
     </section>
 
