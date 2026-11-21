@@ -9,9 +9,10 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 **Decision:** The store uses Great Jones's swatches, sampled from
 greatjonesgoods.com: cream `#faeddf`, deep forest green `#0e5540`, mustard
 `#ffc933`, black `#000000`, white `#ffffff` and light cream `#fffaf5`. Their
-cobalt blue is left out. Graza's and Allbirds's palettes are kept as exact
-alternatives, switched with `data-palette` on the store wrapper
-(`src/app/(shop)/v2/layout.tsx`).
+cobalt blue is left out. Allbirds's palette is kept as an exact alternative,
+switched with `data-palette` on the store wrapper
+(`src/app/(shop)/v2/layout.tsx`). Graza's palette has been removed: its
+chartreuse evokes Graza's olive oil and isn't ours.
 **Why:** Graza's chartreuse and light-green backgrounds felt too harsh for
 an allergy-safety product. Great Jones is calmer: a deep, grounded green
 that still says "safe / yes", with mustard only in small doses.

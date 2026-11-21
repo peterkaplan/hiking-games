@@ -5,7 +5,7 @@ import { shopFontVariables } from "@/fonts/shop-fonts";
 
 /**
  * Layout for variant 2: a Shopify-style store. `data-palette` picks the
- * colour palette (greatjones, graza or allbirds; see globals.css).
+ * colour palette (greatjones or allbirds; see globals.css).
  */
 const ShopLayout = ({ children }: Readonly<{ children: ReactNode }>) => (
   <div

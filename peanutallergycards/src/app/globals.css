@@ -720,27 +720,10 @@ body {
 }
 
 /*
- * Store palettes. Great Jones is the default (in @theme above). Switch with
- * data-palette on the store wrapper (src/app/(shop)/v2/layout.tsx).
+ * Store palettes. Great Jones is the default (in @theme above); Allbirds is
+ * the one alternative. Switch with data-palette on the store wrapper
+ * (src/app/(shop)/v2/layout.tsx).
  */
-[data-palette="graza"] {
-  --color-shop-bg: #f6e6d9;
-  --color-shop-ink: #3c422e;
-  --color-shop-panel: #fff4ec;
-  --color-shop-cta: #d1e030;
-  --color-shop-on-cta: #3c422e;
-  --color-shop-band: #d1e030;
-  --color-shop-on-band: #3c422e;
-  --color-shop-highlight: #d1e030;
-  --color-shop-on-highlight: #3c422e;
-  --color-shop-selected: #9eef80;
-  --color-shop-tick: #9eef80;
-  --color-shop-on-tick: #3c422e;
-  --color-shop-backdrop-1: #9eef80;
-  --color-shop-backdrop-2: #d1e030;
-  --color-shop-backdrop-3: #fff4ec;
-}
-
 [data-palette="allbirds"] {
   --color-shop-bg: #ece9e2;
   --color-shop-ink: #212121;
