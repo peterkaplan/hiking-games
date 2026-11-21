@@ -4,6 +4,21 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ---
 
+## 2026-11-21: The store is built for 100 countries
+
+- Owner's direction: assume 100 countries and build as if they exist now.
+- `src/content/catalogue.ts` lists every country we sell (name, flag code,
+  language, region). The homepage browser, the add-a-country picker and the
+  cart all run on it, with search, so they work the same at any size.
+- Card text still lives only in `src/content/cards`. A catalogue country
+  without card text gets a product page with sample cards (wording held
+  back) and no emergency number shown. `isReady()` is unchanged.
+- **Buying several countries:** each country is its own cart line. On a
+  product page you search and add other countries; the discount (2: 15%,
+  3 or more: 25%) applies to everything and shows live. The cart is saved in
+  the browser. Checkout is not connected yet.
+- Flags come from the country-flag-icons package (files in `public/flags`).
+
 ## 2026-11-21: Cards are adapted to each country's cooking, not only its language
 
 - Owner's direction: each card must speak to the waiter and chef in terms of

@@ -10,6 +10,7 @@ import {
   Marquee,
   Sticker,
 } from "@/components/shop/bits";
+import { CountryBrowser } from "@/components/shop/country-browser";
 import { Flag } from "@/components/shop/flags";
 import {
   Backdrop,
@@ -19,15 +20,14 @@ import {
 import {
   ComparisonTable,
   HowItWorks,
-  LanguagesCovered,
   PlaceholderReviews,
   ProductTile,
   ShopFaq,
   StoryTeaser,
 } from "@/components/shop/sections";
-import { destinations, findDestination, frontLanguages } from "@/content/cards";
+import { destinations, findDestination } from "@/content/cards";
 import { englishChefCard } from "@/content/cards/english";
-import { CONTACT_EMAIL } from "@/content/contact";
+import { catalogue, findCountry, languageCount } from "@/content/catalogue";
 import { faqItems } from "@/content/faq";
 import { LAUNCH_PREVIEW } from "@/content/launch-preview";
 import { bundleTiers, formatPrice, lowestPriceUsd } from "@/content/pricing";
@@ -49,22 +49,6 @@ const benefits = [
   "No wifi",
   "Local peanut guide included",
 ] as const;
-
-const comingNext = [
-  { country: "China", language: "Chinese", slug: "china" },
-  { country: "Mexico", language: "Spanish", slug: "mexico" },
-  { country: "Italy", language: "Italian", slug: "italy" },
-] as const;
-
-const listFormat = new Intl.ListFormat("en", { type: "conjunction" });
-
-/** "Japanese and Thai": the languages we have cards for. */
-const speaking = listFormat.format(
-  destinations.flatMap(
-    (destination) => frontLanguages(destination).at(0)?.name ?? []
-  )
-);
-const learning = listFormat.format(comingNext.map((next) => next.language));
 
 const maxSaving = Math.max(...bundleTiers.map((tier) => tier.discountPercent));
 
@@ -173,7 +157,7 @@ const LocalKitchen = () => {
             <figcaption className="flex items-center gap-3 font-mono text-xs tracking-[0.18em] uppercase">
               <Flag
                 className="border-shop-ink w-10 rounded-md border"
-                country={example.slug}
+                code={findCountry(example.slug)?.code ?? "th"}
               />
               On the {example.country} card
             </figcaption>
@@ -250,13 +234,19 @@ const ShopHome = () => (
           Shop by country
         </h2>
         <p className="text-shop-ink font-mono text-sm uppercase">
-          Coming next: {comingNext.map((next) => next.country).join(" · ")}
+          {catalogue.length} countries · {languageCount} languages
         </p>
       </div>
       <div className="mt-12 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
         {destinations.map((destination) => (
           <ProductTile destination={destination} key={destination.slug} />
         ))}
+      </div>
+      <h3 className="mt-20 font-serif text-3xl sm:text-4xl">
+        Now speaking {languageCount} languages.
+      </h3>
+      <div className="mt-6">
+        <CountryBrowser />
       </div>
     </section>
 
@@ -292,29 +282,6 @@ const ShopHome = () => (
       </h2>
       <div className="mt-10">
         <ComparisonTable />
-      </div>
-    </section>
-
-    <section
-      aria-labelledby="languages-heading"
-      className="mx-auto max-w-7xl scroll-mt-24 px-4 pt-24 sm:px-6"
-      id="languages"
-    >
-      <h2 className="font-serif text-4xl sm:text-5xl" id="languages-heading">
-        Now speaking {speaking}.
-      </h2>
-      <p className="text-shop-ink mt-4 max-w-2xl text-xl">
-        {learning} are learning their lines. Going somewhere else? Email{" "}
-        <a
-          className="font-semibold underline decoration-2 underline-offset-4"
-          href={`mailto:${CONTACT_EMAIL}`}
-        >
-          {CONTACT_EMAIL}
-        </a>{" "}
-        and we&apos;ll add it.
-      </p>
-      <div className="mt-10">
-        <LanguagesCovered comingNext={comingNext} />
       </div>
     </section>
 

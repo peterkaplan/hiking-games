@@ -1,18 +1,23 @@
 "use client";
 
-import type { ChangeEvent } from "react";
-import { useCallback, useId, useState } from "react";
+import Link from "next/link";
+import type { ChangeEvent, MouseEvent } from "react";
+import { useCallback, useId, useMemo, useState } from "react";
 import type { TranslationState } from "@/content/cards";
-import type { FormatId } from "@/content/pricing";
+import { findCountry } from "@/content/catalogue";
+import type { CartLine, FormatId } from "@/content/pricing";
 import {
-  bundlePrice,
   bundleTiers,
+  cartTotals,
   formatPrice,
   formats,
 } from "@/content/pricing";
 import { CheckIcon } from "./bits";
+import { addToCart } from "./cart-store";
+import { CountryPicker } from "./country-picker";
+import { Flag } from "./flags";
 
-/** The buy button stays disabled until a destination is reviewed and checkout exists. */
+/** The buy button is only live once a destination's cards can be sold. */
 const buttonLabel: Record<TranslationState, string> = {
   missing: "Coming soon",
   "out-of-date": "Being updated",
@@ -28,32 +33,66 @@ const formatTag: Record<FormatId, string> = {
 const optionClass =
   "relative flex cursor-pointer flex-col rounded-2xl border-2 border-shop-ink bg-shop-panel p-4 transition hover:border-shop-ink has-checked:border-shop-ink has-checked:bg-shop-selected has-focus-visible:outline-3 has-focus-visible:outline-shop-ink has-focus-visible:outline-offset-2";
 
+const savings = bundleTiers
+  .filter((tier) => tier.discountPercent > 0)
+  .map(
+    (tier, index, tiers) =>
+      `${tier.countries}${index === tiers.length - 1 ? "+" : ""} countries: ${tier.discountPercent}% off`
+  )
+  .join(" · ");
+
 export const BUY_BUTTON_ID = "buy-button";
 
-export const ShopBuyBox = ({ state }: { state: TranslationState }) => {
+/**
+ * Choose a format, add any other countries on the trip, and put the lot in
+ * the cart. `slug` is the country whose page this is.
+ */
+export const ShopBuyBox = ({
+  slug,
+  state,
+}: {
+  slug: string;
+  state: TranslationState;
+}) => {
   const [formatId, setFormatId] = useState<FormatId>(
     formats.at(0)?.id ?? "printed"
   );
-  const [countries, setCountries] = useState(1);
+  const [extras, setExtras] = useState<readonly string[]>([]);
+  const [added, setAdded] = useState(0);
   const formatName = useId();
-  const tierName = useId();
 
-  const unitPrice =
-    formats.find((format) => format.id === formatId)?.priceUsd ?? 0;
-  const tier =
-    bundleTiers.find((option) => option.countries === countries) ??
-    bundleTiers[0];
-  const price = tier ? bundlePrice(unitPrice, tier) : undefined;
+  const lines = useMemo<CartLine[]>(
+    () => [slug, ...extras].map((item) => ({ slug: item, format: formatId })),
+    [slug, extras, formatId]
+  );
+  const chosen = useMemo(() => [slug, ...extras], [slug, extras]);
+  const totals = cartTotals(lines);
 
   const handleFormat = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    const chosen = formats.find((f) => f.id === event.currentTarget.value);
-    if (chosen) {
-      setFormatId(chosen.id);
+    const picked = formats.find((f) => f.id === event.currentTarget.value);
+    if (picked) {
+      setFormatId(picked.id);
+      setAdded(0);
     }
   }, []);
-  const handleTier = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    setCountries(Number(event.currentTarget.value));
+  const handleAddCountry = useCallback((country: string) => {
+    setExtras((current) =>
+      current.includes(country) ? current : [...current, country]
+    );
+    setAdded(0);
   }, []);
+  const handleRemoveCountry = useCallback(
+    (event: MouseEvent<HTMLButtonElement>) => {
+      const { slug: country } = event.currentTarget.dataset;
+      setExtras((current) => current.filter((item) => item !== country));
+      setAdded(0);
+    },
+    []
+  );
+  const handleAddToCart = useCallback(() => {
+    addToCart(lines);
+    setAdded(lines.length);
+  }, [lines]);
 
   return (
     <div>
@@ -84,71 +123,93 @@ export const ShopBuyBox = ({ state }: { state: TranslationState }) => {
         </div>
       </fieldset>
 
-      <fieldset className="mt-6">
-        <legend className="font-mono text-xs tracking-widest uppercase">
-          Countries
-        </legend>
-        <div className="mt-3 grid grid-cols-3 gap-3">
-          {bundleTiers.map((option) => (
-            <label
-              className={`${optionClass} items-center text-center`}
-              key={option.countries}
-            >
-              <input
-                checked={option.countries === countries}
-                className="sr-only"
-                name={tierName}
-                onChange={handleTier}
-                type="radio"
-                value={option.countries}
-              />
-              {option.tag ? (
-                <span className="bg-shop-highlight text-shop-on-highlight absolute -top-3 rounded-full px-2 py-0.5 font-mono text-[10px] uppercase">
-                  {option.tag}
-                </span>
-              ) : null}
-              <span className="font-serif text-3xl">{option.countries}</span>
-              <span className="text-shop-ink text-sm">
-                {option.countries === 1 ? "country" : "countries"}
-              </span>
-            </label>
-          ))}
-        </div>
-        {countries > 1 ? (
-          <p className="text-shop-ink mt-3 text-base">
-            You&apos;ll choose the other countries at checkout.
+      <div className="mt-6">
+        <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+          <h3 className="font-mono text-xs tracking-widest uppercase">
+            Visiting more than one country?
+          </h3>
+          <p className="bg-shop-highlight text-shop-on-highlight rounded-full px-2.5 py-0.5 font-mono text-[10px] uppercase">
+            {savings}
           </p>
+        </div>
+        {extras.length > 0 ? (
+          <ul className="mt-3 flex flex-wrap gap-2">
+            {extras.map((item) => {
+              const country = findCountry(item);
+              return country ? (
+                <li
+                  className="bg-shop-selected border-shop-ink flex items-center gap-2 rounded-full border-2 py-1 pr-1 pl-2 text-base font-semibold"
+                  key={item}
+                >
+                  <Flag
+                    className="border-shop-ink h-5 w-auto rounded-sm border"
+                    code={country.code}
+                  />
+                  {country.name}
+                  <button
+                    className="hover:bg-shop-panel focus-visible:outline-shop-ink grid size-7 place-items-center rounded-full focus-visible:outline-3"
+                    data-slug={item}
+                    onClick={handleRemoveCountry}
+                    type="button"
+                  >
+                    <span aria-hidden="true">✕</span>
+                    <span className="sr-only">Remove {country.name}</span>
+                  </button>
+                </li>
+              ) : null;
+            })}
+          </ul>
         ) : null}
-      </fieldset>
+        <div className="mt-3">
+          <CountryPicker
+            exclude={chosen}
+            label="Add another country"
+            onAdd={handleAddCountry}
+          />
+        </div>
+      </div>
 
-      {price ? (
-        <p className="mt-7 flex items-baseline gap-3">
-          <span className="font-serif text-4xl">
-            {formatPrice(price.total)}
-          </span>
-          {price.total < price.full ? (
+      <p className="mt-7 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+        <span className="font-serif text-4xl">{formatPrice(totals.total)}</span>
+        {totals.discount > 0 ? (
+          <>
             <span className="text-shop-ink text-xl line-through">
-              {formatPrice(price.full)}
+              {formatPrice(totals.subtotal)}
             </span>
-          ) : null}
-        </p>
-      ) : null}
+            <span className="bg-shop-highlight text-shop-on-highlight rounded-full px-2.5 py-0.5 font-mono text-xs uppercase">
+              {totals.discountPercent}% off {lines.length} countries
+            </span>
+          </>
+        ) : null}
+      </p>
 
       <button
         className="bg-shop-cta disabled:bg-shop-panel disabled:text-shop-ink text-shop-on-cta mt-4 w-full rounded-full px-7 py-4 text-lg font-semibold shadow-[0_4px_0_0_var(--color-shop-ink)] disabled:cursor-not-allowed disabled:shadow-none"
         disabled={state !== "ready"}
         id={BUY_BUTTON_ID}
+        onClick={handleAddToCart}
         type="button"
       >
         {buttonLabel[state]}
       </button>
-      {state === "ready" ? null : (
-        <p className="text-shop-ink mt-3 text-center text-base">
-          We only sell a card once a native speaker has checked it.
-        </p>
-      )}
+      <p aria-live="polite" className="mt-3 text-center text-base">
+        {added > 0 ? (
+          <>
+            Added {added === 1 ? "1 set" : `${added} sets`} to your cart.{" "}
+            <Link
+              className="font-semibold underline decoration-2 underline-offset-4"
+              href="/v2/cart"
+            >
+              View cart <span aria-hidden="true">→</span>
+            </Link>
+          </>
+        ) : null}
+        {added === 0 && state !== "ready"
+          ? "We only sell a card once a native speaker has checked it."
+          : null}
+      </p>
 
-      <ul className="border-shop-ink mt-7 grid grid-cols-3 gap-3 border-y py-5 text-center text-sm">
+      <ul className="border-shop-ink mt-4 grid grid-cols-3 gap-3 border-y py-5 text-center text-sm">
         {[
           "Checked by a native speaker",
           "English on the back",

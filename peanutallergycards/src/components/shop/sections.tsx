@@ -8,7 +8,7 @@ import {
 } from "@/components/pixel/vignettes";
 import { stateLabel } from "@/components/status-badge";
 import type { Destination } from "@/content/cards";
-import { destinations, findDestination, frontLanguages } from "@/content/cards";
+import { findDestination, frontLanguages } from "@/content/cards";
 import type { Mark } from "@/content/comparison";
 import { comparisonColumns, comparisonRows } from "@/content/comparison";
 import type { FaqItem } from "@/content/faq";
@@ -17,7 +17,6 @@ import { formatPrice, lowestPriceUsd } from "@/content/pricing";
 import { placeholderReviews } from "@/content/reviews";
 import { story } from "@/content/story";
 import { CheckIcon } from "./bits";
-import { Flag } from "./flags";
 import {
   Backdrop,
   CardSetShot,
@@ -63,66 +62,6 @@ export const ProductTile = ({ destination }: { destination: Destination }) => {
     </Link>
   );
 };
-
-/* Languages covered -------------------------------------------------------- */
-
-const languagePill =
-  "border-shop-ink rounded-full border px-2.5 py-1 font-mono text-xs uppercase";
-
-/**
- * Which languages we cover, as flags: the destinations we have cards for
- * (with their honest state from src/content/cards), then the ones coming.
- */
-export const LanguagesCovered = ({
-  comingNext,
-}: {
-  comingNext: readonly { country: string; language: string; slug: string }[];
-}) => (
-  <ul className="grid grid-cols-2 gap-x-5 gap-y-10 sm:grid-cols-3 lg:grid-cols-5">
-    {destinations.map((destination) => {
-      const [language] = frontLanguages(destination);
-      return (
-        <li key={destination.slug}>
-          <Link
-            className="group focus-visible:outline-shop-ink block rounded-2xl focus-visible:outline-3 focus-visible:outline-offset-4"
-            href={`/v2/${destination.slug}`}
-          >
-            <Flag
-              className="border-shop-ink w-full rounded-2xl border-2 transition-transform group-hover:-rotate-2"
-              country={destination.slug}
-            />
-            <p className="mt-4 font-serif text-2xl leading-tight group-hover:underline">
-              {destination.country}
-            </p>
-            {language ? (
-              <p className="mt-1" lang={language.code}>
-                {language.nativeName} <span lang="en">· {language.name}</span>
-              </p>
-            ) : null}
-            <p
-              className={`bg-shop-highlight text-shop-on-highlight mt-3 inline-block ${languagePill}`}
-            >
-              {stateLabel[displayState(destination)]}
-            </p>
-          </Link>
-        </li>
-      );
-    })}
-    {comingNext.map((next) => (
-      <li key={next.slug}>
-        <Flag
-          className="border-shop-ink w-full rounded-2xl border-2"
-          country={next.slug}
-        />
-        <p className="mt-4 font-serif text-2xl leading-tight">{next.country}</p>
-        <p className="mt-1">{next.language}</p>
-        <p className={`bg-shop-panel mt-3 inline-block ${languagePill}`}>
-          Coming next
-        </p>
-      </li>
-    ))}
-  </ul>
-);
 
 /* How it works ------------------------------------------------------------ */
 

@@ -12,6 +12,8 @@ import {
   EmergencyBackCard,
   EmergencyFrontCard,
   PhoneShot,
+  SampleCard,
+  SampleSetShot,
 } from "@/components/shop/product-shots";
 import {
   ComparisonTable,
@@ -27,9 +29,10 @@ import type { Destination } from "@/content/cards";
 import {
   assertValidContent,
   destinations,
-  findDestination,
   frontLanguages,
 } from "@/content/cards";
+import type { CatalogueCountry } from "@/content/catalogue";
+import { catalogue, findCountry, shopDestination } from "@/content/catalogue";
 import { faqItems } from "@/content/faq";
 import { displayState, LAUNCH_PREVIEW } from "@/content/launch-preview";
 import { formatPrice, lowestPriceUsd } from "@/content/pricing";
@@ -42,27 +45,62 @@ export const dynamicParams = false;
 
 export const generateStaticParams = () => {
   assertValidContent();
-  return destinations.map(({ slug }) => ({ slug }));
+  return catalogue.map(({ slug }) => ({ slug }));
 };
 
 const languageName = (destination: Destination): string =>
-  frontLanguages(destination)[0]?.name ?? "the local language";
+  frontLanguages(destination).at(0)?.name ??
+  findCountry(destination.slug)?.language ??
+  "the local language";
+
+/** Whether we have this country's own card text to show. */
+const hasCards = (destination: Destination): boolean =>
+  Boolean(destination.chefCard.front ?? destination.emergencyCard.front);
+
+/** "1669" → " (1669)"; nothing when we don't hold the number yet. */
+const ambulance = (destination: Destination): string =>
+  destination.emergencyNumber ? ` (${destination.emergencyNumber})` : "";
 
 export const generateMetadata = async ({
   params,
 }: PageProps): Promise<Metadata> => {
-  const destination = findDestination((await params).slug);
+  const destination = shopDestination((await params).slug);
   if (!destination) {
     return {};
   }
   const language = languageName(destination);
   return {
     title: `${language} Peanut Allergy Card for ${destination.country}: Chef Card + Emergency Card`,
-    description: `Hand it to your waiter before you order: a ${language} chef card that asks the kitchen for a clear yes or no, plus an emergency card with ${destination.country}'s ambulance number (${destination.emergencyNumber}). Comes with a local peanut guide. English on the back.`,
+    description: `Hand it to your waiter before you order: a ${language} chef card that asks the kitchen for a clear yes or no, plus an emergency card with ${destination.country}'s ambulance number${ambulance(destination)}. Comes with a local peanut guide. English on the back.`,
   };
 };
 
+const sampleSlides = (country: CatalogueCountry): GallerySlide[] => [
+  {
+    id: "set",
+    label: "The set: chef card and emergency card",
+    backdrop: "bg-shop-backdrop-1",
+    content: <SampleSetShot country={country} />,
+  },
+  {
+    id: "chef",
+    label: `Chef card (${country.language} front, English back)`,
+    backdrop: "bg-shop-backdrop-3",
+    content: <SampleCard country={country} kind="chef" />,
+  },
+  {
+    id: "emergency",
+    label: `Emergency card (${country.language} front, English back)`,
+    backdrop: "bg-shop-backdrop-2",
+    content: <SampleCard country={country} kind="emergency" />,
+  },
+];
+
 const slidesFor = (destination: Destination): GallerySlide[] => {
+  const country = findCountry(destination.slug);
+  if (country && !hasCards(destination)) {
+    return sampleSlides(country);
+  }
   const language = languageName(destination);
   const tint = destinationTint(destination.slug);
   const slides: GallerySlide[] = [
@@ -136,7 +174,7 @@ const Accordion = ({
 );
 
 const ProductPage = async ({ params }: PageProps) => {
-  const destination = findDestination((await params).slug);
+  const destination = shopDestination((await params).slug);
   if (!destination) {
     notFound();
   }
@@ -215,7 +253,7 @@ const ProductPage = async ({ params }: PageProps) => {
           <ul className="mt-3 space-y-2.5">
             {[
               `Chef card: written for how ${destination.country} cooks${destination.kitchenFocus ? `, down to ${destination.kitchenFocus}` : ""}. It asks if they can cook for you`,
-              `Emergency card: gets someone to call ${destination.emergencyNumber}, fast`,
+              `Emergency card: gets someone to call an ambulance${ambulance(destination)}, fast`,
               `Peanut guide: how to say it and where it hides in ${destination.country}`,
             ].map((point) => (
               <li className="flex gap-3" key={point}>
@@ -226,7 +264,7 @@ const ProductPage = async ({ params }: PageProps) => {
           </ul>
 
           <div className="mt-8">
-            <ShopBuyBox state={state} />
+            <ShopBuyBox slug={destination.slug} state={state} />
           </div>
 
           <div className="mt-6">
@@ -234,7 +272,7 @@ const ProductPage = async ({ params }: PageProps) => {
               {`Two cards and a guide. The chef card and emergency card are in ${language}, with English on the back. Your peanut guide to ${destination.country} covers how to say and spot "peanut", and the dishes where it hides. Go laminated and we print, laminate and post both cards, and the digital set comes free. Or go digital only: on your phone and in Apple Wallet in minutes.`}
             </Accordion>
             <Accordion title="Details">
-              {`Includes: 1 chef card, 1 emergency card and 1 local peanut guide (PDF). Digital set: phone images, an Apple Wallet pass and a print-ready PDF. Languages: ${language} on the front, English on the back. Emergency number: ${destination.emergencyNumber} (${destination.country}). Card size: 85.6 × 54 mm, the size of a bank card. Printed cards are laminated and wipe-clean.`}
+              {`Includes: 1 chef card, 1 emergency card and 1 local peanut guide (PDF). Digital set: phone images, an Apple Wallet pass and a print-ready PDF. Languages: ${language} on the front, English on the back. Emergency number: the local ambulance number${ambulance(destination)}. Card size: 85.6 × 54 mm, the size of a bank card. Printed cards are laminated and wipe-clean.`}
             </Accordion>
             <Accordion title="Delivery">
               Digital lands in your inbox the moment you buy. Printed sets leave
@@ -256,7 +294,11 @@ const ProductPage = async ({ params }: PageProps) => {
       </div>
 
       {/* One card, two languages: the explainer section. */}
-      <section aria-labelledby="two-sides-heading" className="pt-28">
+      <section
+        aria-labelledby="two-sides-heading"
+        className="pt-28"
+        hidden={!hasCards(destination)}
+      >
         <h2
           className="text-center font-serif text-4xl sm:text-6xl"
           id="two-sides-heading"

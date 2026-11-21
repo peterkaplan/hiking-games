@@ -46,31 +46,53 @@ const usd = new Intl.NumberFormat("en-US", {
 export const formatPrice = (amount: number): string => usd.format(amount);
 
 /**
- * Multi-country savings ("quantity breaks", as Shopify stores do them).
- * PLACEHOLDER discounts, like the prices above.
+ * Multi-country savings: the more countries in the cart, the bigger the
+ * discount on all of them. PLACEHOLDER discounts, like the prices above.
  */
 export interface BundleTier {
+  /** The smallest number of countries that earns this discount. */
   countries: number;
   discountPercent: number;
-  label: string;
-  /** Short badge shown on the option, e.g. "Save 15%". */
+  /** Short badge, e.g. "Save 15%". */
   tag?: string;
 }
 
 export const bundleTiers: readonly BundleTier[] = [
-  { countries: 1, discountPercent: 0, label: "1 country" },
-  { countries: 2, discountPercent: 15, label: "2 countries", tag: "Save 15%" },
-  { countries: 3, discountPercent: 25, label: "3 countries", tag: "Save 25%" },
+  { countries: 1, discountPercent: 0 },
+  { countries: 2, discountPercent: 15, tag: "Save 15%" },
+  { countries: 3, discountPercent: 25, tag: "Save 25%" },
 ];
 
-/** Price before and after the multi-country discount. */
-export const bundlePrice = (
-  unitPriceUsd: number,
-  tier: BundleTier
-): { full: number; total: number } => {
-  const full = unitPriceUsd * tier.countries;
-  return {
-    full,
-    total: Math.round(full * (1 - tier.discountPercent / 100)),
-  };
+/** The discount for this many countries: the best tier they reach. */
+export const discountPercentFor = (countries: number): number =>
+  Math.max(
+    0,
+    ...bundleTiers
+      .filter((tier) => countries >= tier.countries)
+      .map((tier) => tier.discountPercent)
+  );
+
+/** One country's set in the cart. */
+export interface CartLine {
+  format: FormatId;
+  /** Catalogue slug, e.g. "italy". */
+  slug: string;
+}
+
+export const priceOf = (formatId: FormatId): number =>
+  formats.find((format) => format.id === formatId)?.priceUsd ?? 0;
+
+export interface CartTotals {
+  discount: number;
+  discountPercent: number;
+  subtotal: number;
+  total: number;
+}
+
+/** What a set of cart lines costs, with the multi-country discount applied. */
+export const cartTotals = (lines: readonly CartLine[]): CartTotals => {
+  const subtotal = lines.reduce((sum, line) => sum + priceOf(line.format), 0);
+  const discountPercent = discountPercentFor(lines.length);
+  const discount = Math.round((subtotal * discountPercent) / 100);
+  return { subtotal, discountPercent, discount, total: subtotal - discount };
 };

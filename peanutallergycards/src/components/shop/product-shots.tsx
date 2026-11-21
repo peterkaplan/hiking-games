@@ -3,6 +3,8 @@ import { ChefCardFace } from "@/components/chef-card";
 import { EmergencyCardFace } from "@/components/emergency-card";
 import type { Destination } from "@/content/cards";
 import { cardBacks } from "@/content/cards";
+import type { CatalogueCountry } from "@/content/catalogue";
+import { Flag } from "./flags";
 
 /*
  * Stand-ins for product photography: the real (placeholder) card designs
@@ -152,6 +154,63 @@ export const PhoneShot = ({ destination }: { destination: Destination }) => {
     </div>
   );
 };
+
+const sampleLines = ["w-11/12", "w-4/5", "w-full", "w-3/4", "w-5/6"];
+
+/**
+ * A card with its wording held back: the flag, what the card is, and bars
+ * where the text goes. Used where we show a set without giving its text away.
+ */
+export const SampleCard = ({
+  className = "",
+  country,
+  kind,
+}: {
+  className?: string;
+  country: CatalogueCountry;
+  kind: "chef" | "emergency";
+}) => (
+  <PhotoCard className={className} lang="en">
+    <div className="flex items-center gap-4">
+      <Flag
+        className="h-12 w-auto rounded-md ring-1 ring-black/15"
+        code={country.code}
+      />
+      <div>
+        <p className="font-serif text-[28px] leading-tight">
+          {kind === "chef" ? "Chef card" : "Emergency card"}
+        </p>
+        <p className="font-mono text-[15px] tracking-widest uppercase">
+          Peanut allergy · {country.language}
+        </p>
+      </div>
+    </div>
+    <div aria-hidden="true" className="mt-5 space-y-3">
+      {sampleLines.slice(0, kind === "chef" ? 5 : 3).map((width) => (
+        <div
+          className={`h-3.5 rounded-full bg-black/15 ${width}`}
+          key={width}
+        />
+      ))}
+    </div>
+  </PhotoCard>
+);
+
+/** Both sample cards, fanned like the real set. */
+export const SampleSetShot = ({ country }: { country: CatalogueCountry }) => (
+  <div className="mx-auto flex w-fit flex-col">
+    <SampleCard
+      className={`w-[760px] -rotate-2 ${shotZoom}`}
+      country={country}
+      kind="chef"
+    />
+    <SampleCard
+      className={`relative z-10 -mt-16 mr-2 ml-auto w-[520px] rotate-3 ${shotZoom}`}
+      country={country}
+      kind="emergency"
+    />
+  </div>
+);
 
 /** A coloured "studio" backdrop for product shots. */
 export const Backdrop = ({

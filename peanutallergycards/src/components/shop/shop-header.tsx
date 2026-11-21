@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { MobileMenu } from "@/components/mobile-menu";
+import { CartCount } from "@/components/shop/cart-view";
 import { LAUNCH_PREVIEW } from "@/content/launch-preview";
 import { bundleTiers } from "@/content/pricing";
 
@@ -81,14 +82,11 @@ export const ShopHeader = () => (
           Trip pack · save {maxSaving}%
         </Link>
         <Link
-          aria-label="Cart, 0 items"
           className="hover:bg-shop-panel relative rounded-full p-2"
-          href="/v2#destinations"
+          href="/v2/cart"
         >
           <CartIcon />
-          <span className="bg-shop-cta text-shop-on-cta absolute -top-0.5 -right-0.5 grid size-5 place-items-center rounded-full font-mono text-[10px]">
-            0
-          </span>
+          <CartCount />
         </Link>
       </div>
     </div>

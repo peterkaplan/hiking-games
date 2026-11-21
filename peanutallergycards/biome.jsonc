@@ -5,5 +5,7 @@
     "ultracite/biome/core",
     "ultracite/biome/react",
     "ultracite/biome/next"
-  ]
+  ],
+  // Third-party flag artwork (country-flag-icons), kept as published.
+  "files": { "includes": ["!public/flags"] }
 }

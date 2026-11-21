@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Disclaimer } from "@/components/disclaimer";
 import { destinations } from "@/content/cards";
+import { catalogue } from "@/content/catalogue";
 import { LAUNCH_PREVIEW } from "@/content/launch-preview";
 import { bundleTiers } from "@/content/pricing";
 import { NewsletterForm } from "./newsletter-form";
@@ -29,14 +30,13 @@ const columns: readonly { heading: string; links: readonly FooterLink[] }[] = [
         label: `The ${destination.country} Set`,
       })),
       { href: "/v2#trip-pack", label: `Trip pack: save ${maxSaving}%` },
-      { href: "/v2#destinations", label: "All countries" },
+      { href: "/v2#destinations", label: `All ${catalogue.length} countries` },
     ],
   },
   {
     heading: "About",
     links: [
       { href: "/v2/our-story", label: "Our story" },
-      { href: "/v2#languages", label: "Languages we cover" },
       ...(LAUNCH_PREVIEW ? [] : [{ href: "/v2#reviews", label: "Reviews" }]),
     ],
   },
