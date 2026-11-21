@@ -17,6 +17,7 @@ import {
 } from "@/components/shop/product-shots";
 import {
   ComparisonTable,
+  FounderStory,
   HowItWorks,
   PlaceholderReviews,
   ProductTile,
@@ -243,6 +244,14 @@ const ShopHome = () => (
       <div className="mt-8">
         <TranslationDesk />
       </div>
+    </section>
+
+    <section
+      aria-labelledby="story-heading"
+      className="mx-auto max-w-7xl scroll-mt-24 px-4 pt-28 sm:px-6"
+      id="story"
+    >
+      <FounderStory />
     </section>
 
     <section

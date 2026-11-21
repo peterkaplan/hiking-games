@@ -33,6 +33,7 @@ People rely on these cards to avoid a serious allergic reaction.
 
 - Record decisions in `docs/decisions.md`, newest first, with the reason.
 - Put research in `docs/research/YYYY-MM-DD-topic.md`, with sources and what it means for us.
+- Ideas for guides, stories and other content go in `docs/content-to-make.md`.
 - Tick off `docs/roadmap.md` items when they're done, and add new ones you discover.
 
 ### Code

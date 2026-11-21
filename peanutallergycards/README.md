@@ -9,15 +9,16 @@ moves to its own repo later (see [Moving to its own repo](#moving-to-its-own-rep
 
 ## Where things are
 
-| Path                                                         | What's in it                                             |
-| ------------------------------------------------------------ | -------------------------------------------------------- |
-| [`docs/strategy.md`](docs/strategy.md)                       | What we're building, for whom, how it makes money        |
-| [`docs/roadmap.md`](docs/roadmap.md)                         | Phases and the next tasks (checklist)                    |
-| [`docs/decisions.md`](docs/decisions.md)                     | Decision log: what we decided and why                    |
-| [`docs/translation-process.md`](docs/translation-process.md) | How a translation goes from draft to live                |
-| [`docs/research/`](docs/research/)                           | Dated research notes (competitors, search demand)        |
-| [`src/content/cards/`](src/content/cards/)                   | Card text for every language: the single source of truth |
-| [`src/app/`](src/app/)                                       | The website (Next.js)                                    |
+| Path                                                         | What's in it                                                     |
+| ------------------------------------------------------------ | ---------------------------------------------------------------- |
+| [`docs/strategy.md`](docs/strategy.md)                       | What we're building, for whom, how it makes money                |
+| [`docs/roadmap.md`](docs/roadmap.md)                         | Phases and the next tasks (checklist)                            |
+| [`docs/decisions.md`](docs/decisions.md)                     | Decision log: what we decided and why                            |
+| [`docs/translation-process.md`](docs/translation-process.md) | How a translation goes from draft to live                        |
+| [`docs/content-to-make.md`](docs/content-to-make.md)         | Guides and stories to write, with the search phrases behind them |
+| [`docs/research/`](docs/research/)                           | Dated research notes (competitors, search demand)                |
+| [`src/content/cards/`](src/content/cards/)                   | Card text for every language: the single source of truth         |
+| [`src/app/`](src/app/)                                       | The website (Next.js)                                            |
 
 ## Design variants
 

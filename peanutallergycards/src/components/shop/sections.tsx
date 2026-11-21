@@ -11,6 +11,7 @@ import type { Destination, TranslationState } from "@/content/cards";
 import {
   destinationState,
   destinations,
+  findDestination,
   frontLanguages,
   translationState,
 } from "@/content/cards";
@@ -19,8 +20,14 @@ import { comparisonColumns, comparisonRows } from "@/content/comparison";
 import type { FaqItem } from "@/content/faq";
 import { formatPrice, lowestPriceUsd } from "@/content/pricing";
 import { placeholderReviews } from "@/content/reviews";
+import { story } from "@/content/story";
 import { CheckIcon } from "./bits";
-import { Backdrop, CardSetShot, destinationTint } from "./product-shots";
+import {
+  Backdrop,
+  CardSetShot,
+  ChefFrontCard,
+  destinationTint,
+} from "./product-shots";
 
 /* Product tile ------------------------------------------------------------ */
 
@@ -83,7 +90,7 @@ const deskStyle: Record<TranslationState, string> = {
 
 const DeskStatus = ({ state }: { state: TranslationState }) => (
   <span
-    className={`inline-block rounded-full px-3 py-1 font-mono text-xs uppercase ${deskStyle[state]}`}
+    className={`inline-block rounded-2xl px-3 py-1 font-mono text-[11px] uppercase sm:rounded-full sm:text-xs ${deskStyle[state]}`}
   >
     {deskLabel[state]}
   </span>
@@ -91,7 +98,7 @@ const DeskStatus = ({ state }: { state: TranslationState }) => (
 
 export const TranslationDesk = () => (
   <div className="border-shop-ink bg-shop-panel relative overflow-x-auto rounded-[24px] border-2">
-    <table className="w-full min-w-[620px] border-collapse text-left">
+    <table className="w-full border-collapse text-left">
       <thead>
         <tr className="border-shop-ink border-b-2 font-mono text-sm uppercase">
           <th className="p-4 font-normal sm:p-5" scope="col">
@@ -300,3 +307,44 @@ export const ShopFaq = ({ items }: { items: readonly FaqItem[] }) => (
     ))}
   </div>
 );
+
+/* Founder story ----------------------------------------------------------- */
+
+export const FounderStory = () => {
+  const thailand = findDestination("thailand");
+  return (
+    <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_1fr]">
+      <div>
+        <p className="font-mono text-xs tracking-[0.18em] uppercase">
+          {story.eyebrow}
+        </p>
+        <h2
+          className="mt-4 font-serif text-4xl leading-[1.05] tracking-tight sm:text-5xl"
+          id="story-heading"
+        >
+          {story.heading}
+        </h2>
+        <div className="mt-6 max-w-xl space-y-4 text-xl">
+          {story.paragraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+        </div>
+      </div>
+      {thailand?.chefCard.front ? (
+        <figure className="[--shot-zoom:0.42] sm:[--shot-zoom:0.6] lg:[--shot-zoom:0.56]">
+          <div className="bg-shop-backdrop-3 border-shop-ink flex justify-center rounded-[28px] border p-6 sm:p-10">
+            <div className="w-fit">
+              <ChefFrontCard
+                className="w-[760px] rotate-2 [zoom:var(--shot-zoom)]"
+                destination={thailand}
+              />
+            </div>
+          </div>
+          <figcaption className="mt-3 font-mono text-xs tracking-widest uppercase">
+            {story.cardCaption}
+          </figcaption>
+        </figure>
+      ) : null}
+    </div>
+  );
+};
