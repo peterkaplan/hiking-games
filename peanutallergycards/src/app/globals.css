@@ -34,6 +34,20 @@
   --color-alert: #e83a4f;
   --color-peanut: #e39a45;
   --color-wood: #8a5426;
+
+  /* Variant 2 (shop): a Shopify-style store. */
+  --font-serif: "Young Serif", ui-serif, Georgia, serif;
+  --font-mono: "DM Mono", ui-monospace, monospace;
+  --font-shop: "Instrument Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --color-shop-ink: #14213d;
+  --color-shop-cream: #fbf6ea;
+  --color-shop-sand: #f1e6cf;
+  --color-shop-yes: #1e9e5a;
+  --color-shop-yes-dark: #13703f;
+  --color-shop-mint: #c8f2d6;
+  --color-shop-tomato: #ef4b3f;
+  --color-shop-sun: #ffcc33;
+  --color-shop-sky: #cfe6ff;
 }
 
 /* The site is light-only: the cards are printed objects, shown as on paper. */
@@ -656,7 +670,20 @@ body {
   }
 }
 
-/* Pixelify's "fi" ligature reads as a stray letter; spell pixel text out. */
+/* Shop variant: the benefits marquee scrolls one copy's width, then loops. */
+@keyframes shop-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.shop-marquee {
+  animation: shop-marquee 40s linear infinite;
+}
+
+/* Pixel fonts: no ligatures, so every letter is drawn as designed. */
 .font-pixel {
   font-variant-ligatures: none;
 }

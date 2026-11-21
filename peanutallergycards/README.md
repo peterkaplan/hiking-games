@@ -19,6 +19,15 @@ moves to its own repo later (see [Moving to its own repo](#moving-to-its-own-rep
 | [`src/content/cards/`](src/content/cards/)                   | Card text for every language: the single source of truth |
 | [`src/app/`](src/app/)                                       | The website (Next.js)                                    |
 
+## Design variants
+
+Two designs are being compared, sharing the same content:
+
+| Variant                | URLs                               | Code                                        |
+| ---------------------- | ---------------------------------- | ------------------------------------------- |
+| 1: pixel art           | `/`, `/thailand`, `/japan`         | `src/app/(pixel)/`, `src/components/pixel/` |
+| 2: Shopify-style store | `/v2`, `/v2/thailand`, `/v2/japan` | `src/app/(shop)/`, `src/components/shop/`   |
+
 ## Run it
 
 ```bash

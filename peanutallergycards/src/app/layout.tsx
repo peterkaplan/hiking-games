@@ -1,11 +1,19 @@
 import "@fontsource-variable/atkinson-hyperlegible-next";
+import "@fontsource-variable/instrument-sans";
+import "@fontsource/dm-mono";
 import "@fontsource/jersey-15";
 import "@fontsource/tiny5";
+import "@fontsource/young-serif";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
+
+/*
+ * Two design variants share this root:
+ * - (pixel): the pixel-art site at / and /[destination];
+ * - (shop): a Shopify-style store at /v2 and /v2/[destination].
+ * Each route group has its own layout with its own header and footer.
+ */
 
 export const metadata: Metadata = {
   title: {
@@ -18,11 +26,7 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => (
   <html lang="en">
-    <body className="font-sans text-lg antialiased">
-      <SiteHeader />
-      {children}
-      <SiteFooter />
-    </body>
+    <body className="antialiased">{children}</body>
   </html>
 );
 

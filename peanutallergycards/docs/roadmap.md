@@ -27,6 +27,11 @@ Tick items off as they're done; add new ones as they come up.
 - [ ] Set real prices in `src/content/pricing.ts` (currently placeholders: $8 digital, $18 printed)
 - [ ] Connect checkout to the buy button (Stripe Checkout, or link to the Etsy listing). It stays disabled until a destination is reviewed
 - [x] Redesign the site around "eat with confidence", with a pixel-art identity and micro-animations
+- [x] Fix the blurry pixel font (grid-aligned Jersey 15 and Tiny5)
+- [x] Variant 2: Shopify-style store at `/v2` ([research](research/2026-11-21-shopify-store-patterns.md))
+- [ ] Choose a variant (or merge the best of both) and delete the other
+- [ ] Product photography of the real printed cards, to replace the staged card shots in variant 2
+- [ ] Collect real reviews after launch; until then keep the "No reviews yet" and placeholder labels
 - [ ] Redesign the cards (current ones are placeholders). The chef card needs a clear yes / no answer section staff can point to, since the site promises a clear answer
 - [ ] Review the website copy: Thailand "where peanuts turn up" list, FAQ, meal steps
 - [ ] Disclaimer, About and Contact pages

@@ -43,3 +43,33 @@ const usd = new Intl.NumberFormat("en-US", {
 });
 
 export const formatPrice = (amount: number): string => usd.format(amount);
+
+/**
+ * Multi-country savings ("quantity breaks", as Shopify stores do them).
+ * PLACEHOLDER discounts, like the prices above.
+ */
+export interface BundleTier {
+  countries: number;
+  discountPercent: number;
+  label: string;
+  /** Short badge shown on the option, e.g. "Save 15%". */
+  tag?: string;
+}
+
+export const bundleTiers: readonly BundleTier[] = [
+  { countries: 1, discountPercent: 0, label: "1 country" },
+  { countries: 2, discountPercent: 15, label: "2 countries", tag: "Save 15%" },
+  { countries: 3, discountPercent: 25, label: "3 countries", tag: "Save 25%" },
+];
+
+/** Price before and after the multi-country discount. */
+export const bundlePrice = (
+  unitPriceUsd: number,
+  tier: BundleTier
+): { full: number; total: number } => {
+  const full = unitPriceUsd * tier.countries;
+  return {
+    full,
+    total: Math.round(full * (1 - tier.discountPercent / 100)),
+  };
+};

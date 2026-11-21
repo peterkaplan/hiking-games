@@ -4,6 +4,33 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ---
 
+## 2026-11-21: Two design variants side by side
+
+**Decision:** Keep the pixel-art site (variant 1, at `/`) and add a
+Shopify-style store (variant 2, at `/v2`), built from patterns in successful
+Shopify stores (see [research](research/2026-11-21-shopify-store-patterns.md)).
+Both share the same content (cards, pricing, FAQ) and live in separate route
+groups, `src/app/(pixel)` and `src/app/(shop)`, each with its own layout.
+**Why:** To compare a distinctive brand-led site with a conventional,
+conversion-focused store before choosing.
+**Revisit:** Once one is chosen, delete the other route group and its
+components (`components/pixel/*` and the pixel components, or `components/shop/*`).
+
+## 2026-11-21: Pixel text uses grid-aligned fonts at fixed sizes
+
+**Decision:** Replace Pixelify Sans with Jersey 15 (headings, 27px or 54px)
+and Tiny5 (small labels, 16px or 24px), with whole-pixel line heights and no
+faked bold.
+**Why:** Pixelify Sans isn't drawn on a pixel grid, so it renders blurry at
+any size. Grid fonts are only sharp at multiples of their grid.
+
+## 2026-11-21: No invented social proof
+
+**Decision:** Until there are real reviews, product pages say "No reviews
+yet" and review sections show clearly labelled placeholders.
+**Why:** Fake reviews mislead people about a safety product (and break
+consumer-protection rules).
+
 ## 2026-11-20: Value prop is confirmation; pixel-art identity
 
 **Decision:** Lead with "eat abroad with confidence": the kitchen confirms
