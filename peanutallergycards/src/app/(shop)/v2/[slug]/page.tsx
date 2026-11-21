@@ -162,7 +162,7 @@ const ProductPage = async ({ params }: PageProps) => {
           <li aria-hidden="true">/</li>
           <li>
             <Link className="hover:underline" href="/v2#destinations">
-              Destinations
+              Shop by country
             </Link>
           </li>
           <li aria-hidden="true">/</li>
@@ -206,18 +206,17 @@ const ProductPage = async ({ params }: PageProps) => {
             )}
           </p>
           <p className="text-shop-ink mt-5 text-xl">
-            A chef card and an emergency card in {language}, with English on the
-            back. Hand it to your waiter before you order, get a clear yes or no
-            from the chef, and eat with confidence. Comes with a local peanut
-            guide to {destination.country}.
+            Two cards that do the talking in {language}. Hand one to your
+            waiter, get a clear yes or no from the chef, and order like
+            you&apos;re at home. Comes with a local peanut guide to{" "}
+            {destination.country}.
           </p>
-          <h2 className="mt-6 font-semibold">Why it works</h2>
+          <h2 className="mt-6 font-semibold">Three things in every set</h2>
           <ul className="mt-3 space-y-2.5">
             {[
-              "Spells out peanut, peanut oil, sauces and shared cookware",
-              "Asks the kitchen for a clear yes or no",
-              `Emergency card asks people to call ${destination.emergencyNumber}`,
-              `Peanut guide to ${destination.country}: how to say it, where it hides`,
+              "Chef card: tells the kitchen what you can't eat, then asks if they can cook for you",
+              `Emergency card: gets someone to call ${destination.emergencyNumber}, fast`,
+              `Peanut guide: how to say it and where it hides in ${destination.country}`,
             ].map((point) => (
               <li className="flex gap-3" key={point}>
                 <CheckIcon className="mt-1 size-5 shrink-0" />
@@ -232,21 +231,21 @@ const ProductPage = async ({ params }: PageProps) => {
 
           <div className="mt-6">
             <Accordion open title="What's inside">
-              {`Chef card, emergency card and a local peanut guide for ${destination.country}. ${language} on the front, English on the back. The guide covers how to say and spot "peanut" in ${language}, and the dishes where peanuts hide. Digital: a print-ready PDF and phone-sized images. Printed: both cards laminated and posted to you, plus the digital files.`}
+              {`Two cards and a guide. The chef card and emergency card are in ${language}, with English on the back. Your peanut guide to ${destination.country} covers how to say and spot "peanut", and the dishes where it hides. Go digital and it's on your phone in minutes. Go printed and we laminate and post both cards, with the digital files thrown in.`}
             </Accordion>
             <Accordion title="Details">
               {`Includes: 1 chef card, 1 emergency card and 1 local peanut guide (PDF). Languages: ${language} on the front, English on the back. Emergency number: ${destination.emergencyNumber} (${destination.country}). Card size: 85.6 × 54 mm, the size of a bank card. Printed cards are laminated and wipe-clean.`}
             </Accordion>
             <Accordion title="Delivery">
-              Digital: your download link arrives straight after you buy.
-              Printed: posted to you, with the digital files sent straight away.
-              Printed sets leave within two working days.
+              Digital lands in your inbox the moment you buy. Printed sets leave
+              within two working days, and the digital files come straight away,
+              so you&apos;re covered either way.
             </Accordion>
             <Accordion title="How to use them">
-              At the restaurant, hand the chef card to your waiter, server or
-              bartender before you order and ask them to take it to the chef. If
-              they say no or hesitate, eat somewhere else. Keep the emergency
-              card with your epinephrine.
+              Hand the chef card to your waiter, server or bartender before you
+              order and ask them to show the chef. A yes means dig in. A no, or
+              a maybe, means try next door. Keep the emergency card with your
+              epinephrine.
             </Accordion>
             <Accordion title="How we check translations">
               Native speakers check every card, word by word, against the
@@ -301,7 +300,7 @@ const ProductPage = async ({ params }: PageProps) => {
         <section aria-labelledby="foods-heading" className="pt-28">
           <div className="bg-shop-band text-shop-on-band rounded-[32px] px-6 py-14 sm:px-12">
             <p className="text-shop-highlight font-mono text-xs tracking-[0.18em] uppercase">
-              From the local peanut guide that comes with your cards
+              A taste of your peanut guide
             </p>
             <h2
               className="mt-4 font-serif text-4xl sm:text-5xl"
@@ -361,7 +360,7 @@ const ProductPage = async ({ params }: PageProps) => {
       {others.length > 0 ? (
         <section aria-labelledby="more-heading" className="pt-28">
           <h2 className="font-serif text-4xl sm:text-5xl" id="more-heading">
-            Going somewhere else too?
+            More stamps in the passport?
           </h2>
           <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {others.map((other) => (
