@@ -9,6 +9,7 @@ import { JuliasCard } from "@/components/shop/sections";
 import { findDestination } from "@/content/cards";
 import { LAUNCH_PREVIEW } from "@/content/launch-preview";
 import { story } from "@/content/story";
+import digIn from "@/images/dig-in.webp";
 import peanutOnGreen from "@/images/peanut-on-green.webp";
 
 export const metadata: Metadata = {
@@ -75,12 +76,21 @@ const Journey = () => (
     className="mx-auto max-w-7xl px-4 pt-20 sm:px-6 lg:pt-28"
   >
     <div className="grid gap-10 lg:grid-cols-[1fr_2fr] lg:gap-20">
-      <h2
-        className="font-serif text-4xl leading-tight tracking-tight sm:text-5xl lg:sticky lg:top-28 lg:self-start"
-        id="journey-heading"
-      >
-        How it started
-      </h2>
+      <div className="lg:sticky lg:top-28 lg:self-start">
+        <h2
+          className="font-serif text-4xl leading-tight tracking-tight sm:text-5xl"
+          id="journey-heading"
+        >
+          How it started
+        </h2>
+        <Image
+          alt="A hand lifting noodles from a yellow bowl with chopsticks, steam rising"
+          className="mt-8 aspect-[4/3] w-full rounded-[28px] object-cover lg:aspect-square"
+          sizes="(min-width: 1024px) 30vw, 100vw"
+          src={digIn}
+          unoptimized
+        />
+      </div>
       <ol className="border-shop-ink border-b-2">
         {story.journey.map((step, index) => (
           <li

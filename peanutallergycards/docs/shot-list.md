@@ -173,6 +173,16 @@ image shows the card doing its job in a restaurant.
 > point. A small deep forest green ceramic cup stands behind, out of focus.
 > There are no peanuts anywhere in the image.
 
+### 17. `the-yes.png`: step 3, "They say yes or no" (square, 1:1)
+
+> A chef in a clean white double-breasted jacket, framed from collar to
+> waist, handing a blank cream laminated card, the size of a bank card with
+> rounded corners and nothing printed on it, back toward the camera with one
+> hand while giving a clear thumbs-up with the other. The thumbs-up is sharp
+> and centred; the card is lower left. A folded deep forest green towel
+> hangs over one shoulder. Behind, a softly blurred stainless-steel kitchen
+> in warm light.
+
 ## E. Travel
 
 ### 15. `packed.png`: story page opener, or the laminated cards section (wide, 16:9)
@@ -204,13 +214,19 @@ tucked in and sharp.
 
 ## Already on the site
 
-| File                      | Where                            | Fits the idea?       |
-| ------------------------- | -------------------------------- | -------------------- |
-| `ramen-with-card.webp`    | Homepage hero (a real photo)     | Yes                  |
-| `peanut-lineup.webp`      | Above "Good questions"           | Yes                  |
-| `hiding-pad-thai.webp`    | "Where peanuts hide in Thailand" | Yes                  |
-| `hiding-lettuce.webp`     | "Where peanuts hide in Thailand" | Yes                  |
-| `hiding-spring-roll.webp` | "Where peanuts hide in Thailand" | Replace with 16      |
-| `empty-plate-shell.webp`  | "Page not found"                 | Yes                  |
-| `peanut-on-plate.webp`    | Beside "A clear yes"             | No: replace with 2   |
-| `peanut-on-green.webp`    | "Made for peanuts only." tile    | Weak: replace with 3 |
+| File                     | Where                                         | Fits the idea?       |
+| ------------------------ | --------------------------------------------- | -------------------- |
+| `ramen-with-card.webp`   | Homepage hero (a real photo)                  | Yes                  |
+| `peanut-lineup.webp`     | Above "Good questions"                        | Yes                  |
+| `hiding-pad-thai.webp`   | "Where peanuts hide in Thailand"              | Yes                  |
+| `hiding-satay.webp`      | "Where peanuts hide in Thailand" (shot 16)    | Yes                  |
+| `hiding-lettuce.webp`    | "Where peanuts hide in Thailand"              | Yes                  |
+| `wok.webp`               | Thailand product page (shot 10)               | Yes                  |
+| `dig-in.webp`            | Story page, beside "How it started" (shot 14) | Yes                  |
+| `empty-plate-shell.webp` | "Page not found"                              | Yes                  |
+| `peanut-on-plate.webp`   | Beside "A clear yes"                          | No: replace with 2   |
+| `peanut-on-green.webp`   | "Made for peanuts only." tile                 | Weak: replace with 3 |
+
+Shot 14 sits on the story page for now. It moves to step 4 of "Show it. Hear
+yes. Dig in." once shots 12, 13 and 17 exist, so all four steps change from
+drawings to photos together.

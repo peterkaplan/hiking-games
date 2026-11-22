@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { StaticImageData } from "next/image";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -39,7 +40,8 @@ import { displayState, LAUNCH_PREVIEW } from "@/content/launch-preview";
 import { formatPrice, formats, lowestPriceUsd } from "@/content/pricing";
 import hidingLettuce from "@/images/hiding-lettuce.webp";
 import hidingPadThai from "@/images/hiding-pad-thai.webp";
-import hidingSpringRoll from "@/images/hiding-spring-roll.webp";
+import hidingSatay from "@/images/hiding-satay.webp";
+import wok from "@/images/wok.webp";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -63,11 +65,22 @@ const hidingPlaces = [
     alt: "A whole peanut hiding among the noodles of a pad thai",
   },
   {
-    src: hidingSpringRoll,
-    alt: "A whole peanut hiding inside a fresh spring roll",
+    src: hidingSatay,
+    alt: "Chicken satay skewers with a whole peanut sitting on the peanut dipping sauce",
   },
-  { src: hidingLettuce, alt: "A peanut peeking out from under a lettuce leaf" },
+  {
+    src: hidingLettuce,
+    alt: "A peanut peeking out from under a lettuce leaf",
+  },
 ];
+
+/** A wide photo of the country's kitchen, where we have one. */
+const kitchenPhotos: Record<string, { alt: string; src: StaticImageData }> = {
+  thailand: {
+    src: wok,
+    alt: "A cook tossing noodles in a blackened wok over a high gas flame",
+  },
+};
 
 const languageName = (destination: Destination): string =>
   frontLanguages(destination).at(0)?.name ??
@@ -200,6 +213,7 @@ const ProductPage = async ({ params }: PageProps) => {
     notFound();
   }
   const state = displayState(destination);
+  const kitchenPhoto = kitchenPhotos[destination.slug];
   const language = languageName(destination);
   const title = `The ${destination.country} Set`;
   const others = destinations.filter(
@@ -322,6 +336,16 @@ const ProductPage = async ({ params }: PageProps) => {
           </div>
         </div>
       </div>
+
+      {kitchenPhoto ? (
+        <Image
+          alt={kitchenPhoto.alt}
+          className="mt-24 aspect-[16/9] w-full rounded-[28px] object-cover sm:aspect-[21/9]"
+          sizes="(min-width: 1280px) 1232px, 100vw"
+          src={kitchenPhoto.src}
+          unoptimized
+        />
+      ) : null}
 
       {/* One card, two languages: the explainer section. */}
       <section
