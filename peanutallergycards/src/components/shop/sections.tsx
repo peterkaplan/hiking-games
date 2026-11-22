@@ -1,6 +1,12 @@
-import type { StaticImageData } from "next/image";
 import Image from "next/image";
 import Link from "next/link";
+import type { ReactNode } from "react";
+import {
+  AnswerVignette,
+  EatVignette,
+  ReadVignette,
+  ShowVignette,
+} from "@/components/pixel/vignettes";
 import { stateLabel } from "@/components/status-badge";
 import type { Destination } from "@/content/cards";
 import { findDestination, frontLanguages } from "@/content/cards";
@@ -11,9 +17,6 @@ import { displayState } from "@/content/launch-preview";
 import { formatPrice, lowestPriceUsd, maxSaving } from "@/content/pricing";
 import { placeholderReviews } from "@/content/reviews";
 import { story } from "@/content/story";
-import chefReads from "@/images/chef-reads.webp";
-import digIn from "@/images/dig-in.webp";
-import handOver from "@/images/hand-over.webp";
 import leftBehind from "@/images/left-behind.webp";
 import { CheckIcon } from "./bits";
 import {
@@ -98,47 +101,40 @@ export const TripPackTile = () => (
 
 /* How it works ------------------------------------------------------------ */
 
-const steps: readonly {
-  alt: string;
-  body: string;
-  src: StaticImageData;
-  title: string;
-}[] = [
+const steps: readonly { body: string; scene: ReactNode; title: string }[] = [
   {
     title: "Hand it to your waiter",
     body: "At the restaurant, before you order. Ask your waiter or server to take it to the chef.",
-    src: handOver,
-    alt: "A diner's hand passing a card across the table to a waiter's open hand",
+    scene: <ShowVignette tint="var(--color-shop-panel)" />,
   },
   {
-    title: "The chef reads it and answers",
-    body: "In their own language: peanuts, peanut oil, sauces, shared woks. Then one question, and a clear yes or no.",
-    src: chefReads,
-    alt: "A chef in a white jacket holding the card in both hands to read it",
+    title: "The chef reads it",
+    body: "In their own language: peanuts, peanut oil, sauces, shared woks.",
+    scene: <ReadVignette tint="var(--color-shop-backdrop-1)" />,
+  },
+  {
+    title: "They say yes or no",
+    body: "One clear question gets a real answer. No miscommunication.",
+    scene: <AnswerVignette tint="var(--color-shop-highlight)" />,
   },
   {
     title: "You eat with confidence",
     body: "A yes means it's confirmed. A no means you find somewhere that can.",
-    src: digIn,
-    alt: "A hand lifting noodles from a yellow bowl with chopsticks, steam rising",
+    scene: <EatVignette tint="var(--color-shop-backdrop-1)" />,
   },
 ];
 
 export const HowItWorks = () => (
-  <ol className="grid gap-7 sm:grid-cols-3 sm:gap-8">
+  <ol className="grid gap-7 sm:grid-cols-2 sm:gap-10 lg:grid-cols-4">
     {steps.map((step, index) => (
       // On phones each step is a row (picture beside the words) to save height.
       <li
         className="grid grid-cols-[7.5rem_1fr] items-center gap-4 sm:block"
         key={step.title}
       >
-        <Image
-          alt={step.alt}
-          className="aspect-square w-full rounded-2xl object-cover sm:aspect-[4/3] sm:rounded-[24px]"
-          sizes="(min-width: 640px) 33vw, 120px"
-          src={step.src}
-          unoptimized
-        />
+        <div className="ring-shop-ink overflow-hidden rounded-2xl ring-2 sm:rounded-[24px]">
+          {step.scene}
+        </div>
         <div className="min-w-0">
           <p className="text-shop-ink font-mono text-xs tracking-widest uppercase sm:mt-5">
             Step {index + 1}
