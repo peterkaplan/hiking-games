@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CheckIcon } from "@/components/shop/bits";
@@ -36,6 +37,9 @@ import { catalogue, findCountry, shopDestination } from "@/content/catalogue";
 import { faqItems } from "@/content/faq";
 import { displayState, LAUNCH_PREVIEW } from "@/content/launch-preview";
 import { formatPrice, formats, lowestPriceUsd } from "@/content/pricing";
+import hidingLettuce from "@/images/hiding-lettuce.webp";
+import hidingPadThai from "@/images/hiding-pad-thai.webp";
+import hidingSpringRoll from "@/images/hiding-spring-roll.webp";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -51,6 +55,19 @@ export const generateStaticParams = () => {
 /** The price of the format that is selected when the page opens. */
 const defaultPrice = formats.at(0)?.priceUsd ?? lowestPriceUsd;
 const defaultCompareAt = formats.at(0)?.compareAtUsd ?? defaultPrice;
+
+/** "Where peanuts hide": one peanut tucked into each dish. */
+const hidingPlaces = [
+  {
+    src: hidingPadThai,
+    alt: "A whole peanut hiding among the noodles of a pad thai",
+  },
+  {
+    src: hidingSpringRoll,
+    alt: "A whole peanut hiding inside a fresh spring roll",
+  },
+  { src: hidingLettuce, alt: "A peanut peeking out from under a lettuce leaf" },
+];
 
 const languageName = (destination: Destination): string =>
   frontLanguages(destination).at(0)?.name ??
@@ -364,7 +381,20 @@ const ProductPage = async ({ params }: PageProps) => {
             >
               Where peanuts hide in {destination.country}
             </h2>
-            <ul className="mt-10 flex flex-wrap gap-3">
+            <ul className="mt-10 grid grid-cols-3 gap-3 sm:gap-5">
+              {hidingPlaces.map((place) => (
+                <li key={place.alt}>
+                  <Image
+                    alt={place.alt}
+                    className="aspect-square w-full rounded-2xl object-cover sm:rounded-[24px]"
+                    sizes="(min-width: 1280px) 380px, 30vw"
+                    src={place.src}
+                    unoptimized
+                  />
+                </li>
+              ))}
+            </ul>
+            <ul className="mt-8 flex flex-wrap gap-3">
               {destination.peanutFoods.map((food) => (
                 <li
                   className="border-shop-on-band rounded-full border px-5 py-2.5 text-base"

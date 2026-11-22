@@ -4,6 +4,15 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ---
 
+## 2026-11-22: Images: one real photo, plus generated peanut illustrations
+
+- The homepage hero is a real photo (the laminated card beside ramen in
+  Japan). The other images are AI-generated illustrations supplied by the
+  owner, used as humour and decoration: never as customers, testimonials or
+  pictures of the product in use.
+- No generated image shows card wording. Card images stay generated from
+  `src/content/cards`.
+
 ## 2026-11-21: The store is the site; hosting on Cloudflare
 
 - The store moved from `/v2` to `/`, and the pixel-art variant was deleted

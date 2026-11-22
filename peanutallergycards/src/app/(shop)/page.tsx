@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { PixelArt } from "@/components/pixel/pixel";
-import { bubbleYesLeft, chef, noPeanut } from "@/components/pixel/sprites";
+import { noPeanut } from "@/components/pixel/sprites";
 import {
   buttonPrimary,
   buttonSecondary,
@@ -38,6 +38,8 @@ import {
   maxSaving,
   maxSavingCountries,
 } from "@/content/pricing";
+import peanutLineup from "@/images/peanut-lineup.webp";
+import peanutOnPlate from "@/images/peanut-on-plate.webp";
 import ramenWithCard from "@/images/ramen-with-card.webp";
 
 export const metadata: Metadata = {
@@ -111,27 +113,27 @@ const Hero = () => (
 );
 
 const Statement = () => (
-  <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6">
-    <div className="flex items-end justify-between gap-10">
+  <section className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-24 sm:px-6 lg:grid-cols-[1.2fr_1fr] lg:gap-14">
+    <div>
       <p className="font-serif text-5xl leading-[1.12] tracking-tight sm:text-7xl sm:leading-[1.1]">
         One card. One question.{" "}
         <span className="bg-shop-highlight text-shop-on-highlight inline-block px-3 whitespace-nowrap">
           A clear yes.
         </span>
       </p>
-      <div
-        aria-hidden="true"
-        className="hidden shrink-0 items-end gap-1 xl:flex"
-      >
-        <PixelArt className="w-20" rows={bubbleYesLeft} />
-        <PixelArt className="w-28" rows={chef} />
-      </div>
+      <p className="text-shop-ink mt-8 max-w-2xl text-xl">
+        Hand it to your waiter, server or bartender. It tells the chef what you
+        can&apos;t eat, then asks if they can cook for you. Sit down knowing,
+        not hoping.
+      </p>
     </div>
-    <p className="text-shop-ink mt-8 max-w-2xl text-xl">
-      Hand it to your waiter, server or bartender. It tells the chef what you
-      can&apos;t eat, then asks if they can cook for you. Sit down knowing, not
-      hoping.
-    </p>
+    <Image
+      alt="A single peanut alone on a large white dinner plate, with a knife and fork either side"
+      className="border-shop-ink aspect-[16/9] w-full rounded-[28px] border-2 object-cover"
+      sizes="(min-width: 1024px) 45vw, 100vw"
+      src={peanutOnPlate}
+      unoptimized
+    />
   </section>
 );
 
@@ -313,7 +315,14 @@ const ShopHome = () => (
       className="mx-auto max-w-4xl scroll-mt-24 px-4 pt-24 sm:px-6"
       id="faq"
     >
-      <h2 className="font-serif text-4xl sm:text-5xl" id="faq-heading">
+      <Image
+        alt="Six peanuts standing in a police line-up against a height chart"
+        className="border-shop-ink aspect-[16/9] w-full rounded-[28px] border-2 object-cover sm:aspect-[21/9]"
+        sizes="(min-width: 896px) 896px, 100vw"
+        src={peanutLineup}
+        unoptimized
+      />
+      <h2 className="mt-10 font-serif text-4xl sm:text-5xl" id="faq-heading">
         Good questions
       </h2>
       <div className="mt-8">

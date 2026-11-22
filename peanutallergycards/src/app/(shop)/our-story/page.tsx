@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
   ChefFrontCard,
@@ -8,6 +9,7 @@ import { JuliasCard } from "@/components/shop/sections";
 import { findDestination } from "@/content/cards";
 import { LAUNCH_PREVIEW } from "@/content/launch-preview";
 import { story } from "@/content/story";
+import peanutOnGreen from "@/images/peanut-on-green.webp";
 
 export const metadata: Metadata = {
   title: "Our story: made by Peter, for Julia",
@@ -136,9 +138,9 @@ const Note = () => (
 );
 
 const principleTones = [
-  "bg-shop-band text-shop-on-band",
-  "bg-shop-highlight text-shop-on-highlight",
   "bg-shop-panel border-shop-ink border-2",
+  "bg-shop-highlight text-shop-on-highlight",
+  "bg-shop-band text-shop-on-band",
 ];
 
 const Principles = () => (
@@ -153,20 +155,39 @@ const Principles = () => (
       What we believe
     </h2>
     <ol className="mt-12 grid gap-6 md:grid-cols-3">
-      {story.principles.map((principle, index) => (
-        <li
-          className={`flex min-h-80 flex-col rounded-[32px] p-8 ${principleTones.at(index % principleTones.length)}`}
-          key={principle.title}
-        >
-          <p aria-hidden="true" className="font-serif text-6xl leading-none">
-            {String(index + 1).padStart(2, "0")}
-          </p>
-          <h3 className="mt-auto pt-10 font-serif text-3xl leading-tight">
-            {principle.title}
-          </h3>
-          <p className="mt-3 text-lg">{principle.body}</p>
-        </li>
-      ))}
+      {story.principles.map((principle, index) => {
+        const last = index === story.principles.length - 1;
+        return (
+          <li
+            className={`flex min-h-80 flex-col overflow-hidden rounded-[32px] ${principleTones.at(index % principleTones.length)}`}
+            key={principle.title}
+          >
+            {last ? (
+              // The last belief is about peanuts, so it gets the peanut.
+              <Image
+                alt="A single peanut in its shell on a dark green background"
+                className="aspect-[16/10] w-full object-cover"
+                sizes="(min-width: 768px) 33vw, 100vw"
+                src={peanutOnGreen}
+                unoptimized
+              />
+            ) : (
+              <p
+                aria-hidden="true"
+                className="px-8 pt-8 font-serif text-6xl leading-none"
+              >
+                {String(index + 1).padStart(2, "0")}
+              </p>
+            )}
+            <div className="mt-auto p-8 pt-10">
+              <h3 className="font-serif text-3xl leading-tight">
+                {principle.title}
+              </h3>
+              <p className="mt-3 text-lg">{principle.body}</p>
+            </div>
+          </li>
+        );
+      })}
     </ol>
   </section>
 );
