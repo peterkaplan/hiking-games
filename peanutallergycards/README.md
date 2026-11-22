@@ -16,6 +16,7 @@ moves to its own repo later (see [Moving to its own repo](#moving-to-its-own-rep
 | [`docs/decisions.md`](docs/decisions.md)                     | Decision log: what we decided and why                            |
 | [`docs/translation-process.md`](docs/translation-process.md) | How a translation goes from draft to live                        |
 | [`docs/content-to-make.md`](docs/content-to-make.md)         | Guides and stories to write, with the search phrases behind them |
+| [`docs/shot-list.md`](docs/shot-list.md)                     | Images to generate, with the brief for each                      |
 | [`docs/research/`](docs/research/)                           | Dated research notes (competitors, search demand)                |
 | [`src/content/cards/`](src/content/cards/)                   | Card text for every language: the single source of truth         |
 | [`src/app/`](src/app/)                                       | The website (Next.js)                                            |
