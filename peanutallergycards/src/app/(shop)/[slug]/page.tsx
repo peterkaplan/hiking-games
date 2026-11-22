@@ -41,6 +41,8 @@ import { formatPrice, formats, lowestPriceUsd } from "@/content/pricing";
 import hidingLettuce from "@/images/hiding-lettuce.webp";
 import hidingPadThai from "@/images/hiding-pad-thai.webp";
 import hidingSatay from "@/images/hiding-satay.webp";
+import ramenCounter from "@/images/ramen-counter.webp";
+import velvetRope from "@/images/velvet-rope.webp";
 import wok from "@/images/wok.webp";
 
 interface PageProps {
@@ -76,6 +78,10 @@ const hidingPlaces = [
 
 /** A wide photo of the country's kitchen, where we have one. */
 const kitchenPhotos: Record<string, { alt: string; src: StaticImageData }> = {
+  japan: {
+    src: ramenCounter,
+    alt: "A chef's hands setting a steaming bowl of ramen on a wooden counter",
+  },
   thailand: {
     src: wok,
     alt: "A cook tossing noodles in a blackened wok over a high gas flame",
@@ -451,7 +457,14 @@ const ProductPage = async ({ params }: PageProps) => {
         >
           An app translates. A card asks.
         </h2>
-        <div className="mt-10">
+        <Image
+          alt="A peanut stopped at a red velvet rope, with a candlelit restaurant table beyond it"
+          className="mt-10 aspect-[16/9] w-full rounded-[28px] object-cover sm:aspect-[21/9]"
+          sizes="(min-width: 1024px) 1024px, 100vw"
+          src={velvetRope}
+          unoptimized
+        />
+        <div className="mt-8">
           <ComparisonTable />
         </div>
       </section>

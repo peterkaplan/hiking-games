@@ -38,8 +38,9 @@ import {
   maxSaving,
   maxSavingCountries,
 } from "@/content/pricing";
+import cleanPlate from "@/images/clean-plate.webp";
+import mortar from "@/images/mortar.webp";
 import peanutLineup from "@/images/peanut-lineup.webp";
-import peanutOnPlate from "@/images/peanut-on-plate.webp";
 import ramenWithCard from "@/images/ramen-with-card.webp";
 
 export const metadata: Metadata = {
@@ -128,10 +129,10 @@ const Statement = () => (
       </p>
     </div>
     <Image
-      alt="A single peanut alone on a large white dinner plate, with a knife and fork either side"
+      alt="A spotless empty plate with a knife and fork, and a single peanut pushed away to the edge of the table"
       className="border-shop-ink aspect-[16/9] w-full rounded-[28px] border-2 object-cover"
       sizes="(min-width: 1024px) 45vw, 100vw"
-      src={peanutOnPlate}
+      src={cleanPlate}
       unoptimized
     />
   </section>
@@ -161,22 +162,31 @@ const LocalKitchen = () => {
             actually use, so there&apos;s no doubt about what you mean.
           </p>
         </div>
-        {example ? (
-          <figure className="bg-shop-highlight text-shop-on-highlight rotate-1 rounded-[24px] p-6 sm:p-8">
-            <figcaption className="flex items-center gap-3 font-mono text-xs tracking-[0.18em] uppercase">
-              <Flag
-                className="border-shop-ink w-10 rounded-md border"
-                code={findCountry(example.slug)?.code ?? "th"}
-              />
-              On the {example.country} card
-            </figcaption>
-            <ul className="mt-5 space-y-4 font-serif text-2xl leading-snug sm:text-3xl">
-              {englishChefCard.kitchen.map((line) => (
-                <li key={line}>“{line}”</li>
-              ))}
-            </ul>
-          </figure>
-        ) : null}
+        <div className="min-w-0">
+          <Image
+            alt="A granite mortar and pestle at a Thai street stall, holding green papaya, lime and crushed peanuts"
+            className="aspect-[4/3] w-full rounded-[24px] object-cover lg:aspect-[4/5]"
+            sizes="(min-width: 1024px) 40vw, 100vw"
+            src={mortar}
+            unoptimized
+          />
+          {example ? (
+            <figure className="bg-shop-highlight text-shop-on-highlight relative mx-3 -mt-16 rotate-1 rounded-[24px] p-6 sm:mx-8 sm:-mt-24 sm:p-8">
+              <figcaption className="flex items-center gap-3 font-mono text-xs tracking-[0.18em] uppercase">
+                <Flag
+                  className="border-shop-ink w-10 rounded-md border"
+                  code={findCountry(example.slug)?.code ?? "th"}
+                />
+                On the {example.country} card
+              </figcaption>
+              <ul className="mt-5 space-y-4 font-serif text-2xl leading-snug sm:text-3xl">
+                {englishChefCard.kitchen.map((line) => (
+                  <li key={line}>“{line}”</li>
+                ))}
+              </ul>
+            </figure>
+          ) : null}
+        </div>
       </div>
     </section>
   );

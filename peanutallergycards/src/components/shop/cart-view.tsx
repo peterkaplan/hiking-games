@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import type { ChangeEvent, MouseEvent } from "react";
 import { useCallback, useMemo, useState } from "react";
@@ -13,6 +14,7 @@ import {
   formats,
   priceOf,
 } from "@/content/pricing";
+import underGlass from "@/images/under-glass.webp";
 import { buttonPrimary } from "./bits";
 import {
   addToCart,
@@ -132,6 +134,13 @@ export const CartView = () => {
   if (lines.length === 0) {
     return (
       <div className="bg-shop-panel border-shop-ink rounded-[32px] border-2 p-8 text-center sm:p-14">
+        <Image
+          alt="A single peanut trapped under an upturned drinking glass"
+          className="mx-auto mb-8 aspect-square w-48 rounded-[24px] object-cover"
+          sizes="192px"
+          src={underGlass}
+          unoptimized
+        />
         <p className="font-serif text-3xl">Your cart is empty.</p>
         <p className="mt-3 text-xl">Where are you eating next?</p>
         <div className="mx-auto mt-6 max-w-md text-left">

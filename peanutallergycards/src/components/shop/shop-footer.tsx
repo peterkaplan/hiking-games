@@ -1,9 +1,11 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Disclaimer } from "@/components/disclaimer";
 import { destinations } from "@/content/cards";
 import { catalogue, NEEDS_SEARCH } from "@/content/catalogue";
 import { LAUNCH_PREVIEW } from "@/content/launch-preview";
 import { maxSaving } from "@/content/pricing";
+import notOnTheList from "@/images/not-on-the-list.webp";
 import { NewsletterForm } from "./newsletter-form";
 
 /*
@@ -125,6 +127,13 @@ export const ShopFooter = () => (
     <FooterStamp />
     <div className="mx-auto grid max-w-7xl gap-16 px-4 pt-32 pb-16 sm:px-6 lg:grid-cols-2 lg:gap-20">
       <div className="min-w-0">
+        <Image
+          alt="A sealed green envelope with one peanut left outside it"
+          className="mb-8 aspect-[16/9] w-full max-w-xs rounded-2xl object-cover"
+          sizes="320px"
+          src={notOnTheList}
+          unoptimized
+        />
         <h2 className="font-serif text-[2.5rem] leading-none tracking-tight sm:text-6xl">
           Our emails are 100%{" "}
           <span className="whitespace-nowrap">peanut-free.</span>

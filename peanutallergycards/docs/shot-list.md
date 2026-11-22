@@ -214,19 +214,38 @@ tucked in and sharp.
 
 ## Already on the site
 
-| File                     | Where                                         | Fits the idea?       |
-| ------------------------ | --------------------------------------------- | -------------------- |
-| `ramen-with-card.webp`   | Homepage hero (a real photo)                  | Yes                  |
-| `peanut-lineup.webp`     | Above "Good questions"                        | Yes                  |
-| `hiding-pad-thai.webp`   | "Where peanuts hide in Thailand"              | Yes                  |
-| `hiding-satay.webp`      | "Where peanuts hide in Thailand" (shot 16)    | Yes                  |
-| `hiding-lettuce.webp`    | "Where peanuts hide in Thailand"              | Yes                  |
-| `wok.webp`               | Thailand product page (shot 10)               | Yes                  |
-| `dig-in.webp`            | Story page, beside "How it started" (shot 14) | Yes                  |
-| `empty-plate-shell.webp` | "Page not found"                              | Yes                  |
-| `peanut-on-plate.webp`   | Beside "A clear yes"                          | No: replace with 2   |
-| `peanut-on-green.webp`   | "Made for peanuts only." tile                 | Weak: replace with 3 |
+| File                     | Shot | Where                                        |
+| ------------------------ | ---- | -------------------------------------------- |
+| `ramen-with-card.webp`   | real | Homepage hero                                |
+| `clean-plate.webp`       | 2    | Homepage, beside "A clear yes"               |
+| `mortar.webp`            | 9    | Homepage, "Written for the kitchen"          |
+| `hand-over.webp`         | 12   | Step 1 of "Show it. Hear yes. Dig in."       |
+| `chef-reads.webp`        | 13   | Step 2                                       |
+| `dig-in.webp`            | 14   | Step 3                                       |
+| `left-behind.webp`       | 1    | Trip Pack tile and top of the Trip Pack page |
+| `security-tray.webp`     | 6    | Trip Pack page, above the comparison chart   |
+| `peanut-lineup.webp`     | -    | Homepage, above "Good questions"             |
+| `not-on-the-list.webp`   | 7    | Footer, above the email sign-up              |
+| `wok.webp`               | 10   | Thailand product page                        |
+| `ramen-counter.webp`     | 11   | Japan product page                           |
+| `hiding-pad-thai.webp`   | -    | "Where peanuts hide in Thailand"             |
+| `hiding-satay.webp`      | 16   | "Where peanuts hide in Thailand"             |
+| `hiding-lettuce.webp`    | -    | "Where peanuts hide in Thailand"             |
+| `velvet-rope.webp`       | 4    | Product pages, above the comparison chart    |
+| `under-glass.webp`       | 5    | The empty cart                               |
+| `packed.webp`            | 15   | Story page, beside "How it started"          |
+| `evicted.webp`           | 8    | Story page, "Made for peanuts only." tile    |
+| `empty-plate-shell.webp` | -    | "Page not found"                             |
 
-Shot 14 sits on the story page for now. It moves to step 4 of "Show it. Hear
-yes. Dig in." once shots 12, 13 and 17 exist, so all four steps change from
-drawings to photos together.
+## Still to generate
+
+- **Shot 3, `mugshot`:** optional now. `evicted` took its place on the story
+  page.
+- **Shot 17, `the-yes`:** no longer needed. The steps are now three (hand it
+  over, the chef reads it and answers, dig in), matching the heading.
+- **Japan, "where peanuts hide":** waiting on a checked list of dishes.
+- **Real photos** still beat all of these: Julia, and the laminated cards in
+  use.
+
+The blank cards in shots 12 and 13 are shown blank. Putting the real card on
+them is a later job.

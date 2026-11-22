@@ -1,14 +1,9 @@
+import type { StaticImageData } from "next/image";
+import Image from "next/image";
 import Link from "next/link";
-import type { ReactNode } from "react";
-import {
-  AnswerVignette,
-  EatVignette,
-  ReadVignette,
-  ShowVignette,
-} from "@/components/pixel/vignettes";
 import { stateLabel } from "@/components/status-badge";
 import type { Destination } from "@/content/cards";
-import { destinations, findDestination, frontLanguages } from "@/content/cards";
+import { findDestination, frontLanguages } from "@/content/cards";
 import type { Mark } from "@/content/comparison";
 import { comparisonColumns, comparisonRows } from "@/content/comparison";
 import type { FaqItem } from "@/content/faq";
@@ -16,6 +11,10 @@ import { displayState } from "@/content/launch-preview";
 import { formatPrice, lowestPriceUsd, maxSaving } from "@/content/pricing";
 import { placeholderReviews } from "@/content/reviews";
 import { story } from "@/content/story";
+import chefReads from "@/images/chef-reads.webp";
+import digIn from "@/images/dig-in.webp";
+import handOver from "@/images/hand-over.webp";
+import leftBehind from "@/images/left-behind.webp";
 import { CheckIcon } from "./bits";
 import {
   Backdrop,
@@ -69,13 +68,15 @@ export const ProductTile = ({ destination }: { destination: Destination }) => {
 export const TripPackTile = () => (
   <Link className="group block" href="/trip-pack">
     <div className="relative">
-      <Backdrop className="bg-shop-highlight aspect-square overflow-hidden transition duration-300 [--shot-zoom:0.2] group-hover:rounded-[40px] min-[380px]:[--shot-zoom:0.25] sm:[--shot-zoom:0.19] lg:[--shot-zoom:0.25]">
-        <div className="space-y-4 transition duration-300 group-hover:scale-[1.03]">
-          {destinations.slice(0, 2).map((destination) => (
-            <CardSetShot destination={destination} key={destination.slug} />
-          ))}
-        </div>
-      </Backdrop>
+      <div className="overflow-hidden rounded-[28px] transition-all duration-300 group-hover:rounded-[40px]">
+        <Image
+          alt="A neatly packed suitcase, with one peanut left behind on the floor outside it"
+          className="aspect-square w-full object-cover transition duration-300 group-hover:scale-[1.03]"
+          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+          src={leftBehind}
+          unoptimized
+        />
+      </div>
       <span className="border-shop-ink bg-shop-bg absolute top-4 left-4 rounded-full border px-3 py-1 font-mono text-xs uppercase">
         Save {maxSaving}%
       </span>
@@ -97,40 +98,47 @@ export const TripPackTile = () => (
 
 /* How it works ------------------------------------------------------------ */
 
-const steps: readonly { body: string; scene: ReactNode; title: string }[] = [
+const steps: readonly {
+  alt: string;
+  body: string;
+  src: StaticImageData;
+  title: string;
+}[] = [
   {
     title: "Hand it to your waiter",
     body: "At the restaurant, before you order. Ask your waiter or server to take it to the chef.",
-    scene: <ShowVignette tint="var(--color-shop-panel)" />,
+    src: handOver,
+    alt: "A diner's hand passing a card across the table to a waiter's open hand",
   },
   {
-    title: "The chef reads it",
-    body: "In their own language: peanuts, peanut oil, sauces, shared woks.",
-    scene: <ReadVignette tint="var(--color-shop-backdrop-1)" />,
-  },
-  {
-    title: "They say yes or no",
-    body: "One clear question gets a real answer. No miscommunication.",
-    scene: <AnswerVignette tint="var(--color-shop-highlight)" />,
+    title: "The chef reads it and answers",
+    body: "In their own language: peanuts, peanut oil, sauces, shared woks. Then one question, and a clear yes or no.",
+    src: chefReads,
+    alt: "A chef in a white jacket holding the card in both hands to read it",
   },
   {
     title: "You eat with confidence",
     body: "A yes means it's confirmed. A no means you find somewhere that can.",
-    scene: <EatVignette tint="var(--color-shop-backdrop-1)" />,
+    src: digIn,
+    alt: "A hand lifting noodles from a yellow bowl with chopsticks, steam rising",
   },
 ];
 
 export const HowItWorks = () => (
-  <ol className="grid gap-7 sm:grid-cols-2 sm:gap-10 lg:grid-cols-4">
+  <ol className="grid gap-7 sm:grid-cols-3 sm:gap-8">
     {steps.map((step, index) => (
       // On phones each step is a row (picture beside the words) to save height.
       <li
         className="grid grid-cols-[7.5rem_1fr] items-center gap-4 sm:block"
         key={step.title}
       >
-        <div className="ring-shop-ink overflow-hidden rounded-2xl ring-2 sm:rounded-[24px]">
-          {step.scene}
-        </div>
+        <Image
+          alt={step.alt}
+          className="aspect-square w-full rounded-2xl object-cover sm:aspect-[4/3] sm:rounded-[24px]"
+          sizes="(min-width: 640px) 33vw, 120px"
+          src={step.src}
+          unoptimized
+        />
         <div className="min-w-0">
           <p className="text-shop-ink font-mono text-xs tracking-widest uppercase sm:mt-5">
             Step {index + 1}

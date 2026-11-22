@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Backdrop, CardSetShot } from "@/components/shop/product-shots";
 import { ComparisonTable, ShopFaq } from "@/components/shop/sections";
 import {
@@ -8,21 +9,31 @@ import {
 import { destinations } from "@/content/cards";
 import { faqItems } from "@/content/faq";
 import { maxSaving } from "@/content/pricing";
+import leftBehind from "@/images/left-behind.webp";
+import securityTray from "@/images/security-tray.webp";
 
 export const metadata: Metadata = {
   title: `The Trip Pack: peanut allergy cards for every country on your trip, ${maxSaving}% off`,
   description: `One pack for a multi-country trip: a chef card, an emergency card and a local peanut guide for every country you're visiting. Save up to ${maxSaving}%.`,
 };
 
-const tints = ["bg-shop-backdrop-1", "bg-shop-highlight"];
+const tints = ["bg-shop-backdrop-1", "bg-shop-backdrop-2"];
 
 const TripPackPage = () => (
   <main className="mx-auto max-w-7xl px-4 pt-8 sm:px-6">
     <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
-      <div className="grid min-w-0 content-start gap-4 sm:grid-cols-2 lg:col-span-7">
+      <div className="grid min-w-0 grid-cols-2 content-start gap-4 lg:col-span-7">
+        <Image
+          alt="A neatly packed suitcase, with one peanut left behind on the floor outside it"
+          className="col-span-2 aspect-[4/3] w-full rounded-[28px] object-cover"
+          priority
+          sizes="(min-width: 1024px) 58vw, 100vw"
+          src={leftBehind}
+          unoptimized
+        />
         {destinations.slice(0, 2).map((destination, index) => (
           <Backdrop
-            className={`${tints.at(index) ?? tints[0]} aspect-square overflow-hidden [--shot-zoom:0.3] min-[380px]:[--shot-zoom:0.36] sm:[--shot-zoom:0.3] lg:[--shot-zoom:0.34]`}
+            className={`${tints.at(index) ?? tints[0]} aspect-square overflow-hidden p-3 [--shot-zoom:0.13] min-[380px]:[--shot-zoom:0.16] sm:p-10 sm:[--shot-zoom:0.22] lg:[--shot-zoom:0.25]`}
             key={destination.slug}
           >
             <CardSetShot destination={destination} />
@@ -49,6 +60,14 @@ const TripPackPage = () => (
         </div>
       </div>
     </div>
+
+    <Image
+      alt="An airport security tray holding a belt, keys, phone and sunglasses, with one peanut set apart in the corner"
+      className="mt-24 aspect-[16/9] w-full rounded-[28px] object-cover sm:aspect-[21/9]"
+      sizes="(min-width: 1280px) 1232px, 100vw"
+      src={securityTray}
+      unoptimized
+    />
 
     <section
       aria-labelledby="compare-heading"

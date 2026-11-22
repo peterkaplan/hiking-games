@@ -9,8 +9,8 @@ import { JuliasCard } from "@/components/shop/sections";
 import { findDestination } from "@/content/cards";
 import { LAUNCH_PREVIEW } from "@/content/launch-preview";
 import { story } from "@/content/story";
-import digIn from "@/images/dig-in.webp";
-import peanutOnGreen from "@/images/peanut-on-green.webp";
+import evicted from "@/images/evicted.webp";
+import packed from "@/images/packed.webp";
 
 export const metadata: Metadata = {
   title: "Our story: made by Peter, for Julia",
@@ -84,10 +84,10 @@ const Journey = () => (
           How it started
         </h2>
         <Image
-          alt="A hand lifting noodles from a yellow bowl with chopsticks, steam rising"
-          className="mt-8 aspect-[4/3] w-full rounded-[28px] object-cover lg:aspect-square"
+          alt="Packed for a trip: a passport, a boarding pass, sunglasses, a luggage tag and an auto-injector pen"
+          className="mt-8 aspect-[16/9] w-full rounded-[28px] object-cover"
           sizes="(min-width: 1024px) 30vw, 100vw"
-          src={digIn}
+          src={packed}
           unoptimized
         />
       </div>
@@ -175,10 +175,10 @@ const Principles = () => (
             {last ? (
               // The last belief is about peanuts, so it gets the peanut.
               <Image
-                alt="A single peanut in its shell on a dark green background"
-                className="aspect-[16/10] w-full object-cover"
+                alt="Chopsticks lifting a single peanut out and away from a bowl of noodles"
+                className="aspect-[16/10] w-full object-cover object-top"
                 sizes="(min-width: 768px) 33vw, 100vw"
-                src={peanutOnGreen}
+                src={evicted}
                 unoptimized
               />
             ) : (
