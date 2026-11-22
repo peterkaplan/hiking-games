@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { Backdrop, CardSetShot } from "@/components/shop/product-shots";
 import { ComparisonTable, ShopFaq } from "@/components/shop/sections";
 import {
@@ -9,30 +8,21 @@ import {
 import { destinations } from "@/content/cards";
 import { faqItems } from "@/content/faq";
 import { maxSaving } from "@/content/pricing";
-import travellerPeanut from "@/images/traveller-peanut.webp";
 
 export const metadata: Metadata = {
   title: `The Trip Pack: peanut allergy cards for every country on your trip, ${maxSaving}% off`,
   description: `One pack for a multi-country trip: a chef card, an emergency card and a local peanut guide for every country you're visiting. Save up to ${maxSaving}%.`,
 };
 
-const tints = ["bg-shop-backdrop-1", "bg-shop-backdrop-2"];
+const tints = ["bg-shop-backdrop-1", "bg-shop-highlight"];
 
 const TripPackPage = () => (
   <main className="mx-auto max-w-7xl px-4 pt-8 sm:px-6">
     <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
       <div className="grid min-w-0 content-start gap-4 sm:grid-cols-2 lg:col-span-7">
-        <Image
-          alt="A peanut in sunglasses carrying a small suitcase"
-          className="aspect-[4/3] w-full rounded-[28px] object-cover sm:col-span-2"
-          priority
-          sizes="(min-width: 1024px) 58vw, 100vw"
-          src={travellerPeanut}
-          unoptimized
-        />
         {destinations.slice(0, 2).map((destination, index) => (
           <Backdrop
-            className={`${tints.at(index) ?? tints[0]} aspect-square overflow-hidden [--shot-zoom:0.3] min-[380px]:[--shot-zoom:0.36] sm:[--shot-zoom:0.22] lg:[--shot-zoom:0.25]`}
+            className={`${tints.at(index) ?? tints[0]} aspect-square overflow-hidden [--shot-zoom:0.3] min-[380px]:[--shot-zoom:0.36] sm:[--shot-zoom:0.3] lg:[--shot-zoom:0.34]`}
             key={destination.slug}
           >
             <CardSetShot destination={destination} />

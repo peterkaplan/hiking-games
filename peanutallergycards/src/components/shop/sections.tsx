@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import {
@@ -9,7 +8,7 @@ import {
 } from "@/components/pixel/vignettes";
 import { stateLabel } from "@/components/status-badge";
 import type { Destination } from "@/content/cards";
-import { findDestination, frontLanguages } from "@/content/cards";
+import { destinations, findDestination, frontLanguages } from "@/content/cards";
 import type { Mark } from "@/content/comparison";
 import { comparisonColumns, comparisonRows } from "@/content/comparison";
 import type { FaqItem } from "@/content/faq";
@@ -17,7 +16,6 @@ import { displayState } from "@/content/launch-preview";
 import { formatPrice, lowestPriceUsd, maxSaving } from "@/content/pricing";
 import { placeholderReviews } from "@/content/reviews";
 import { story } from "@/content/story";
-import travellerPeanut from "@/images/traveller-peanut.webp";
 import { CheckIcon } from "./bits";
 import {
   Backdrop,
@@ -71,15 +69,13 @@ export const ProductTile = ({ destination }: { destination: Destination }) => {
 export const TripPackTile = () => (
   <Link className="group block" href="/trip-pack">
     <div className="relative">
-      <div className="overflow-hidden rounded-[28px] transition-all duration-300 group-hover:rounded-[40px]">
-        <Image
-          alt="A peanut in sunglasses carrying a small suitcase"
-          className="aspect-square w-full object-cover transition duration-300 group-hover:scale-[1.03]"
-          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-          src={travellerPeanut}
-          unoptimized
-        />
-      </div>
+      <Backdrop className="bg-shop-highlight aspect-square overflow-hidden transition duration-300 [--shot-zoom:0.2] group-hover:rounded-[40px] min-[380px]:[--shot-zoom:0.25] sm:[--shot-zoom:0.19] lg:[--shot-zoom:0.25]">
+        <div className="space-y-4 transition duration-300 group-hover:scale-[1.03]">
+          {destinations.slice(0, 2).map((destination) => (
+            <CardSetShot destination={destination} key={destination.slug} />
+          ))}
+        </div>
+      </Backdrop>
       <span className="border-shop-ink bg-shop-bg absolute top-4 left-4 rounded-full border px-3 py-1 font-mono text-xs uppercase">
         Save {maxSaving}%
       </span>
