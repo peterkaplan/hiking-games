@@ -47,6 +47,7 @@ Tick items off as they're done; add new ones as they come up.
 - [ ] Stripe: account, then the checkout Worker (test mode first), thank-you page and order email
 - [ ] Privacy, terms, and refunds and shipping pages
 - [ ] Before opening: `NEXT_PUBLIC_LAUNCH_PREVIEW=off` and `NEXT_PUBLIC_SITE_LIVE=on`
+- [x] First real photo: ramen in Japan with the laminated card, on the homepage hero (`src/images/`)
 - [ ] A photo of Julia (or of the original cards from the trip) for the story page, if she's happy to share one
 - [ ] If possible, a named allergist or dietitian who has looked at the cards
 - [x] Store review (2026-11-21): mobile menus, product first on phones, contrast, favicon, fonts via next/font (no layout shift). Lighthouse 94–97 performance and 100 accessibility / best practices / SEO on all four pages; axe-core: no violations

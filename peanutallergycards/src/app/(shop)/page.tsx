@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { PixelArt } from "@/components/pixel/pixel";
 import { bubbleYesLeft, chef, noPeanut } from "@/components/pixel/sprites";
@@ -12,11 +13,7 @@ import {
 } from "@/components/shop/bits";
 import { CountryBrowser } from "@/components/shop/country-browser";
 import { Flag } from "@/components/shop/flags";
-import {
-  Backdrop,
-  CardSetShot,
-  PhoneShot,
-} from "@/components/shop/product-shots";
+import { PhoneShot } from "@/components/shop/product-shots";
 import {
   HowItWorks,
   PlaceholderReviews,
@@ -41,6 +38,7 @@ import {
   maxSaving,
   maxSavingCountries,
 } from "@/content/pricing";
+import ramenWithCard from "@/images/ramen-with-card.webp";
 
 export const metadata: Metadata = {
   title: {
@@ -60,57 +58,57 @@ const benefits = [
   "Local peanut guide included",
 ] as const;
 
-const Hero = () => {
-  const showcase = findDestination("thailand") ?? destinations[0];
-  return (
-    <section className="mx-auto grid max-w-7xl items-center gap-12 overflow-x-clip px-4 pt-10 pb-16 sm:px-6 lg:grid-cols-[1fr_1.05fr] lg:pt-16 lg:pb-24">
-      <div>
-        <Eyebrow>Peanut allergy cards for restaurants abroad</Eyebrow>
-        <h1 className="mt-5 font-serif text-[3.25rem] leading-[0.98] tracking-tight sm:text-6xl xl:text-[4rem]">
-          Eat in restaurants abroad with confidence.
-        </h1>
-        <p className="text-shop-ink mt-6 max-w-lg text-xl">
-          A peanut allergy card in the local language. Hand it to your waiter,
-          get a clear yes or no from the chef, and enjoy the meal. No guessing,
-          no miscommunication.
-        </p>
-        <div className="mt-9 flex flex-wrap gap-4">
-          <Link className={buttonPrimary} href="#destinations">
-            Shop by country
-          </Link>
-          <Link className={buttonSecondary} href="#how-it-works">
-            How it works
-          </Link>
-        </div>
-        <ul className="mt-9 flex flex-wrap gap-x-6 gap-y-3 text-base">
-          {[
-            "A straight yes or no from the kitchen",
-            "Comes with a local peanut guide",
-            `On your phone in minutes, from ${formatPrice(lowestPriceUsd)}`,
-          ].map((item) => (
-            <li className="flex items-center gap-2" key={item}>
-              <CheckIcon className="size-5" />
-              {item}
-            </li>
-          ))}
-        </ul>
+const Hero = () => (
+  <section className="mx-auto grid max-w-7xl items-center gap-12 overflow-x-clip px-4 pt-10 pb-16 sm:px-6 lg:grid-cols-[1fr_1.05fr] lg:pt-16 lg:pb-24">
+    <div>
+      <Eyebrow>Peanut allergy cards for restaurants abroad</Eyebrow>
+      <h1 className="mt-5 font-serif text-[3.25rem] leading-[0.98] tracking-tight sm:text-6xl xl:text-[4rem]">
+        Eat in restaurants abroad with confidence.
+      </h1>
+      <p className="text-shop-ink mt-6 max-w-lg text-xl">
+        A peanut allergy card in the local language. Hand it to your waiter, get
+        a clear yes or no from the chef, and enjoy the meal. No guessing, no
+        miscommunication.
+      </p>
+      <div className="mt-9 flex flex-wrap gap-4">
+        <Link className={buttonPrimary} href="#destinations">
+          Shop by country
+        </Link>
+        <Link className={buttonSecondary} href="#how-it-works">
+          How it works
+        </Link>
       </div>
-      {showcase ? (
-        <div className="relative order-first [--shot-zoom:0.4] sm:[--shot-zoom:0.62] lg:order-none lg:[--shot-zoom:0.66]">
-          <Backdrop className="bg-shop-backdrop-1">
-            <CardSetShot destination={showcase} />
-          </Backdrop>
-          <Sticker className="text-shop-highlight absolute -top-8 -left-2 z-10 size-32 rotate-[-10deg] sm:-top-8 sm:-left-10">
-            No miscom&shy;munication
-          </Sticker>
-          <Sticker className="text-shop-panel absolute -right-1 -bottom-10 z-10 size-24 rotate-[8deg] sm:-right-6 sm:-bottom-8">
-            No app. No wifi.
-          </Sticker>
-        </div>
-      ) : null}
-    </section>
-  );
-};
+      <ul className="mt-9 flex flex-wrap gap-x-6 gap-y-3 text-base">
+        {[
+          "A straight yes or no from the kitchen",
+          "Comes with a local peanut guide",
+          `On your phone in minutes, from ${formatPrice(lowestPriceUsd)}`,
+        ].map((item) => (
+          <li className="flex items-center gap-2" key={item}>
+            <CheckIcon className="size-5" />
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div className="relative order-first lg:order-none">
+      <Image
+        alt="A bowl of ramen on a restaurant counter in Japan, with a laminated Japanese peanut allergy card beside it"
+        className="border-shop-ink aspect-square w-full rounded-[28px] border-2 object-cover object-top sm:aspect-[4/3] lg:aspect-[4/5]"
+        priority
+        sizes="(min-width: 1024px) 50vw, 100vw"
+        src={ramenWithCard}
+        unoptimized
+      />
+      <Sticker className="text-shop-highlight absolute -top-8 -left-2 z-10 size-32 rotate-[-10deg] sm:-top-8 sm:-left-10">
+        No miscom&shy;munication
+      </Sticker>
+      <Sticker className="text-shop-panel absolute -right-1 -bottom-10 z-10 size-24 rotate-[8deg] sm:-right-6 sm:-bottom-8">
+        No app. No wifi.
+      </Sticker>
+    </div>
+  </section>
+);
 
 const Statement = () => (
   <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6">
