@@ -219,9 +219,9 @@ tucked in and sharp.
 | `ramen-with-card.webp`   | real | Homepage hero                                |
 | `clean-plate.webp`       | 2    | Homepage, beside "A clear yes"               |
 | `mortar.webp`            | 9    | Homepage, "Written for the kitchen"          |
-| `hand-over.webp`         | 12   | Step 1 of "Show it. Hear yes. Dig in."       |
-| `chef-reads.webp`        | 13   | Step 2                                       |
-| `dig-in.webp`            | 14   | Step 3                                       |
+| `hand-over.webp`         | 12   | Product pages, strip under the steps         |
+| `chef-reads.webp`        | 13   | Product pages, strip under the steps         |
+| `dig-in.webp`            | 14   | Product pages, strip under the steps         |
 | `left-behind.webp`       | 1    | Trip Pack tile and top of the Trip Pack page |
 | `security-tray.webp`     | 6    | Trip Pack page, above the comparison chart   |
 | `peanut-lineup.webp`     | -    | Homepage, above "Good questions"             |
@@ -241,8 +241,8 @@ tucked in and sharp.
 
 - **Shot 3, `mugshot`:** optional now. `evicted` took its place on the story
   page.
-- **Shot 17, `the-yes`:** no longer needed. The steps are now three (hand it
-  over, the chef reads it and answers, dig in), matching the heading.
+- **Shot 17, `the-yes`:** not needed. The steps keep their pixel drawings;
+  the three photos sit in a strip under them on product pages.
 - **Japan, "where peanuts hide":** waiting on a checked list of dishes.
 - **Real photos** still beat all of these: Julia, and the laminated cards in
   use.

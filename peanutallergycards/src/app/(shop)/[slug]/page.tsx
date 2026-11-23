@@ -38,6 +38,9 @@ import { catalogue, findCountry, shopDestination } from "@/content/catalogue";
 import { faqItems } from "@/content/faq";
 import { displayState, LAUNCH_PREVIEW } from "@/content/launch-preview";
 import { formatPrice, formats, lowestPriceUsd } from "@/content/pricing";
+import chefReads from "@/images/chef-reads.webp";
+import digIn from "@/images/dig-in.webp";
+import handOver from "@/images/hand-over.webp";
 import hidingLettuce from "@/images/hiding-lettuce.webp";
 import hidingPadThai from "@/images/hiding-pad-thai.webp";
 import hidingSatay from "@/images/hiding-satay.webp";
@@ -73,6 +76,22 @@ const hidingPlaces = [
   {
     src: hidingLettuce,
     alt: "A peanut peeking out from under a lettuce leaf",
+  },
+];
+
+/** The card in use: handed over, read by the chef, then the meal. */
+const inUse = [
+  {
+    src: handOver,
+    alt: "A diner's hand passing a card across the table to a waiter's open hand",
+  },
+  {
+    src: chefReads,
+    alt: "A chef in a white jacket holding the card in both hands to read it",
+  },
+  {
+    src: digIn,
+    alt: "A hand lifting noodles from a yellow bowl with chopsticks, steam rising",
   },
 ];
 
@@ -445,6 +464,19 @@ const ProductPage = async ({ params }: PageProps) => {
         <div className="mt-10">
           <HowItWorks />
         </div>
+        <ul className="mt-12 grid grid-cols-3 gap-3 sm:gap-6">
+          {inUse.map((photo) => (
+            <li key={photo.alt}>
+              <Image
+                alt={photo.alt}
+                className="aspect-square w-full rounded-2xl object-cover sm:aspect-[4/3] sm:rounded-[24px]"
+                sizes="(min-width: 1280px) 400px, 33vw"
+                src={photo.src}
+                unoptimized
+              />
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section
