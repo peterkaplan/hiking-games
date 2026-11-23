@@ -234,6 +234,112 @@ const Accordion = ({
   </details>
 );
 
+/** One 6px "pixel" of the speech bubble's tail. */
+const tailPixels = (rows: readonly string[]) =>
+  rows.flatMap((row, y) =>
+    [...row].flatMap((cell, x) =>
+      cell === "." ? [] : [{ ink: cell === "k", key: `${x}-${y}`, x, y }]
+    )
+  );
+
+/** The bubble's tail, drawn in pixels like the chef: k is ink, w is paper. */
+const BubbleTail = ({
+  className,
+  rows,
+}: {
+  className: string;
+  rows: readonly string[];
+}) => (
+  <svg
+    aria-hidden="true"
+    className={className}
+    shapeRendering="crispEdges"
+    viewBox={`0 0 ${rows.at(0)?.length ?? 0} ${rows.length}`}
+  >
+    {tailPixels(rows).map((pixel) => (
+      <rect
+        className={pixel.ink ? "fill-shop-ink" : "fill-shop-panel"}
+        height="1"
+        key={pixel.key}
+        width="1"
+        x={pixel.x}
+        y={pixel.y}
+      />
+    ))}
+  </svg>
+);
+
+/** Notched corners, so the bubble's outline is pixel-stepped like the chef. */
+const bubbleCorners = [
+  "-top-[6px] -left-[6px]",
+  "-top-[6px] -right-[6px]",
+  "-bottom-[6px] -left-[6px]",
+  "-right-[6px] -bottom-[6px]",
+];
+
+/** Tail pointing down to the chef (phones) and left to the chef (wide). */
+const tailDown = ["kwwwk", "kwwk.", "kwk..", "kk..."] as const;
+const tailLeft = ["...kw", "..kww", ".kwww", "kkkkw", "....k"] as const;
+
+/** The pixel chef teaching the local word for peanut, in a speech bubble. */
+const SayPeanut = ({
+  entries,
+  language,
+  languageCode,
+}: {
+  entries: NonNullable<Destination["sayPeanut"]>;
+  language: string;
+  languageCode?: string;
+}) => (
+  <section aria-labelledby="say-heading" className="pt-28">
+    <div className="bg-shop-band text-shop-on-band overflow-hidden rounded-[32px] px-6 pt-12 sm:px-12 sm:pt-14">
+      <h2 className="font-serif text-4xl sm:text-5xl" id="say-heading">
+        Learn to say “peanut” in {language}
+      </h2>
+      <div className="mt-10 flex flex-col gap-x-10 lg:flex-row lg:items-end">
+        <PixelArt
+          className="order-last mt-6 w-36 shrink-0 sm:w-44 lg:order-none lg:mt-0 lg:w-56"
+          rows={chef}
+        />
+        <div className="bg-shop-panel text-shop-ink border-shop-ink relative w-fit max-w-full border-[6px] lg:mb-28">
+          <ul className="divide-shop-ink grid divide-y-[6px] sm:grid-flow-col sm:divide-x-[6px] sm:divide-y-0">
+            {entries.map((entry) => (
+              <li className="p-6 sm:p-9" key={entry.word}>
+                <p
+                  className="font-serif text-5xl leading-tight whitespace-nowrap sm:text-7xl"
+                  lang={languageCode}
+                >
+                  {entry.word}
+                </p>
+                <p className="mt-3 font-serif text-3xl">{entry.romanised}</p>
+                <p className="bg-shop-highlight text-shop-on-highlight mt-3 inline-block px-3 py-1 font-mono text-sm uppercase">
+                  Say: {entry.soundsLike}
+                </p>
+                <p className="mt-4 max-w-xs text-base">{entry.note}</p>
+              </li>
+            ))}
+          </ul>
+          {bubbleCorners.map((corner) => (
+            <span
+              aria-hidden="true"
+              className={`bg-shop-band absolute size-[6px] ${corner}`}
+              key={corner}
+            />
+          ))}
+          <BubbleTail
+            className="absolute top-full left-10 -mt-[6px] h-8 w-10 lg:hidden"
+            rows={tailDown}
+          />
+          <BubbleTail
+            className="absolute right-full bottom-10 -mr-[8px] hidden size-10 lg:block"
+            rows={tailLeft}
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
 const ProductPage = async ({ params }: PageProps) => {
   const destination = shopDestination((await params).slug);
   if (!destination) {
@@ -421,45 +527,11 @@ const ProductPage = async ({ params }: PageProps) => {
       </section>
 
       {destination.sayPeanut ? (
-        <section aria-labelledby="say-heading" className="pt-28">
-          <div className="bg-shop-panel border-shop-ink grid items-end gap-x-10 gap-y-8 rounded-[32px] border-2 p-6 pb-0 sm:p-10 sm:pb-0 lg:grid-cols-[auto_1fr] lg:p-14 lg:pb-0">
-            <div className="lg:col-span-2">
-              <h2
-                className="font-serif text-4xl tracking-tight sm:text-5xl"
-                id="say-heading"
-              >
-                Learn to say “peanut” in {language}
-              </h2>
-              <p className="mt-4 max-w-2xl text-xl">
-                Your card does the talking. This is for reading menus, labels
-                and street-stall signs along the way.
-              </p>
-            </div>
-            <div className="bg-shop-backdrop-1 order-last w-fit rounded-t-[24px] px-8 pt-8 lg:order-none">
-              <PixelArt className="w-28 sm:w-36" rows={chef} />
-            </div>
-            <ul className="grid max-w-3xl gap-5 pb-2 sm:grid-cols-2 lg:pb-14">
-              {destination.sayPeanut.map((entry) => (
-                <li
-                  className="bg-shop-highlight text-shop-on-highlight relative rounded-[24px] p-6 sm:p-8"
-                  key={entry.word}
-                >
-                  <p
-                    className="font-serif text-5xl leading-tight sm:text-6xl"
-                    lang={frontLanguages(destination).at(0)?.code}
-                  >
-                    {entry.word}
-                  </p>
-                  <p className="mt-3 font-serif text-2xl">{entry.romanised}</p>
-                  <p className="mt-1 font-mono text-sm uppercase">
-                    Say: {entry.soundsLike}
-                  </p>
-                  <p className="mt-4 text-base">{entry.note}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
+        <SayPeanut
+          entries={destination.sayPeanut}
+          language={language}
+          languageCode={frontLanguages(destination).at(0)?.code}
+        />
       ) : null}
 
       {destination.peanutFoods.length > 0 ? (
