@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { JsonLd } from "@/components/json-ld";
+import { Photo } from "@/components/photo";
 import { Backdrop, CardSetShot } from "@/components/shop/product-shots";
 import { ComparisonTable, ShopFaq } from "@/components/shop/sections";
 import {
@@ -36,10 +36,9 @@ const TripPackPage = () => (
     />
     <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
       <div className="grid min-w-0 grid-cols-2 content-start gap-4 lg:col-span-7">
-        <Image
+        <Photo
           alt="A neatly packed suitcase, with one peanut left behind on the floor outside it"
           className="col-span-2 aspect-[4/3] w-full rounded-[28px] object-cover"
-          fetchPriority="high"
           priority
           sizes="(min-width: 1024px) 58vw, 100vw"
           src={leftBehind}
@@ -74,7 +73,7 @@ const TripPackPage = () => (
       </div>
     </div>
 
-    <Image
+    <Photo
       alt="An airport security tray holding a belt, keys, phone and sunglasses, with one peanut set apart in the corner"
       className="mt-24 aspect-[16/9] w-full rounded-[28px] object-cover sm:aspect-[21/9]"
       sizes="(min-width: 1280px) 1232px, 100vw"

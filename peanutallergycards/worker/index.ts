@@ -3,6 +3,7 @@
  * plain files, served for free without touching this.
  *
  *   POST /api/subscribe          save an email address to the mailing list
+ *   POST /api/unsubscribe        delete an email address from it
  *   GET  /admin/subscribers      the list, for the owner (password)
  *   GET  /admin/subscribers.csv  the same, as a spreadsheet file
  *
@@ -99,6 +100,30 @@ const subscribe = async (request: Request, env: Env): Promise<Response> => {
     "INSERT INTO subscribers (email, created_at, source, country) VALUES (?1, ?2, ?3, ?4) ON CONFLICT (email) DO NOTHING"
   )
     .bind(email, new Date().toISOString(), source, country)
+    .run();
+  return json({ ok: true });
+};
+
+/**
+ * "Take me off the list", from the privacy page. The answer is the same
+ * whether or not the address was there, so nobody can use this to find out
+ * who has signed up.
+ */
+const unsubscribe = async (request: Request, env: Env): Promise<Response> => {
+  if (request.method !== "POST") {
+    return json({ ok: false, error: "method" }, 405);
+  }
+  if (!fromOurSite(request)) {
+    return json({ ok: false, error: "origin" }, 403);
+  }
+  const data = await readSignUp(request);
+  const email =
+    typeof data?.email === "string" ? data.email.trim().toLowerCase() : "";
+  if (!EMAIL.test(email) || email.length > MAX_EMAIL_LENGTH) {
+    return json({ ok: false, error: "email" }, 400);
+  }
+  await env.DB.prepare("DELETE FROM subscribers WHERE email = ?1")
+    .bind(email)
     .run();
   return json({ ok: true });
 };
@@ -231,6 +256,9 @@ const route = (request: Request, env: Env): Promise<Response> => {
   const { pathname } = new URL(request.url);
   if (pathname === "/api/subscribe") {
     return subscribe(request, env);
+  }
+  if (pathname === "/api/unsubscribe") {
+    return unsubscribe(request, env);
   }
   if (pathname === "/admin/subscribers") {
     return admin(request, env, false);

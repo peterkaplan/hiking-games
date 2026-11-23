@@ -4,6 +4,32 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ---
 
+## 2026-11-23: Search-friendly addresses, AVIF photos, a privacy page
+
+- Country pages moved from `/japan` and `/thailand` to
+  `/japanese-peanut-allergy-card` and `/thai-peanut-allergy-card`, the words
+  people type. The old addresses redirect (`public/_redirects`). Done now
+  because nothing is indexed yet; changing addresses later costs rankings.
+- The rule (`productSegment` in `src/content/catalogue.ts`): language plus
+  "peanut-allergy-card", and the country is added only where several
+  countries share a language (`spanish-peanut-allergy-card-mexico`), so
+  every address is one page. `slug` ("japan") stays the country's id in the
+  cart and the card files.
+- Photos are offered as AVIF first and WebP second
+  (`src/components/photo.tsx`, used for every photo instead of `next/image`).
+  AVIF is about a third smaller at the same look. The homepage's main photo
+  went from 138 KB to 87 KB on a phone.
+- Measured on a simulated slow phone: Lighthouse's estimate for that photo
+  went from 3.6 s to 3.3 s; with real network throttling it paints at 2.3 s.
+  The estimate assumes the photo shares the connection equally with the
+  scripts, which browsers don't do. What's left is Next.js's own scripts and
+  the fonts, not the photo.
+- A privacy page (`/privacy`, words in `src/content/privacy.ts`) says what
+  we collect, and has a form that deletes an address from the mailing list
+  at once (`POST /api/unsubscribe`). It answers the same whether or not the
+  address was there. Plain language, not a lawyer's draft: have it checked
+  before the store takes payments, and update it when checkout is added.
+
 ## 2026-11-23: The mailing list works, and lives on our own Cloudflare account
 
 - The sign-up form now saves addresses. It posts to `/api/subscribe`, a few

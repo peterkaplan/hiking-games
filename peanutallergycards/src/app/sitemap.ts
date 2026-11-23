@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { catalogue } from "@/content/catalogue";
+import { catalogue, productPath } from "@/content/catalogue";
 import { SITE_URL } from "@/content/seo";
 
 export const dynamic = "force-static";
@@ -12,7 +12,8 @@ const sitemap = (): MetadataRoute.Sitemap =>
     "",
     "/trip-pack",
     "/our-story",
-    ...catalogue.map(({ slug }) => `/${slug}`),
+    "/privacy",
+    ...catalogue.map(({ slug }) => productPath(slug)),
   ].map((path) => ({ url: `${SITE_URL}${path}`, lastModified: BUILT }));
 
 export default sitemap;

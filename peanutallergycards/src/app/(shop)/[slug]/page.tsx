@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import type { StaticImageData } from "next/image";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/json-ld";
+import { Photo } from "@/components/photo";
 import { PixelArt } from "@/components/pixel/pixel";
 import { chef } from "@/components/pixel/sprites";
 import { CheckIcon } from "@/components/shop/bits";
@@ -37,7 +37,14 @@ import {
   frontLanguages,
 } from "@/content/cards";
 import type { CatalogueCountry } from "@/content/catalogue";
-import { catalogue, findCountry, shopDestination } from "@/content/catalogue";
+import {
+  catalogue,
+  findCountry,
+  productPath,
+  productSegment,
+  shopDestination,
+  slugForSegment,
+} from "@/content/catalogue";
 import { faqItems } from "@/content/faq";
 import { displayState, LAUNCH_PREVIEW } from "@/content/launch-preview";
 import { formatPrice, formats, lowestPriceUsd } from "@/content/pricing";
@@ -63,10 +70,15 @@ interface PageProps {
 
 export const dynamicParams = false;
 
+/** One page per country, at its address (see productSegment). */
 export const generateStaticParams = () => {
   assertValidContent();
-  return catalogue.map(({ slug }) => ({ slug }));
+  return catalogue.map(({ slug }) => ({ slug: productSegment(slug) }));
 };
+
+/** The destination whose page lives at this address. */
+const destinationAt = (segment: string): Destination | undefined =>
+  shopDestination(slugForSegment(segment) ?? "");
 
 /** The price of the format that is selected when the page opens. */
 const defaultPrice = formats.at(0)?.priceUsd ?? lowestPriceUsd;
@@ -149,14 +161,14 @@ const searchDescription = (destination: Destination): string =>
 export const generateMetadata = async ({
   params,
 }: PageProps): Promise<Metadata> => {
-  const destination = shopDestination((await params).slug);
+  const destination = destinationAt((await params).slug);
   if (!destination) {
     return {};
   }
   return pageMetadata({
     title: `${languageName(destination)} Peanut Allergy Card for ${destination.country}`,
     description: searchDescription(destination),
-    path: `/${destination.slug}`,
+    path: productPath(destination.slug),
   });
 };
 
@@ -365,7 +377,7 @@ const SayPeanut = ({
 );
 
 const ProductPage = async ({ params }: PageProps) => {
-  const destination = shopDestination((await params).slug);
+  const destination = destinationAt((await params).slug);
   if (!destination) {
     notFound();
   }
@@ -388,7 +400,10 @@ const ProductPage = async ({ params }: PageProps) => {
           }),
           breadcrumbData([
             { name: "Home", path: "/" },
-            { name: destination.country, path: `/${destination.slug}` },
+            {
+              name: destination.country,
+              path: productPath(destination.slug),
+            },
           ]),
           faqData(faqItems),
         ]}
@@ -512,7 +527,7 @@ const ProductPage = async ({ params }: PageProps) => {
       </div>
 
       {kitchenPhoto ? (
-        <Image
+        <Photo
           alt={kitchenPhoto.alt}
           className="mt-24 aspect-[16/9] w-full rounded-[28px] object-cover sm:aspect-[21/9]"
           sizes="(min-width: 1280px) 1232px, 100vw"
@@ -589,7 +604,7 @@ const ProductPage = async ({ params }: PageProps) => {
             <ul className="mt-10 grid grid-cols-3 gap-3 sm:gap-5">
               {hidingPlaces.map((place) => (
                 <li key={place.alt}>
-                  <Image
+                  <Photo
                     alt={place.alt}
                     className="aspect-square w-full rounded-2xl object-cover sm:rounded-[24px]"
                     sizes="(min-width: 1280px) 380px, 30vw"
@@ -622,7 +637,7 @@ const ProductPage = async ({ params }: PageProps) => {
         <ul className="mt-12 grid grid-cols-3 gap-3 sm:gap-6">
           {inUse.map((photo) => (
             <li key={photo.alt}>
-              <Image
+              <Photo
                 alt={photo.alt}
                 className="aspect-square w-full rounded-2xl object-cover sm:aspect-[4/3] sm:rounded-[24px]"
                 sizes="(min-width: 1280px) 400px, 33vw"
@@ -643,7 +658,7 @@ const ProductPage = async ({ params }: PageProps) => {
         >
           An app translates. A card asks.
         </h2>
-        <Image
+        <Photo
           alt="A peanut stopped at a red velvet rope, with a candlelit restaurant table beyond it"
           className="mt-10 aspect-[16/9] w-full rounded-[28px] object-cover sm:aspect-[21/9]"
           sizes="(min-width: 1024px) 1024px, 100vw"

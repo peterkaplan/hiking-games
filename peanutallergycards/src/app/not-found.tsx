@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
+import { Photo } from "@/components/photo";
 import { buttonPrimary } from "@/components/shop/bits";
 import emptyPlateShell from "@/images/empty-plate-shell.webp";
 import ShopLayout from "./(shop)/layout";
@@ -10,7 +10,7 @@ export const metadata: Metadata = { title: "Page not found" };
 const NotFound = () => (
   <ShopLayout>
     <main className="mx-auto max-w-4xl px-4 pt-10 text-center sm:px-6 lg:pt-14">
-      <Image
+      <Photo
         alt="An empty white plate with a cracked, empty peanut shell in front of it"
         className="border-shop-ink aspect-[16/9] w-full rounded-[28px] border-2 object-cover"
         priority

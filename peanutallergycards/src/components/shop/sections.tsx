@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { Photo } from "@/components/photo";
 import {
   AnswerVignette,
   EatVignette,
@@ -10,6 +10,7 @@ import {
 import { stateLabel } from "@/components/status-badge";
 import type { Destination } from "@/content/cards";
 import { findDestination, frontLanguages } from "@/content/cards";
+import { productPath } from "@/content/catalogue";
 import type { Mark } from "@/content/comparison";
 import { comparisonColumns, comparisonRows } from "@/content/comparison";
 import type { FaqItem } from "@/content/faq";
@@ -33,7 +34,7 @@ export const ProductTile = ({ destination }: { destination: Destination }) => {
     .map((language) => language.name)
     .join(" + ");
   return (
-    <Link className="group block" href={`/${destination.slug}`}>
+    <Link className="group block" href={productPath(destination.slug)}>
       <div className="relative">
         <Backdrop
           className={`${destinationTint(destination.slug)} aspect-square overflow-hidden transition duration-300 [--shot-zoom:0.32] group-hover:rounded-[40px] min-[380px]:[--shot-zoom:0.4] sm:[--shot-zoom:0.3] lg:[--shot-zoom:0.4]`}
@@ -72,7 +73,7 @@ export const TripPackTile = () => (
   <Link className="group block" href="/trip-pack">
     <div className="relative">
       <div className="overflow-hidden rounded-[28px] transition-all duration-300 group-hover:rounded-[40px]">
-        <Image
+        <Photo
           alt="A neatly packed suitcase, with one peanut left behind on the floor outside it"
           className="aspect-square w-full object-cover transition duration-300 group-hover:scale-[1.03]"
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"

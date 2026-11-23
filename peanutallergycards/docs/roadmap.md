@@ -62,13 +62,16 @@ Tick items off as they're done; add new ones as they come up.
 - [ ] Disclaimer, About and Contact pages
 - [ ] SEO basics: titles, descriptions, sitemap, Open Graph images
 - [x] Search basics: canonical addresses, share card, structured data, sitemap dates (2026-11-23)
+- [x] Search: country pages live at /japanese-peanut-allergy-card and /thai-peanut-allergy-card; old addresses redirect (2026-11-23)
 - [ ] Search: turn on `NEXT_PUBLIC_SITE_LIVE` when the store can really sell, then add the site to Google Search Console and Bing Webmaster Tools and submit the sitemap
 - [x] Search: product-page headline is now "Japanese Peanut Allergy Cards" (2026-11-23)
 - [ ] Search: write the guides in `docs/content-to-make.md`; they are what most people will find first
-- [ ] Speed: the homepage photo is the slowest thing on a slow phone (about 140 KB); an AVIF copy would halve it
+- [x] Speed: photos are served as AVIF with WebP as the fallback (2026-11-23)
 - [x] Mailing list: the form saves to a database; the owner's list is at /admin/subscribers (2026-11-23)
 - [ ] Mailing list: owner to set the `ADMIN_PASSWORD` secret in Cloudflare (the list page is locked until then)
-- [ ] Mailing list: a privacy page saying what we collect and how to be removed, before search engines are let in
+- [x] Privacy page, with a form to take yourself off the mailing list (2026-11-23)
+- [ ] Privacy page: have it checked, and update it when checkout (Stripe) is added
+- [ ] The `hello@peanutallergycards.com` mailbox doesn't exist yet, and the FAQ and privacy page tell people to write to it
 - [ ] Mailing list: choose a service to send from (import the CSV); it must handle unsubscribes
 - [x] Analytics: Cloudflare Web Analytics (no cookies)
 - [ ] Launch, and post in relevant Reddit communities (e.g. Japan travel, food allergies)

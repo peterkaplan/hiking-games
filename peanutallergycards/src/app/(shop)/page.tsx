@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { JsonLd } from "@/components/json-ld";
+import { Photo } from "@/components/photo";
 import { PixelArt } from "@/components/pixel/pixel";
 import { noPeanut } from "@/components/pixel/sprites";
 import {
@@ -100,10 +100,9 @@ const Hero = () => (
       </ul>
     </div>
     <div className="relative order-first lg:order-none">
-      <Image
+      <Photo
         alt="A bowl of ramen on a restaurant counter in Japan, with a laminated Japanese peanut allergy card beside it"
         className="border-shop-ink aspect-square w-full rounded-[28px] border-2 object-cover object-top sm:aspect-[4/3] lg:aspect-[4/5]"
-        fetchPriority="high"
         priority
         sizes="(min-width: 1024px) 50vw, 100vw"
         src={ramenWithCard}
@@ -159,7 +158,7 @@ const LocalKitchen = () => {
           </p>
         </div>
         <div className="min-w-0">
-          <Image
+          <Photo
             alt="A granite mortar and pestle at a Thai street stall, holding green papaya, lime and crushed peanuts"
             className="aspect-[4/3] w-full rounded-[24px] object-cover lg:aspect-[4/5]"
             sizes="(min-width: 1024px) 40vw, 100vw"
@@ -321,7 +320,7 @@ const ShopHome = () => (
       className="mx-auto max-w-4xl scroll-mt-24 px-4 pt-24 sm:px-6"
       id="faq"
     >
-      <Image
+      <Photo
         alt="Six peanuts standing in a police line-up against a height chart"
         className="border-shop-ink aspect-[16/9] w-full rounded-[28px] border-2 object-cover sm:aspect-[21/9]"
         sizes="(min-width: 896px) 896px, 100vw"

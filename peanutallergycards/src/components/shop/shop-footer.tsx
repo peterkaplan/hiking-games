@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Disclaimer } from "@/components/disclaimer";
+import { Photo } from "@/components/photo";
 import { destinations } from "@/content/cards";
-import { catalogue, NEEDS_SEARCH } from "@/content/catalogue";
+import { catalogue, NEEDS_SEARCH, productPath } from "@/content/catalogue";
 import { LAUNCH_PREVIEW } from "@/content/launch-preview";
 import { maxSaving } from "@/content/pricing";
 import notOnTheList from "@/images/not-on-the-list.webp";
@@ -14,6 +14,7 @@ import { NewsletterForm } from "./newsletter-form";
  * eye), a playful sign-up headline (Ghia), link columns (all of them), the
  * name as large as the page allows (Ghia, Graza), and a small legal row.
  * Only real pages are linked: no social accounts or policies we don't have.
+ * (The privacy page exists: src/app/(shop)/privacy.)
  */
 
 interface FooterLink {
@@ -26,7 +27,7 @@ const columns: readonly { heading: string; links: readonly FooterLink[] }[] = [
     heading: "Shop",
     links: [
       ...destinations.map((destination) => ({
-        href: `/${destination.slug}`,
+        href: productPath(destination.slug),
         label: `The ${destination.country} Set`,
       })),
       { href: "/trip-pack", label: `The Trip Pack: save ${maxSaving}%` },
@@ -50,6 +51,7 @@ const columns: readonly { heading: string; links: readonly FooterLink[] }[] = [
     links: [
       { href: "/#how-it-works", label: "How the cards work" },
       { href: "/#faq", label: "FAQ" },
+      { href: "/privacy", label: "Privacy" },
     ],
   },
 ];
@@ -127,7 +129,7 @@ export const ShopFooter = () => (
     <FooterStamp />
     <div className="mx-auto grid max-w-7xl gap-16 px-4 pt-32 pb-16 sm:px-6 lg:grid-cols-2 lg:gap-20">
       <div className="min-w-0">
-        <Image
+        <Photo
           alt="A sealed green envelope with one peanut left outside it"
           className="mb-8 aspect-[16/9] w-full max-w-xs rounded-2xl object-cover"
           sizes="320px"
@@ -144,6 +146,12 @@ export const ShopFooter = () => (
         <div className="mt-8 max-w-xl">
           <NewsletterForm />
         </div>
+        <p className="mt-4 font-mono text-xs uppercase">
+          Unsubscribe any time ·{" "}
+          <Link className={footerLink} href="/privacy">
+            Privacy
+          </Link>
+        </p>
       </div>
       <nav
         aria-label="Footer"

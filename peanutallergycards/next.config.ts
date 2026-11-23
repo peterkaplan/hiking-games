@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
   output: "export",
   // There is no image server, so photos are resized ahead of time by
   // scripts/build-images.mjs and src/image-loader.ts picks one per screen.
+  // Photos are shown with src/components/photo.tsx (AVIF, then WebP).
   // Keep the sizes in step with WIDTHS in that script.
   images: {
     loader: "custom",

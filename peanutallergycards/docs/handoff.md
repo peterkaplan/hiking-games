@@ -29,14 +29,15 @@ the original cards for their honeymoon in Thailand and Japan.
 
 ## The site today
 
-| Page                  | What's there                                                                                                                                                                 |
-| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `/`                   | Hero with a real photo, "Shop by country" (Japan, Thailand, The Trip Pack), the statement, "Written for the kitchen", four pixel-art steps, story teaser, FAQ                |
-| `/thailand`, `/japan` | Gallery, price, buy box (format, add another country), accordions, "Learn to say peanut", "Where peanuts hide" (Thailand only), steps and photo strip, comparison chart, FAQ |
-| `/trip-pack`          | The bundle product: tick countries, choose a format, add all to cart                                                                                                         |
-| `/cart`               | Cart saved in the browser; multi-country discount; Checkout button says it is not connected                                                                                  |
-| `/our-story`          | Split opener, "How it started", Julia's note, "What we believe"                                                                                                              |
-| not found             | "Nothing here. Not even peanuts."                                                                                                                                            |
+| Page                                                         | What's there                                                                                                                                                                 |
+| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/`                                                          | Hero with a real photo, "Shop by country" (Japan, Thailand, The Trip Pack), the statement, "Written for the kitchen", four pixel-art steps, story teaser, FAQ                |
+| `/thai-peanut-allergy-card`, `/japanese-peanut-allergy-card` | Gallery, price, buy box (format, add another country), accordions, "Learn to say peanut", "Where peanuts hide" (Thailand only), steps and photo strip, comparison chart, FAQ |
+| `/trip-pack`                                                 | The bundle product: tick countries, choose a format, add all to cart                                                                                                         |
+| `/cart`                                                      | Cart saved in the browser; multi-country discount; Checkout button says it is not connected                                                                                  |
+| `/our-story`                                                 | Split opener, "How it started", Julia's note, "What we believe"                                                                                                              |
+| `/privacy`                                                   | What we collect, in plain words, and a form that removes an address from the mailing list                                                                                    |
+| not found                                                    | "Nothing here. Not even peanuts."                                                                                                                                            |
 
 Design: Great Jones's palette (cream `#faeddf`, green `#0e5540`, mustard
 `#ffc933`, black), Young Serif headings, Instrument Sans body, DM Mono
@@ -159,9 +160,14 @@ Unanswered questions to the owner:
   the `assets` and `d1` bindings, and pass `keep_bindings: ["secret_text"]`
   so the password survives.
 - Photos: `npm run build` first runs `scripts/build-images.mjs`, which writes
-  resized copies to `public/img/` (not in git) and the list to
-  `src/images/variants.json` (in git). Add a photo to `src/images/`, import
-  it as before, and give the `<Image>` a `sizes` value.
+  resized AVIF and WebP copies to `public/img/` (not in git; the first run
+  takes about a minute) and the list to `src/images/variants.json` (in
+  git). Add a photo to `src/images/`, import it, and show it with `<Photo>`
+  (`src/components/photo.tsx`) and a `sizes` value.
+- Page addresses for countries come from `productPath()` in
+  `src/content/catalogue.ts`; never build one from `slug` by hand. Old
+  addresses are redirected in `public/_redirects`, which a hand deploy must
+  pass as `assets.config._redirects`, like `_headers`.
 - Headers (caching, security) are in `public/_headers`.
 - Visitor numbers: Cloudflare dashboard, Analytics & Logs, Web Analytics.
   The snippet is `src/components/web-analytics.tsx`.

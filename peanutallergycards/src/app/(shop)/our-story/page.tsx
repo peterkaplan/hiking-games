@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
+import { Photo } from "@/components/photo";
 import {
   ChefFrontCard,
   EmergencyFrontCard,
@@ -85,7 +85,7 @@ const Journey = () => (
         >
           How it started
         </h2>
-        <Image
+        <Photo
           alt="Packed for a trip: a passport, a boarding pass, sunglasses, a luggage tag and an auto-injector pen"
           className="mt-8 aspect-[16/9] w-full rounded-[28px] object-cover"
           sizes="(min-width: 1024px) 30vw, 100vw"
@@ -175,7 +175,7 @@ const Principles = () => (
           >
             {last ? (
               // The last belief is about peanuts, so it gets the peanut.
-              <Image
+              <Photo
                 alt="Chopsticks lifting a single peanut out and away from a bowl of noodles"
                 className="aspect-[16/10] w-full object-cover object-top"
                 sizes="(min-width: 768px) 33vw, 100vw"

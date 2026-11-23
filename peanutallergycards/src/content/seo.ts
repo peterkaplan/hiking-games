@@ -10,6 +10,7 @@
 import type { Metadata } from "next";
 import type { Destination } from "./cards";
 import { isReady } from "./cards";
+import { productPath } from "./catalogue";
 import type { FaqItem } from "./faq";
 import { formats } from "./pricing";
 
@@ -28,7 +29,7 @@ const absolute = (path: string): string => `${SITE_URL}${path}`;
 
 /**
  * Metadata for one page. `path` is the page's address on the site ("/" or
- * "/japan"); it becomes the canonical URL, so the same page reached another
+ * "/our-story"); it becomes the canonical URL, so the same page reached another
  * way (www, a trailing slash, the workers.dev address) counts as this one.
  */
 export const pageMetadata = ({
@@ -128,7 +129,7 @@ export const productData = ({
   destination: Destination;
   language: string;
 }): StructuredData => {
-  const path = `/${destination.slug}`;
+  const path = productPath(destination.slug);
   const prices = formats.map((format) => format.priceUsd);
   return {
     "@context": "https://schema.org",
