@@ -1,6 +1,7 @@
 # Peanut Allergy Cards: notes for Claude
 
-Start with `README.md`, then `docs/strategy.md` and `docs/roadmap.md`.
+Start with `docs/handoff.md` (where things stand and how the owner wants them
+done), then `README.md`, `docs/decisions.md` and `docs/roadmap.md`.
 The repo-root `.claude/CLAUDE.md` (Ultracite and Biome code rules) applies here too.
 
 ## What this is

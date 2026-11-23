@@ -7,6 +7,8 @@ and paid cards, plus an Etsy store.
 **Status:** pre-launch. This project lives in the `hiking-games` repo for now and
 moves to its own repo later (see [Moving to its own repo](#moving-to-its-own-repo)).
 
+**Picking this up in a new session?** Start with [`docs/handoff.md`](docs/handoff.md).
+
 ## Where things are
 
 | Path                                                         | What's in it                                                     |
