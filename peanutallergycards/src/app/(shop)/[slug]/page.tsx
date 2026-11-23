@@ -131,7 +131,7 @@ const ambulance = (destination: Destination): string =>
 
 /**
  * The page's headline, in the words people search for: "Japanese Peanut
- * Allergy Cards". The set's name ("The Japan Set") sits above it as a label.
+ * Allergy Cards".
  */
 const cardsHeading = (destination: Destination): string => {
   const language =
@@ -438,8 +438,7 @@ const ProductPage = async ({ params }: PageProps) => {
           <p className="border-shop-ink hidden rounded-full border px-3 py-1 font-mono text-xs uppercase sm:inline-block">
             {stateLabel[state]}
           </p>
-          <p className="font-mono text-sm uppercase sm:mt-4">{title}</p>
-          <h1 className="mt-1 font-serif text-4xl leading-[1.02] tracking-tight sm:text-5xl">
+          <h1 className="font-serif text-4xl leading-[1.02] tracking-tight sm:mt-4 sm:text-5xl">
             {cardsHeading(destination)}
           </h1>
           <p className="mt-2 font-mono text-sm uppercase">
