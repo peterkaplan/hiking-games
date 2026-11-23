@@ -129,6 +129,19 @@ const hasCards = (destination: Destination): boolean =>
 const ambulance = (destination: Destination): string =>
   destination.emergencyNumber ? ` (${destination.emergencyNumber})` : "";
 
+/**
+ * The page's headline, in the words people search for: "Japanese Peanut
+ * Allergy Cards". The set's name ("The Japan Set") sits above it as a label.
+ */
+const cardsHeading = (destination: Destination): string => {
+  const language =
+    frontLanguages(destination).at(0)?.name ??
+    findCountry(destination.slug)?.language;
+  return language
+    ? `${language} Peanut Allergy Cards`
+    : `Peanut Allergy Cards for ${destination.country}`;
+};
+
 /** The one-line pitch used for search results and link previews. */
 const searchDescription = (destination: Destination): string =>
   `A ${languageName(destination)} peanut allergy card to hand your waiter: the kitchen answers yes or no. Plus an emergency card with ${destination.country}'s ambulance number${ambulance(destination)}.`;
@@ -425,8 +438,9 @@ const ProductPage = async ({ params }: PageProps) => {
           <p className="border-shop-ink hidden rounded-full border px-3 py-1 font-mono text-xs uppercase sm:inline-block">
             {stateLabel[state]}
           </p>
-          <h1 className="font-serif text-4xl leading-[1.02] tracking-tight sm:mt-4 sm:text-5xl">
-            {title}
+          <p className="font-mono text-sm uppercase sm:mt-4">{title}</p>
+          <h1 className="mt-1 font-serif text-4xl leading-[1.02] tracking-tight sm:text-5xl">
+            {cardsHeading(destination)}
           </h1>
           <p className="mt-2 font-mono text-sm uppercase">
             Chef card + emergency card + peanut guide · {language} and English
