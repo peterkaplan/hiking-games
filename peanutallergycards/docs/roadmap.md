@@ -45,7 +45,8 @@ Tick items off as they're done; add new ones as they come up.
 - [ ] Confirm the language for each catalogue country before writing its cards (`src/content/catalogue.ts`)
 - [x] Cloudflare: deployed to peanutallergycards.phkap96.workers.dev (2026-11-23)
 - [ ] Cloudflare: connect the GitHub repo so a push deploys by itself (settings in the README)
-- [ ] Cloudflare: add peanutallergycards.com to the account and attach it to the Worker; then make a Web Analytics site for it and set `NEXT_PUBLIC_CF_ANALYTICS_TOKEN`
+- [x] Domain: peanutallergycards.com bought, attached to the Worker, www redirects to it (2026-11-23)
+- [ ] Domain: renew before 2027-11-23 (auto-renew is off)
 - [ ] Uptime check: nothing tells us if the site goes down (needs an outside monitor, or Cloudflare Health Checks on a paid plan)
 - [ ] Stripe: account, then the checkout Worker (test mode first), thank-you page and order email
 - [ ] Privacy, terms, and refunds and shipping pages

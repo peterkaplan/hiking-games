@@ -98,10 +98,11 @@ These came up repeatedly and are easy to get wrong.
 
 Needs the owner:
 
-1. **Cloudflare:** the site is live at
-   `https://peanutallergycards.phkap96.workers.dev` (see "Hosting" below).
-   Still to do: connect the GitHub repo so pushes deploy by themselves, and
-   add `peanutallergycards.com` to the Cloudflare account.
+1. **Cloudflare:** the site is live at `https://peanutallergycards.com`
+   (see "Hosting" below). Still to do: connect the GitHub repo in the
+   Cloudflare dashboard so pushes deploy by themselves (a session can't: it
+   needs the owner to approve Cloudflare's GitHub app and it creates an API
+   token). The domain's auto-renew is off; it expires 2027-11-23.
 2. **Stripe:** open an account. Then build a Cloudflare Worker that prices
    the cart server-side, creates a Stripe Checkout session and handles the
    paid webhook. Test mode first.
@@ -141,7 +142,9 @@ Unanswered questions to the owner:
 ## Hosting
 
 - Cloudflare Worker `peanutallergycards` on the owner's account, files only
-  (no code runs). Deployed 2026-11-23 from commit `ac35b75` by uploading
+  (no code runs), at `https://peanutallergycards.com`. `www` redirects to
+  it; `https://peanutallergycards.phkap96.workers.dev` is a test address.
+  Deployed 2026-11-23 by uploading
   `out/` through the Cloudflare connector, because the session had no API
   token for `wrangler deploy`. The steps: `npm run build`; send the file list
   to `assets-upload-session`; upload the files to `api.cloudflare.com` with
@@ -176,8 +179,8 @@ them again if needed.
 
 ## The clickable preview
 
-The owner reviews the site at a private claude.ai artifact, not a deployed
-URL: `https://claude.ai/artifact/9neXyarKbqp6Xq4dHfySBz`. To refresh it:
+The owner used to review the site at a private claude.ai artifact (it is
+now live, so the artifact is out of date unless refreshed): `https://claude.ai/artifact/9neXyarKbqp6Xq4dHfySBz`. To refresh it:
 
 ```bash
 NEXT_PUBLIC_ASSET_BASE="" npx next build

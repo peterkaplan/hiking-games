@@ -38,8 +38,9 @@ npm run preview    # build, then serve out/ the way Cloudflare will
 
 ## Hosting: Cloudflare
 
-Live at <https://peanutallergycards.phkap96.workers.dev> (a test address:
-search engines are kept out).
+Live at <https://peanutallergycards.com>. Search engines are kept out until
+the store opens. <https://peanutallergycards.phkap96.workers.dev> is a test
+address for the same site.
 
 Every page is built ahead of time, so the site is plain files in `out/`,
 served by Cloudflare Workers static assets (`wrangler.jsonc`). There is no

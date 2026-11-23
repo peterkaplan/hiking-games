@@ -5,8 +5,11 @@
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "peanutallergycards",
   "compatibility_date": "2026-11-01",
-  // Served at peanutallergycards.<account>.workers.dev until the real domain
-  // is attached. No separate preview addresses.
+  // The real address. www.peanutallergycards.com is sent here by a redirect
+  // rule on the domain in Cloudflare, not by this file.
+  "routes": [{ "pattern": "peanutallergycards.com", "custom_domain": true }],
+  // Also at peanutallergycards.<account>.workers.dev, as a test address
+  // (never indexed: see public/_headers). No separate preview addresses.
   "workers_dev": true,
   "preview_urls": false,
   // Keep logs for any Worker code added later (checkout). Plain files don't

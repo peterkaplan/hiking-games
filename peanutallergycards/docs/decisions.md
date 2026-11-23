@@ -4,6 +4,17 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ---
 
+## 2026-11-23: peanutallergycards.com bought and attached
+
+- The owner bought the domain through Cloudflare Registrar ($11.17, one
+  year, auto-renew off: it expires 2027-11-23 unless renewed by hand).
+- The Worker serves `https://peanutallergycards.com`. `www` redirects to it
+  (a redirect rule on the domain), so there is one address for every page.
+- The `workers.dev` address stays on as a test address and is never indexed.
+- Visitor analytics now count under the real domain; the test address's
+  analytics site was deleted.
+- Search engines are still blocked until `NEXT_PUBLIC_SITE_LIVE=on`.
+
 ## 2026-11-23: Deployed to Cloudflare; analytics, alerts and resized photos
 
 - The site is live at `https://peanutallergycards.phkap96.workers.dev`, as a
