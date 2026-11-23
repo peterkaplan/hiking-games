@@ -302,7 +302,7 @@ const SayPeanut = ({
           rows={chef}
         />
         <div className="bg-shop-panel text-shop-ink border-shop-ink relative w-fit max-w-full border-[6px] lg:mb-28">
-          <ul className="divide-shop-ink grid divide-y-[6px] sm:grid-flow-col sm:divide-x-[6px] sm:divide-y-0">
+          <ul className="divide-shop-ink grid divide-y-[6px] sm:auto-cols-fr sm:grid-flow-col sm:divide-x-[6px] sm:divide-y-0">
             {entries.map((entry) => (
               <li className="p-6 sm:p-9" key={entry.word}>
                 <p
