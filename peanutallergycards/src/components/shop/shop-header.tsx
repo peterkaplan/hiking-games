@@ -63,7 +63,7 @@ export const ShopHeader = () => (
           {navLinks.map((link) => (
             <li key={link.href}>
               <Link
-                className="underline-offset-8 hover:underline"
+                className="inline-block py-1 underline-offset-8 hover:underline"
                 href={link.href}
               >
                 {link.label}

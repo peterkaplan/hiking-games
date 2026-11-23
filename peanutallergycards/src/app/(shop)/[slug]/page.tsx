@@ -3,6 +3,7 @@ import type { StaticImageData } from "next/image";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { JsonLd } from "@/components/json-ld";
 import { PixelArt } from "@/components/pixel/pixel";
 import { chef } from "@/components/pixel/sprites";
 import { CheckIcon } from "@/components/shop/bits";
@@ -40,6 +41,12 @@ import { catalogue, findCountry, shopDestination } from "@/content/catalogue";
 import { faqItems } from "@/content/faq";
 import { displayState, LAUNCH_PREVIEW } from "@/content/launch-preview";
 import { formatPrice, formats, lowestPriceUsd } from "@/content/pricing";
+import {
+  breadcrumbData,
+  faqData,
+  pageMetadata,
+  productData,
+} from "@/content/seo";
 import chefReads from "@/images/chef-reads.webp";
 import digIn from "@/images/dig-in.webp";
 import handOver from "@/images/hand-over.webp";
@@ -122,6 +129,10 @@ const hasCards = (destination: Destination): boolean =>
 const ambulance = (destination: Destination): string =>
   destination.emergencyNumber ? ` (${destination.emergencyNumber})` : "";
 
+/** The one-line pitch used for search results and link previews. */
+const searchDescription = (destination: Destination): string =>
+  `A ${languageName(destination)} peanut allergy card to hand your waiter: the kitchen answers yes or no. Plus an emergency card with ${destination.country}'s ambulance number${ambulance(destination)}.`;
+
 export const generateMetadata = async ({
   params,
 }: PageProps): Promise<Metadata> => {
@@ -129,11 +140,11 @@ export const generateMetadata = async ({
   if (!destination) {
     return {};
   }
-  const language = languageName(destination);
-  return {
-    title: `${language} Peanut Allergy Card for ${destination.country}: Chef Card + Emergency Card`,
-    description: `Hand it to your waiter before you order: a ${language} chef card that asks the kitchen for a clear yes or no, plus an emergency card with ${destination.country}'s ambulance number${ambulance(destination)}. Comes with a local peanut guide. English on the back.`,
-  };
+  return pageMetadata({
+    title: `${languageName(destination)} Peanut Allergy Card for ${destination.country}`,
+    description: searchDescription(destination),
+    path: `/${destination.slug}`,
+  });
 };
 
 const sampleSlides = (country: CatalogueCountry): GallerySlide[] => [
@@ -355,19 +366,36 @@ const ProductPage = async ({ params }: PageProps) => {
 
   return (
     <main className="mx-auto max-w-7xl px-4 pt-6 sm:px-6">
+      <JsonLd
+        data={[
+          productData({
+            destination,
+            language,
+            description: searchDescription(destination),
+          }),
+          breadcrumbData([
+            { name: "Home", path: "/" },
+            { name: destination.country, path: `/${destination.slug}` },
+          ]),
+          faqData(faqItems),
+        ]}
+      />
       <nav
         aria-label="Breadcrumb"
         className="text-shop-ink hidden font-mono text-xs uppercase sm:block"
       >
-        <ol className="flex gap-2">
+        <ol className="flex items-center gap-2">
           <li>
-            <Link className="hover:underline" href="/">
+            <Link className="inline-block py-1 hover:underline" href="/">
               Home
             </Link>
           </li>
           <li aria-hidden="true">/</li>
           <li>
-            <Link className="hover:underline" href="/#destinations">
+            <Link
+              className="inline-block py-1 hover:underline"
+              href="/#destinations"
+            >
               Shop by country
             </Link>
           </li>

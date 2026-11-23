@@ -55,7 +55,7 @@ const columns: readonly { heading: string; links: readonly FooterLink[] }[] = [
 ];
 
 const footerLink =
-  "focus-visible:outline-shop-on-band rounded-sm decoration-2 underline-offset-4 hover:underline focus-visible:outline-3 focus-visible:outline-offset-4";
+  "focus-visible:outline-shop-on-band inline-block rounded-sm py-1 decoration-2 underline-offset-4 hover:underline focus-visible:outline-3 focus-visible:outline-offset-4";
 
 /** 2πr for the stamp's ring of text (r = 62). */
 const STAMP_RING_LENGTH = 389.5;

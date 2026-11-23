@@ -170,30 +170,39 @@ const MarkCell = ({ mark }: { mark: Mark }) => {
   return <span className="text-shop-ink font-mono text-sm">Varies</span>;
 };
 
+const markCell = "px-1 py-3 text-center sm:p-5";
+const otherColumn =
+  "px-1 py-3 text-center font-mono text-[10px] uppercase sm:p-5 sm:text-sm";
+
+/** Narrow enough for a phone: nothing is hidden off to the side. */
 export const ComparisonTable = () => (
-  <div className="border-shop-ink bg-shop-panel relative overflow-x-auto rounded-[24px] border-2">
-    <table className="w-full min-w-[620px] border-collapse text-left">
+  <div className="border-shop-ink bg-shop-panel overflow-hidden rounded-[24px] border-2">
+    <table className="w-full table-fixed border-collapse text-left sm:table-auto">
+      <caption className="sr-only">
+        How {comparisonColumns.us} compare with other allergy cards and with a
+        translation app
+      </caption>
+      <colgroup>
+        <col className="w-[37%] sm:w-auto" />
+        <col />
+        <col />
+        <col />
+      </colgroup>
       <thead>
         <tr className="border-shop-ink border-b-2">
-          <th className="p-4 font-normal sm:p-5" scope="col">
+          <th className="p-3 font-normal sm:p-5" scope="col">
             <span className="sr-only">Feature</span>
           </th>
           <th
-            className="bg-shop-selected p-4 text-center font-serif text-lg sm:p-5"
+            className="bg-shop-selected px-1 py-3 text-center font-serif text-sm leading-tight sm:p-5 sm:text-lg"
             scope="col"
           >
             {comparisonColumns.us}
           </th>
-          <th
-            className="p-4 text-center font-mono text-sm uppercase sm:p-5"
-            scope="col"
-          >
+          <th className={otherColumn} scope="col">
             {comparisonColumns.freeCard}
           </th>
-          <th
-            className="p-4 text-center font-mono text-sm uppercase sm:p-5"
-            scope="col"
-          >
+          <th className={otherColumn} scope="col">
             {comparisonColumns.translationApp}
           </th>
         </tr>
@@ -205,18 +214,18 @@ export const ComparisonTable = () => (
             key={row.feature}
           >
             <th
-              className="p-4 font-medium sm:p-5 [tr:first-child>&]:font-serif [tr:first-child>&]:text-2xl [tr:first-child>&]:font-normal sm:[tr:first-child>&]:text-3xl"
+              className="p-3 text-sm font-medium sm:p-5 sm:text-lg [tr:first-child>&]:font-serif [tr:first-child>&]:text-xl [tr:first-child>&]:font-normal sm:[tr:first-child>&]:text-3xl"
               scope="row"
             >
               {row.feature}
             </th>
-            <td className="bg-shop-selected p-4 text-center sm:p-5">
+            <td className={`bg-shop-selected ${markCell}`}>
               <MarkCell mark={row.us} />
             </td>
-            <td className="p-4 text-center sm:p-5">
+            <td className={markCell}>
               <MarkCell mark={row.freeCard} />
             </td>
-            <td className="p-4 text-center sm:p-5">
+            <td className={markCell}>
               <MarkCell mark={row.translationApp} />
             </td>
           </tr>

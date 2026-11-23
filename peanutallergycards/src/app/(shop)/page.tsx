@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { JsonLd } from "@/components/json-ld";
 import { PixelArt } from "@/components/pixel/pixel";
 import { noPeanut } from "@/components/pixel/sprites";
 import {
@@ -38,19 +39,23 @@ import {
   maxSaving,
   maxSavingCountries,
 } from "@/content/pricing";
-import cleanPlate from "@/images/clean-plate.webp";
+import {
+  faqData,
+  organizationData,
+  pageMetadata,
+  websiteData,
+} from "@/content/seo";
 import mortar from "@/images/mortar.webp";
 import peanutLineup from "@/images/peanut-lineup.webp";
 import ramenWithCard from "@/images/ramen-with-card.webp";
 
-export const metadata: Metadata = {
-  title: {
-    absolute:
-      "Peanut Allergy Cards for Restaurants Abroad: Japanese, Thai and more",
-  },
+export const metadata: Metadata = pageMetadata({
+  title: "Peanut Allergy Cards for Restaurants Abroad: Japanese & Thai",
+  titleIsComplete: true,
   description:
-    "Peanut allergy cards for eating in restaurants abroad. Hand the card to your waiter, get a clear yes or no from the kitchen, and eat with confidence. Emergency card and local peanut guide included.",
-};
+    "Peanut allergy cards for eating in restaurants abroad. Hand the card to your waiter, get a clear yes or no from the kitchen, and eat with confidence.",
+  path: "/",
+});
 
 const benefits = [
   "Hand it to your waiter",
@@ -98,6 +103,7 @@ const Hero = () => (
       <Image
         alt="A bowl of ramen on a restaurant counter in Japan, with a laminated Japanese peanut allergy card beside it"
         className="border-shop-ink aspect-square w-full rounded-[28px] border-2 object-cover object-top sm:aspect-[4/3] lg:aspect-[4/5]"
+        fetchPriority="high"
         priority
         sizes="(min-width: 1024px) 50vw, 100vw"
         src={ramenWithCard}
@@ -113,26 +119,18 @@ const Hero = () => (
 );
 
 const Statement = () => (
-  <section className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-24 sm:px-6 lg:grid-cols-[1.2fr_1fr] lg:gap-14">
-    <div>
-      <p className="font-serif text-5xl leading-[1.12] tracking-tight sm:text-7xl sm:leading-[1.1]">
-        One card. One question.{" "}
-        <span className="bg-shop-highlight text-shop-on-highlight inline-block px-3 whitespace-nowrap">
-          A clear yes.
-        </span>
-      </p>
-      <p className="text-shop-ink mt-8 max-w-2xl text-xl">
-        Hand it to your waiter, server or bartender. It tells the chef what you
-        can&apos;t eat, then asks if they can cook for you. Sit down knowing,
-        not hoping.
-      </p>
-    </div>
-    <Image
-      alt="A spotless empty plate with a knife and fork, and a single peanut pushed away to the edge of the table"
-      className="border-shop-ink aspect-[16/9] w-full rounded-[28px] border-2 object-cover"
-      sizes="(min-width: 1024px) 45vw, 100vw"
-      src={cleanPlate}
-    />
+  <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6">
+    <p className="max-w-5xl font-serif text-5xl leading-[1.12] tracking-tight sm:text-7xl sm:leading-[1.1]">
+      One card. One question.{" "}
+      <span className="bg-shop-highlight text-shop-on-highlight inline-block px-3 whitespace-nowrap">
+        A clear yes.
+      </span>
+    </p>
+    <p className="text-shop-ink mt-8 max-w-2xl text-xl">
+      Hand it to your waiter, server or bartender. It tells the chef what you
+      can&apos;t eat, then asks if they can cook for you. Sit down knowing, not
+      hoping.
+    </p>
   </section>
 );
 
@@ -236,6 +234,7 @@ const TripPack = () => {
 
 const ShopHome = () => (
   <main>
+    <JsonLd data={[organizationData, websiteData, faqData(homeFaqItems)]} />
     <Hero />
     <Marquee items={benefits} />
 

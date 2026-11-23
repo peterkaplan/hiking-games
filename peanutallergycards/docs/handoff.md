@@ -201,9 +201,14 @@ is out of date and can be ignored.
 After each change, against the built site at 320, 390 and 1280 pixels wide:
 no horizontal overflow on any page, no failed requests, axe-core with no
 violations, and a palette audit (only the six palette colours, apart from
-card images, flags and pixel art). The scripts lived in the earlier
-session's scratch folder and are gone; they were short Playwright scripts
-and are quick to rewrite.
+card images, flags and pixel art). On 2026-11-23 Lighthouse (phone) gave
+accessibility 100, speed 90 to 100, and SEO 100 with the live switch on.
+The scripts live in the session's scratch folder and are not kept; they are
+short Playwright scripts (serve `out/` with `npx wrangler dev`, load each
+page, inject `axe-core`) and are quick to rewrite.
+
+Search metadata and structured data are in `src/content/seo.ts`; each page
+calls `pageMetadata()` with its own address.
 
 ## Where to look
 

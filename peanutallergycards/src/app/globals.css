@@ -70,6 +70,20 @@
   --color-shop-backdrop-3: #fffaf5;
 }
 
+/*
+ * Keyboard focus: one thick ring everywhere in the store, so people who
+ * don't use a mouse can always see where they are. White on the green bands.
+ */
+@layer base {
+  [data-palette] :focus-visible {
+    outline: 3px solid var(--color-shop-ink);
+    outline-offset: 3px;
+  }
+  [data-palette] .bg-shop-band :focus-visible {
+    outline-color: var(--color-shop-on-band);
+  }
+}
+
 /* The site is light-only: the cards are printed objects, shown as on paper. */
 :root {
   color-scheme: light;

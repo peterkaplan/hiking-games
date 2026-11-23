@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useId, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
 
 export interface MenuLink {
   href: string;
@@ -30,6 +30,21 @@ export const MobileMenu = ({
   const panelId = useId();
   const toggle = useCallback(() => setOpen((isOpen) => !isOpen), []);
   const close = useCallback(() => setOpen(false), []);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  /** Escape closes the menu and puts focus back on its button. */
+  useEffect(() => {
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        buttonRef.current?.focus();
+      }
+    };
+    if (open) {
+      document.addEventListener("keydown", closeOnEscape);
+    }
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [open]);
 
   return (
     <div className={className}>
@@ -38,6 +53,7 @@ export const MobileMenu = ({
         aria-expanded={open}
         className={buttonClassName}
         onClick={toggle}
+        ref={buttonRef}
         type="button"
       >
         <span className="sr-only">Menu</span>

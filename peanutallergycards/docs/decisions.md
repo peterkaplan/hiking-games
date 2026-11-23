@@ -4,6 +4,29 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ---
 
+## 2026-11-23: Search and accessibility pass
+
+- Every page now tells search engines its one address (canonical), has a
+  share card (Open Graph and Twitter tags, `public/og.jpg`), and carries
+  structured data: the business and site on the homepage, a product on each
+  country page, the breadcrumb trail, and the FAQ. It all comes from
+  `src/content/seo.ts`.
+- The product's structured data publishes a price and "in stock" only when
+  `isReady()` is true, the same gate checkout must use. No ratings or
+  reviews are published until there are real ones.
+- Page titles were cut to about 60 characters so they aren't clipped in
+  results; descriptions to about 150.
+- Accessibility: a "Skip to content" link, one thick focus ring everywhere,
+  Escape closes the phone menu, text links are taller to tap, and the
+  comparison table fits a phone instead of scrolling sideways (a sideways
+  scroller can't be reached by keyboard without breaking a lint rule).
+- `JsonLd` uses `dangerouslySetInnerHTML`, against the usual rule: React has
+  no other way to write a JSON-LD script. The data is only our own content.
+- The homepage's plate photo beside "A clear yes." was removed (owner's
+  call); that statement now stands alone.
+- Still off: search engines are blocked until `NEXT_PUBLIC_SITE_LIVE=on`.
+  Lighthouse scores SEO 66 because of that and 100 with the switch on.
+
 ## 2026-11-23: peanutallergycards.com bought and attached
 
 - The owner bought the domain through Cloudflare Registrar ($11.17, one

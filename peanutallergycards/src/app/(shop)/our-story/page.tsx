@@ -8,14 +8,16 @@ import {
 import { JuliasCard } from "@/components/shop/sections";
 import { findDestination } from "@/content/cards";
 import { LAUNCH_PREVIEW } from "@/content/launch-preview";
+import { pageMetadata } from "@/content/seo";
 import { story } from "@/content/story";
 import evicted from "@/images/evicted.webp";
 import packed from "@/images/packed.webp";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Our story: made by Peter, for Julia",
   description: `${story.heading} ${story.mission}`,
-};
+  path: "/our-story",
+});
 
 /*
  * Structure from the reference stores' story pages: a split opener in two

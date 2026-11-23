@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/content/seo";
 
 export const dynamic = "force-static";
 
@@ -12,7 +13,7 @@ const robots = (): MetadataRoute.Robots => ({
   rules: SITE_LIVE
     ? { userAgent: "*", allow: "/", disallow: "/cart" }
     : { userAgent: "*", disallow: "/" },
-  sitemap: "https://peanutallergycards.com/sitemap.xml",
+  sitemap: `${SITE_URL}/sitemap.xml`,
 });
 
 export default robots;
