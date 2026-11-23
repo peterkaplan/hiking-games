@@ -3,6 +3,8 @@ import type { StaticImageData } from "next/image";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { PixelArt } from "@/components/pixel/pixel";
+import { chef } from "@/components/pixel/sprites";
 import { CheckIcon } from "@/components/shop/bits";
 import type { GallerySlide } from "@/components/shop/product-gallery";
 import { ProductGallery } from "@/components/shop/product-gallery";
@@ -417,6 +419,48 @@ const ProductPage = async ({ params }: PageProps) => {
           </figure>
         </div>
       </section>
+
+      {destination.sayPeanut ? (
+        <section aria-labelledby="say-heading" className="pt-28">
+          <div className="bg-shop-panel border-shop-ink grid items-end gap-x-10 gap-y-8 rounded-[32px] border-2 p-6 pb-0 sm:p-10 sm:pb-0 lg:grid-cols-[auto_1fr] lg:p-14 lg:pb-0">
+            <div className="lg:col-span-2">
+              <h2
+                className="font-serif text-4xl tracking-tight sm:text-5xl"
+                id="say-heading"
+              >
+                Learn to say “peanut” in {language}
+              </h2>
+              <p className="mt-4 max-w-2xl text-xl">
+                Your card does the talking. This is for reading menus, labels
+                and street-stall signs along the way.
+              </p>
+            </div>
+            <div className="bg-shop-backdrop-1 order-last w-fit rounded-t-[24px] px-8 pt-8 lg:order-none">
+              <PixelArt className="w-28 sm:w-36" rows={chef} />
+            </div>
+            <ul className="grid max-w-3xl gap-5 pb-2 sm:grid-cols-2 lg:pb-14">
+              {destination.sayPeanut.map((entry) => (
+                <li
+                  className="bg-shop-highlight text-shop-on-highlight relative rounded-[24px] p-6 sm:p-8"
+                  key={entry.word}
+                >
+                  <p
+                    className="font-serif text-5xl leading-tight sm:text-6xl"
+                    lang={frontLanguages(destination).at(0)?.code}
+                  >
+                    {entry.word}
+                  </p>
+                  <p className="mt-3 font-serif text-2xl">{entry.romanised}</p>
+                  <p className="mt-1 font-mono text-sm uppercase">
+                    Say: {entry.soundsLike}
+                  </p>
+                  <p className="mt-4 text-base">{entry.note}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      ) : null}
 
       {destination.peanutFoods.length > 0 ? (
         <section aria-labelledby="foods-heading" className="pt-28">

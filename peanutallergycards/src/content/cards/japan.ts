@@ -12,6 +12,20 @@ export const japan: Destination = {
   slug: "japan",
   country: "Japan",
   emergencyNumber: "119",
+  sayPeanut: [
+    {
+      word: "ピーナッツ",
+      romanised: "piinattsu",
+      soundsLike: "PEE-nah-tsu",
+      note: "The everyday word, and the one on your card",
+    },
+    {
+      word: "落花生",
+      romanised: "rakkasei",
+      soundsLike: "RAHK-kah-say",
+      note: "Often the word on ingredient labels",
+    },
+  ],
   peanutFoods: [],
   chefCard: {
     front: null,

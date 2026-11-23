@@ -49,6 +49,7 @@ Tick items off as they're done; add new ones as they come up.
 - [ ] Before opening: `NEXT_PUBLIC_LAUNCH_PREVIEW=off` and `NEXT_PUBLIC_SITE_LIVE=on`
 - [x] First real photo: ramen in Japan with the laminated card, on the homepage hero (`src/images/`)
 - [x] Generated peanut illustrations placed (statement, Trip Pack, "where peanuts hide", FAQ, story, 404); see `src/images/`
+- [ ] Native speaker to confirm the "learn to say peanut" spellings and pronunciations (`sayPeanut` in each destination file)
 - [ ] A photo of Julia (or of the original cards from the trip) for the story page, if she's happy to share one
 - [ ] If possible, a named allergist or dietitian who has looked at the cards
 - [x] Store review (2026-11-21): mobile menus, product first on phones, contrast, favicon, fonts via next/font (no layout shift). Lighthouse 94–97 performance and 100 accessibility / best practices / SEO on all four pages; axe-core: no violations

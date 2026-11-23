@@ -103,6 +103,19 @@ export interface Destination {
    * food. Empty hides the section.
    */
   peanutFoods: readonly string[];
+  /**
+   * Website copy (not card text): how to say "peanut" locally, for the
+   * "Learn to say peanut" section. The word must be the one used on this
+   * destination's own cards. The romanised and sounds-like spellings are our
+   * drafts: a native speaker confirms them with the cards.
+   */
+  sayPeanut?: readonly {
+    /** Shown small under the word, e.g. "on menus and labels". */
+    note: string;
+    romanised: string;
+    soundsLike: string;
+    word: string;
+  }[];
   /** URL segment, e.g. "thailand" → /thailand. */
   slug: string;
 }

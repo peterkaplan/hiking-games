@@ -16,6 +16,14 @@ export const thailand: Destination = {
   slug: "thailand",
   country: "Thailand",
   emergencyNumber: "1669",
+  sayPeanut: [
+    {
+      word: "ถั่วลิสง",
+      romanised: "thua lisong",
+      soundsLike: "TOO-ah lee-SONG",
+      note: "The word on your card, and on menus and labels",
+    },
+  ],
   kitchenFocus: "the shared wok, the shared oil and the mortar and pestle",
   peanutFoods: [
     "Satay, served with a peanut dipping sauce",
