@@ -1,0 +1,184 @@
+{
+  "chef-reads": {
+    "hash": "c77b636c77",
+    "widths": [
+      320,
+      480,
+      800
+    ]
+  },
+  "clean-plate": {
+    "hash": "406aafcaa9",
+    "widths": [
+      320,
+      480,
+      800,
+      1200,
+      1400
+    ]
+  },
+  "dig-in": {
+    "hash": "db717787d8",
+    "widths": [
+      320,
+      480,
+      800,
+      1000
+    ]
+  },
+  "empty-plate-shell": {
+    "hash": "025f0386c1",
+    "widths": [
+      320,
+      480,
+      800,
+      1200,
+      1400
+    ]
+  },
+  "evicted": {
+    "hash": "8b3f47f5bf",
+    "widths": [
+      320,
+      480,
+      800,
+      900
+    ]
+  },
+  "hand-over": {
+    "hash": "790b28c3ba",
+    "widths": [
+      320,
+      480,
+      800
+    ]
+  },
+  "hiding-lettuce": {
+    "hash": "0322e0dc52",
+    "widths": [
+      320,
+      480,
+      720
+    ]
+  },
+  "hiding-pad-thai": {
+    "hash": "e183275b7e",
+    "widths": [
+      320,
+      480,
+      720
+    ]
+  },
+  "hiding-satay": {
+    "hash": "b490d0a0e5",
+    "widths": [
+      320,
+      480,
+      720
+    ]
+  },
+  "left-behind": {
+    "hash": "e43e042714",
+    "widths": [
+      320,
+      480,
+      800,
+      1000
+    ]
+  },
+  "mortar": {
+    "hash": "54c68b6fd9",
+    "widths": [
+      320,
+      480,
+      800,
+      900
+    ]
+  },
+  "not-on-the-list": {
+    "hash": "f924fa5669",
+    "widths": [
+      320,
+      480,
+      800,
+      1000
+    ]
+  },
+  "packed": {
+    "hash": "4c07774979",
+    "widths": [
+      320,
+      480,
+      800,
+      1200,
+      1400
+    ]
+  },
+  "peanut-lineup": {
+    "hash": "1201345a53",
+    "widths": [
+      320,
+      480,
+      800,
+      1200,
+      1400
+    ]
+  },
+  "ramen-counter": {
+    "hash": "6492efc2b0",
+    "widths": [
+      320,
+      480,
+      800,
+      1200,
+      1400
+    ]
+  },
+  "ramen-with-card": {
+    "hash": "9501f9d412",
+    "widths": [
+      320,
+      480,
+      800,
+      1120
+    ]
+  },
+  "security-tray": {
+    "hash": "b2d83a66bf",
+    "widths": [
+      320,
+      480,
+      800,
+      1200,
+      1400
+    ]
+  },
+  "under-glass": {
+    "hash": "780312c01a",
+    "widths": [
+      320,
+      480,
+      800
+    ]
+  },
+  "velvet-rope": {
+    "hash": "2336a3d0d8",
+    "widths": [
+      320,
+      480,
+      800,
+      1200,
+      1400
+    ]
+  },
+  "wok": {
+    "hash": "5adfc047be",
+    "widths": [
+      320,
+      480,
+      800,
+      1200,
+      1400
+    ]
+  }
+}

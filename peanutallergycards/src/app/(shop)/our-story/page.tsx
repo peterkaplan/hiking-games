@@ -88,7 +88,6 @@ const Journey = () => (
           className="mt-8 aspect-[16/9] w-full rounded-[28px] object-cover"
           sizes="(min-width: 1024px) 30vw, 100vw"
           src={packed}
-          unoptimized
         />
       </div>
       <ol className="border-shop-ink border-b-2">
@@ -179,7 +178,6 @@ const Principles = () => (
                 className="aspect-[16/10] w-full object-cover object-top"
                 sizes="(min-width: 768px) 33vw, 100vw"
                 src={evicted}
-                unoptimized
               />
             ) : (
               <p

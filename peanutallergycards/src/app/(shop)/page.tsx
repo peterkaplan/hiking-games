@@ -101,7 +101,6 @@ const Hero = () => (
         priority
         sizes="(min-width: 1024px) 50vw, 100vw"
         src={ramenWithCard}
-        unoptimized
       />
       <Sticker className="text-shop-highlight absolute -top-8 -left-2 z-10 size-32 rotate-[-10deg] sm:-top-8 sm:-left-10">
         No miscom&shy;munication
@@ -133,7 +132,6 @@ const Statement = () => (
       className="border-shop-ink aspect-[16/9] w-full rounded-[28px] border-2 object-cover"
       sizes="(min-width: 1024px) 45vw, 100vw"
       src={cleanPlate}
-      unoptimized
     />
   </section>
 );
@@ -168,7 +166,6 @@ const LocalKitchen = () => {
             className="aspect-[4/3] w-full rounded-[24px] object-cover lg:aspect-[4/5]"
             sizes="(min-width: 1024px) 40vw, 100vw"
             src={mortar}
-            unoptimized
           />
           {example ? (
             <figure className="bg-shop-highlight text-shop-on-highlight relative mx-3 -mt-16 rotate-1 rounded-[24px] p-6 sm:mx-8 sm:-mt-24 sm:p-8">
@@ -330,7 +327,6 @@ const ShopHome = () => (
         className="border-shop-ink aspect-[16/9] w-full rounded-[28px] border-2 object-cover sm:aspect-[21/9]"
         sizes="(min-width: 896px) 896px, 100vw"
         src={peanutLineup}
-        unoptimized
       />
       <h2 className="mt-10 font-serif text-4xl sm:text-5xl" id="faq-heading">
         Good questions

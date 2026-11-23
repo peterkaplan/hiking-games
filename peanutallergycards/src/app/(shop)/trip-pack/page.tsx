@@ -29,7 +29,6 @@ const TripPackPage = () => (
           priority
           sizes="(min-width: 1024px) 58vw, 100vw"
           src={leftBehind}
-          unoptimized
         />
         {destinations.slice(0, 2).map((destination, index) => (
           <Backdrop
@@ -66,7 +65,6 @@ const TripPackPage = () => (
       className="mt-24 aspect-[16/9] w-full rounded-[28px] object-cover sm:aspect-[21/9]"
       sizes="(min-width: 1280px) 1232px, 100vw"
       src={securityTray}
-      unoptimized
     />
 
     <section

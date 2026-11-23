@@ -16,7 +16,6 @@ const NotFound = () => (
         priority
         sizes="(min-width: 896px) 896px, 100vw"
         src={emptyPlateShell}
-        unoptimized
       />
       <h1 className="mt-10 font-serif text-5xl tracking-tight sm:text-6xl">
         Nothing here. Not even peanuts.

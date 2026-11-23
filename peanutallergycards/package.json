@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build",
+    "build": "npm run images && next build",
     "check": "ultracite check",
     "deploy": "npm run build && wrangler deploy",
     "dev": "next dev",
     "fix": "ultracite fix",
+    "images": "node scripts/build-images.mjs",
     "preview": "npm run build && wrangler dev",
     "typecheck": "tsc --noEmit"
   },
@@ -23,6 +24,7 @@
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
     "country-flag-icons": "1.6.20",
+    "sharp": "0.35.5",
     "tailwindcss": "4.3.5",
     "typescript": "5.9.3",
     "ultracite": "8.3.1",

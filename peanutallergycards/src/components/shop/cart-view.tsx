@@ -139,7 +139,6 @@ export const CartView = () => {
           className="mx-auto mb-8 aspect-square w-48 rounded-[24px] object-cover"
           sizes="192px"
           src={underGlass}
-          unoptimized
         />
         <p className="font-serif text-3xl">Your cart is empty.</p>
         <p className="mt-3 text-xl">Where are you eating next?</p>

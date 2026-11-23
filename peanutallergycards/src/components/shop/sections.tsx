@@ -77,7 +77,6 @@ export const TripPackTile = () => (
           className="aspect-square w-full object-cover transition duration-300 group-hover:scale-[1.03]"
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
           src={leftBehind}
-          unoptimized
         />
       </div>
       <span className="border-shop-ink bg-shop-bg absolute top-4 left-4 rounded-full border px-3 py-1 font-mono text-xs uppercase">

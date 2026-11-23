@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { WebAnalytics } from "@/components/web-analytics";
 import "./globals.css";
 
 /** The address the site will live at: used for links in search results. */
@@ -17,7 +18,10 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => (
   <html lang="en">
-    <body className="antialiased">{children}</body>
+    <body className="antialiased">
+      {children}
+      <WebAnalytics />
+    </body>
   </html>
 );
 

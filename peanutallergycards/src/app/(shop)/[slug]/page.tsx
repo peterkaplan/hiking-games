@@ -476,7 +476,6 @@ const ProductPage = async ({ params }: PageProps) => {
           className="mt-24 aspect-[16/9] w-full rounded-[28px] object-cover sm:aspect-[21/9]"
           sizes="(min-width: 1280px) 1232px, 100vw"
           src={kitchenPhoto.src}
-          unoptimized
         />
       ) : null}
 
@@ -554,7 +553,6 @@ const ProductPage = async ({ params }: PageProps) => {
                     className="aspect-square w-full rounded-2xl object-cover sm:rounded-[24px]"
                     sizes="(min-width: 1280px) 380px, 30vw"
                     src={place.src}
-                    unoptimized
                   />
                 </li>
               ))}
@@ -588,7 +586,6 @@ const ProductPage = async ({ params }: PageProps) => {
                 className="aspect-square w-full rounded-2xl object-cover sm:aspect-[4/3] sm:rounded-[24px]"
                 sizes="(min-width: 1280px) 400px, 33vw"
                 src={photo.src}
-                unoptimized
               />
             </li>
           ))}
@@ -610,7 +607,6 @@ const ProductPage = async ({ params }: PageProps) => {
           className="mt-10 aspect-[16/9] w-full rounded-[28px] object-cover sm:aspect-[21/9]"
           sizes="(min-width: 1024px) 1024px, 100vw"
           src={velvetRope}
-          unoptimized
         />
         <div className="mt-8">
           <ComparisonTable />

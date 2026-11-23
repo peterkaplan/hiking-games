@@ -132,7 +132,6 @@ export const ShopFooter = () => (
           className="mb-8 aspect-[16/9] w-full max-w-xs rounded-2xl object-cover"
           sizes="320px"
           src={notOnTheList}
-          unoptimized
         />
         <h2 className="font-serif text-[2.5rem] leading-none tracking-tight sm:text-6xl">
           Our emails are 100%{" "}

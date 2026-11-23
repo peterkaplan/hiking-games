@@ -5,6 +5,13 @@
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "peanutallergycards",
   "compatibility_date": "2026-11-01",
+  // Served at peanutallergycards.<account>.workers.dev until the real domain
+  // is attached. No separate preview addresses.
+  "workers_dev": true,
+  "preview_urls": false,
+  // Keep logs for any Worker code added later (checkout). Plain files don't
+  // run code, so they produce no log lines.
+  "observability": { "enabled": true },
   "assets": {
     "directory": "./out",
     // /thailand is served from thailand.html.
