@@ -63,7 +63,7 @@ Tick items off as they're done; add new ones as they come up.
 - [ ] SEO basics: titles, descriptions, sitemap, Open Graph images
 - [x] Search basics: canonical addresses, share card, structured data, sitemap dates (2026-11-23)
 - [ ] Search: turn on `NEXT_PUBLIC_SITE_LIVE` when the store can really sell, then add the site to Google Search Console and Bing Webmaster Tools and submit the sitemap
-- [ ] Search: product-page headline doesn't say "peanut allergy card" ("The Japan Set"); decide whether to add it
+- [x] Search: product-page headline is now "Japanese Peanut Allergy Cards", with "The Japan Set" as the label above it (2026-11-23)
 - [ ] Search: write the guides in `docs/content-to-make.md`; they are what most people will find first
 - [ ] Speed: the homepage photo is the slowest thing on a slow phone (about 140 KB); an AVIF copy would halve it
 - [ ] Newsletter form says "You're on the list" but saves nothing: connect it or hide it
