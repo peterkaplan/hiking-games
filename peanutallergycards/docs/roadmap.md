@@ -43,7 +43,10 @@ Tick items off as they're done; add new ones as they come up.
 - [ ] Make the chef card's kitchen lines per-country (they are shared and Thailand-specific today), then write Japan's for Japanese kitchens
 - [ ] Connect checkout (Shopify or Stripe) to the cart; it must refuse any country where `isReady()` is false
 - [ ] Confirm the language for each catalogue country before writing its cards (`src/content/catalogue.ts`)
-- [ ] Cloudflare: import the repo (settings in the README), then attach peanutallergycards.com
+- [x] Cloudflare: deployed to peanutallergycards.phkap96.workers.dev (2026-11-23)
+- [ ] Cloudflare: connect the GitHub repo so a push deploys by itself (settings in the README)
+- [ ] Cloudflare: add peanutallergycards.com to the account and attach it to the Worker; then make a Web Analytics site for it and set `NEXT_PUBLIC_CF_ANALYTICS_TOKEN`
+- [ ] Uptime check: nothing tells us if the site goes down (needs an outside monitor, or Cloudflare Health Checks on a paid plan)
 - [ ] Stripe: account, then the checkout Worker (test mode first), thank-you page and order email
 - [ ] Privacy, terms, and refunds and shipping pages
 - [ ] Before opening: `NEXT_PUBLIC_LAUNCH_PREVIEW=off` and `NEXT_PUBLIC_SITE_LIVE=on`
@@ -57,7 +60,7 @@ Tick items off as they're done; add new ones as they come up.
 - [ ] Review the website copy: Thailand "where peanuts turn up" list, FAQ, meal steps
 - [ ] Disclaimer, About and Contact pages
 - [ ] SEO basics: titles, descriptions, sitemap, Open Graph images
-- [ ] Analytics (privacy-friendly, e.g. Plausible or Vercel Analytics)
+- [x] Analytics: Cloudflare Web Analytics (no cookies)
 - [ ] Launch, and post in relevant Reddit communities (e.g. Japan travel, food allergies)
 
 ## Phase 2: More destinations and the paid card

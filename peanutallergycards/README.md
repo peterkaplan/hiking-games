@@ -38,9 +38,18 @@ npm run preview    # build, then serve out/ the way Cloudflare will
 
 ## Hosting: Cloudflare
 
+Live at <https://peanutallergycards.phkap96.workers.dev> (a test address:
+search engines are kept out).
+
 Every page is built ahead of time, so the site is plain files in `out/`,
 served by Cloudflare Workers static assets (`wrangler.jsonc`). There is no
-server yet; checkout will add a small Worker.
+server yet; checkout will add a small Worker. Requests for files are free
+and unlimited on Cloudflare's free plan.
+
+- `public/_headers`: caching and security headers.
+- `scripts/build-images.mjs`: resizes the photos before each build.
+- `src/components/web-analytics.tsx`: visitor counting (Cloudflare Web
+  Analytics, no cookies).
 
 To let Cloudflare build from GitHub, import the repository under
 Workers & Pages and set:

@@ -92,17 +92,16 @@ These came up repeatedly and are easy to get wrong.
 | `NEXT_PUBLIC_FULL_CATALOGUE=on`  | Sell all 100 countries in `src/content/catalogue.ts` (built, switched off) |
 | `NEXT_PUBLIC_SITE_LIVE=on`       | Let search engines in                                                      |
 | `NEXT_PUBLIC_ASSET_BASE=""`      | Only for the relocatable preview build (below)                             |
+| `NEXT_PUBLIC_CF_ANALYTICS_TOKEN` | Web Analytics token for the address being built; empty turns counting off  |
 
 ## Open items, in rough order
 
 Needs the owner:
 
-1. **Cloudflare:** import the repo under Workers & Pages (root directory
-   `peanutallergycards`, build `npm run build`, deploy
-   `npx wrangler deploy`, branch as above). Not done yet. An earlier attempt
-   to connect Cloudflare from the session failed: the API token form was
-   declined, and the Cloudflare plugin's connector could not be reached from
-   that cloud session.
+1. **Cloudflare:** the site is live at
+   `https://peanutallergycards.phkap96.workers.dev` (see "Hosting" below).
+   Still to do: connect the GitHub repo so pushes deploy by themselves, and
+   add `peanutallergycards.com` to the Cloudflare account.
 2. **Stripe:** open an account. Then build a Cloudflare Worker that prices
    the cart server-side, creates a Stripe Checkout session and handles the
    paid webhook. Test mode first.
@@ -138,6 +137,30 @@ Unanswered questions to the owner:
 - Use a second ramen photo (card held in hand) as a product close-up? They
   said earlier not to reuse those photos.
 - Is "fiancé" plus "honeymoon" right, or should the story say "husband"?
+
+## Hosting
+
+- Cloudflare Worker `peanutallergycards` on the owner's account, files only
+  (no code runs). Deployed 2026-11-23 from commit `ac35b75` by uploading
+  `out/` through the Cloudflare connector, because the session had no API
+  token for `wrangler deploy`. The steps: `npm run build`; send the file list
+  to `assets-upload-session`; upload the files to `api.cloudflare.com` with
+  the short-lived token it returns; `PUT` the Worker with the completion
+  token and the contents of `out/_headers` as `assets.config._headers`.
+  Once the GitHub repo is connected in the dashboard none of that is needed.
+- Photos: `npm run build` first runs `scripts/build-images.mjs`, which writes
+  resized copies to `public/img/` (not in git) and the list to
+  `src/images/variants.json` (in git). Add a photo to `src/images/`, import
+  it as before, and give the `<Image>` a `sizes` value.
+- Headers (caching, security) are in `public/_headers`.
+- Visitor numbers: Cloudflare dashboard, Analytics & Logs, Web Analytics.
+  The snippet is `src/components/web-analytics.tsx`.
+- Alerts (Cloudflare dashboard, Notifications): spend of $1 or more, spend of
+  $10 or more, Worker code past 1 million requests in a month, R2 storage
+  past 8 GB, major Cloudflare incidents, weekly visitor summary. All by
+  email to the account address.
+- Not set up: an uptime check, and logs of individual requests (files-only
+  Workers don't produce them).
 
 ## Images
 

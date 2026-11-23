@@ -4,6 +4,32 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ---
 
+## 2026-11-23: Deployed to Cloudflare; analytics, alerts and resized photos
+
+- The site is live at `https://peanutallergycards.phkap96.workers.dev`, as a
+  Cloudflare Worker named `peanutallergycards` that serves only files. It was
+  uploaded from a Claude session through Cloudflare's API. Search engines
+  stay blocked (`robots.txt`, plus a `noindex` header on any workers.dev
+  address).
+- It stays files-only on purpose. Requests for files are free and unlimited;
+  putting Worker code in front of every request (for example to log visits)
+  would count each one against the free plan's 100,000 a day and return
+  errors past that. Revisit only for checkout, and then run code on the
+  checkout paths alone.
+- Visitors are counted with Cloudflare Web Analytics (free, no cookies, no
+  consent banner). Each web address needs its own token; see
+  `src/components/web-analytics.tsx`.
+- Photos are resized before every build (`scripts/build-images.mjs`) and
+  `src/image-loader.ts` picks a size per screen, because a static export has
+  no image server. WebP only: AVIF would be smaller but needs a second file
+  per size and a `<picture>` element for old browsers.
+- `public/_headers` sets one-year caching for files with a hash in the name,
+  and a content security policy. The policy allows inline scripts because
+  Next.js needs them; Stripe's hosts must be added to it for checkout.
+- Email alerts on the Cloudflare account: any spend of $1 or more, Worker
+  code passing 1 million requests in a month, major Cloudflare incidents, and
+  a weekly visitor summary.
+
 ## 2026-11-22: Images: one real photo, plus generated peanut illustrations
 
 - The homepage hero is a real photo (the laminated card beside ramen in
