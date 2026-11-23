@@ -43,14 +43,17 @@ the store opens. <https://peanutallergycards.phkap96.workers.dev> is a test
 address for the same site.
 
 Every page is built ahead of time, so the site is plain files in `out/`,
-served by Cloudflare Workers static assets (`wrangler.jsonc`). There is no
-server yet; checkout will add a small Worker. Requests for files are free
-and unlimited on Cloudflare's free plan.
+served by Cloudflare Workers static assets (`wrangler.jsonc`). Requests for
+files are free and unlimited on Cloudflare's free plan. The only code that
+runs is the mailing list (`worker/index.ts`, D1 database in `migrations/`);
+checkout will be added there.
 
 - `public/_headers`: caching and security headers.
 - `scripts/build-images.mjs`: resizes the photos before each build.
 - `src/components/web-analytics.tsx`: visitor counting (Cloudflare Web
   Analytics, no cookies).
+- `worker/index.ts`: saves newsletter sign-ups; the owner's list is at
+  `/admin/subscribers` (password: the Worker secret `ADMIN_PASSWORD`).
 
 To let Cloudflare build from GitHub, import the repository under
 Workers & Pages and set:

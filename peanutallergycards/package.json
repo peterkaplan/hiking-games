@@ -10,7 +10,7 @@
     "fix": "ultracite fix",
     "images": "node scripts/build-images.mjs",
     "preview": "npm run build && wrangler dev",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit && wrangler types worker/worker-configuration.d.ts > /dev/null && tsc --noEmit -p worker"
   },
   "dependencies": {
     "next": "16.4.6",

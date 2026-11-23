@@ -113,7 +113,8 @@ Needs the owner:
 5. **Julia** to approve or rewrite her note in `src/content/story.ts`
    (`approvedByJulia`), and a real photo of her.
 6. Shipping prices and countries, the `hello@peanutallergycards.com`
-   mailbox, a newsletter service (the sign-up form saves nothing), real
+   mailbox, a service to send newsletters from (sign-ups are saved; see
+   "Hosting"), real
    prices (the $8 and $18 are placeholders), and real reviews.
 
 Can be done without the owner:
@@ -141,8 +142,7 @@ Unanswered questions to the owner:
 
 ## Hosting
 
-- Cloudflare Worker `peanutallergycards` on the owner's account, files only
-  (no code runs), at `https://peanutallergycards.com`. `www` redirects to
+- Cloudflare Worker `peanutallergycards` on the owner's account, at `https://peanutallergycards.com`. `www` redirects to
   it; `https://peanutallergycards.phkap96.workers.dev` is a test address.
   Deployed 2026-11-23 by uploading
   `out/` through the Cloudflare connector, because the session had no API
@@ -151,6 +151,13 @@ Unanswered questions to the owner:
   the short-lived token it returns; `PUT` the Worker with the completion
   token and the contents of `out/_headers` as `assets.config._headers`.
   Once the GitHub repo is connected in the dashboard none of that is needed.
+- The mailing list is the only code that runs (`worker/index.ts`): sign-ups
+  go to the D1 database `peanutallergycards`, and the owner reads them at
+  `/admin/subscribers` with the password in the Worker secret
+  `ADMIN_PASSWORD`. A hand deploy through the API must also upload the
+  bundled Worker (`npx wrangler deploy --dry-run --outdir <folder>`), list
+  the `assets` and `d1` bindings, and pass `keep_bindings: ["secret_text"]`
+  so the password survives.
 - Photos: `npm run build` first runs `scripts/build-images.mjs`, which writes
   resized copies to `public/img/` (not in git) and the list to
   `src/images/variants.json` (in git). Add a photo to `src/images/`, import
@@ -162,8 +169,9 @@ Unanswered questions to the owner:
   $10 or more, Worker code past 1 million requests in a month, R2 storage
   past 8 GB, major Cloudflare incidents, weekly visitor summary. All by
   email to the account address.
-- Not set up: an uptime check, and logs of individual requests (files-only
-  Workers don't produce them).
+- Not set up: an uptime check. Logs exist only for the mailing-list
+  requests (Cloudflare dashboard, the Worker's Logs tab); page views are in
+  Web Analytics.
 
 ## Images
 

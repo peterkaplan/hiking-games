@@ -1,0 +1,18 @@
+{
+  // The Worker runs on Cloudflare, not in a browser, so it is type-checked
+  // on its own with Cloudflare's types (worker-configuration.d.ts, written
+  // by `npm run worker:types`).
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "types": []
+  },
+  "include": ["*.ts"]
+}

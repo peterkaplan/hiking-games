@@ -66,7 +66,10 @@ Tick items off as they're done; add new ones as they come up.
 - [x] Search: product-page headline is now "Japanese Peanut Allergy Cards" (2026-11-23)
 - [ ] Search: write the guides in `docs/content-to-make.md`; they are what most people will find first
 - [ ] Speed: the homepage photo is the slowest thing on a slow phone (about 140 KB); an AVIF copy would halve it
-- [ ] Newsletter form says "You're on the list" but saves nothing: connect it or hide it
+- [x] Mailing list: the form saves to a database; the owner's list is at /admin/subscribers (2026-11-23)
+- [ ] Mailing list: owner to set the `ADMIN_PASSWORD` secret in Cloudflare (the list page is locked until then)
+- [ ] Mailing list: a privacy page saying what we collect and how to be removed, before search engines are let in
+- [ ] Mailing list: choose a service to send from (import the CSV); it must handle unsubscribes
 - [x] Analytics: Cloudflare Web Analytics (no cookies)
 - [ ] Launch, and post in relevant Reddit communities (e.g. Japan travel, food allergies)
 

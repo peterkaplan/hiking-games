@@ -1,5 +1,6 @@
 {
-  // Cloudflare Workers, serving the built site (out/) as static files.
+  // Cloudflare Workers, serving the built site (out/) as static files, plus
+  // a few lines of code for the mailing list.
   // Build: `npm run build`. Deploy: `npm run deploy`, or let Cloudflare build
   // from GitHub with the same two commands.
   "$schema": "./node_modules/wrangler/config-schema.json",
@@ -12,13 +13,28 @@
   // (never indexed: see public/_headers). No separate preview addresses.
   "workers_dev": true,
   "preview_urls": false,
-  // Keep logs for any Worker code added later (checkout). Plain files don't
-  // run code, so they produce no log lines.
+  // Keep logs for the Worker code. Plain files don't run code, so they
+  // produce no log lines.
   "observability": { "enabled": true },
+  // The only code that runs: the mailing list. See worker/index.ts.
+  "main": "worker/index.ts",
   "assets": {
     "directory": "./out",
+    "binding": "ASSETS",
     // /thailand is served from thailand.html.
     "html_handling": "auto-trailing-slash",
-    "not_found_handling": "404-page"
-  }
+    "not_found_handling": "404-page",
+    // Only these addresses run the Worker. Every page and file is served
+    // directly, which is free and unlimited.
+    "run_worker_first": ["/api/*", "/admin/*"]
+  },
+  // The mailing list. Created 2026-11-23; the table is in migrations/.
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "peanutallergycards",
+      "database_id": "dbe3f8e4-6c02-404c-a0f1-f51b17dc0d68",
+      "migrations_dir": "migrations"
+    }
+  ]
 }

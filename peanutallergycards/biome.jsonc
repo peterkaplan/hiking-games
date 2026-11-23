@@ -6,7 +6,13 @@
     "ultracite/biome/react",
     "ultracite/biome/next"
   ],
-  // Left as they are: third-party flag artwork (country-flag-icons), and the
-  // image list written by scripts/build-images.mjs.
-  "files": { "includes": ["!public/flags", "!src/images/variants.json"] }
+  // Left as they are: third-party flag artwork (country-flag-icons), the
+  // image list written by scripts/build-images.mjs, and Cloudflare's types.
+  "files": {
+    "includes": [
+      "!public/flags",
+      "!src/images/variants.json",
+      "!worker/worker-configuration.d.ts"
+    ]
+  }
 }

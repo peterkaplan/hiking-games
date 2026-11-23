@@ -4,6 +4,26 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ---
 
+## 2026-11-23: The mailing list works, and lives on our own Cloudflare account
+
+- The sign-up form now saves addresses. It posts to `/api/subscribe`, a few
+  lines of Worker code (`worker/index.ts`) that write to a D1 database
+  called `peanutallergycards`. Before this the form said "You're on the
+  list" and saved nothing.
+- The owner reads the list at `/admin/subscribers` (and downloads it as a
+  CSV), behind a password kept as the Worker secret `ADMIN_PASSWORD`, set in
+  the Cloudflare dashboard and never stored in the repository.
+- Only `/api/*` and `/admin/*` run code; every page and file is still served
+  directly, free and unlimited. The free plan's 100,000-a-day limit now
+  applies to those two paths only.
+- We store the email, the time, the page it was typed on and the visitor's
+  country. No IP address. Spam is kept down with a hidden field only bots
+  fill in, and by refusing posts from other sites. Revisit with Cloudflare
+  Turnstile if junk sign-ups appear.
+- Why our own table and not a newsletter service: nothing to sign up for,
+  and the list is ours. To send a newsletter, the CSV imports into any
+  service; that service must then handle unsubscribes.
+
 ## 2026-11-23: Search and accessibility pass
 
 - Every page now tells search engines its one address (canonical), has a
