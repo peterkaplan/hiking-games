@@ -4,7 +4,7 @@ import { LAST_UPDATED, privacyIntro, privacySections } from "@/content/privacy";
 import { pageMetadata } from "@/content/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Privacy",
+  title: "Privacy policy",
   description:
     "What Peanut Allergy Cards collects, why, and how to have it removed. No tracking cookies, no ad trackers.",
   path: "/privacy",
@@ -16,7 +16,7 @@ const PrivacyPage = () => (
       Last updated {LAST_UPDATED}
     </p>
     <h1 className="mt-3 font-serif text-5xl tracking-tight sm:text-6xl">
-      Privacy, in plain words.
+      Privacy policy
     </h1>
     <p className="mt-6 text-xl">{privacyIntro}</p>
 

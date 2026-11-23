@@ -51,7 +51,7 @@ const columns: readonly { heading: string; links: readonly FooterLink[] }[] = [
     links: [
       { href: "/#how-it-works", label: "How the cards work" },
       { href: "/#faq", label: "FAQ" },
-      { href: "/privacy", label: "Privacy" },
+      { href: "/privacy", label: "Privacy policy" },
     ],
   },
 ];
@@ -149,7 +149,7 @@ export const ShopFooter = () => (
         <p className="mt-4 font-mono text-xs uppercase">
           Unsubscribe any time ·{" "}
           <Link className={footerLink} href="/privacy">
-            Privacy
+            Privacy policy
           </Link>
         </p>
       </div>
