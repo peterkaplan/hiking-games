@@ -14,7 +14,7 @@ import { NewsletterForm } from "./newsletter-form";
  * eye), a playful sign-up headline (Ghia), link columns (all of them), the
  * name as large as the page allows (Ghia, Graza), and a small legal row.
  * Only real pages are linked: no social accounts or policies we don't have.
- * (The privacy page exists: src/app/(shop)/privacy.)
+ * (The privacy and terms pages exist: src/app/(shop)/privacy and /terms.)
  */
 
 interface FooterLink {
@@ -56,6 +56,7 @@ const columns: readonly { heading: string; links: readonly FooterLink[] }[] = [
       { href: "/#how-it-works", label: "How the cards work" },
       { href: "/#faq", label: "FAQ" },
       { href: "/privacy", label: "Privacy policy" },
+      { href: "/terms", label: "Terms of use" },
     ],
   },
 ];
