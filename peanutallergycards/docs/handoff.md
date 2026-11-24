@@ -126,9 +126,9 @@ Can be done without the owner:
    offer to type it in as a draft was made but not answered. Its kitchen
    lines should suit Japanese kitchens (the shared English ones are
    Thailand-specific; see the roadmap).
-8. Refunds and shipping page; a contact page. Terms is done
-   (`/terms`) but is a draft until a lawyer has read it; it still needs the
-   legal name, governing law and refund terms.
+8. A contact page. Terms (`/terms`) and shipping and refunds (`/shipping`)
+   are done; the terms are a draft until a lawyer has read them and still
+   need the legal name and governing law.
 9. An Open Graph sharing image.
 10. **Protect the card wording.** The product galleries show every card
     front and back as selectable text. The proposal on the table: English

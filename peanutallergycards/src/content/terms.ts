@@ -8,12 +8,13 @@
  * for a reaction. Written in our own words, not copied from theirs.
  *
  * DRAFT, NOT YET REVIEWED BY A LAWYER. Still to add once decided (see
- * docs/roadmap.md): the legal name of the business, the governing law, and
- * the refunds and shipping terms. Bump TERMS_UPDATED whenever the wording
- * changes.
+ * docs/roadmap.md): the legal name of the business and the governing law.
+ * Refunds and shipping live in ./shipping.ts. Bump TERMS_UPDATED whenever
+ * the wording changes.
  */
 
 import { CONTACT_EMAIL } from "./contact";
+import { REFUND_DAYS } from "./shipping";
 
 export const TERMS_UPDATED = "24 November 2026";
 
@@ -106,7 +107,7 @@ export const termsSections: readonly TermsSection[] = [
   {
     heading: "Orders and this website",
     paragraphs: [
-      "You'll see the full price before you pay. Digital sets are for download. Laminated cards are sent by post, and delivery times are estimates.",
+      `You'll see the full price before you pay. Digital sets are for download. Laminated cards are sent by post within the United States, and delivery times are estimates. You can ask for a refund on any order within ${REFUND_DAYS} days; the shipping and refunds page has the details.`,
       "We try to keep this website correct, but a price, a description or a picture may sometimes be wrong. We may correct mistakes, and we may refuse or cancel an order, with a full refund, if something was wrong when you placed it.",
       "The website is provided as it is. We don't promise that it will always be available or free of faults.",
     ],

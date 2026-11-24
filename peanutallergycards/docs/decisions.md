@@ -4,6 +4,20 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ---
 
+## 2026-11-24: Shipping and refunds
+
+- Owner's decisions: laminated cards post to the United States only;
+  shipping is free; orders are posted within three business days; any order
+  can be refunded within 14 days (the same promise Equal Eats makes).
+- Added `/shipping`. The numbers live in `src/content/shipping.ts`, and the
+  product pages' Delivery note, the cart and the terms read from it. The
+  product pages used to say "two working days".
+- My additions, not confirmed by the owner: no need to send cards back for a
+  refund; a free replacement if cards are lost (10 business days after
+  posting), damaged or wrong; "USPS, usually 2 to 5 business days".
+- Checkout must refuse laminated orders to addresses outside the US.
+- Revisit: international posting, once the US orders run smoothly.
+
 ## 2026-11-24: "The best peanut-free restaurants in Tokyo"
 
 - A page at `/peanut-free-restaurants-tokyo` lists where the owners ate on

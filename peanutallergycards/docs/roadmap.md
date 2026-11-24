@@ -50,8 +50,8 @@ Tick items off as they're done; add new ones as they come up.
 - [ ] Uptime check: nothing tells us if the site goes down (needs an outside monitor, or Cloudflare Health Checks on a paid plan)
 - [ ] Stripe: account, then the checkout Worker (test mode first), thank-you page and order email
 - [x] Terms of use page (`/terms`, wording in `src/content/terms.ts`), linked from the footer. A draft: see the next item
-- [ ] Before the first sale: a lawyer reads the terms; add the business's legal name, the governing law, and the refunds and shipping terms
-- [ ] Refunds and shipping page
+- [ ] Before the first sale: a lawyer reads the terms; add the business's legal name and the governing law
+- [x] Shipping and refunds page (`/shipping`, wording in `src/content/shipping.ts`): US only, free, posted within 3 business days, refunds within 14 days (owner, 2026-11-24)
 - [ ] Before opening: `NEXT_PUBLIC_LAUNCH_PREVIEW=off` and `NEXT_PUBLIC_SITE_LIVE=on`
 - [x] First real photo: ramen in Japan with the laminated card, on the homepage hero (`src/images/`)
 - [x] Generated peanut illustrations placed (statement, Trip Pack, "where peanuts hide", FAQ, story, 404); see `src/images/`
