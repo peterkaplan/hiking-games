@@ -49,7 +49,14 @@ export const Photo = ({
         />
       ) : null}
       {hasAvif ? (
-        <source sizes={sizes} srcSet={avif.srcSet} type="image/avif" />
+        // Hidden so it never takes a cell when the photo sits in a grid; the
+        // browser still reads it to choose the file.
+        <source
+          className="hidden"
+          sizes={sizes}
+          srcSet={avif.srcSet}
+          type="image/avif"
+        />
       ) : null}
       <img
         {...webp}

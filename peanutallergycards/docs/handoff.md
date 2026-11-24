@@ -36,6 +36,7 @@ the original cards for their honeymoon in Thailand and Japan.
 | `/trip-pack`                                                 | The bundle product: tick countries, choose a format, add all to cart                                                                                                         |
 | `/cart`                                                      | Cart saved in the browser; multi-country discount; Checkout button says it is not connected                                                                                  |
 | `/our-story`                                                 | Split opener, "How it started", Julia's note, "What we believe"                                                                                                              |
+| `/peanut-free-restaurants-tokyo`                             | Where the owners ate in Tokyo (and one meal in Kyoto), with their photos and a notice that these are not peanut-free kitchens                                                |
 | `/privacy`                                                   | What we collect, in plain words, and a form that removes an address from the mailing list                                                                                    |
 | not found                                                    | "Nothing here. Not even peanuts."                                                                                                                                            |
 

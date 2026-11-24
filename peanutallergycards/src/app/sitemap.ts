@@ -12,6 +12,7 @@ const sitemap = (): MetadataRoute.Sitemap =>
     "",
     "/trip-pack",
     "/our-story",
+    "/peanut-free-restaurants-tokyo",
     "/privacy",
     "/terms",
     ...catalogue.map(({ slug }) => productPath(slug)),

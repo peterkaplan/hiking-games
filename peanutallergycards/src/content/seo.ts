@@ -102,6 +102,34 @@ export const faqData = (items: readonly FaqItem[]): StructuredData => ({
   })),
 });
 
+/** A guide or story we wrote, with the date it was last true. */
+export const articleData = ({
+  description,
+  path,
+  published,
+  title,
+  updated,
+}: {
+  description: string;
+  path: string;
+  /** ISO dates, e.g. "2026-11-24". */
+  published: string;
+  title: string;
+  updated: string;
+}): StructuredData => ({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "@id": absolute(`${path}#article`),
+  headline: title,
+  description,
+  url: absolute(path),
+  image: absolute(SHARE_IMAGE.url),
+  datePublished: published,
+  dateModified: updated,
+  author: { "@id": ORGANIZATION_ID },
+  publisher: { "@id": ORGANIZATION_ID },
+});
+
 /** The trail of pages above this one, e.g. Home › Japan. */
 export const breadcrumbData = (
   trail: readonly { name: string; path: string }[]

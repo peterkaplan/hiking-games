@@ -43,6 +43,10 @@ const columns: readonly { heading: string; links: readonly FooterLink[] }[] = [
     heading: "About",
     links: [
       { href: "/our-story", label: "Our story" },
+      {
+        href: "/peanut-free-restaurants-tokyo",
+        label: "Peanut-free restaurants in Tokyo",
+      },
       ...(LAUNCH_PREVIEW ? [] : [{ href: "/#reviews", label: "Reviews" }]),
     ],
   },

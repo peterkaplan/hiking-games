@@ -214,27 +214,28 @@ tucked in and sharp.
 
 ## Already on the site
 
-| File                     | Shot | Where                                        |
-| ------------------------ | ---- | -------------------------------------------- |
-| `ramen-with-card.webp`   | real | Homepage hero                                |
-| `mortar.webp`            | 9    | Homepage, "Written for the kitchen"          |
-| `hand-over.webp`         | 12   | Product pages, strip under the steps         |
-| `chef-reads.webp`        | 13   | Product pages, strip under the steps         |
-| `dig-in.webp`            | 14   | Product pages, strip under the steps         |
-| `left-behind.webp`       | 1    | Trip Pack tile and top of the Trip Pack page |
-| `security-tray.webp`     | 6    | Trip Pack page, above the comparison chart   |
-| `peanut-lineup.webp`     | -    | Homepage, above "Good questions"             |
-| `not-on-the-list.webp`   | 7    | Footer, above the email sign-up              |
-| `wok.webp`               | 10   | Thailand product page                        |
-| `ramen-counter.webp`     | 11   | Japan product page                           |
-| `hiding-pad-thai.webp`   | -    | "Where peanuts hide in Thailand"             |
-| `hiding-satay.webp`      | 16   | "Where peanuts hide in Thailand"             |
-| `hiding-lettuce.webp`    | -    | "Where peanuts hide in Thailand"             |
-| `velvet-rope.webp`       | 4    | Product pages, above the comparison chart    |
-| `under-glass.webp`       | 5    | The empty cart                               |
-| `packed.webp`            | 15   | Story page, beside "How it started"          |
-| `evicted.webp`           | 8    | Story page, "Made for peanuts only." tile    |
-| `empty-plate-shell.webp` | -    | "Page not found"                             |
+| File                                                                                                                       | Shot | Where                                                           |
+| -------------------------------------------------------------------------------------------------------------------------- | ---- | --------------------------------------------------------------- |
+| `ramen-with-card.webp`                                                                                                     | real | Homepage hero                                                   |
+| `tokyo-pizza-kevelos.webp`, `tokyo-kyushu-jangara.webp`, `tokyo-gyu-kaku.webp`, `tokyo-sukiya.webp`, `kyoto-seishuan.webp` | real | Tokyo restaurants page (the owners' own photos, cropped square) |
+| `mortar.webp`                                                                                                              | 9    | Homepage, "Written for the kitchen"                             |
+| `hand-over.webp`                                                                                                           | 12   | Product pages, strip under the steps                            |
+| `chef-reads.webp`                                                                                                          | 13   | Product pages, strip under the steps                            |
+| `dig-in.webp`                                                                                                              | 14   | Product pages, strip under the steps                            |
+| `left-behind.webp`                                                                                                         | 1    | Trip Pack tile and top of the Trip Pack page                    |
+| `security-tray.webp`                                                                                                       | 6    | Trip Pack page, above the comparison chart                      |
+| `peanut-lineup.webp`                                                                                                       | -    | Homepage, above "Good questions"                                |
+| `not-on-the-list.webp`                                                                                                     | 7    | Footer, above the email sign-up                                 |
+| `wok.webp`                                                                                                                 | 10   | Thailand product page                                           |
+| `ramen-counter.webp`                                                                                                       | 11   | Japan product page                                              |
+| `hiding-pad-thai.webp`                                                                                                     | -    | "Where peanuts hide in Thailand"                                |
+| `hiding-satay.webp`                                                                                                        | 16   | "Where peanuts hide in Thailand"                                |
+| `hiding-lettuce.webp`                                                                                                      | -    | "Where peanuts hide in Thailand"                                |
+| `velvet-rope.webp`                                                                                                         | 4    | Product pages, above the comparison chart                       |
+| `under-glass.webp`                                                                                                         | 5    | The empty cart                                                  |
+| `packed.webp`                                                                                                              | 15   | Story page, beside "How it started"                             |
+| `evicted.webp`                                                                                                             | 8    | Story page, "Made for peanuts only." tile                       |
+| `empty-plate-shell.webp`                                                                                                   | -    | "Page not found"                                                |
 
 ## Still to generate
 
