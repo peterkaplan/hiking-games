@@ -278,8 +278,6 @@ const ShopHome = () => (
 
     <Statement />
 
-    <LocalKitchen />
-
     <section
       aria-labelledby="how-heading"
       className="mx-auto max-w-7xl scroll-mt-24 px-4 pb-24 sm:px-6"
@@ -293,15 +291,17 @@ const ShopHome = () => (
       </div>
     </section>
 
-    <TripPack />
+    <LocalKitchen />
 
     <section
       aria-labelledby="story-heading"
-      className="mx-auto max-w-7xl scroll-mt-24 px-4 pt-28 sm:px-6"
+      className="mx-auto max-w-7xl scroll-mt-24 px-4 sm:px-6 md:pb-24"
       id="story"
     >
       <StoryTeaser />
     </section>
+
+    <TripPack />
 
     {LAUNCH_PREVIEW ? null : (
       <section

@@ -10,6 +10,13 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
   linked from the footer. It is the usual search page for people comparing
   cards: the short answer, a side-by-side table, a section per topic, and
   the questions people search for (with FAQ, article and breadcrumb data).
+- Rewritten the same day at the owner's request to argue our case, the way
+  a search consultant would: "Equal Eats alternative" in the title, heading
+  and footer link, our verdict at the top, "Better" tags in the table,
+  sections for Thailand and Japan that link to the product pages, and more
+  questions. Claims about Equal Eats are still only facts from their site.
+- The homepage order changed too (owner): the statement, then how it works,
+  then "written for the kitchen", then our story, then the Trip Pack band.
 - It is the one place we name a competitor. The product pages' table still
   doesn't.
 - Rules, kept at the top of `src/content/equal-eats.ts`: every fact about
