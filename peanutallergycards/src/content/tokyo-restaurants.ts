@@ -1,8 +1,12 @@
 /**
  * "The best peanut-free restaurants in Tokyo": where the owners ate on their
- * trip, and what happened when they showed the chef card.
+ * trip, what they ordered, how it was, and what happened when they showed
+ * the chef card. It reads like a field guide: first person, "we had this,
+ * it was delicious".
  *
- * Every entry is a real meal. Never add a restaurant nobody on the team has
+ * Every entry is a real meal, and the owners say every one was really good
+ * (2026-11-24), so the write-ups may say so. Keep the dishes to what the
+ * photos show: don't add details nobody told us. Never add a restaurant nobody on the team has
  * eaten at, and never say a kitchen is peanut-free: we only know that it
  * read the card and said yes on the day. The page says so at the top
  * (`tokyoWarning`); keep that notice.
@@ -26,7 +30,7 @@ export const TOKYO_PATH = "/peanut-free-restaurants-tokyo";
 export const tokyoTitle = "The best peanut-free restaurants in Tokyo";
 
 export const tokyoIntro =
-  "Four places in Tokyo, and one in Kyoto, where we handed the kitchen our card and got a yes.";
+  "Four places in Tokyo, and one in Kyoto, where we handed the kitchen our card, got a yes, and ate really well. Here's what we ordered and how it was.";
 
 export const tokyoWarning =
   "These are not peanut-free kitchens. They are places that read our chef card and said yes on the day we went. Menus, oil and staff change, so show your card every time, at every branch.";
@@ -39,7 +43,7 @@ export interface RestaurantVisit {
   address?: string;
   /** The neighbourhood, or what kind of place it is for a chain. */
   area: string;
-  /** What was on the table. Only what the photo shows. */
+  /** What we ordered and how it was, in our own voice. See the top of the file. */
   ate: string;
   /** Names the photo: src/images/<id>.webp. */
   id:
@@ -62,7 +66,7 @@ export const tokyoVisits: readonly RestaurantVisit[] = [
     area: "Harajuku",
     kind: "Neapolitan pizza",
     address: "6-12-4 Jingumae, Shibuya",
-    ate: "The marinara: tomato, garlic and basil on a wood-fired base, no cheese. Eaten on the terrace.",
+    ate: "We sat on the terrace and had the marinara: tomato, garlic and basil on a wood-fired base, no cheese. Simple, and delicious. It's the one to order.",
     photoAlt:
       "A wood-fired marinara pizza with tomato, garlic and basil on a red checked tablecloth",
   },
@@ -72,7 +76,7 @@ export const tokyoVisits: readonly RestaurantVisit[] = [
     area: "Ginza",
     kind: "Kyushu-style ramen",
     address: "6-12-17 Ginza, Chuo",
-    ate: "Spicy ramen with pork, a soft-boiled egg and wood-ear mushrooms.",
+    ate: "We had the spicy ramen, with pork, a soft-boiled egg and wood-ear mushrooms. A big red bowl, and really good. Go for the spicy one.",
     photoAlt:
       "A bowl of spicy red ramen with pork, a soft-boiled egg and wood-ear mushrooms",
   },
@@ -81,7 +85,7 @@ export const tokyoVisits: readonly RestaurantVisit[] = [
     name: "Gyu-Kaku",
     area: "Branches across Tokyo",
     kind: "Yakiniku: grill it at your table",
-    ate: "Beef to grill ourselves, with rice and edamame.",
+    ate: "You grill the meat yourself, at your table. We ordered plates of marbled beef with rice and edamame, and all of it was delicious.",
     note: "A chain. We can only speak for the branch we ate at, so show the card at yours.",
     photoAlt:
       "Plates of raw marbled beef ready to grill, with rice, edamame and dipping sauces",
@@ -91,7 +95,7 @@ export const tokyoVisits: readonly RestaurantVisit[] = [
     name: "Sukiya",
     area: "Branches across Tokyo",
     kind: "Gyudon: beef bowls",
-    ate: "A beef bowl: simmered beef and onion over rice.",
+    ate: "We had the beef bowl: simmered beef and onion over rice. It comes fast, it fills you up, and it tasted great.",
     note: "A chain. We can only speak for the branch we ate at, so show the card at yours.",
     photoAlt: "A bowl of simmered beef and onion over rice",
   },
@@ -104,7 +108,7 @@ export const kyotoVisit: RestaurantVisit = {
   area: "Arashiyama",
   kind: "Soba and rice bowls",
   address: "Beside Togetsukyo bridge, two minutes from Arashiyama station",
-  ate: "Oyakodon (chicken and egg over rice) with miso soup and pickles.",
+  ate: "We had the oyakodon, chicken and egg over rice, with miso soup and pickles on the side. Delicious, and a good stop after walking the bridge.",
   photoAlt:
     "A red lacquer bowl of chicken and egg over rice, with miso soup and pickles on a tray",
 };
