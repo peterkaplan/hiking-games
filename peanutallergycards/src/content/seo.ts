@@ -17,12 +17,32 @@ import { formats } from "./pricing";
 export const SITE_URL = "https://peanutallergycards.com";
 export const SITE_NAME = "Peanut Allergy Cards";
 
-/** The picture shown when a page is shared (1200 × 630, in public/). */
-const SHARE_IMAGE = {
-  url: "/og.jpg",
+interface ShareImage {
+  alt: string;
+  height: number;
+  url: string;
+  width: number;
+}
+
+/**
+ * The picture shown when a page is shared (1200 × 630, in public/). It is
+ * a photo with no words on it: the title and the web address already appear
+ * beside it in a message, so words in the picture only repeat them. Give a
+ * changed picture a new file name: apps keep the old one by its address.
+ */
+const SHARE_IMAGE: ShareImage = {
+  url: "/share.jpg",
   width: 1200,
   height: 630,
-  alt: "A laminated Japanese peanut allergy card beside a bowl of ramen, with the words: Eat in restaurants abroad with confidence.",
+  alt: "A laminated Japanese peanut allergy card on a restaurant counter, beside a bowl of ramen",
+};
+
+/** For the Tokyo restaurants page. */
+export const TOKYO_SHARE_IMAGE: ShareImage = {
+  url: "/share-tokyo.jpg",
+  width: 1200,
+  height: 630,
+  alt: "A wood-fired marinara pizza with tomato, garlic and basil",
 };
 
 const absolute = (path: string): string => `${SITE_URL}${path}`;
@@ -31,20 +51,37 @@ const absolute = (path: string): string => `${SITE_URL}${path}`;
  * Metadata for one page. `path` is the page's address on the site ("/" or
  * "/our-story"); it becomes the canonical URL, so the same page reached another
  * way (www, a trailing slash, the workers.dev address) counts as this one.
+ *
+ * A shared link shows the picture, a title and the web address together, so
+ * the share title never repeats the site's name, and `shareTitle` and
+ * `shareDescription` let a page say something there that the search title
+ * doesn't already say.
  */
 export const pageMetadata = ({
   description,
   path,
+  shareDescription = description,
+  shareImage = SHARE_IMAGE,
+  shareTitle,
   title,
   titleIsComplete = false,
 }: {
   description: string;
   path: string;
+  /** The line under the title in a shared link. Defaults to `description`. */
+  shareDescription?: string;
+  shareImage?: ShareImage;
+  /** The title in a shared link. Defaults to `title`. */
+  shareTitle?: string;
   title: string;
   /** True when the title already reads well without the site name after it. */
   titleIsComplete?: boolean;
 }): Metadata => {
-  const shareTitle = titleIsComplete ? title : `${title} | ${SITE_NAME}`;
+  const shared = {
+    title: shareTitle ?? title,
+    description: shareDescription,
+    images: [shareImage],
+  };
   return {
     title: titleIsComplete ? { absolute: title } : title,
     description,
@@ -54,16 +91,9 @@ export const pageMetadata = ({
       siteName: SITE_NAME,
       locale: "en_US",
       url: path,
-      title: shareTitle,
-      description,
-      images: [SHARE_IMAGE],
+      ...shared,
     },
-    twitter: {
-      card: "summary_large_image",
-      title: shareTitle,
-      description,
-      images: [SHARE_IMAGE],
-    },
+    twitter: { card: "summary_large_image", ...shared },
   };
 };
 

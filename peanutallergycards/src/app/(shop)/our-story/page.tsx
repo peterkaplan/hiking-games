@@ -17,6 +17,7 @@ export const metadata: Metadata = pageMetadata({
   title: "Our story: made by Peter, for Julia",
   description: `${story.heading} ${story.mission}`,
   path: "/our-story",
+  shareTitle: "Our story",
 });
 
 /*

@@ -7,12 +7,15 @@
  * read the card and said yes on the day. The page says so at the top
  * (`tokyoWarning`); keep that notice.
  *
+ * A miso ramen shop from the same trip is left out on purpose: nobody
+ * remembers its name.
+ *
  * The title uses "peanut-free restaurants" because that is what people
  * search for (owner's call, 2026-11-24).
  */
 
-/** When the meals were eaten. TO CONFIRM: the year. */
-export const VISITED = "November";
+/** When the meals were eaten. */
+export const VISITED = "November 2026";
 
 /** First published; change `UPDATED` when the list changes. */
 export const PUBLISHED = "2026-11-24";

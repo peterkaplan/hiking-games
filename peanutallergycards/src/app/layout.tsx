@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     titleIsComplete: true,
     description: DESCRIPTION,
     path: "/",
+    shareTitle: "Eat in restaurants abroad with confidence",
   }),
   metadataBase: new URL(SITE_URL),
   applicationName: SITE_NAME,
