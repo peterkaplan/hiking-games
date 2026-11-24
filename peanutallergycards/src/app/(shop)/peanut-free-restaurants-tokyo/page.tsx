@@ -5,7 +5,12 @@ import { JsonLd } from "@/components/json-ld";
 import { Photo } from "@/components/photo";
 import { buttonPrimary, CheckIcon, Eyebrow } from "@/components/shop/bits";
 import { productPath } from "@/content/catalogue";
-import { articleData, breadcrumbData, pageMetadata } from "@/content/seo";
+import {
+  articleData,
+  breadcrumbData,
+  pageMetadata,
+  TOKYO_SHARE_IMAGE,
+} from "@/content/seo";
 import type { RestaurantVisit } from "@/content/tokyo-restaurants";
 import {
   cardResult,
@@ -32,6 +37,10 @@ export const metadata: Metadata = pageMetadata({
   title: "Best Peanut-Free Restaurants in Tokyo",
   description: DESCRIPTION,
   path: TOKYO_PATH,
+  shareTitle: tokyoTitle,
+  shareDescription:
+    "Four places where we handed the kitchen our card and got a yes. Not peanut-free kitchens, so always show yours.",
+  shareImage: TOKYO_SHARE_IMAGE,
 });
 
 const photos: Record<RestaurantVisit["id"], StaticImageData> = {

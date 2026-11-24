@@ -4,6 +4,19 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ---
 
+## 2026-11-24: Share cards: a photo with no words, and no repeated text
+
+- When a link is shared, the message shows a picture, a title and the web
+  address. Ours said "Peanut Allergy Cards" in all three, and twice in the
+  picture. Now the picture is the real photo of the card beside the ramen
+  with no words on it, and the share title never repeats the site's name.
+- Each page can give a share title and line that differ from its search
+  title (`shareTitle`, `shareDescription` in `src/content/seo.ts`). Search
+  titles are unchanged.
+- The Tokyo restaurants page has its own share picture (the pizza). Its
+  trip date is November 2026. The miso ramen shop from that trip stays off
+  the page (owner's call): we don't know its name.
+
 ## 2026-11-24: "The best peanut-free restaurants in Tokyo"
 
 - A page at `/peanut-free-restaurants-tokyo` lists where the owners ate on

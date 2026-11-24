@@ -55,6 +55,9 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Peanut allergy cards for eating in restaurants abroad. Hand the card to your waiter, get a clear yes or no from the kitchen, and eat with confidence.",
   path: "/",
+  shareTitle: "Eat in restaurants abroad with confidence",
+  shareDescription:
+    "Hand the card to your waiter. Get a clear yes or no from the kitchen. Japanese and Thai.",
 });
 
 const benefits = [

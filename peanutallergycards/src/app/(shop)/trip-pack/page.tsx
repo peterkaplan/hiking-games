@@ -19,6 +19,7 @@ export const metadata: Metadata = pageMetadata({
   titleIsComplete: true,
   description: `One pack for a multi-country trip: a chef card, an emergency card and a local peanut guide for every country you're visiting. Save up to ${maxSaving}%.`,
   path: "/trip-pack",
+  shareTitle: "The Trip Pack",
 });
 
 const tints = ["bg-shop-backdrop-1", "bg-shop-backdrop-2"];

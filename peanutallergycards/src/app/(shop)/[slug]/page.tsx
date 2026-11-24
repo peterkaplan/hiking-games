@@ -169,6 +169,8 @@ export const generateMetadata = async ({
     title: `${languageName(destination)} Peanut Allergy Card for ${destination.country}`,
     description: searchDescription(destination),
     path: productPath(destination.slug),
+    shareTitle: cardsHeading(destination),
+    shareDescription: `Hand it to your waiter: the kitchen answers yes or no. Plus an emergency card with ${destination.country}'s ambulance number${ambulance(destination)}.`,
   });
 };
 
