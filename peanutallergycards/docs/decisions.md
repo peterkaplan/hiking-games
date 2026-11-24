@@ -4,6 +4,25 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ---
 
+## 2026-11-24: Search sweep before switching the site live
+
+- Audited every built page with the live switch on: one title (under about
+  60 characters), one description (under about 155), one address, one main
+  heading, no broken links, no pictures without a description. Lighthouse:
+  SEO 100 and accessibility 100 on the four pages tested.
+- Changes: the homepage's main heading now includes "Peanut allergy cards
+  for restaurants abroad" (it looks the same); the story page's description
+  was too long; `/admin` and `/api` are closed to search engines.
+- New guide, `/how-to-use-a-chef-card` (item 5 in `content-to-make.md`).
+  It needed no outside checks: it is our own advice on using a card.
+- "Before you go": a row of links to the guides on the homepage and the
+  product pages, so readers and search engines reach them from the pages
+  that matter. The Japan page leads with the Tokyo restaurants.
+- Left alone on purpose: the product pages publish no price to search
+  engines until `isReady()` is true. Google will show no price or stock in
+  results, and may warn about it, until a native speaker has checked the
+  cards.
+
 ## 2026-11-24: A comparison page that names Equal Eats
 
 - Added `/equal-eats-alternative` ("Equal Eats vs Peanut Allergy Cards"),

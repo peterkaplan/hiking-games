@@ -51,6 +51,8 @@ Tick items off as they're done; add new ones as they come up.
 - [ ] Stripe: account, then the checkout Worker (test mode first), thank-you page and order email
 - [x] Terms of use page (`/terms`, wording in `src/content/terms.ts`), linked from the footer. A draft: see the next item
 - [ ] Before the first sale: a lawyer reads the terms; add the business's legal name and the governing law
+- [x] Search sweep before going live, and the guide `/how-to-use-a-chef-card` (2026-11-24)
+- [ ] After switching live: verify the site in Google Search Console and Bing Webmaster Tools and submit `/sitemap.xml` (owner: needs their Google account)
 - [x] Comparison page: Equal Eats vs Peanut Allergy Cards (`/equal-eats-alternative`). Re-check their prices every few months
 - [x] Shipping and refunds page (`/shipping`, wording in `src/content/shipping.ts`): US only, free, posted within 3 business days, refunds within 14 days (owner, 2026-11-24)
 - [ ] Before opening: `NEXT_PUBLIC_LAUNCH_PREVIEW=off` and `NEXT_PUBLIC_SITE_LIVE=on`

@@ -13,6 +13,7 @@ const sitemap = (): MetadataRoute.Sitemap =>
     "/trip-pack",
     "/our-story",
     "/peanut-free-restaurants-tokyo",
+    "/how-to-use-a-chef-card",
     "/equal-eats-alternative",
     "/shipping",
     "/privacy",

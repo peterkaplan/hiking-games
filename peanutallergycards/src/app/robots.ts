@@ -11,7 +11,7 @@ const SITE_LIVE = process.env.NEXT_PUBLIC_SITE_LIVE === "on";
 
 const robots = (): MetadataRoute.Robots => ({
   rules: SITE_LIVE
-    ? { userAgent: "*", allow: "/", disallow: "/cart" }
+    ? { userAgent: "*", allow: "/", disallow: ["/cart", "/admin", "/api"] }
     : { userAgent: "*", disallow: "/" },
   sitemap: `${SITE_URL}/sitemap.xml`,
 });

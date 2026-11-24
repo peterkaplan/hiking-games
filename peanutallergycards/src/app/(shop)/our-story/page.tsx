@@ -15,7 +15,8 @@ import packed from "@/images/packed.webp";
 
 export const metadata: Metadata = pageMetadata({
   title: "Our story: made by Peter, for Julia",
-  description: `${story.heading} ${story.mission}`,
+  description:
+    "Julia has had a peanut allergy her whole life. Peter made her two cards for their trip to Thailand and Japan. They worked, and now they're yours.",
   path: "/our-story",
   shareTitle: "Our story",
 });

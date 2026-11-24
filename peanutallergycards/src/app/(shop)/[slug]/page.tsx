@@ -26,6 +26,8 @@ import {
   HowItWorks,
   PlaceholderReviews,
   ProductTile,
+  Reading,
+  readingLinks,
   ShopFaq,
 } from "@/components/shop/sections";
 import { BUY_BUTTON_ID, ShopBuyBox } from "@/components/shop/shop-buy-box";
@@ -700,6 +702,25 @@ const ProductPage = async ({ params }: PageProps) => {
           </div>
         </section>
       ) : null}
+
+      <section aria-labelledby="guides-heading" className="pt-28">
+        <h2 className="font-serif text-4xl sm:text-5xl" id="guides-heading">
+          Before you go
+        </h2>
+        <div className="mt-10">
+          <Reading
+            links={
+              destination.slug === "japan"
+                ? [
+                    readingLinks.tokyo,
+                    readingLinks.chefCard,
+                    readingLinks.equalEats,
+                  ]
+                : [readingLinks.chefCard, readingLinks.equalEats]
+            }
+          />
+        </div>
+      </section>
 
       <section
         aria-labelledby="faq-heading"

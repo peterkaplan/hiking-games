@@ -8,7 +8,6 @@ import {
   buttonPrimary,
   buttonSecondary,
   CheckIcon,
-  Eyebrow,
   Marquee,
   Sticker,
 } from "@/components/shop/bits";
@@ -19,6 +18,8 @@ import {
   HowItWorks,
   PlaceholderReviews,
   ProductTile,
+  Reading,
+  readingLinks,
   ShopFaq,
   StoryTeaser,
   TripPackTile,
@@ -72,9 +73,15 @@ const benefits = [
 const Hero = () => (
   <section className="mx-auto grid max-w-7xl items-center gap-12 overflow-x-clip px-4 pt-10 pb-16 sm:px-6 lg:grid-cols-[1fr_1.05fr] lg:pt-16 lg:pb-24">
     <div>
-      <Eyebrow>Peanut allergy cards for restaurants abroad</Eyebrow>
-      <h1 className="mt-5 font-serif text-[3.25rem] leading-[0.98] tracking-tight sm:text-6xl xl:text-[4rem]">
-        Eat in restaurants abroad with confidence.
+      {/* One heading for search engines: the label names the product. */}
+      <h1>
+        <span className="text-shop-ink block font-mono text-xs tracking-[0.18em] uppercase">
+          Peanut allergy cards for restaurants abroad
+        </span>
+        <span className="sr-only">: </span>
+        <span className="mt-5 block font-serif text-[3.25rem] leading-[0.98] tracking-tight sm:text-6xl xl:text-[4rem]">
+          Eat in restaurants abroad with confidence.
+        </span>
       </h1>
       <p className="text-shop-ink mt-6 max-w-lg text-xl">
         A peanut allergy card in the local language. Hand it to your waiter, get
@@ -317,6 +324,24 @@ const ShopHome = () => (
         </div>
       </section>
     )}
+
+    <section
+      aria-labelledby="guides-heading"
+      className="mx-auto max-w-7xl px-4 pt-24 sm:px-6"
+    >
+      <h2 className="font-serif text-4xl sm:text-5xl" id="guides-heading">
+        Before you go
+      </h2>
+      <div className="mt-10">
+        <Reading
+          links={[
+            readingLinks.chefCard,
+            readingLinks.tokyo,
+            readingLinks.equalEats,
+          ]}
+        />
+      </div>
+    </section>
 
     <section
       aria-labelledby="faq-heading"

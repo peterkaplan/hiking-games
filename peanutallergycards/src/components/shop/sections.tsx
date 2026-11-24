@@ -281,6 +281,54 @@ export const ShopFaq = ({ items }: { items: readonly FaqItem[] }) => (
   </div>
 );
 
+/* Guides: links between pages --------------------------------------------- */
+
+export interface ReadingLink {
+  blurb: string;
+  href: string;
+  title: string;
+}
+
+export const readingLinks = {
+  chefCard: {
+    href: "/how-to-use-a-chef-card",
+    title: "How to use a peanut allergy chef card",
+    blurb: "When to hand it over, and what to do when the answer is no.",
+  },
+  tokyo: {
+    href: "/peanut-free-restaurants-tokyo",
+    title: "The best peanut-free restaurants in Tokyo",
+    blurb: "Where we ate, and what happened when we showed the card.",
+  },
+  equalEats: {
+    href: "/equal-eats-alternative",
+    title: "Equal Eats vs Peanut Allergy Cards",
+    blurb: "Wording, price and what's included, side by side.",
+  },
+} as const satisfies Record<string, ReadingLink>;
+
+/** A row of links to our guides, so readers and search engines find them. */
+export const Reading = ({ links }: { links: readonly ReadingLink[] }) => (
+  <ul className="grid gap-6 md:grid-cols-3">
+    {links.map((link) => (
+      <li key={link.href}>
+        <Link
+          className="border-shop-ink bg-shop-panel hover:bg-shop-highlight focus-visible:outline-shop-ink flex h-full flex-col rounded-[24px] border-2 p-6 transition focus-visible:outline-3 focus-visible:outline-offset-4"
+          href={link.href}
+        >
+          <span className="font-serif text-2xl leading-tight">
+            {link.title}
+          </span>
+          <span className="mt-3 text-base">{link.blurb}</span>
+          <span aria-hidden="true" className="mt-auto pt-6 font-mono text-sm">
+            READ →
+          </span>
+        </Link>
+      </li>
+    ))}
+  </ul>
+);
+
 /* Founder story: homepage teaser ---------------------------------------- */
 
 /** Julia's original Thai chef card, staged as a product shot. */
