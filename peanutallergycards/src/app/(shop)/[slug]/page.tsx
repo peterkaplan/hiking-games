@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { StaticImageData } from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { ReactNode } from "react";
 import { JsonLd } from "@/components/json-ld";
 import { Photo } from "@/components/photo";
 import { PixelArt } from "@/components/pixel/pixel";
@@ -54,6 +55,7 @@ import {
   pageMetadata,
   productData,
 } from "@/content/seo";
+import { deliveryNote } from "@/content/shipping";
 import chefReads from "@/images/chef-reads.webp";
 import digIn from "@/images/dig-in.webp";
 import handOver from "@/images/hand-over.webp";
@@ -254,7 +256,7 @@ const Accordion = ({
   open = false,
   title,
 }: {
-  children: string;
+  children: ReactNode;
   open?: boolean;
   title: string;
 }) => (
@@ -510,9 +512,13 @@ const ProductPage = async ({ params }: PageProps) => {
               {`Includes: 1 chef card, 1 emergency card and 1 local peanut guide (PDF). Digital set: phone images, an Apple Wallet pass and a print-ready PDF. Languages: ${language} on the front, English on the back. Emergency number: the local ambulance number${ambulance(destination)}. Card size: 85.6 × 54 mm, the size of a bank card. Printed cards are laminated and wipe-clean.`}
             </Accordion>
             <Accordion title="Delivery">
-              Digital lands in your inbox the moment you buy. Printed sets leave
-              within two working days, and the digital files come straight away,
-              so you&apos;re covered either way.
+              {deliveryNote}{" "}
+              <Link
+                className="underline decoration-2 underline-offset-4"
+                href="/shipping"
+              >
+                Shipping and refunds
+              </Link>
             </Accordion>
             <Accordion title="How to use them">
               Hand the chef card to your waiter, server or bartender before you

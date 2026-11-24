@@ -14,6 +14,7 @@ import {
   formats,
   priceOf,
 } from "@/content/pricing";
+import { shippingLine } from "@/content/shipping";
 import underGlass from "@/images/under-glass.webp";
 import { buttonPrimary } from "./bits";
 import {
@@ -207,7 +208,7 @@ export const CartView = () => {
         <p aria-live="polite" className="mt-3 text-center text-base">
           {checkoutTried
             ? "Checkout isn't connected yet. Your cart is saved on this device."
-            : "Shipping is worked out at checkout."}
+            : shippingLine}
         </p>
       </div>
     </div>
