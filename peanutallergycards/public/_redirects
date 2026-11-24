@@ -1,0 +1,3 @@
+# Old addresses, kept working. https://developers.cloudflare.com/workers/static-assets/redirects/
+/japan /japanese-peanut-allergy-card 301
+/thailand /thai-peanut-allergy-card 301

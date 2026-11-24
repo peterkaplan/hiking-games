@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { Photo } from "@/components/photo";
 import {
   AnswerVignette,
   EatVignette,
@@ -10,6 +10,7 @@ import {
 import { stateLabel } from "@/components/status-badge";
 import type { Destination } from "@/content/cards";
 import { findDestination, frontLanguages } from "@/content/cards";
+import { productPath } from "@/content/catalogue";
 import type { Mark } from "@/content/comparison";
 import { comparisonColumns, comparisonRows } from "@/content/comparison";
 import type { FaqItem } from "@/content/faq";
@@ -33,7 +34,7 @@ export const ProductTile = ({ destination }: { destination: Destination }) => {
     .map((language) => language.name)
     .join(" + ");
   return (
-    <Link className="group block" href={`/${destination.slug}`}>
+    <Link className="group block" href={productPath(destination.slug)}>
       <div className="relative">
         <Backdrop
           className={`${destinationTint(destination.slug)} aspect-square overflow-hidden transition duration-300 [--shot-zoom:0.32] group-hover:rounded-[40px] min-[380px]:[--shot-zoom:0.4] sm:[--shot-zoom:0.3] lg:[--shot-zoom:0.4]`}
@@ -72,12 +73,11 @@ export const TripPackTile = () => (
   <Link className="group block" href="/trip-pack">
     <div className="relative">
       <div className="overflow-hidden rounded-[28px] transition-all duration-300 group-hover:rounded-[40px]">
-        <Image
+        <Photo
           alt="A neatly packed suitcase, with one peanut left behind on the floor outside it"
           className="aspect-square w-full object-cover transition duration-300 group-hover:scale-[1.03]"
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
           src={leftBehind}
-          unoptimized
         />
       </div>
       <span className="border-shop-ink bg-shop-bg absolute top-4 left-4 rounded-full border px-3 py-1 font-mono text-xs uppercase">
@@ -171,30 +171,39 @@ const MarkCell = ({ mark }: { mark: Mark }) => {
   return <span className="text-shop-ink font-mono text-sm">Varies</span>;
 };
 
+const markCell = "px-1 py-3 text-center sm:p-5";
+const otherColumn =
+  "px-1 py-3 text-center font-mono text-[10px] uppercase sm:p-5 sm:text-sm";
+
+/** Narrow enough for a phone: nothing is hidden off to the side. */
 export const ComparisonTable = () => (
-  <div className="border-shop-ink bg-shop-panel relative overflow-x-auto rounded-[24px] border-2">
-    <table className="w-full min-w-[620px] border-collapse text-left">
+  <div className="border-shop-ink bg-shop-panel overflow-hidden rounded-[24px] border-2">
+    <table className="w-full table-fixed border-collapse text-left sm:table-auto">
+      <caption className="sr-only">
+        How {comparisonColumns.us} compare with other allergy cards and with a
+        translation app
+      </caption>
+      <colgroup>
+        <col className="w-[37%] sm:w-auto" />
+        <col />
+        <col />
+        <col />
+      </colgroup>
       <thead>
         <tr className="border-shop-ink border-b-2">
-          <th className="p-4 font-normal sm:p-5" scope="col">
+          <th className="p-3 font-normal sm:p-5" scope="col">
             <span className="sr-only">Feature</span>
           </th>
           <th
-            className="bg-shop-selected p-4 text-center font-serif text-lg sm:p-5"
+            className="bg-shop-selected px-1 py-3 text-center font-serif text-sm leading-tight sm:p-5 sm:text-lg"
             scope="col"
           >
             {comparisonColumns.us}
           </th>
-          <th
-            className="p-4 text-center font-mono text-sm uppercase sm:p-5"
-            scope="col"
-          >
+          <th className={otherColumn} scope="col">
             {comparisonColumns.freeCard}
           </th>
-          <th
-            className="p-4 text-center font-mono text-sm uppercase sm:p-5"
-            scope="col"
-          >
+          <th className={otherColumn} scope="col">
             {comparisonColumns.translationApp}
           </th>
         </tr>
@@ -206,18 +215,18 @@ export const ComparisonTable = () => (
             key={row.feature}
           >
             <th
-              className="p-4 font-medium sm:p-5 [tr:first-child>&]:font-serif [tr:first-child>&]:text-2xl [tr:first-child>&]:font-normal sm:[tr:first-child>&]:text-3xl"
+              className="p-3 text-sm font-medium sm:p-5 sm:text-lg [tr:first-child>&]:font-serif [tr:first-child>&]:text-xl [tr:first-child>&]:font-normal sm:[tr:first-child>&]:text-3xl"
               scope="row"
             >
               {row.feature}
             </th>
-            <td className="bg-shop-selected p-4 text-center sm:p-5">
+            <td className={`bg-shop-selected ${markCell}`}>
               <MarkCell mark={row.us} />
             </td>
-            <td className="p-4 text-center sm:p-5">
+            <td className={markCell}>
               <MarkCell mark={row.freeCard} />
             </td>
-            <td className="p-4 text-center sm:p-5">
+            <td className={markCell}>
               <MarkCell mark={row.translationApp} />
             </td>
           </tr>

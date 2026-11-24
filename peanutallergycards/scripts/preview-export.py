@@ -11,6 +11,7 @@ src, dst = sys.argv[1], sys.argv[2]
 shutil.rmtree(dst, ignore_errors=True); os.makedirs(dst)
 shutil.copytree(os.path.join(src,'_next'), os.path.join(dst,'_next'))
 shutil.copytree(os.path.join(src,'flags'), os.path.join(dst,'flags'))
+shutil.copytree(os.path.join(src,'img'), os.path.join(dst,'img'))
 pages={'index.html':'home.html'}
 for f in os.listdir(src):
     if f.endswith('.html') and f not in ('index.html','404.html','_not-found.html'): pages[f]=f

@@ -43,11 +43,15 @@ Tick items off as they're done; add new ones as they come up.
 - [ ] Make the chef card's kitchen lines per-country (they are shared and Thailand-specific today), then write Japan's for Japanese kitchens
 - [ ] Connect checkout (Shopify or Stripe) to the cart; it must refuse any country where `isReady()` is false
 - [ ] Confirm the language for each catalogue country before writing its cards (`src/content/catalogue.ts`)
-- [ ] Cloudflare: import the repo (settings in the README), then attach peanutallergycards.com
+- [x] Cloudflare: deployed to peanutallergycards.phkap96.workers.dev (2026-11-23)
+- [ ] Cloudflare: connect the GitHub repo so a push deploys by itself (settings in the README)
+- [x] Domain: peanutallergycards.com bought, attached to the Worker, www redirects to it (2026-11-23)
+- [ ] Domain: renew before 2027-11-23 (auto-renew is off)
+- [ ] Uptime check: nothing tells us if the site goes down (needs an outside monitor, or Cloudflare Health Checks on a paid plan)
 - [ ] Stripe: account, then the checkout Worker (test mode first), thank-you page and order email
 - [x] Terms of use page (`/terms`, wording in `src/content/terms.ts`), linked from the footer. A draft: see the next item
 - [ ] Before the first sale: a lawyer reads the terms; add the business's legal name, the governing law, and the refunds and shipping terms
-- [ ] Privacy, and refunds and shipping pages
+- [ ] Refunds and shipping page
 - [ ] Before opening: `NEXT_PUBLIC_LAUNCH_PREVIEW=off` and `NEXT_PUBLIC_SITE_LIVE=on`
 - [x] First real photo: ramen in Japan with the laminated card, on the homepage hero (`src/images/`)
 - [x] Generated peanut illustrations placed (statement, Trip Pack, "where peanuts hide", FAQ, story, 404); see `src/images/`
@@ -59,7 +63,19 @@ Tick items off as they're done; add new ones as they come up.
 - [ ] Review the website copy: Thailand "where peanuts turn up" list, FAQ, meal steps
 - [ ] Disclaimer, About and Contact pages
 - [ ] SEO basics: titles, descriptions, sitemap, Open Graph images
-- [ ] Analytics (privacy-friendly, e.g. Plausible or Vercel Analytics)
+- [x] Search basics: canonical addresses, share card, structured data, sitemap dates (2026-11-23)
+- [x] Search: country pages live at /japanese-peanut-allergy-card and /thai-peanut-allergy-card; old addresses redirect (2026-11-23)
+- [ ] Search: turn on `NEXT_PUBLIC_SITE_LIVE` when the store can really sell, then add the site to Google Search Console and Bing Webmaster Tools and submit the sitemap
+- [x] Search: product-page headline is now "Japanese Peanut Allergy Cards" (2026-11-23)
+- [ ] Search: write the guides in `docs/content-to-make.md`; they are what most people will find first
+- [x] Speed: photos are served as AVIF with WebP as the fallback (2026-11-23)
+- [x] Mailing list: the form saves to a database; the owner's list is at /admin/subscribers (2026-11-23)
+- [ ] Mailing list: owner to set the `ADMIN_PASSWORD` secret in Cloudflare (the list page is locked until then)
+- [x] Privacy page, with a form to take yourself off the mailing list (2026-11-23)
+- [ ] Privacy page: have it checked, and update it when checkout (Stripe) is added
+- [ ] The `hello@peanutallergycards.com` mailbox doesn't exist yet, and the FAQ and privacy page tell people to write to it
+- [ ] Mailing list: choose a service to send from (import the CSV); it must handle unsubscribes
+- [x] Analytics: Cloudflare Web Analytics (no cookies)
 - [ ] Launch, and post in relevant Reddit communities (e.g. Japan travel, food allergies)
 
 ## Phase 2: More destinations and the paid card

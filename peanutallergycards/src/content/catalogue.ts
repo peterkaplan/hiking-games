@@ -35,7 +35,7 @@ export interface CatalogueCountry {
   /** Shown first in pickers and on the homepage. */
   popular: boolean;
   region: RegionId;
-  /** URL segment: /italy. */
+  /** The country's id, e.g. "italy". Its page address is productPath(slug). */
   slug: string;
 }
 
@@ -855,6 +855,53 @@ export const NEEDS_SEARCH = catalogue.length > 8;
 
 export const findCountry = (slug: string): CatalogueCountry | undefined =>
   catalogue.find((country) => country.slug === slug);
+
+/* Page addresses ----------------------------------------------------------- */
+
+const NOT_A_LETTER_OR_DIGIT = /[^a-z0-9]+/gu;
+const HYPHENS_AT_THE_ENDS = /^-+|-+$/gu;
+
+const forAddress = (text: string): string =>
+  text
+    .toLowerCase()
+    .replace(NOT_A_LETTER_OR_DIGIT, "-")
+    .replace(HYPHENS_AT_THE_ENDS, "");
+
+/** Languages that more than one country in the list uses, e.g. Spanish. */
+const sharedLanguages = new Set(
+  allCountries
+    .map((country) => country.language)
+    .filter((language, index, all) => all.indexOf(language) !== index)
+);
+
+/**
+ * The last part of a country's page address, in the words people search
+ * for: "japanese-peanut-allergy-card". Where several countries share a
+ * language the country is added, so every address is still one page:
+ * "spanish-peanut-allergy-card-mexico".
+ *
+ * It is worked out from the whole list, not just the countries on sale, so
+ * an address never changes when more countries are switched on. `slug`
+ * stays the country's id everywhere else (the cart, the card files).
+ */
+export const productSegment = (slug: string): string => {
+  const country = allCountries.find((candidate) => candidate.slug === slug);
+  if (!country) {
+    return slug;
+  }
+  const card = `${forAddress(country.language)}-peanut-allergy-card`;
+  return sharedLanguages.has(country.language)
+    ? `${card}-${country.slug}`
+    : card;
+};
+
+/** A country's page address: "/japanese-peanut-allergy-card". */
+export const productPath = (slug: string): string => `/${productSegment(slug)}`;
+
+/** The country a page address belongs to, or undefined. */
+export const slugForSegment = (segment: string): string | undefined =>
+  allCountries.find((country) => productSegment(country.slug) === segment)
+    ?.slug;
 
 /** How many different languages the catalogue covers. */
 export const languageCount = new Set(

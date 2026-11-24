@@ -48,7 +48,7 @@ image shows the card doing its job in a restaurant.
 > the suitcase, one small peanut in its shell lies alone on the yellow
 > backdrop with its own crisp shadow. Nothing else outside the suitcase.
 
-### 2. `clean-plate.png`: beside "One card. One question. A clear yes." (wide, 16:9)
+### 2. `clean-plate.png`: not used (owner removed it from the homepage, 2026-11-23)
 
 > Directly overhead view of one spotless, empty, matte white dinner plate
 > centred on warm cream linen, a brushed-steel fork to its left and knife to
@@ -217,7 +217,6 @@ tucked in and sharp.
 | File                     | Shot | Where                                        |
 | ------------------------ | ---- | -------------------------------------------- |
 | `ramen-with-card.webp`   | real | Homepage hero                                |
-| `clean-plate.webp`       | 2    | Homepage, beside "A clear yes"               |
 | `mortar.webp`            | 9    | Homepage, "Written for the kitchen"          |
 | `hand-over.webp`         | 12   | Product pages, strip under the steps         |
 | `chef-reads.webp`        | 13   | Product pages, strip under the steps         |

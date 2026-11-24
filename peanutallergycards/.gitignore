@@ -6,3 +6,6 @@ next-env.d.ts
 .env*.local
 .vercel
 .wrangler/
+public/img/
+worker/worker-configuration.d.ts
+.dev.vars

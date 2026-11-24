@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import type { ChangeEvent, MouseEvent } from "react";
 import { useCallback, useMemo, useState } from "react";
-import { catalogue, findCountry } from "@/content/catalogue";
+import { Photo } from "@/components/photo";
+import { catalogue, findCountry, productPath } from "@/content/catalogue";
 import type { CartLine, FormatId } from "@/content/pricing";
 import {
   availableTiers,
@@ -65,7 +65,7 @@ const Line = ({ line }: { line: CartLine }) => {
       <div className="min-w-0">
         <Link
           className="font-serif text-2xl leading-tight hover:underline"
-          href={`/${country.slug}`}
+          href={productPath(country.slug)}
         >
           The {country.name} Set
         </Link>
@@ -134,12 +134,11 @@ export const CartView = () => {
   if (lines.length === 0) {
     return (
       <div className="bg-shop-panel border-shop-ink rounded-[32px] border-2 p-8 text-center sm:p-14">
-        <Image
+        <Photo
           alt="A single peanut trapped under an upturned drinking glass"
           className="mx-auto mb-8 aspect-square w-48 rounded-[24px] object-cover"
           sizes="192px"
           src={underGlass}
-          unoptimized
         />
         <p className="font-serif text-3xl">Your cart is empty.</p>
         <p className="mt-3 text-xl">Where are you eating next?</p>

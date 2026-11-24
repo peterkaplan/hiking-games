@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/content/seo";
 import {
   TERMS_UPDATED,
   termsIntro,
@@ -6,22 +7,22 @@ import {
   termsSummary,
 } from "@/content/terms";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Terms of use",
   description:
     "The terms for using this website and buying our cards: what the cards do, what they can't promise, and how to use them.",
-};
+  path: "/terms",
+});
 
 /*
- * A plain policy page, as on the reference stores: one narrow column, a
- * large serif title, the date, then numbered sections. The three points that
- * matter most sit in a panel above the full terms.
+ * Laid out like the privacy page, so the policy pages match. The three
+ * points that matter most sit in a panel above the full terms.
  */
 
 const Summary = () => (
   <section
     aria-labelledby="terms-summary-heading"
-    className="bg-shop-highlight text-shop-on-highlight mt-10 rounded-[28px] p-6 sm:p-8"
+    className="bg-shop-highlight text-shop-on-highlight mt-10 mb-4 rounded-[28px] p-6 sm:p-8"
   >
     <h2
       className="font-mono text-xs tracking-[0.18em] uppercase"
@@ -42,46 +43,34 @@ const Summary = () => (
 
 const TermsPage = () => (
   <main className="mx-auto max-w-3xl px-4 pt-10 sm:px-6 lg:pt-14">
-    <p className="font-mono text-xs tracking-[0.18em] uppercase">
+    <p className="font-mono text-xs tracking-widest uppercase">
       Last updated {TERMS_UPDATED}
     </p>
-    <h1 className="mt-4 font-serif text-5xl tracking-tight sm:text-6xl">
+    <h1 className="mt-3 font-serif text-5xl tracking-tight sm:text-6xl">
       Terms of use
     </h1>
     <p className="mt-6 text-xl">{termsIntro}</p>
     <Summary />
-    <ol className="border-shop-ink mt-14 border-b-2">
-      {termsSections.map((section, index) => (
-        <li
-          className="border-shop-ink grid gap-x-8 gap-y-2 border-t-2 py-8 sm:grid-cols-[4rem_1fr]"
-          key={section.heading}
-        >
-          <p
-            aria-hidden="true"
-            className="text-shop-cta font-serif text-4xl leading-none"
-          >
-            {String(index + 1).padStart(2, "0")}
+    {termsSections.map((section) => (
+      <section
+        className="border-shop-ink mt-10 border-t pt-8"
+        key={section.heading}
+      >
+        <h2 className="font-serif text-3xl">{section.heading}</h2>
+        {section.paragraphs.map((paragraph) => (
+          <p className="mt-4" key={paragraph}>
+            {paragraph}
           </p>
-          <div>
-            <h2 className="font-serif text-3xl leading-tight">
-              {section.heading}
-            </h2>
-            <div className="mt-3 space-y-4">
-              {section.paragraphs.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
-            {section.list ? (
-              <ul className="mt-4 list-disc space-y-2 pl-6">
-                {section.list.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            ) : null}
-          </div>
-        </li>
-      ))}
-    </ol>
+        ))}
+        {section.list ? (
+          <ul className="mt-4 list-disc space-y-2 pl-6">
+            {section.list.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        ) : null}
+      </section>
+    ))}
   </main>
 );
 

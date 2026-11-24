@@ -6,7 +6,8 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ## 2026-11-24: Terms of use: the card asks, it doesn't guarantee
 
-- Added `/terms`, linked from the footer's legal row. The wording lives in
+- Added `/terms`, linked from the footer beside the privacy policy and laid
+  out like it. The wording lives in
   `src/content/terms.ts`.
 - What it sets out: the cards are a communication aid and not a guarantee;
   they are not medical advice; always carry your medication; the restaurant's
@@ -21,6 +22,112 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
   law, refunds and shipping. It is a draft until a lawyer has read it.
 - It says "a native speaker checks every card before we sell it". That is
   only true while checkout is gated on `isReady()`.
+
+## 2026-11-23: Search-friendly addresses, AVIF photos, a privacy page
+
+- Country pages moved from `/japan` and `/thailand` to
+  `/japanese-peanut-allergy-card` and `/thai-peanut-allergy-card`, the words
+  people type. The old addresses redirect (`public/_redirects`). Done now
+  because nothing is indexed yet; changing addresses later costs rankings.
+- The rule (`productSegment` in `src/content/catalogue.ts`): language plus
+  "peanut-allergy-card", and the country is added only where several
+  countries share a language (`spanish-peanut-allergy-card-mexico`), so
+  every address is one page. `slug` ("japan") stays the country's id in the
+  cart and the card files.
+- Photos are offered as AVIF first and WebP second
+  (`src/components/photo.tsx`, used for every photo instead of `next/image`).
+  AVIF is about a third smaller at the same look. The homepage's main photo
+  went from 138 KB to 87 KB on a phone.
+- Measured on a simulated slow phone: Lighthouse's estimate for that photo
+  went from 3.6 s to 3.3 s; with real network throttling it paints at 2.3 s.
+  The estimate assumes the photo shares the connection equally with the
+  scripts, which browsers don't do. What's left is Next.js's own scripts and
+  the fonts, not the photo.
+- A privacy page (`/privacy`, words in `src/content/privacy.ts`) says what
+  we collect, and has a form that deletes an address from the mailing list
+  at once (`POST /api/unsubscribe`). It answers the same whether or not the
+  address was there. Plain language, not a lawyer's draft: have it checked
+  before the store takes payments, and update it when checkout is added.
+
+## 2026-11-23: The mailing list works, and lives on our own Cloudflare account
+
+- The sign-up form now saves addresses. It posts to `/api/subscribe`, a few
+  lines of Worker code (`worker/index.ts`) that write to a D1 database
+  called `peanutallergycards`. Before this the form said "You're on the
+  list" and saved nothing.
+- The owner reads the list at `/admin/subscribers` (and downloads it as a
+  CSV), behind a password kept as the Worker secret `ADMIN_PASSWORD`, set in
+  the Cloudflare dashboard and never stored in the repository.
+- Only `/api/*` and `/admin/*` run code; every page and file is still served
+  directly, free and unlimited. The free plan's 100,000-a-day limit now
+  applies to those two paths only.
+- We store the email, the time, the page it was typed on and the visitor's
+  country. No IP address. Spam is kept down with a hidden field only bots
+  fill in, and by refusing posts from other sites. Revisit with Cloudflare
+  Turnstile if junk sign-ups appear.
+- Why our own table and not a newsletter service: nothing to sign up for,
+  and the list is ours. To send a newsletter, the CSV imports into any
+  service; that service must then handle unsubscribes.
+
+## 2026-11-23: Search and accessibility pass
+
+- Every page now tells search engines its one address (canonical), has a
+  share card (Open Graph and Twitter tags, `public/og.jpg`), and carries
+  structured data: the business and site on the homepage, a product on each
+  country page, the breadcrumb trail, and the FAQ. It all comes from
+  `src/content/seo.ts`.
+- The product's structured data publishes a price and "in stock" only when
+  `isReady()` is true, the same gate checkout must use. No ratings or
+  reviews are published until there are real ones.
+- Page titles were cut to about 60 characters so they aren't clipped in
+  results; descriptions to about 150.
+- Accessibility: a "Skip to content" link, one thick focus ring everywhere,
+  Escape closes the phone menu, text links are taller to tap, and the
+  comparison table fits a phone instead of scrolling sideways (a sideways
+  scroller can't be reached by keyboard without breaking a lint rule).
+- `JsonLd` uses `dangerouslySetInnerHTML`, against the usual rule: React has
+  no other way to write a JSON-LD script. The data is only our own content.
+- The homepage's plate photo beside "A clear yes." was removed (owner's
+  call); that statement now stands alone.
+- Still off: search engines are blocked until `NEXT_PUBLIC_SITE_LIVE=on`.
+  Lighthouse scores SEO 66 because of that and 100 with the switch on.
+
+## 2026-11-23: peanutallergycards.com bought and attached
+
+- The owner bought the domain through Cloudflare Registrar ($11.17, one
+  year, auto-renew off: it expires 2027-11-23 unless renewed by hand).
+- The Worker serves `https://peanutallergycards.com`. `www` redirects to it
+  (a redirect rule on the domain), so there is one address for every page.
+- The `workers.dev` address stays on as a test address and is never indexed.
+- Visitor analytics now count under the real domain; the test address's
+  analytics site was deleted.
+- Search engines are still blocked until `NEXT_PUBLIC_SITE_LIVE=on`.
+
+## 2026-11-23: Deployed to Cloudflare; analytics, alerts and resized photos
+
+- The site is live at `https://peanutallergycards.phkap96.workers.dev`, as a
+  Cloudflare Worker named `peanutallergycards` that serves only files. It was
+  uploaded from a Claude session through Cloudflare's API. Search engines
+  stay blocked (`robots.txt`, plus a `noindex` header on any workers.dev
+  address).
+- It stays files-only on purpose. Requests for files are free and unlimited;
+  putting Worker code in front of every request (for example to log visits)
+  would count each one against the free plan's 100,000 a day and return
+  errors past that. Revisit only for checkout, and then run code on the
+  checkout paths alone.
+- Visitors are counted with Cloudflare Web Analytics (free, no cookies, no
+  consent banner). Each web address needs its own token; see
+  `src/components/web-analytics.tsx`.
+- Photos are resized before every build (`scripts/build-images.mjs`) and
+  `src/image-loader.ts` picks a size per screen, because a static export has
+  no image server. WebP only: AVIF would be smaller but needs a second file
+  per size and a `<picture>` element for old browsers.
+- `public/_headers` sets one-year caching for files with a hash in the name,
+  and a content security policy. The policy allows inline scripts because
+  Next.js needs them; Stripe's hosts must be added to it for checkout.
+- Email alerts on the Cloudflare account: any spend of $1 or more, Worker
+  code passing 1 million requests in a month, major Cloudflare incidents, and
+  a weekly visitor summary.
 
 ## 2026-11-22: Images: one real photo, plus generated peanut illustrations
 

@@ -13,9 +13,18 @@ const ShopLayout = ({ children }: Readonly<{ children: ReactNode }>) => (
     data-palette="greatjones"
     id="top"
   >
+    <a
+      className="bg-shop-highlight text-shop-on-highlight sr-only rounded-full px-5 py-3 font-semibold focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50"
+      href="#content"
+    >
+      Skip to content
+    </a>
     <AnnouncementBar />
     <ShopHeader />
-    {children}
+    {/* Where "Skip to content" lands: below the sticky header. */}
+    <div className="scroll-mt-24" id="content">
+      {children}
+    </div>
     <ShopFooter />
   </div>
 );

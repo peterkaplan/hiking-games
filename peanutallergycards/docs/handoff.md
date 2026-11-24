@@ -29,14 +29,15 @@ the original cards for their honeymoon in Thailand and Japan.
 
 ## The site today
 
-| Page                  | What's there                                                                                                                                                                 |
-| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `/`                   | Hero with a real photo, "Shop by country" (Japan, Thailand, The Trip Pack), the statement, "Written for the kitchen", four pixel-art steps, story teaser, FAQ                |
-| `/thailand`, `/japan` | Gallery, price, buy box (format, add another country), accordions, "Learn to say peanut", "Where peanuts hide" (Thailand only), steps and photo strip, comparison chart, FAQ |
-| `/trip-pack`          | The bundle product: tick countries, choose a format, add all to cart                                                                                                         |
-| `/cart`               | Cart saved in the browser; multi-country discount; Checkout button says it is not connected                                                                                  |
-| `/our-story`          | Split opener, "How it started", Julia's note, "What we believe"                                                                                                              |
-| not found             | "Nothing here. Not even peanuts."                                                                                                                                            |
+| Page                                                         | What's there                                                                                                                                                                 |
+| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/`                                                          | Hero with a real photo, "Shop by country" (Japan, Thailand, The Trip Pack), the statement, "Written for the kitchen", four pixel-art steps, story teaser, FAQ                |
+| `/thai-peanut-allergy-card`, `/japanese-peanut-allergy-card` | Gallery, price, buy box (format, add another country), accordions, "Learn to say peanut", "Where peanuts hide" (Thailand only), steps and photo strip, comparison chart, FAQ |
+| `/trip-pack`                                                 | The bundle product: tick countries, choose a format, add all to cart                                                                                                         |
+| `/cart`                                                      | Cart saved in the browser; multi-country discount; Checkout button says it is not connected                                                                                  |
+| `/our-story`                                                 | Split opener, "How it started", Julia's note, "What we believe"                                                                                                              |
+| `/privacy`                                                   | What we collect, in plain words, and a form that removes an address from the mailing list                                                                                    |
+| not found                                                    | "Nothing here. Not even peanuts."                                                                                                                                            |
 
 Design: Great Jones's palette (cream `#faeddf`, green `#0e5540`, mustard
 `#ffc933`, black), Young Serif headings, Instrument Sans body, DM Mono
@@ -92,17 +93,17 @@ These came up repeatedly and are easy to get wrong.
 | `NEXT_PUBLIC_FULL_CATALOGUE=on`  | Sell all 100 countries in `src/content/catalogue.ts` (built, switched off) |
 | `NEXT_PUBLIC_SITE_LIVE=on`       | Let search engines in                                                      |
 | `NEXT_PUBLIC_ASSET_BASE=""`      | Only for the relocatable preview build (below)                             |
+| `NEXT_PUBLIC_CF_ANALYTICS_TOKEN` | Web Analytics token for the address being built; empty turns counting off  |
 
 ## Open items, in rough order
 
 Needs the owner:
 
-1. **Cloudflare:** import the repo under Workers & Pages (root directory
-   `peanutallergycards`, build `npm run build`, deploy
-   `npx wrangler deploy`, branch as above). Not done yet. An earlier attempt
-   to connect Cloudflare from the session failed: the API token form was
-   declined, and the Cloudflare plugin's connector could not be reached from
-   that cloud session.
+1. **Cloudflare:** the site is live at `https://peanutallergycards.com`
+   (see "Hosting" below). Still to do: connect the GitHub repo in the
+   Cloudflare dashboard so pushes deploy by themselves (a session can't: it
+   needs the owner to approve Cloudflare's GitHub app and it creates an API
+   token). The domain's auto-renew is off; it expires 2027-11-23.
 2. **Stripe:** open an account. Then build a Cloudflare Worker that prices
    the cart server-side, creates a Stripe Checkout session and handles the
    paid webhook. Test mode first.
@@ -113,7 +114,8 @@ Needs the owner:
 5. **Julia** to approve or rewrite her note in `src/content/story.ts`
    (`approvedByJulia`), and a real photo of her.
 6. Shipping prices and countries, the `hello@peanutallergycards.com`
-   mailbox, a newsletter service (the sign-up form saves nothing), real
+   mailbox, a service to send newsletters from (sign-ups are saved; see
+   "Hosting"), real
    prices (the $8 and $18 are placeholders), and real reviews.
 
 Can be done without the owner:
@@ -123,7 +125,7 @@ Can be done without the owner:
    offer to type it in as a draft was made but not answered. Its kitchen
    lines should suit Japanese kitchens (the shared English ones are
    Thailand-specific; see the roadmap).
-8. Privacy, and refunds and shipping pages; a contact page. Terms is done
+8. Refunds and shipping page; a contact page. Terms is done
    (`/terms`) but is a draft until a lawyer has read it; it still needs the
    legal name, governing law and refund terms.
 9. An Open Graph sharing image.
@@ -141,6 +143,44 @@ Unanswered questions to the owner:
   said earlier not to reuse those photos.
 - Is "fiancé" plus "honeymoon" right, or should the story say "husband"?
 
+## Hosting
+
+- Cloudflare Worker `peanutallergycards` on the owner's account, at `https://peanutallergycards.com`. `www` redirects to
+  it; `https://peanutallergycards.phkap96.workers.dev` is a test address.
+  Deployed 2026-11-23 by uploading
+  `out/` through the Cloudflare connector, because the session had no API
+  token for `wrangler deploy`. The steps: `npm run build`; send the file list
+  to `assets-upload-session`; upload the files to `api.cloudflare.com` with
+  the short-lived token it returns; `PUT` the Worker with the completion
+  token and the contents of `out/_headers` as `assets.config._headers`.
+  Once the GitHub repo is connected in the dashboard none of that is needed.
+- The mailing list is the only code that runs (`worker/index.ts`): sign-ups
+  go to the D1 database `peanutallergycards`, and the owner reads them at
+  `/admin/subscribers` with the password in the Worker secret
+  `ADMIN_PASSWORD`. A hand deploy through the API must also upload the
+  bundled Worker (`npx wrangler deploy --dry-run --outdir <folder>`), list
+  the `assets` and `d1` bindings, and pass `keep_bindings: ["secret_text"]`
+  so the password survives.
+- Photos: `npm run build` first runs `scripts/build-images.mjs`, which writes
+  resized AVIF and WebP copies to `public/img/` (not in git; the first run
+  takes about a minute) and the list to `src/images/variants.json` (in
+  git). Add a photo to `src/images/`, import it, and show it with `<Photo>`
+  (`src/components/photo.tsx`) and a `sizes` value.
+- Page addresses for countries come from `productPath()` in
+  `src/content/catalogue.ts`; never build one from `slug` by hand. Old
+  addresses are redirected in `public/_redirects`, which a hand deploy must
+  pass as `assets.config._redirects`, like `_headers`.
+- Headers (caching, security) are in `public/_headers`.
+- Visitor numbers: Cloudflare dashboard, Analytics & Logs, Web Analytics.
+  The snippet is `src/components/web-analytics.tsx`.
+- Alerts (Cloudflare dashboard, Notifications): spend of $1 or more, spend of
+  $10 or more, Worker code past 1 million requests in a month, R2 storage
+  past 8 GB, major Cloudflare incidents, weekly visitor summary. All by
+  email to the account address.
+- Not set up: an uptime check. Logs exist only for the mailing-list
+  requests (Cloudflare dashboard, the Worker's Logs tab); page views are in
+  Web Analytics.
+
 ## Images
 
 Twenty images in `src/images/`: one real photo (`ramen-with-card.webp`) and
@@ -155,8 +195,8 @@ them again if needed.
 
 ## The clickable preview
 
-The owner reviews the site at a private claude.ai artifact, not a deployed
-URL: `https://claude.ai/artifact/9neXyarKbqp6Xq4dHfySBz`. To refresh it:
+The owner used to review the site at a private claude.ai artifact (it is
+now live, so the artifact is out of date unless refreshed): `https://claude.ai/artifact/9neXyarKbqp6Xq4dHfySBz`. To refresh it:
 
 ```bash
 NEXT_PUBLIC_ASSET_BASE="" npx next build
@@ -177,9 +217,14 @@ is out of date and can be ignored.
 After each change, against the built site at 320, 390 and 1280 pixels wide:
 no horizontal overflow on any page, no failed requests, axe-core with no
 violations, and a palette audit (only the six palette colours, apart from
-card images, flags and pixel art). The scripts lived in the earlier
-session's scratch folder and are gone; they were short Playwright scripts
-and are quick to rewrite.
+card images, flags and pixel art). On 2026-11-23 Lighthouse (phone) gave
+accessibility 100, speed 90 to 100, and SEO 100 with the live switch on.
+The scripts live in the session's scratch folder and are not kept; they are
+short Playwright scripts (serve `out/` with `npx wrangler dev`, load each
+page, inject `axe-core`) and are quick to rewrite.
+
+Search metadata and structured data are in `src/content/seo.ts`; each page
+calls `pageMetadata()` with its own address.
 
 ## Where to look
 

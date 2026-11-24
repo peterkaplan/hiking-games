@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Disclaimer } from "@/components/disclaimer";
+import { Photo } from "@/components/photo";
 import { destinations } from "@/content/cards";
-import { catalogue, NEEDS_SEARCH } from "@/content/catalogue";
+import { catalogue, NEEDS_SEARCH, productPath } from "@/content/catalogue";
 import { LAUNCH_PREVIEW } from "@/content/launch-preview";
 import { maxSaving } from "@/content/pricing";
 import notOnTheList from "@/images/not-on-the-list.webp";
@@ -14,7 +14,7 @@ import { NewsletterForm } from "./newsletter-form";
  * eye), a playful sign-up headline (Ghia), link columns (all of them), the
  * name as large as the page allows (Ghia, Graza), and a small legal row.
  * Only real pages are linked: no social accounts or policies we don't have.
- * Terms is the one policy page so far.
+ * (The privacy and terms pages exist: src/app/(shop)/privacy and /terms.)
  */
 
 interface FooterLink {
@@ -27,7 +27,7 @@ const columns: readonly { heading: string; links: readonly FooterLink[] }[] = [
     heading: "Shop",
     links: [
       ...destinations.map((destination) => ({
-        href: `/${destination.slug}`,
+        href: productPath(destination.slug),
         label: `The ${destination.country} Set`,
       })),
       { href: "/trip-pack", label: `The Trip Pack: save ${maxSaving}%` },
@@ -51,12 +51,14 @@ const columns: readonly { heading: string; links: readonly FooterLink[] }[] = [
     links: [
       { href: "/#how-it-works", label: "How the cards work" },
       { href: "/#faq", label: "FAQ" },
+      { href: "/privacy", label: "Privacy policy" },
+      { href: "/terms", label: "Terms of use" },
     ],
   },
 ];
 
 const footerLink =
-  "focus-visible:outline-shop-on-band rounded-sm decoration-2 underline-offset-4 hover:underline focus-visible:outline-3 focus-visible:outline-offset-4";
+  "focus-visible:outline-shop-on-band inline-block rounded-sm py-1 decoration-2 underline-offset-4 hover:underline focus-visible:outline-3 focus-visible:outline-offset-4";
 
 /** 2πr for the stamp's ring of text (r = 62). */
 const STAMP_RING_LENGTH = 389.5;
@@ -128,12 +130,11 @@ export const ShopFooter = () => (
     <FooterStamp />
     <div className="mx-auto grid max-w-7xl gap-16 px-4 pt-32 pb-16 sm:px-6 lg:grid-cols-2 lg:gap-20">
       <div className="min-w-0">
-        <Image
+        <Photo
           alt="A sealed green envelope with one peanut left outside it"
           className="mb-8 aspect-[16/9] w-full max-w-xs rounded-2xl object-cover"
           sizes="320px"
           src={notOnTheList}
-          unoptimized
         />
         <h2 className="font-serif text-[2.5rem] leading-none tracking-tight sm:text-6xl">
           Our emails are 100%{" "}
@@ -146,6 +147,12 @@ export const ShopFooter = () => (
         <div className="mt-8 max-w-xl">
           <NewsletterForm />
         </div>
+        <p className="mt-4 font-mono text-xs uppercase">
+          Unsubscribe any time ·{" "}
+          <Link className={footerLink} href="/privacy">
+            Privacy policy
+          </Link>
+        </p>
       </div>
       <nav
         aria-label="Footer"
@@ -184,9 +191,6 @@ export const ShopFooter = () => (
       <Disclaimer />
       <p className="flex flex-wrap gap-x-6 gap-y-2 font-mono text-xs">
         <span>© 2026 Peanut Allergy Cards</span>
-        <Link className={footerLink} href="/terms">
-          Terms
-        </Link>
         <a className={footerLink} href="#top">
           Back to top ↑
         </a>

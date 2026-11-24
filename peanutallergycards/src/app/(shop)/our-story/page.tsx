@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
+import { Photo } from "@/components/photo";
 import {
   ChefFrontCard,
   EmergencyFrontCard,
@@ -8,14 +8,16 @@ import {
 import { JuliasCard } from "@/components/shop/sections";
 import { findDestination } from "@/content/cards";
 import { LAUNCH_PREVIEW } from "@/content/launch-preview";
+import { pageMetadata } from "@/content/seo";
 import { story } from "@/content/story";
 import evicted from "@/images/evicted.webp";
 import packed from "@/images/packed.webp";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Our story: made by Peter, for Julia",
   description: `${story.heading} ${story.mission}`,
-};
+  path: "/our-story",
+});
 
 /*
  * Structure from the reference stores' story pages: a split opener in two
@@ -83,12 +85,11 @@ const Journey = () => (
         >
           How it started
         </h2>
-        <Image
+        <Photo
           alt="Packed for a trip: a passport, a boarding pass, sunglasses, a luggage tag and an auto-injector pen"
           className="mt-8 aspect-[16/9] w-full rounded-[28px] object-cover"
           sizes="(min-width: 1024px) 30vw, 100vw"
           src={packed}
-          unoptimized
         />
       </div>
       <ol className="border-shop-ink border-b-2">
@@ -174,12 +175,11 @@ const Principles = () => (
           >
             {last ? (
               // The last belief is about peanuts, so it gets the peanut.
-              <Image
+              <Photo
                 alt="Chopsticks lifting a single peanut out and away from a bowl of noodles"
                 className="aspect-[16/10] w-full object-cover object-top"
                 sizes="(min-width: 768px) 33vw, 100vw"
                 src={evicted}
-                unoptimized
               />
             ) : (
               <p

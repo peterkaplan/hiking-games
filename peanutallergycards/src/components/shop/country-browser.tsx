@@ -4,7 +4,7 @@ import Link from "next/link";
 import type { ChangeEvent } from "react";
 import { useCallback, useId, useMemo, useState } from "react";
 import type { RegionId } from "@/content/catalogue";
-import { catalogue, regions } from "@/content/catalogue";
+import { catalogue, productPath, regions } from "@/content/catalogue";
 import { CONTACT_EMAIL } from "@/content/contact";
 import { searchCountries } from "./country-picker";
 import { Flag } from "./flags";
@@ -89,7 +89,7 @@ export const CountryBrowser = () => {
             <li className="border-shop-ink border-b" key={country.slug}>
               <Link
                 className="group focus-visible:outline-shop-ink flex items-center gap-3 rounded-sm py-3 focus-visible:outline-3"
-                href={`/${country.slug}`}
+                href={productPath(country.slug)}
               >
                 <Flag
                   className="border-shop-ink h-7 w-auto shrink-0 rounded-md border"
