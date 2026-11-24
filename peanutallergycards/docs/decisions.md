@@ -35,6 +35,12 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 - Reason: the owner asked how responsible they are for the cards. The honest
   promise is that the card asks the question clearly. Site copy should stay
   inside that promise.
+- Strengthened the same day after reading Equal Eats' terms: no guarantee
+  the card will be understood (with the reasons why), the buyer confirms
+  they've had medical advice and will take their own precautions, changed
+  cards are at the buyer's risk, and no liability for a reaction as far as
+  the law allows. Same protections, our own words: their document is theirs,
+  and it names their company, Canadian law and their app.
 - Left out because they aren't decided: the business's legal name, governing
   law, refunds and shipping. It is a draft until a lawyer has read it.
 - It says "a native speaker checks every card before we sell it". That is

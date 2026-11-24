@@ -15,8 +15,8 @@ export const metadata: Metadata = pageMetadata({
 });
 
 /*
- * Laid out like the privacy page, so the policy pages match. The three
- * points that matter most sit in a panel above the full terms.
+ * Laid out like the privacy page, so the policy pages match. The points
+ * that matter most sit in a panel above the full terms.
  */
 
 const Summary = () => (
@@ -69,6 +69,11 @@ const TermsPage = () => (
             ))}
           </ul>
         ) : null}
+        {section.after?.map((paragraph) => (
+          <p className="mt-4" key={paragraph}>
+            {paragraph}
+          </p>
+        ))}
       </section>
     ))}
   </main>
