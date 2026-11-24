@@ -14,6 +14,7 @@ import { NewsletterForm } from "./newsletter-form";
  * eye), a playful sign-up headline (Ghia), link columns (all of them), the
  * name as large as the page allows (Ghia, Graza), and a small legal row.
  * Only real pages are linked: no social accounts or policies we don't have.
+ * Terms is the one policy page so far.
  */
 
 interface FooterLink {
@@ -183,6 +184,9 @@ export const ShopFooter = () => (
       <Disclaimer />
       <p className="flex flex-wrap gap-x-6 gap-y-2 font-mono text-xs">
         <span>© 2026 Peanut Allergy Cards</span>
+        <Link className={footerLink} href="/terms">
+          Terms
+        </Link>
         <a className={footerLink} href="#top">
           Back to top ↑
         </a>

@@ -4,6 +4,24 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ---
 
+## 2026-11-24: Terms of use: the card asks, it doesn't guarantee
+
+- Added `/terms`, linked from the footer's legal row. The wording lives in
+  `src/content/terms.ts`.
+- What it sets out: the cards are a communication aid and not a guarantee;
+  they are not medical advice; always carry your medication; the restaurant's
+  answer is the restaurant's; the decision to eat is the customer's; personal
+  use only; our responsibility is limited as far as the law allows, without
+  taking away consumer rights (liability for injury caused by our own
+  negligence can't be excluded in the UK or EU, so we don't try).
+- Reason: the owner asked how responsible they are for the cards. The honest
+  promise is that the card asks the question clearly. Site copy should stay
+  inside that promise.
+- Left out because they aren't decided: the business's legal name, governing
+  law, refunds and shipping. It is a draft until a lawyer has read it.
+- It says "a native speaker checks every card before we sell it". That is
+  only true while checkout is gated on `isReady()`.
+
 ## 2026-11-22: Images: one real photo, plus generated peanut illustrations
 
 - The homepage hero is a real photo (the laminated card beside ramen in

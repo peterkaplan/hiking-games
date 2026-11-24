@@ -45,7 +45,9 @@ Tick items off as they're done; add new ones as they come up.
 - [ ] Confirm the language for each catalogue country before writing its cards (`src/content/catalogue.ts`)
 - [ ] Cloudflare: import the repo (settings in the README), then attach peanutallergycards.com
 - [ ] Stripe: account, then the checkout Worker (test mode first), thank-you page and order email
-- [ ] Privacy, terms, and refunds and shipping pages
+- [x] Terms of use page (`/terms`, wording in `src/content/terms.ts`), linked from the footer. A draft: see the next item
+- [ ] Before the first sale: a lawyer reads the terms; add the business's legal name, the governing law, and the refunds and shipping terms
+- [ ] Privacy, and refunds and shipping pages
 - [ ] Before opening: `NEXT_PUBLIC_LAUNCH_PREVIEW=off` and `NEXT_PUBLIC_SITE_LIVE=on`
 - [x] First real photo: ramen in Japan with the laminated card, on the homepage hero (`src/images/`)
 - [x] Generated peanut illustrations placed (statement, Trip Pack, "where peanuts hide", FAQ, story, 404); see `src/images/`

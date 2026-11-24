@@ -10,6 +10,7 @@ const sitemap = (): MetadataRoute.Sitemap =>
     "",
     "/trip-pack",
     "/our-story",
+    "/terms",
     ...catalogue.map(({ slug }) => `/${slug}`),
   ].map((path) => ({ url: `${SITE_URL}${path}` }));
 
