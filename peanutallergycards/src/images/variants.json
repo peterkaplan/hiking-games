@@ -67,6 +67,16 @@
       720
     ]
   },
+  "kyoto-seishuan": {
+    "hash": "b4ac89af69",
+    "widths": [
+      320,
+      480,
+      800,
+      1200,
+      1400
+    ]
+  },
   "left-behind": {
     "hash": "e43e042714",
     "widths": [
@@ -135,6 +145,46 @@
   },
   "security-tray": {
     "hash": "b2d83a66bf",
+    "widths": [
+      320,
+      480,
+      800,
+      1200,
+      1400
+    ]
+  },
+  "tokyo-gyu-kaku": {
+    "hash": "1c3e4776a9",
+    "widths": [
+      320,
+      480,
+      800,
+      1200,
+      1400
+    ]
+  },
+  "tokyo-kyushu-jangara": {
+    "hash": "4c0e87813f",
+    "widths": [
+      320,
+      480,
+      800,
+      1200,
+      1400
+    ]
+  },
+  "tokyo-pizza-kevelos": {
+    "hash": "f359dcc7c5",
+    "widths": [
+      320,
+      480,
+      800,
+      1200,
+      1400
+    ]
+  },
+  "tokyo-sukiya": {
+    "hash": "5a8ca18275",
     "widths": [
       320,
       480,

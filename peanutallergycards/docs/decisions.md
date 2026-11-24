@@ -4,6 +4,24 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ---
 
+## 2026-11-24: "The best peanut-free restaurants in Tokyo"
+
+- A page at `/peanut-free-restaurants-tokyo` lists where the owners ate on
+  their trip in November: Pizza Kevelos (Harajuku), Kyushu Jangara (Ginza),
+  Gyu-Kaku and Sukiya, plus Kazurano Seishuan in Arashiyama, Kyoto. At each
+  one they showed the chef card and the kitchen said yes. The photos are
+  their own.
+- The title says "peanut-free restaurants" because that is the phrase people
+  search for (owner's call). None of these kitchens is peanut-free, so a
+  highlighted notice directly under the headline says so, and the search
+  description does too. Keep that notice whatever else changes.
+- Only meals the owners really ate go on the page, described from their
+  photos. The two chains carry a line saying we can only speak for the
+  branch we ate at.
+- Restaurant names came from the photos (logos, a tray liner, a placemat)
+  and the photos' map pins, then checked against listings. The miso ramen
+  in the homepage photo is not on the page: we don't know its name yet.
+
 ## 2026-11-23: Search-friendly addresses, AVIF photos, a privacy page
 
 - Country pages moved from `/japan` and `/thailand` to

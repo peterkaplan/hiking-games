@@ -65,7 +65,9 @@ Tick items off as they're done; add new ones as they come up.
 - [x] Search: country pages live at /japanese-peanut-allergy-card and /thai-peanut-allergy-card; old addresses redirect (2026-11-23)
 - [ ] Search: turn on `NEXT_PUBLIC_SITE_LIVE` when the store can really sell, then add the site to Google Search Console and Bing Webmaster Tools and submit the sitemap
 - [x] Search: product-page headline is now "Japanese Peanut Allergy Cards" (2026-11-23)
-- [ ] Search: write the guides in `docs/content-to-make.md`; they are what most people will find first
+- [x] Guide: the best peanut-free restaurants in Tokyo, from the owners' trip (2026-11-24)
+- [ ] Tokyo guide: add the year of the trip, the name of the miso ramen shop, and a line or two per meal in Julia's words
+- [ ] Search: write the other guides in `docs/content-to-make.md`; they are what most people will find first
 - [x] Speed: photos are served as AVIF with WebP as the fallback (2026-11-23)
 - [x] Mailing list: the form saves to a database; the owner's list is at /admin/subscribers (2026-11-23)
 - [ ] Mailing list: owner to set the `ADMIN_PASSWORD` secret in Cloudflare (the list page is locked until then)
