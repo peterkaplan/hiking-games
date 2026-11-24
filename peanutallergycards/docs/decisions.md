@@ -4,6 +4,20 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ---
 
+## 2026-11-24: The Tokyo page reads like a field guide
+
+- Each write-up on `/peanut-free-restaurants-tokyo` is now in our own voice:
+  what we ordered, how it was, what to order. The owner asked for this and
+  confirmed every meal was really good, so the page may say "delicious".
+- The dishes are still only what the photos show. We don't add details
+  nobody told us (prices, portions, who ordered what).
+- The "not peanut-free kitchens" notice and the card result line stay as
+  they were: praise for the food is not a promise about the kitchen.
+- Revisit if the owners want to add more of the story for a place (what the
+  staff said, what they would order next time): it goes in the same field.
+
+---
+
 ## 2026-11-24: A comparison page that names Equal Eats
 
 - Added `/equal-eats-alternative` ("Equal Eats vs Peanut Allergy Cards"),

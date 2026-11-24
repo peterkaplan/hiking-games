@@ -31,7 +31,7 @@ import tokyoPizzaKevelos from "@/images/tokyo-pizza-kevelos.webp";
 import tokyoSukiya from "@/images/tokyo-sukiya.webp";
 
 const DESCRIPTION =
-  "Where we ate in Tokyo with a peanut allergy: four restaurants that read our chef card and said yes. Not peanut-free kitchens, so always show your card.";
+  "Where we ate in Tokyo with a peanut allergy: what we ordered, how good it was, and what each kitchen said to our chef card. Always show your own card.";
 
 export const metadata: Metadata = pageMetadata({
   title: "Best Peanut-Free Restaurants in Tokyo",
@@ -39,7 +39,7 @@ export const metadata: Metadata = pageMetadata({
   path: TOKYO_PATH,
   shareTitle: tokyoTitle,
   shareDescription:
-    "Four places where we handed the kitchen our card and got a yes. Not peanut-free kitchens, so always show yours.",
+    "What we ordered, how good it was, and what each kitchen said to our card. Not peanut-free kitchens, so always show yours.",
   shareImage: TOKYO_SHARE_IMAGE,
 });
 
