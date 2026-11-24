@@ -2,7 +2,8 @@
  * "Us vs the alternatives" table, a common Shopify product-page section.
  * The first row is the headline difference and is shown largest.
  * "Other cards" means the typical generic allergy card. Rows are worded as
- * things our set does that a generic card does not; never name a brand.
+ * things our set does that a generic card does not; never name a brand here.
+ * (The one page that names a competitor is equal-eats.ts.)
  */
 
 export type Mark = "yes" | "no" | "varies";

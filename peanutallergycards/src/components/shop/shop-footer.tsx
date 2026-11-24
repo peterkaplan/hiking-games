@@ -47,6 +47,7 @@ const columns: readonly { heading: string; links: readonly FooterLink[] }[] = [
         href: "/peanut-free-restaurants-tokyo",
         label: "Peanut-free restaurants in Tokyo",
       },
+      { href: "/equal-eats-alternative", label: "Us vs Equal Eats" },
       ...(LAUNCH_PREVIEW ? [] : [{ href: "/#reviews", label: "Reviews" }]),
     ],
   },

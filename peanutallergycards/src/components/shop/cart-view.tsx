@@ -114,9 +114,13 @@ const Line = ({ line }: { line: CartLine }) => {
   );
 };
 
+const CHECKOUT_NOTE =
+  "Checkout isn't connected yet. Your cart is saved on this device.";
+
 export const CartView = () => {
   const lines = useCart();
   const [checkoutTried, setCheckoutTried] = useState(false);
+  const underCheckout = checkoutTried ? CHECKOUT_NOTE : shippingLine;
   const totals = cartTotals(lines);
   const chosen = useMemo(() => lines.map((line) => line.slug), [lines]);
   const defaultFormat: FormatId =
@@ -206,9 +210,7 @@ export const CartView = () => {
           Checkout
         </button>
         <p aria-live="polite" className="mt-3 text-center text-base">
-          {checkoutTried
-            ? "Checkout isn't connected yet. Your cart is saved on this device."
-            : shippingLine}
+          {underCheckout}
         </p>
       </div>
     </div>

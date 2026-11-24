@@ -4,6 +4,23 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ---
 
+## 2026-11-24: A comparison page that names Equal Eats
+
+- Added `/equal-eats-alternative` ("Equal Eats vs Peanut Allergy Cards"),
+  linked from the footer. It is the usual search page for people comparing
+  cards: the short answer, a side-by-side table, a section per topic, and
+  the questions people search for (with FAQ, article and breadcrumb data).
+- It is the one place we name a competitor. The product pages' table still
+  doesn't.
+- Rules, kept at the top of `src/content/equal-eats.ts`: every fact about
+  them comes from their own site with the date we read it; it says plainly
+  when they are the better choice; no claims about their quality.
+- Our prices, countries and refund days are read from the same files as the
+  rest of the site, so the page can't drift. Their prices can: re-read their
+  site before editing, and every few months.
+- Like every page, it stays out of search engines until
+  `NEXT_PUBLIC_SITE_LIVE=on`.
+
 ## 2026-11-24: Shipping and refunds
 
 - Owner's decisions: laminated cards post to the United States only;
