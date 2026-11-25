@@ -4,8 +4,9 @@ import { POSTHOG_HOST, POSTHOG_KEY, POSTHOG_ON } from "@/content/analytics";
 /*
  * PostHog, loaded late and kept quiet.
  *
- * Late: the script is big, so it is only fetched once the page is idle
- * (src/components/product-analytics.tsx) or when the first event is sent.
+ * Late: the script is big, so it is only fetched when the visitor first
+ * does something, or five seconds after the page has loaded
+ * (src/components/product-analytics.tsx), or when the first event is sent.
  *
  * Quiet: no cookies and nothing saved in the browser (`cookieless_mode`),
  * so the site needs no cookie banner. No session recordings, surveys or

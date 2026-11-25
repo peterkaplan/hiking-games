@@ -179,7 +179,9 @@ Unanswered questions to the owner:
   views and clicks are automatic; the named shop events are listed in
   `src/components/posthog.ts`. It runs with no cookies, which only works
   while "cookieless server hash mode" is on in the PostHog project's
-  settings: if events stop arriving, check that first. The key and region
+  settings: if events stop arriving, check that first. It starts on the
+  visitor's first tap or scroll, or five seconds after load, so its page
+  views read a little lower than Cloudflare's. The key and region
   are in `src/content/analytics.ts`; the hosts are also in `public/_headers`.
 - Visitor numbers: Cloudflare dashboard, Analytics & Logs, Web Analytics.
   The snippet is `src/components/web-analytics.tsx`.
