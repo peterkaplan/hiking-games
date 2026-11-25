@@ -177,9 +177,13 @@ Unanswered questions to the owner:
 - Headers (caching, security) are in `public/_headers`.
 - How the shop is used: PostHog (us.posthog.com, project 766203). Page
   views and clicks are automatic; the named shop events are listed in
-  `src/components/posthog.ts`. It runs with no cookies, which only works
-  while "cookieless server hash mode" is on in the PostHog project's
-  settings: if events stop arriving, check that first. It starts on the
+  `src/components/posthog.ts`. It sets a cookie, except for visitors in
+  the UK and Europe, who are asked first by a banner
+  (`src/components/shop/cookie-banner.tsx`; the Worker's `/api/region`
+  decides who). Their visits before a yes, and anyone's after a no, are
+  sent without cookies, which only works while "cookieless server hash
+  mode" is on in the PostHog project's settings: if those stop arriving,
+  check that first. It starts on the
   visitor's first tap or scroll, or five seconds after load, so its page
   views read a little lower than Cloudflare's. The key and region
   are in `src/content/analytics.ts`; the hosts are also in `public/_headers`.

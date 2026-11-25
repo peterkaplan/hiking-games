@@ -23,7 +23,9 @@ export interface PrivacySection {
 const postHogCounting: readonly string[] = POSTHOG_ON
   ? [
       "We also use PostHog to see how the shop is used: which pages are opened, which buttons are pressed, and when something is added to a cart or removed from it. We never send it your email address or anything you type.",
-      "PostHog sets no cookies and saves nothing on your device. To count visitors it makes a scrambled code from your IP address and browser type. The code changes every day and can't be turned back into either.",
+      "PostHog sets a cookie so it can tell when the same visitor comes back. The cookie holds a random code, not your name, and lasts a year.",
+      "If you're in the UK or Europe, we ask before setting it. Until you say yes, or if you say no, PostHog sets no cookies and saves nothing on your device. It counts your visit with a scrambled code made from your IP address and browser type, which changes every day and can't be turned back into either.",
+      'You can change your answer at any time with "Cookie settings" at the bottom of every page.',
     ]
   : [];
 
@@ -69,7 +71,9 @@ export const privacySections: readonly PrivacySection[] = [
   {
     heading: "Cookies and ads",
     paragraphs: [
-      "We set no tracking or advertising cookies, and there are no ad trackers on this site.",
+      POSTHOG_ON
+        ? "The only cookie we set is PostHog's, described above. There are no advertising cookies and no ad trackers on this site."
+        : "We set no tracking or advertising cookies, and there are no ad trackers on this site.",
     ],
   },
   {

@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { CookieBanner } from "@/components/shop/cookie-banner";
 import { ShopFooter } from "@/components/shop/shop-footer";
 import { AnnouncementBar, ShopHeader } from "@/components/shop/shop-header";
 import { shopFontVariables } from "@/fonts/shop-fonts";
@@ -26,6 +27,7 @@ const ShopLayout = ({ children }: Readonly<{ children: ReactNode }>) => (
       {children}
     </div>
     <ShopFooter />
+    <CookieBanner />
   </div>
 );
 

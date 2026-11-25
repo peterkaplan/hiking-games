@@ -5,6 +5,7 @@
  *   POST /api/subscribe          save an email address to the mailing list
  *   POST /api/unsubscribe        delete an email address from it
  *   POST /api/event              note an add-to-cart or a Checkout press
+ *   GET  /api/region             whether to ask before setting cookies
  *   GET  /admin/subscribers      the list, for the owner (password)
  *   GET  /admin/subscribers.csv  the same, as a spreadsheet file
  *   GET  /admin/events           buying signals, for the owner (password)
@@ -385,6 +386,55 @@ const admin = async (
   });
 };
 
+/* Cookie question ---------------------------------------------------------- */
+
+/**
+ * Where the law expects a visitor to be asked before analytics cookies are
+ * set: the EU, Iceland, Liechtenstein, Norway, the UK and Switzerland.
+ * Cloudflare tells us the visitor's country from their connection.
+ */
+const ASK_FIRST = new Set([
+  "AT",
+  "BE",
+  "BG",
+  "CH",
+  "CY",
+  "CZ",
+  "DE",
+  "DK",
+  "EE",
+  "ES",
+  "FI",
+  "FR",
+  "GB",
+  "GR",
+  "HR",
+  "HU",
+  "IE",
+  "IS",
+  "IT",
+  "LI",
+  "LT",
+  "LU",
+  "LV",
+  "MT",
+  "NL",
+  "NO",
+  "PL",
+  "PT",
+  "RO",
+  "SE",
+  "SI",
+  "SK",
+]);
+
+/** Unknown countries ("XX", Tor's "T1", or none) are asked too, to be safe. */
+const region = (request: Request): Response => {
+  const country = request.headers.get("cf-ipcountry") ?? "";
+  const known = country.length === 2 && country !== "XX";
+  return json({ askFirst: !known || ASK_FIRST.has(country) });
+};
+
 /* Routing ------------------------------------------------------------------ */
 
 const route = (request: Request, env: Env): Promise<Response> => {
@@ -397,6 +447,9 @@ const route = (request: Request, env: Env): Promise<Response> => {
   }
   if (pathname === "/api/event") {
     return recordEvent(request, env);
+  }
+  if (pathname === "/api/region") {
+    return Promise.resolve(region(request));
   }
   if (pathname === "/admin/subscribers") {
     return admin(request, env, "list");

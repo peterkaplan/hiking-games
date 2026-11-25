@@ -6,6 +6,7 @@ import { catalogue, NEEDS_SEARCH, productPath } from "@/content/catalogue";
 import { LAUNCH_PREVIEW } from "@/content/launch-preview";
 import { maxSaving } from "@/content/pricing";
 import notOnTheList from "@/images/not-on-the-list.webp";
+import { CookieSettingsButton } from "./cookie-banner";
 import { NewsletterForm } from "./newsletter-form";
 
 /*
@@ -198,6 +199,7 @@ export const ShopFooter = () => (
       <Disclaimer />
       <p className="flex flex-wrap gap-x-6 gap-y-2 font-mono text-xs">
         <span>© 2026 Peanut Allergy Cards</span>
+        <CookieSettingsButton className={footerLink} />
         <a className={footerLink} href="#top">
           Back to top ↑
         </a>

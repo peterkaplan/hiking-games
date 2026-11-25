@@ -4,6 +4,34 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ---
 
+## 2026-11-25: PostHog cookies, with a banner only for the UK and Europe
+
+- Owner's call, the same day as the cookieless set-up below: use cookies,
+  so PostHog can tell when someone comes back. That part of the entry below
+  is replaced; the rest (what is sent, what is switched off, the late
+  start) still holds.
+- The owners are in the US. Visitors in the EU, Iceland, Liechtenstein,
+  Norway, the UK and Switzerland are asked first, because the law there
+  expects consent before analytics cookies. Everyone else gets the cookie
+  straight away. The Worker's `GET /api/region` answers from Cloudflare's
+  idea of the visitor's country; an unknown country is asked too.
+- How it works (`src/components/posthog.ts`): PostHog's `cookieless_mode:
+  "on_reject"`. A visitor who is asked counts without cookies until they
+  say yes, and stays cookie-free after a no. Visitors who aren't asked are
+  recorded as a yes. "Cookie settings" in every page's footer reopens the
+  question for anyone, so a no is always one click away.
+- The banner (`src/components/shop/cookie-banner.tsx`) doesn't cover the
+  page or block it, and "No thanks" is the same size as "Yes", as the UK
+  regulator asks. It appears with PostHog: on the first tap or scroll, or
+  five seconds in.
+- Still needed: "cookieless mode" on in the PostHog project's settings,
+  or the cookie-free events (UK and Europe before a yes, and anyone who
+  says no) are thrown away.
+- Not legal advice. The privacy page says what happens; have it checked
+  with the rest before the shop takes payments.
+
+---
+
 ## 2026-11-25: PostHog, without cookies
 
 - Added PostHog (owner's request) to see how the shop is used. Page views
