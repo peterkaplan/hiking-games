@@ -4,6 +4,35 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ---
 
+## 2026-11-25: PostHog, without cookies
+
+- Added PostHog (owner's request) to see how the shop is used. Page views
+  and clicks are recorded automatically. Six shop events are sent by name:
+  `add_to_cart`, `remove_from_cart`, `checkout_click`, `format_selected`,
+  `newsletter_signup` and `newsletter_unsubscribe`. The cart events carry
+  the countries, formats, count and price.
+- It runs in PostHog's cookieless mode: no cookies, nothing saved in the
+  browser, so the site still needs no cookie banner and the privacy page's
+  "no tracking cookies" stays true. The cost: a visitor is only recognised
+  for one day, so "returning visitors" can't be measured. Revisit (with a
+  cookie banner) if that number starts to matter.
+- Cookieless mode has to be switched on in the PostHog project as well, or
+  PostHog discards every event.
+- Never sent: email addresses, names, anything typed into a form. The two
+  email forms are marked `ph-no-capture`.
+- Switched off in code: session recordings, surveys, chat, product tours,
+  feature flags, and fetching extra scripts from PostHog. Recordings would
+  need the privacy page rewritten first.
+- The script is large (about 120 KB compressed), so it is only fetched once
+  the page is idle. It is not part of the first view.
+- Set up by hand, not with PostHog's wizard: the wizard needs a browser
+  sign-in, which the coding session didn't have, and by hand we could keep
+  it cookieless and loaded late.
+- Cloudflare Web Analytics and the `/admin/events` page stay. They are the
+  check that PostHog's numbers are right.
+
+---
+
 ## 2026-11-25: hello@peanutallergycards.com forwards to the owner
 
 - Mail to `hello@peanutallergycards.com` is forwarded to the owner's

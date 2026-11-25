@@ -7,6 +7,7 @@
  * takes payments.
  */
 
+import { POSTHOG_ON } from "./analytics";
 import { CONTACT_EMAIL } from "./contact";
 
 export const LAST_UPDATED = "25 November 2026";
@@ -17,6 +18,20 @@ export interface PrivacySection {
   id?: string;
   paragraphs: readonly string[];
 }
+
+/** Only shown while PostHog is switched on (src/content/analytics.ts). */
+const postHogCounting: readonly string[] = POSTHOG_ON
+  ? [
+      "We also use PostHog to see how the shop is used: which pages are opened, which buttons are pressed, and when something is added to a cart or removed from it. We never send it your email address or anything you type.",
+      "PostHog sets no cookies and saves nothing on your device. To count visitors it makes a scrambled code from your IP address and browser type. The code changes every day and can't be turned back into either.",
+    ]
+  : [];
+
+const postHogHosting: readonly string[] = POSTHOG_ON
+  ? [
+      "PostHog, which shows us how the shop is used, is also based in the United States.",
+    ]
+  : [];
 
 export const privacyIntro =
   "Peanut Allergy Cards is a small shop run by Peter and Julia. This is everything we collect, why, and how to have it removed.";
@@ -48,6 +63,7 @@ export const privacySections: readonly PrivacySection[] = [
     paragraphs: [
       "We count visits with Cloudflare Web Analytics: which pages are read, roughly where visitors are, and how fast the pages load.",
       "It uses no cookies, doesn't follow you to other sites, and doesn't know who you are.",
+      ...postHogCounting,
     ],
   },
   {
@@ -60,6 +76,7 @@ export const privacySections: readonly PrivacySection[] = [
     heading: "Where it's kept",
     paragraphs: [
       "The site and the email list are hosted by Cloudflare, a company based in the United States. Like any web host, Cloudflare handles your IP address to deliver the pages and block abuse, and keeps short-lived technical logs. We don't keep IP addresses ourselves.",
+      ...postHogHosting,
     ],
   },
   {

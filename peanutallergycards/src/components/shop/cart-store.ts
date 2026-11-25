@@ -1,6 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
+import { capture } from "@/components/posthog";
 import { findCountry } from "@/content/catalogue";
 import type { CartLine, FormatId } from "@/content/pricing";
 import { formats } from "@/content/pricing";
@@ -108,6 +109,7 @@ export const addToCart = (added: readonly CartLine[]) => {
 
 export const removeFromCart = (slug: string) => {
   save(getSnapshot().filter((line) => line.slug !== slug));
+  capture("remove_from_cart", { country: slug });
 };
 
 export const setCartFormat = (slug: string, format: FormatId) => {

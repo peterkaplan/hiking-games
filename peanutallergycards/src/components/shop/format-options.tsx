@@ -2,6 +2,7 @@
 
 import type { ChangeEvent } from "react";
 import { useCallback, useId } from "react";
+import { capture } from "@/components/posthog";
 import type { FormatId } from "@/content/pricing";
 import { formatPrice, formats } from "@/content/pricing";
 
@@ -27,6 +28,7 @@ export const FormatOptions = ({
       const picked = formats.find((f) => f.id === event.currentTarget.value);
       if (picked) {
         onChange(picked.id);
+        capture("format_selected", { format: picked.id });
       }
     },
     [onChange]
