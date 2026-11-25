@@ -4,6 +4,22 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ---
 
+## 2026-11-25: Switched on for search engines; buying signals recorded
+
+- The live site is now built with `NEXT_PUBLIC_SITE_LIVE=on` (owner's call).
+  Every later deploy must keep that switch on, or `robots.txt` shuts search
+  engines out again.
+- Page views were already counted (Cloudflare Web Analytics). Nothing told
+  us when someone tried to buy, and checkout isn't connected, so a pressed
+  Checkout button was invisible. Now each add-to-cart and each Checkout
+  press is saved (`POST /api/event`, table `events`, `migrations/0002`):
+  what was in the cart, the page, the country, the time. No email, no IP
+  address, no cookie. The owner reads them at `/admin/events`, behind the
+  same password as the mailing list.
+- The privacy page says so. It used to say "we can't see your cart".
+- Revisit when Stripe is connected: paid orders then come from Stripe, and
+  these rows show how many carts never reach payment.
+
 ## 2026-11-24: Search sweep before switching the site live
 
 - Audited every built page with the live switch on: one title (under about

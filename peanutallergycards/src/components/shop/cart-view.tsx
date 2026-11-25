@@ -25,6 +25,7 @@ import {
 } from "./cart-store";
 import { CountryPicker } from "./country-picker";
 import { Flag } from "./flags";
+import { track } from "./track";
 
 /** "Add 1 more country to save 15%", or nothing at the top tier. */
 const nextSaving = (count: number): string | null => {
@@ -134,7 +135,8 @@ export const CartView = () => {
   );
   const handleCheckout = useCallback(() => {
     setCheckoutTried(true);
-  }, []);
+    track("checkout_click", lines);
+  }, [lines]);
 
   if (lines.length === 0) {
     return (

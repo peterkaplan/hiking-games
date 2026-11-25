@@ -9,7 +9,7 @@
 
 import { CONTACT_EMAIL } from "./contact";
 
-export const LAST_UPDATED = "23 November 2026";
+export const LAST_UPDATED = "25 November 2026";
 
 export interface PrivacySection {
   heading: string;
@@ -39,7 +39,8 @@ export const privacySections: readonly PrivacySection[] = [
   {
     heading: "Your cart",
     paragraphs: [
-      "Your cart is saved in your own browser, on your device, so it's still there when you come back. We can't see it.",
+      "Your cart is saved in your own browser, on your device, so it's still there when you come back.",
+      "When someone adds to their cart or presses Checkout, we note that it happened: which cards, on which page, and the country. We don't note who did it, so we can't connect it to you.",
     ],
   },
   {

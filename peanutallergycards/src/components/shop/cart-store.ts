@@ -4,6 +4,7 @@ import { useSyncExternalStore } from "react";
 import { findCountry } from "@/content/catalogue";
 import type { CartLine, FormatId } from "@/content/pricing";
 import { formats } from "@/content/pricing";
+import { track } from "./track";
 
 /*
  * The cart: one line per country, kept in the browser's local storage so it
@@ -102,6 +103,7 @@ export const addToCart = (added: readonly CartLine[]) => {
   save(
     clean([...getSnapshot().filter((line) => !slugs.has(line.slug)), ...added])
   );
+  track("add_to_cart", added);
 };
 
 export const removeFromCart = (slug: string) => {

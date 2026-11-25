@@ -4,8 +4,10 @@
  *
  *   POST /api/subscribe          save an email address to the mailing list
  *   POST /api/unsubscribe        delete an email address from it
+ *   POST /api/event              note an add-to-cart or a Checkout press
  *   GET  /admin/subscribers      the list, for the owner (password)
  *   GET  /admin/subscribers.csv  the same, as a spreadsheet file
+ *   GET  /admin/events           buying signals, for the owner (password)
  *
  * wrangler.jsonc sends only /api/* and /admin/* here. The list lives in the
  * D1 database "peanutallergycards" (migrations/). The password is the
@@ -17,6 +19,14 @@ interface Env {
   ADMIN_PASSWORD?: string;
   ASSETS: Fetcher;
   DB: D1Database;
+}
+
+interface ShopEvent {
+  country: string;
+  created_at: string;
+  detail: string;
+  name: string;
+  page: string;
 }
 
 interface Subscriber {
@@ -128,6 +138,45 @@ const unsubscribe = async (request: Request, env: Env): Promise<Response> => {
   return json({ ok: true });
 };
 
+/* Buying signals ----------------------------------------------------------- */
+
+const EVENT_NAMES: readonly string[] = ["add_to_cart", "checkout_click"];
+/** What the cart held: "japan:printed,thailand:digital". Nothing else fits. */
+const EVENT_DETAIL = /^[a-z0-9:,-]{0,200}$/u;
+
+/**
+ * Notes that someone added to the cart or pressed Checkout. It saves what
+ * was in the cart, the page and the country: nothing about the person.
+ */
+const recordEvent = async (request: Request, env: Env): Promise<Response> => {
+  if (request.method !== "POST") {
+    return json({ ok: false, error: "method" }, 405);
+  }
+  if (!fromOurSite(request)) {
+    return json({ ok: false, error: "origin" }, 403);
+  }
+  const data = await readSignUp(request);
+  const name = typeof data?.name === "string" ? data.name : "";
+  const detail = typeof data?.detail === "string" ? data.detail : "";
+  if (!(EVENT_NAMES.includes(name) && EVENT_DETAIL.test(detail))) {
+    return json({ ok: false, error: "event" }, 400);
+  }
+  const page =
+    typeof data?.page === "string" ? data.page.slice(0, MAX_SOURCE_LENGTH) : "";
+  await env.DB.prepare(
+    "INSERT INTO events (created_at, name, detail, page, country) VALUES (?1, ?2, ?3, ?4, ?5)"
+  )
+    .bind(
+      new Date().toISOString(),
+      name,
+      detail,
+      page,
+      request.headers.get("cf-ipcountry") ?? ""
+    )
+    .run();
+  return json({ ok: true });
+};
+
 /* The owner's list --------------------------------------------------------- */
 
 const digest = (text: string): Promise<ArrayBuffer> =>
@@ -190,6 +239,7 @@ th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #000;overflow-wr
 </head>
 <body>
 <h1>Mailing list</h1>
+<p><a href="/admin/events">Buying signals</a></p>
 <p>${rows.length} ${rows.length === 1 ? "person" : "people"} signed up. <a href="/admin/subscribers.csv">Download as a spreadsheet (CSV)</a></p>
 <table>
 <thead><tr><th scope="col">Email</th><th scope="col">Signed up (UTC)</th><th scope="col">Page</th><th scope="col">Country</th></tr></thead>
@@ -205,10 +255,92 @@ ${rows
 </body>
 </html>`;
 
+const EVENT_LABELS: Record<string, string> = {
+  add_to_cart: "Added to cart",
+  checkout_click: "Pressed Checkout",
+};
+const RECENT_EVENTS = 200;
+
+const eventsPage = (
+  totals: readonly { name: string; total: number; week: number }[],
+  rows: readonly ShopEvent[]
+): string => `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Buying signals | Peanut Allergy Cards</title>
+<style>
+body{font:16px/1.5 system-ui,sans-serif;margin:0;padding:24px;background:#faeddf;color:#000}
+h1{font-size:28px;margin:0 0 4px}
+h2{font-size:20px;margin:28px 0 0}
+a{color:#0e5540;font-weight:600}
+table{border-collapse:collapse;width:100%;margin-top:12px;background:#fffaf5}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #000;overflow-wrap:anywhere}
+</style>
+</head>
+<body>
+<h1>Buying signals</h1>
+<p>Each time someone adds to the cart or presses Checkout. <a href="/admin/subscribers">Mailing list</a></p>
+<h2>Totals</h2>
+<table>
+<thead><tr><th scope="col">What</th><th scope="col">Last 7 days</th><th scope="col">All time</th></tr></thead>
+<tbody>
+${Object.keys(EVENT_LABELS)
+  .map((name) => {
+    const found = totals.find((total) => total.name === name);
+    return `<tr><td>${EVENT_LABELS[name]}</td><td>${found?.week ?? 0}</td><td>${found?.total ?? 0}</td></tr>`;
+  })
+  .join("\n")}
+</tbody>
+</table>
+<h2>Latest ${RECENT_EVENTS}</h2>
+<table>
+<thead><tr><th scope="col">When (UTC)</th><th scope="col">What</th><th scope="col">In the cart</th><th scope="col">Page</th><th scope="col">Country</th></tr></thead>
+<tbody>
+${rows
+  .map(
+    (row) =>
+      `<tr><td>${escapeHtml(row.created_at.slice(0, 16).replace("T", " "))}</td><td>${escapeHtml(EVENT_LABELS[row.name] ?? row.name)}</td><td>${escapeHtml(row.detail)}</td><td>${escapeHtml(row.page)}</td><td>${escapeHtml(row.country)}</td></tr>`
+  )
+  .join("\n")}
+</tbody>
+</table>
+</body>
+</html>`;
+
+const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
+
+const eventsResponse = async (env: Env): Promise<Response> => {
+  const weekAgo = new Date(Date.now() - WEEK_MS).toISOString();
+  const [totals, recent] = await Promise.all([
+    env.DB.prepare(
+      "SELECT name, COUNT(*) AS total, SUM(created_at >= ?1) AS week FROM events GROUP BY name"
+    )
+      .bind(weekAgo)
+      .all<{ name: string; total: number; week: number }>(),
+    env.DB.prepare(
+      "SELECT created_at, name, detail, page, country FROM events ORDER BY created_at DESC LIMIT ?1"
+    )
+      .bind(RECENT_EVENTS)
+      .all<ShopEvent>(),
+  ]);
+  return new Response(eventsPage(totals.results, recent.results), {
+    headers: {
+      ...PRIVATE_HEADERS,
+      "content-type": "text/html; charset=utf-8",
+      "content-security-policy":
+        "default-src 'none'; style-src 'unsafe-inline'; frame-ancestors 'none'",
+    },
+  });
+};
+
+type AdminView = "csv" | "events" | "list";
+
 const admin = async (
   request: Request,
   env: Env,
-  wantsCsv: boolean
+  view: AdminView
 ): Promise<Response> => {
   if (!env.ADMIN_PASSWORD) {
     return new Response(
@@ -226,11 +358,14 @@ const admin = async (
       },
     });
   }
+  if (view === "events") {
+    return eventsResponse(env);
+  }
   const { results } = await env.DB.prepare(
     "SELECT email, created_at, source, country FROM subscribers ORDER BY created_at DESC"
   ).all<Subscriber>();
 
-  if (wantsCsv) {
+  if (view === "csv") {
     return new Response(asCsv(results), {
       headers: {
         ...PRIVATE_HEADERS,
@@ -260,11 +395,17 @@ const route = (request: Request, env: Env): Promise<Response> => {
   if (pathname === "/api/unsubscribe") {
     return unsubscribe(request, env);
   }
+  if (pathname === "/api/event") {
+    return recordEvent(request, env);
+  }
   if (pathname === "/admin/subscribers") {
-    return admin(request, env, false);
+    return admin(request, env, "list");
   }
   if (pathname === "/admin/subscribers.csv") {
-    return admin(request, env, true);
+    return admin(request, env, "csv");
+  }
+  if (pathname === "/admin/events") {
+    return admin(request, env, "events");
   }
   // Anything else is a page or file (or the "not found" page).
   return env.ASSETS.fetch(request);

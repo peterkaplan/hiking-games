@@ -178,6 +178,9 @@ Unanswered questions to the owner:
   $10 or more, Worker code past 1 million requests in a month, R2 storage
   past 8 GB, major Cloudflare incidents, weekly visitor summary. All by
   email to the account address.
+- Buying signals: `/admin/events` lists every add-to-cart and Checkout
+  press (same password as the mailing list). The live site is built with
+  `NEXT_PUBLIC_SITE_LIVE=on` since 2026-11-25: keep it on for every deploy.
 - Not set up: an uptime check. Logs exist only for the mailing-list
   requests (Cloudflare dashboard, the Worker's Logs tab); page views are in
   Web Analytics.
