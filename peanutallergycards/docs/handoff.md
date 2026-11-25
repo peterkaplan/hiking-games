@@ -188,6 +188,10 @@ Unanswered questions to the owner:
   files, so the file list has to be typed into it; give each file a 32-hex
   hash, upload with `curl` using the token the session returns, and have
   the sandbox check a SHA-256 of the Worker code before the final `PUT`.
+  When the Worker code hasn't changed, the sandbox can read it back from
+  `GET .../scripts/peanutallergycards/content/v2` instead (done for the
+  second deploy on 2026-11-25, the Tokyo journal). Only files whose content
+  changed are uploaded; photos keep their hashes between deploys.
 - `ADMIN_PASSWORD` has never been set on the Worker, so `/admin/subscribers`
   and `/admin/events` answer "locked" until the owner adds it (Cloudflare
   dashboard, the Worker, Settings, Variables and Secrets).
