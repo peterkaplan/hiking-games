@@ -32,6 +32,28 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
   check that PostHog's numbers are right.
 
 ---
+## 2026-11-25: The Tokyo page is a journal, written from the photos
+
+- Owner: the page was too thin, should read like a personal journal, and
+  didn't need the intro line or the yellow "read this first" box. "You have
+  the pictures, you can make it a journal."
+- Each meal is now a three-paragraph entry. The detail comes from the
+  owners' photo of that meal (the tablecloth, the bowl, what is on the
+  tray), plus what they had already told us. No conversations, prices or
+  waits were invented. A few lines of feeling are mine and want the owners'
+  eye: "ramen was the meal we most wanted to get right", "would do it again
+  tomorrow", "a good feeling when you've spent your life reading ingredient
+  lists".
+- The warning box is gone, but its point is kept as the second paragraph
+  of the opening and as the first question at the bottom: these are not
+  peanut-free kitchens. The title promises "peanut-free", so the page has
+  to say this somewhere.
+- Added: a contents list, "how we ordered, every time", five questions with
+  FAQ data, and a link to the chef-card guide. About 540 words became 1,400.
+- Search guidance read the same day rewards detail only a visitor would
+  know, not length for its own sake. More real detail from the owners (what
+  the staff did with the card, a place that said no) would help more than
+  anything else on this page.
 
 ## 2026-11-25: hello@peanutallergycards.com forwards to the owner
 

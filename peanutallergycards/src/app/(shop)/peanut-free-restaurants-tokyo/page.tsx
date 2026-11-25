@@ -4,23 +4,26 @@ import Link from "next/link";
 import { JsonLd } from "@/components/json-ld";
 import { Photo } from "@/components/photo";
 import { buttonPrimary, CheckIcon, Eyebrow } from "@/components/shop/bits";
+import { ShopFaq } from "@/components/shop/sections";
 import { productPath } from "@/content/catalogue";
 import {
   articleData,
   breadcrumbData,
+  faqData,
   pageMetadata,
   TOKYO_SHARE_IMAGE,
 } from "@/content/seo";
 import type { RestaurantVisit } from "@/content/tokyo-restaurants";
 import {
   cardResult,
+  journalOpening,
   kyotoVisit,
   PUBLISHED,
+  routine,
   TOKYO_PATH,
-  tokyoIntro,
+  tokyoFaq,
   tokyoTitle,
   tokyoVisits,
-  tokyoWarning,
   UPDATED,
   VISITED,
 } from "@/content/tokyo-restaurants";
@@ -31,7 +34,7 @@ import tokyoPizzaKevelos from "@/images/tokyo-pizza-kevelos.webp";
 import tokyoSukiya from "@/images/tokyo-sukiya.webp";
 
 const DESCRIPTION =
-  "Where we ate in Tokyo with a peanut allergy: what we ordered, how good it was, and what each kitchen said to our chef card. Always show your own card.";
+  "A food journal from Tokyo with a peanut allergy: five restaurants that read our chef card and said yes, what we ordered, and how we asked.";
 
 export const metadata: Metadata = pageMetadata({
   title: "Best Peanut-Free Restaurants in Tokyo",
@@ -65,7 +68,10 @@ const Visit = ({
   label: string;
   visit: RestaurantVisit;
 }) => (
-  <article className="border-shop-ink grid items-center gap-6 border-t pt-10 sm:grid-cols-2 sm:gap-10">
+  <article
+    className="border-shop-ink grid scroll-mt-28 items-start gap-6 border-t pt-10 sm:grid-cols-2 sm:gap-10"
+    id={visit.id}
+  >
     <Photo
       alt={visit.photoAlt}
       className="border-shop-ink aspect-square w-full rounded-[28px] border-2 object-cover"
@@ -81,8 +87,13 @@ const Visit = ({
         {visit.name}
       </h2>
       <p className="mt-2 font-mono text-sm uppercase">{visit.kind}</p>
-      <p className="mt-5">{visit.ate}</p>
-      <p className="mt-4 flex items-start gap-2 font-semibold">
+      <div className="mt-5 space-y-4">
+        {visit.entry.map((paragraph) => (
+          <p key={paragraph}>{paragraph}</p>
+        ))}
+      </div>
+      <p className="mt-5 font-mono text-sm uppercase">Order: {visit.order}</p>
+      <p className="mt-3 flex items-start gap-2 font-semibold">
         <CheckIcon className="mt-1 size-5 shrink-0" />
         {cardResult}
       </p>
@@ -120,16 +131,42 @@ const TokyoRestaurantsPage = () => (
           { name: "Home", path: "/" },
           { name: "Peanut-free restaurants in Tokyo", path: TOKYO_PATH },
         ]),
+        faqData(tokyoFaq),
       ]}
     />
-    <Eyebrow>Tokyo · eaten in {VISITED}</Eyebrow>
+    <Eyebrow>A food journal · Tokyo, {VISITED}</Eyebrow>
     <h1 className="mt-3 max-w-4xl font-serif text-5xl leading-[1.05] tracking-tight sm:text-7xl">
       {tokyoTitle}
     </h1>
-    <p className="mt-6 max-w-2xl text-xl">{tokyoIntro}</p>
-    <p className="bg-shop-highlight text-shop-on-highlight mt-8 max-w-3xl rounded-2xl px-5 py-4">
-      <strong>Read this first.</strong> {tokyoWarning}
-    </p>
+    <div className="mt-6 max-w-2xl space-y-4 text-xl">
+      {journalOpening.map((paragraph) => (
+        <p key={paragraph}>{paragraph}</p>
+      ))}
+    </div>
+
+    <nav aria-labelledby="glance-heading" className="mt-10 max-w-2xl">
+      <h2
+        className="font-mono text-xs tracking-[0.18em] uppercase"
+        id="glance-heading"
+      >
+        In this journal
+      </h2>
+      <ul className="border-shop-ink mt-3 border-b">
+        {[...tokyoVisits, kyotoVisit].map((visit) => (
+          <li className="border-shop-ink border-t" key={visit.id}>
+            <a
+              className="focus-visible:outline-shop-ink flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-3 hover:underline focus-visible:outline-3"
+              href={`#${visit.id}`}
+            >
+              <span className="font-serif text-xl">{visit.name}</span>
+              <span className="font-mono text-xs uppercase">
+                {visit.area} · {visit.order}
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
 
     <div className="mt-14 space-y-12">
       {tokyoVisits.map((visit, index) => (
@@ -151,6 +188,41 @@ const TokyoRestaurantsPage = () => (
       </h2>
       <div className="mt-10">
         <Visit label="Kyoto" visit={kyotoVisit} />
+      </div>
+    </section>
+
+    <section aria-labelledby="routine-heading" className="mt-24 max-w-3xl">
+      <h2
+        className="font-serif text-4xl tracking-tight sm:text-5xl"
+        id="routine-heading"
+      >
+        {routine.heading}
+      </h2>
+      <ol className="mt-6 list-decimal space-y-3 pl-6">
+        {routine.steps.map((step) => (
+          <li key={step}>{step}</li>
+        ))}
+      </ol>
+      <p className="mt-6">
+        <Link
+          className="font-semibold underline decoration-2 underline-offset-4"
+          href="/how-to-use-a-chef-card"
+        >
+          How to use a chef card, and what to do when the answer is no{" "}
+          <span aria-hidden="true">→</span>
+        </Link>
+      </p>
+    </section>
+
+    <section aria-labelledby="tokyo-faq-heading" className="mt-24">
+      <h2
+        className="font-serif text-4xl tracking-tight sm:text-5xl"
+        id="tokyo-faq-heading"
+      >
+        Eating in Tokyo with a peanut allergy: your questions
+      </h2>
+      <div className="mt-8">
+        <ShopFaq items={tokyoFaq} />
       </div>
     </section>
 
