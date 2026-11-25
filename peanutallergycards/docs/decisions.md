@@ -32,6 +32,7 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
   check that PostHog's numbers are right.
 
 ---
+
 ## 2026-11-25: The Tokyo page is a journal, written from the photos
 
 - Owner: the page was too thin, should read like a personal journal, and
@@ -54,6 +55,8 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
   know, not length for its own sake. More real detail from the owners (what
   the staff did with the card, a place that said no) would help more than
   anything else on this page.
+
+---
 
 ## 2026-11-25: hello@peanutallergycards.com forwards to the owner
 
