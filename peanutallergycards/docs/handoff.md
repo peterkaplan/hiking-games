@@ -114,8 +114,9 @@ Needs the owner:
    guide, and the Apple Wallet pass (needs an Apple Developer account).
 5. **Julia** to approve or rewrite her note in `src/content/story.ts`
    (`approvedByJulia`), and a real photo of her.
-6. Shipping prices and countries, the `hello@peanutallergycards.com`
-   mailbox, a service to send newsletters from (sign-ups are saved; see
+6. Shipping prices and countries, a way to reply as
+   `hello@peanutallergycards.com` (mail to it is forwarded to the owner;
+   replies come from their personal address), a service to send newsletters from (sign-ups are saved; see
    "Hosting"), real
    prices (the $8 and $18 are placeholders), and real reviews.
 

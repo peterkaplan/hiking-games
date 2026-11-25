@@ -39,7 +39,7 @@ Tick items off as they're done; add new ones as they come up.
 - [x] Founder story: homepage teaser plus an "Our story" page (`/v2/our-story`), structured like the reference stores' story pages
 - [ ] Julia to approve or rewrite her note, then set `approvedByJulia: true` in `src/content/story.ts` (removes the draft tag); confirm the other details marked "to confirm" there
 - [ ] Write the local peanut guide for each country (promised on the store; see `docs/content-to-make.md` #8)
-- [ ] Before going live: set up the hello@peanutallergycards.com mailbox and connect the email sign-up form (it currently saves nothing)
+- [x] The hello@peanutallergycards.com address and the email sign-up form both work (form 2026-11-23, address 2026-11-25)
 - [ ] Make the chef card's kitchen lines per-country (they are shared and Thailand-specific today), then write Japan's for Japanese kitchens
 - [ ] Connect checkout (Shopify or Stripe) to the cart; it must refuse any country where `isReady()` is false
 - [ ] Confirm the language for each catalogue country before writing its cards (`src/content/catalogue.ts`)
@@ -78,7 +78,8 @@ Tick items off as they're done; add new ones as they come up.
 - [ ] Mailing list: owner to set the `ADMIN_PASSWORD` secret in Cloudflare (the list page is locked until then)
 - [x] Privacy page, with a form to take yourself off the mailing list (2026-11-23)
 - [ ] Privacy page: have it checked, and update it when checkout (Stripe) is added
-- [ ] The `hello@peanutallergycards.com` mailbox doesn't exist yet, and the FAQ and privacy page tell people to write to it
+- [x] `hello@peanutallergycards.com` forwards to the owner's inbox (Cloudflare Email Routing, 2026-11-25)
+- [ ] Replies to customers still come from the owner's personal address: set up "send mail as" hello@ when it matters
 - [ ] Mailing list: choose a service to send from (import the CSV); it must handle unsubscribes
 - [x] Analytics: Cloudflare Web Analytics (no cookies)
 - [ ] Launch, and post in relevant Reddit communities (e.g. Japan travel, food allergies)

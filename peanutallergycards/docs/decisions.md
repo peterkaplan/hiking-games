@@ -4,6 +4,21 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ---
 
+## 2026-11-25: hello@peanutallergycards.com forwards to the owner
+
+- Mail to `hello@peanutallergycards.com` is forwarded to the owner's
+  personal inbox with Cloudflare Email Routing (free). The FAQ, privacy,
+  terms and shipping pages all tell people to write to that address.
+- Only `hello@` is forwarded. Mail to any other address at the domain is
+  rejected, which keeps junk out.
+- It receives only. A reply goes out from the owner's personal address
+  until "send mail as" is set up with a sending service.
+- Cloudflare added the mail records to the domain (three MX, SPF, DKIM)
+  and manages them. Revisit if we move to a real mailbox (Google
+  Workspace, Fastmail): turn Email Routing off first, then add theirs.
+
+---
+
 ## 2026-11-25: Homepage speed: lighter photos; what the score is made of
 
 - Measured the homepage with Lighthouse eight times here and twice on the
