@@ -192,8 +192,12 @@ Unanswered questions to the owner:
 - Buying signals: `/admin/events` lists every add-to-cart and Checkout
   press (same password as the mailing list). The live site is built with
   `NEXT_PUBLIC_SITE_LIVE=on` since 2026-11-25: keep it on for every deploy.
-- Last deployed 2026-11-25 (search switch on, buying signals, lighter
-  photos, terms, shipping, comparison and chef-card pages). Tips for the
+- Last deployed 2026-11-25, three times; the latest added PostHog, the
+  Tokyo journal and the Bing verification file (earlier that day: search
+  switch on, buying signals, lighter photos, terms, shipping, comparison
+  and chef-card pages). An upload session's token lasts an hour: if it
+  expires, ask for a new session with the same file list; nothing needs
+  uploading twice. Tips for the
   next hand deploy: the Cloudflare connector's code sandbox can't fetch
   files, so the file list has to be typed into it; give each file a 32-hex
   hash, upload with `curl` using the token the session returns, and have

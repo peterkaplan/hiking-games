@@ -23,14 +23,20 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 - Switched off in code: session recordings, surveys, chat, product tours,
   feature flags, and fetching extra scripts from PostHog. Recordings would
   need the privacy page rewritten first.
-- The script is large (about 120 KB compressed). Fetched as soon as the
-  page was idle, it took the homepage's lab speed score from 91 to 95 down
-  to about 86. So it now starts when the visitor first taps, scrolls or
-  moves the pointer, or five seconds after the page has loaded. The cost:
-  someone who leaves within five seconds without touching the page is not
-  in PostHog (Cloudflare Web Analytics still counts them), so PostHog's
-  page views will read a little lower than Cloudflare's. PostHog's smaller
-  "slim" build was tried and is no lighter once click tracking is added.
+- The script is large (about 120 KB compressed), so it stays out of the
+  page load: it starts when the visitor first taps, scrolls or moves the
+  pointer, or five seconds after the page has loaded. Lighthouse confirms
+  the script is not fetched during its test. The cost: someone who leaves
+  within five seconds without touching the page is not in PostHog
+  (Cloudflare Web Analytics still counts them), so PostHog's page views
+  will read a little lower than Cloudflare's. PostHog's smaller "slim"
+  build was tried and is no lighter once click tracking is added.
+- What the speed test showed, honestly: with PostHog fetched at idle, two
+  homepage runs scored 71 and 86; with the late start, three runs scored
+  83, 88 and 89. The test machine was noisy that day (the page had scored
+  91 to 95 the day before), so this shows no measurable cost from PostHog
+  now, not a precise gain. Re-measure on a quiet machine before blaming or
+  crediting anything.
 - Set up by hand, not with PostHog's wizard: the wizard needs a browser
   sign-in, which the coding session didn't have, and by hand we could keep
   it cookieless and loaded late.
