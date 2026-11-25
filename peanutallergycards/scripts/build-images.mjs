@@ -24,10 +24,16 @@ const SOURCE_DIR = "src/images";
 const OUTPUT_DIR = "public/img";
 const MANIFEST = "src/images/variants.json";
 /** Keep in step with deviceSizes and imageSizes in next.config.ts. */
-const WIDTHS = [320, 480, 800, 1200];
+const WIDTHS = [320, 480, 720, 800, 1200];
 const WEBP_QUALITY = 75;
-/** Looks the same as WebP at 75, in fewer bytes. */
-const AVIF_QUALITY = 50;
+/**
+ * Looks the same as WebP at 75, in about half the bytes. 42 was chosen by
+ * eye on the homepage's ramen photo, zoomed in on the card's small print:
+ * no visible difference from 50, and a third smaller.
+ */
+const AVIF_QUALITY = 42;
+/** Part of every file name, so changing a setting gives the files new names. */
+const SETTINGS = `avif${AVIF_QUALITY}-webp${WEBP_QUALITY}`;
 const HASH_LENGTH = 10;
 
 const wanted = new Set();
@@ -48,6 +54,7 @@ const buildOne = async (file) => {
   const source = await readFile(join(SOURCE_DIR, file));
   const hash = createHash("sha256")
     .update(source)
+    .update(SETTINGS)
     .digest("hex")
     .slice(0, HASH_LENGTH);
   const { width: fullWidth } = await sharp(source).metadata();

@@ -114,7 +114,9 @@ const Hero = () => (
         alt="A bowl of ramen on a restaurant counter in Japan, with a laminated Japanese peanut allergy card beside it"
         className="border-shop-ink aspect-square w-full rounded-[28px] border-2 object-cover object-top sm:aspect-[4/3] lg:aspect-[4/5]"
         priority
-        sizes="(min-width: 1024px) 50vw, 100vw"
+        // The photo sits inside the page's side padding, so say so: phones
+        // then pick a smaller file.
+        sizes="(min-width: 1024px) 50vw, calc(100vw - 2rem)"
         src={ramenWithCard}
       />
       <Sticker className="text-shop-highlight absolute -top-8 -left-2 z-10 size-32 rotate-[-10deg] sm:-top-8 sm:-left-10">

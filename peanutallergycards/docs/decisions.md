@@ -4,6 +4,28 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ---
 
+## 2026-11-25: Homepage speed: lighter photos; what the score is made of
+
+- Measured the homepage with Lighthouse eight times here and twice on the
+  live site. It scores 91 to 95. An earlier 79 was this test machine being
+  busy (the "blocking time" figure swung from 40 ms to 880 ms between
+  identical runs).
+- The one steady weak number is how long the main photo takes to show in
+  the simulated slow-phone test: about 3.1 s, against 1.1 s on product
+  pages, whose biggest element is text.
+- Photos are now smaller: AVIF quality 50 to 42 (no visible difference on
+  the ramen photo zoomed in on the card's small print), a new 720-pixel
+  size, and the hero's `sizes` now allows for the page's side padding. The
+  hero went from 89 KB to 51 KB on the test phone, and all photos together
+  from about 13 MB to 9 MB. Compression settings are now part of each file
+  name, so browsers never keep an old copy under a new name.
+- The simulated number did not move, which confirms the note of 2026-11-23:
+  it is set by Next.js's own scripts (about 160 KB) and the three fonts
+  (73 KB) sharing the slow connection, not by the photo. Real visitors
+  still get the photo sooner.
+- Not done: dropping a font or replacing the framework. Neither is worth it
+  for two or three points.
+
 ## 2026-11-25: Switched on for search engines; buying signals recorded
 
 - The live site is now built with `NEXT_PUBLIC_SITE_LIVE=on` (owner's call).

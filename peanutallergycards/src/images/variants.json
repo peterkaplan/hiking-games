@@ -1,50 +1,55 @@
 {
   "chef-reads": {
-    "hash": "c77b636c77",
+    "hash": "9659d40e03",
     "widths": [
       320,
       480,
+      720,
       800
     ]
   },
   "dig-in": {
-    "hash": "db717787d8",
+    "hash": "4618f9cb67",
     "widths": [
       320,
       480,
+      720,
       800,
       1000
     ]
   },
   "empty-plate-shell": {
-    "hash": "025f0386c1",
+    "hash": "7830813956",
     "widths": [
       320,
       480,
+      720,
       800,
       1200,
       1400
     ]
   },
   "evicted": {
-    "hash": "8b3f47f5bf",
+    "hash": "2eba65c597",
     "widths": [
       320,
       480,
+      720,
       800,
       900
     ]
   },
   "hand-over": {
-    "hash": "790b28c3ba",
+    "hash": "270e8e98f7",
     "widths": [
       320,
       480,
+      720,
       800
     ]
   },
   "hiding-lettuce": {
-    "hash": "0322e0dc52",
+    "hash": "22fcb9b542",
     "widths": [
       320,
       480,
@@ -52,7 +57,7 @@
     ]
   },
   "hiding-pad-thai": {
-    "hash": "e183275b7e",
+    "hash": "81ad0bddcf",
     "widths": [
       320,
       480,
@@ -60,7 +65,7 @@
     ]
   },
   "hiding-satay": {
-    "hash": "b490d0a0e5",
+    "hash": "97cce50f1c",
     "widths": [
       320,
       480,
@@ -68,154 +73,170 @@
     ]
   },
   "kyoto-seishuan": {
-    "hash": "b4ac89af69",
+    "hash": "54bbf3403e",
     "widths": [
       320,
       480,
+      720,
       800,
       1200,
       1400
     ]
   },
   "left-behind": {
-    "hash": "e43e042714",
+    "hash": "ba7adc745c",
     "widths": [
       320,
       480,
+      720,
       800,
       1000
     ]
   },
   "mortar": {
-    "hash": "54c68b6fd9",
+    "hash": "d57a9e172f",
     "widths": [
       320,
       480,
+      720,
       800,
       900
     ]
   },
   "not-on-the-list": {
-    "hash": "f924fa5669",
+    "hash": "35382766e7",
     "widths": [
       320,
       480,
+      720,
       800,
       1000
     ]
   },
   "packed": {
-    "hash": "4c07774979",
+    "hash": "3715853902",
     "widths": [
       320,
       480,
+      720,
       800,
       1200,
       1400
     ]
   },
   "peanut-lineup": {
-    "hash": "1201345a53",
+    "hash": "be6d20ea7b",
     "widths": [
       320,
       480,
+      720,
       800,
       1200,
       1400
     ]
   },
   "ramen-counter": {
-    "hash": "6492efc2b0",
+    "hash": "b9cb43234b",
     "widths": [
       320,
       480,
+      720,
       800,
       1200,
       1400
     ]
   },
   "ramen-with-card": {
-    "hash": "9501f9d412",
+    "hash": "f8eb5f5428",
     "widths": [
       320,
       480,
+      720,
       800,
       1120
     ]
   },
   "security-tray": {
-    "hash": "b2d83a66bf",
+    "hash": "8ceecca455",
     "widths": [
       320,
       480,
+      720,
       800,
       1200,
       1400
     ]
   },
   "tokyo-gyu-kaku": {
-    "hash": "1c3e4776a9",
+    "hash": "b22362360b",
     "widths": [
       320,
       480,
+      720,
       800,
       1200,
       1400
     ]
   },
   "tokyo-kyushu-jangara": {
-    "hash": "4c0e87813f",
+    "hash": "9e9c7452e1",
     "widths": [
       320,
       480,
+      720,
       800,
       1200,
       1400
     ]
   },
   "tokyo-pizza-kevelos": {
-    "hash": "f359dcc7c5",
+    "hash": "d82b693b9c",
     "widths": [
       320,
       480,
+      720,
       800,
       1200,
       1400
     ]
   },
   "tokyo-sukiya": {
-    "hash": "5a8ca18275",
+    "hash": "c976183a52",
     "widths": [
       320,
       480,
+      720,
       800,
       1200,
       1400
     ]
   },
   "under-glass": {
-    "hash": "780312c01a",
+    "hash": "162b4d5099",
     "widths": [
       320,
       480,
+      720,
       800
     ]
   },
   "velvet-rope": {
-    "hash": "2336a3d0d8",
+    "hash": "abdc73e80a",
     "widths": [
       320,
       480,
+      720,
       800,
       1200,
       1400
     ]
   },
   "wok": {
-    "hash": "5adfc047be",
+    "hash": "363ea27b76",
     "widths": [
       320,
       480,
+      720,
       800,
       1200,
       1400
