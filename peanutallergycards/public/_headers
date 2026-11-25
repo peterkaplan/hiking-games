@@ -4,13 +4,14 @@
 # Every page and file: basic browser protections.
 # script-src and style-src need 'unsafe-inline' because Next.js writes the
 # page data into inline <script> tags. Add Stripe's hosts here when checkout
-# is built.
+# is built. The two posthog.com hosts are where PostHog sends events and
+# reads its settings (src/content/analytics.ts).
 /*
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), browsing-topics=()
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://cloudflareinsights.com https://us.i.posthog.com https://us-assets.i.posthog.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
 
 # Files whose names contain a hash of their contents never change, so
 # browsers may keep them for a year.

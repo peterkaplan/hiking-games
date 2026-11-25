@@ -2,6 +2,7 @@
 
 import type { FormEvent } from "react";
 import { useCallback, useId, useState } from "react";
+import { capture } from "@/components/posthog";
 
 type Status = "idle" | "sending" | "done" | "error";
 
@@ -30,6 +31,10 @@ export const NewsletterForm = () => {
           }),
         });
         setStatus(response.ok ? "done" : "error");
+        if (response.ok) {
+          // That someone signed up, never the address.
+          capture("newsletter_signup");
+        }
       } catch {
         setStatus("error");
       }
@@ -51,7 +56,7 @@ export const NewsletterForm = () => {
   return (
     <div>
       <form
-        className="border-shop-on-band flex items-center gap-3 border-b-2 pb-3"
+        className="border-shop-on-band ph-no-capture flex items-center gap-3 border-b-2 pb-3"
         onSubmit={handleSubmit}
       >
         <label className="sr-only" htmlFor={inputId}>

@@ -2,6 +2,7 @@
 
 import type { FormEvent } from "react";
 import { useCallback, useId, useState } from "react";
+import { capture } from "@/components/posthog";
 
 type Status = "idle" | "sending" | "done" | "error";
 
@@ -26,6 +27,9 @@ export const UnsubscribeForm = () => {
           body: JSON.stringify({ email: fields.get("email") }),
         });
         setStatus(response.ok ? "done" : "error");
+        if (response.ok) {
+          capture("newsletter_unsubscribe");
+        }
       } catch {
         setStatus("error");
       }
@@ -47,7 +51,7 @@ export const UnsubscribeForm = () => {
   return (
     <div>
       <form
-        className="flex flex-col gap-3 sm:flex-row sm:items-end"
+        className="ph-no-capture flex flex-col gap-3 sm:flex-row sm:items-end"
         onSubmit={handleSubmit}
       >
         <div className="min-w-0 flex-1">

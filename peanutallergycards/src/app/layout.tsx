@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import { ProductAnalytics } from "@/components/product-analytics";
 import { WebAnalytics } from "@/components/web-analytics";
 import { pageMetadata, SITE_NAME, SITE_URL } from "@/content/seo";
 import "./globals.css";
@@ -33,6 +34,7 @@ const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => (
     <body className="antialiased">
       {children}
       <WebAnalytics />
+      <ProductAnalytics />
     </body>
   </html>
 );

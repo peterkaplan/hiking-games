@@ -82,6 +82,9 @@ Tick items off as they're done; add new ones as they come up.
 - [ ] Replies to customers still come from the owner's personal address: set up "send mail as" hello@ when it matters
 - [ ] Mailing list: choose a service to send from (import the CSV); it must handle unsubscribes
 - [x] Analytics: Cloudflare Web Analytics (no cookies)
+- [x] PostHog for how the shop is used: page views, clicks and shop events, no cookies (2026-11-25)
+- [ ] PostHog: owner to switch on "cookieless server hash mode" in the project settings (events are thrown away until then) and, ideally, "discard client IP data"
+- [ ] PostHog: build a funnel (product page, add to cart, Checkout press) and a dashboard once a week of data is in
 - [ ] Launch, and post in relevant Reddit communities (e.g. Japan travel, food allergies)
 
 ## Phase 2: More destinations and the paid card

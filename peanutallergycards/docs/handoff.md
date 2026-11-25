@@ -95,6 +95,8 @@ These came up repeatedly and are easy to get wrong.
 | `NEXT_PUBLIC_SITE_LIVE=on`       | Let search engines in                                                      |
 | `NEXT_PUBLIC_ASSET_BASE=""`      | Only for the relocatable preview build (below)                             |
 | `NEXT_PUBLIC_CF_ANALYTICS_TOKEN` | Web Analytics token for the address being built; empty turns counting off  |
+| `NEXT_PUBLIC_POSTHOG_KEY`        | PostHog project key for the build; empty turns PostHog off                 |
+| `NEXT_PUBLIC_POSTHOG_HOST`       | PostHog region; the project is in the US one (the default)                 |
 
 ## Open items, in rough order
 
@@ -173,6 +175,12 @@ Unanswered questions to the owner:
   addresses are redirected in `public/_redirects`, which a hand deploy must
   pass as `assets.config._redirects`, like `_headers`.
 - Headers (caching, security) are in `public/_headers`.
+- How the shop is used: PostHog (us.posthog.com, project 766203). Page
+  views and clicks are automatic; the named shop events are listed in
+  `src/components/posthog.ts`. It runs with no cookies, which only works
+  while "cookieless server hash mode" is on in the PostHog project's
+  settings: if events stop arriving, check that first. The key and region
+  are in `src/content/analytics.ts`; the hosts are also in `public/_headers`.
 - Visitor numbers: Cloudflare dashboard, Analytics & Logs, Web Analytics.
   The snippet is `src/components/web-analytics.tsx`.
 - Alerts (Cloudflare dashboard, Notifications): spend of $1 or more, spend of
