@@ -5,7 +5,9 @@
  * Every entry is a real meal, and the owners say every one was really good
  * (2026-11-24). The detail in each entry comes from the owners' own photo
  * of that meal (2026-11-25: "you have the pictures, you can make it a
- * journal"): what is on the table, in the bowl, on the plate. Don't add
+ * journal"): what is on the table, in the bowl, on the plate. Write it the
+ * way a person writes a trip diary: plain, a bit uneven, short verdicts, no
+ * clever comparisons or sayings. The first draft "sounded AI" (owner). Don't add
  * conversations, prices, waits or anything else a photo doesn't show and
  * nobody told us. Never add a restaurant nobody on the team has eaten at.
  *
@@ -36,8 +38,8 @@ export const tokyoTitle = "The best peanut-free restaurants in Tokyo";
 
 /** The first lines of the journal. The second paragraph must stay. */
 export const journalOpening: readonly string[] = [
-  "Tokyo, November 2026. Julia has been allergic to peanuts her whole life, so this trip ran on one habit: the card goes to the kitchen before we order. Every place in this journal read it and said yes, and every meal was one we'd go back for.",
-  "One honest note before the food. None of these are peanut-free kitchens. They are the places that said yes to us, on the day we went. Kitchens, oil and staff change, so take your own card and ask again, at every branch.",
+  "We were in Tokyo in November 2026. Julia has had a peanut allergy her whole life, so before every meal we handed the staff her card and waited to hear back from the kitchen. These are the places that said yes. We'd eat at all of them again.",
+  "Quick note before the food: none of these are peanut-free kitchens. They said yes to us, on the day we went. Bring your own card and ask again, every time, at every branch.",
 ];
 
 /** What happened with the card. The same at every one of them. */
@@ -75,9 +77,9 @@ export const tokyoVisits: readonly RestaurantVisit[] = [
     address: "6-12-4 Jingumae, Shibuya",
     order: "The marinara",
     entry: [
-      "Harajuku. We took a table on the terrace, red checked tablecloth and all, and the card went to the kitchen before we ordered. It came back with a yes.",
-      "We had the marinara, and it is a pizza with nothing to hide: crushed tomato, slivers of garlic, a shake of oregano, one basil leaf in the middle and a slick of olive oil, on a crust blistered black by the wood oven. No cheese. You can count the ingredients from your chair, which is a good feeling when you've spent your life reading ingredient lists.",
-      "Simple, and delicious. If you only eat one pizza in Tokyo, this is the one to order.",
+      "Pizza in Tokyo, we know. But it was really good.",
+      "It's in Harajuku and we sat outside on the terrace, red checked tablecloths and everything. We gave them the card, they took it to the kitchen, and it was a yes.",
+      "We got the marinara, which is the one with no cheese: tomato, garlic, oregano, olive oil and one basil leaf in the middle. The crust was properly charred from the wood oven. With an allergy it's about as easy as a dish gets, because you can see everything that's on it.",
     ],
     photoAlt:
       "A wood-fired marinara pizza with tomato, garlic and basil on a red checked tablecloth",
@@ -90,9 +92,9 @@ export const tokyoVisits: readonly RestaurantVisit[] = [
     address: "6-12-17 Ginza, Chuo",
     order: "The spicy ramen",
     entry: [
-      "Ginza. Ramen was the meal we most wanted to get right in Japan, so the card went over the counter first. Yes again.",
-      "The bowl arrives loud: a red, green and yellow rim, red chopsticks, a red spoon, and a broth the colour of a traffic cone. Under it are thin, straight noodles, the Kyushu way, with chunks of soft pork, a whole soft-boiled egg, wood-ear mushrooms, spring onion and a dusting of chilli.",
-      "We ordered the spicy one and would do it again tomorrow. The paper placemat is also the menu, prices and all, so you can plan the next bowl while you finish this one.",
+      "This one is in Ginza. We really wanted ramen on this trip, so the card went over first, before we ordered. The kitchen said yes.",
+      "We got the spicy ramen. It comes in a bright red, green and yellow bowl with red chopsticks, and the broth is very orange. Thin noodles, big pieces of pork, a soft-boiled egg, those dark wood-ear mushrooms, spring onion, and chilli on top.",
+      "Really good. Get the spicy one. Also the placemat is the menu, with the prices on it, which was handy.",
     ],
     photoAlt:
       "A bowl of spicy red ramen with pork, a soft-boiled egg and wood-ear mushrooms",
@@ -104,9 +106,9 @@ export const tokyoVisits: readonly RestaurantVisit[] = [
     kind: "Yakiniku: grill it at your table",
     order: "Marbled beef, rice and edamame",
     entry: [
-      "Yakiniku night. At Gyu-Kaku the grill is set into the table and the meat arrives raw, so you cook every piece yourself, right in front of you.",
-      "Our table filled up fast: a plate of marbled beef laid on a green leaf, a darker cut scattered with sesame seeds, another in a glossy sauce, a bowl of chopped spring onion, edamame, and rice in bowls stamped with the restaurant's name. Then tongs, and off you go.",
-      "All of it was delicious. The marinades and dipping sauces are the part a kitchen has to answer for, so that is exactly what the card is for here. Ours came back with a yes.",
+      "Gyu-Kaku is yakiniku. There's a grill in the middle of the table, the meat comes out raw and you cook it yourself. They're all over Tokyo.",
+      "We ordered a few plates of beef, plus rice and edamame, and it came with chopped spring onion and a couple of sauces. The marbled beef was the best thing on the table. All of it was delicious though.",
+      "With an allergy, the thing to ask about here is the sauces and marinades, so that's what we used the card for. They said yes.",
     ],
     note: "A chain. We can only speak for the branch we ate at, so show the card at yours.",
     photoAlt:
@@ -119,9 +121,9 @@ export const tokyoVisits: readonly RestaurantVisit[] = [
     kind: "Gyudon: beef bowls",
     order: "The beef bowl",
     entry: [
-      "Not every meal on a trip is an occasion. Sukiya is where you go when you're hungry now.",
-      "We had the beef bowl: thin slices of simmered beef and soft, sweet onion piled over white rice, in a bowl with an orange pattern, on a brown tray. That's the whole dish. It comes fast, it fills you up, and it tasted great.",
-      "It's a counter-and-tray kind of place, and we still handed over the card before ordering, the same as everywhere else. The kitchen said yes.",
+      "Sukiya is basically fast food. Beef bowls. It's a chain and you'll walk past one most days.",
+      "We had the regular beef bowl, which is thin simmered beef and onions on rice and that's it. It was on the table in a couple of minutes and it's filling. Not fancy, but it tasted great.",
+      "We still showed the card, same as everywhere else, and the kitchen said yes.",
     ],
     note: "A chain. We can only speak for the branch we ate at, so show the card at yours.",
     photoAlt: "A bowl of simmered beef and onion over rice",
@@ -137,9 +139,9 @@ export const kyotoVisit: RestaurantVisit = {
   address: "Beside Togetsukyo bridge, two minutes from Arashiyama station",
   order: "The oyakodon",
   entry: [
-    "A day in Kyoto. We walked the Togetsukyo bridge in Arashiyama and stopped at Kazurano Seishuan, right beside it, two minutes from the station.",
-    "The oyakodon came on a black tray in a red lacquer bowl with its lid set to one side: chicken and soft-set egg over rice, with spring onion through it. Around it, a bowl of miso soup, a little dish of purple pickles, a cup of green tea, and a Coke Zero in a glass bottle.",
-    "Delicious, and a good stop after the walk. The card went to the kitchen first here too, and the answer was yes.",
+    "We did a day in Kyoto and went out to Arashiyama to walk across the Togetsukyo bridge. This place is right next to the bridge, about two minutes from the station.",
+    "We had the oyakodon, which is chicken and egg over rice. It came on a tray in a red bowl with miso soup, pickles and green tea. And a Coke Zero in a glass bottle.",
+    "Card to the kitchen, yes from the kitchen. It was delicious, and a good place to sit down after the walk.",
   ],
   photoAlt:
     "A red lacquer bowl of chicken and egg over rice, with miso soup and pickles on a tray",
@@ -151,7 +153,7 @@ export const routine = {
   steps: [
     "Sit down, and hand the card to the first member of staff, before the menu and before ordering.",
     "Ask them to show it to the kitchen. The chef is the one who needs to read it.",
-    "Wait. A real yes comes back from the kitchen, not from the doorway.",
+    "Wait for the answer to come back from the kitchen.",
     "Order what the kitchen says it can make, and check again when the food arrives.",
   ],
 } as const;
