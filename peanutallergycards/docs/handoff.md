@@ -181,6 +181,15 @@ Unanswered questions to the owner:
 - Buying signals: `/admin/events` lists every add-to-cart and Checkout
   press (same password as the mailing list). The live site is built with
   `NEXT_PUBLIC_SITE_LIVE=on` since 2026-11-25: keep it on for every deploy.
+- Last deployed 2026-11-25 (search switch on, buying signals, lighter
+  photos, terms, shipping, comparison and chef-card pages). Tips for the
+  next hand deploy: the Cloudflare connector's code sandbox can't fetch
+  files, so the file list has to be typed into it; give each file a 32-hex
+  hash, upload with `curl` using the token the session returns, and have
+  the sandbox check a SHA-256 of the Worker code before the final `PUT`.
+- `ADMIN_PASSWORD` has never been set on the Worker, so `/admin/subscribers`
+  and `/admin/events` answer "locked" until the owner adds it (Cloudflare
+  dashboard, the Worker, Settings, Variables and Secrets).
 - Not set up: an uptime check. Logs exist only for the mailing-list
   requests (Cloudflare dashboard, the Worker's Logs tab); page views are in
   Web Analytics.
