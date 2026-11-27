@@ -51,10 +51,11 @@ import peanutLineup from "@/images/peanut-lineup.webp";
 import ramenWithCard from "@/images/ramen-with-card.webp";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Peanut Allergy Cards for Restaurants Abroad: Japanese & Thai",
+  // The words Google shows. "Translation cards" is what people search for.
+  title: "Peanut Allergy Translation Cards for Japan & Thailand",
   titleIsComplete: true,
   description:
-    "Peanut allergy cards for eating in restaurants abroad. Hand the card to your waiter, get a clear yes or no from the kitchen, and eat with confidence.",
+    "Hand the chef a card in Japanese or Thai and get a clear yes or no. Comes with an emergency card. Laminated for your wallet, or digital for your phone.",
   path: "/",
   shareTitle: "Eat in restaurants abroad with confidence",
   shareDescription:
