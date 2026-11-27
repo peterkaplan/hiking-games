@@ -32,7 +32,7 @@ export const faqItems: readonly FaqItem[] = [
     question: "Who translates the cards?",
     productOnly: true,
     answer:
-      "Native speakers check every card, word by word. English is on the back, so you always know what you're showing.",
+      "A native speaker checks every card word by word before it goes on sale. English is on the back, so you always know what you're showing.",
   },
   {
     question: "Laminated or digital?",

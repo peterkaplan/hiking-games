@@ -52,10 +52,10 @@ import ramenWithCard from "@/images/ramen-with-card.webp";
 
 export const metadata: Metadata = pageMetadata({
   // The words Google shows. "Translation cards" is what people search for.
-  title: "Peanut Allergy Translation Cards for Japan & Thailand",
+  title: "Peanut Allergy Translation Cards for Restaurants Abroad",
   titleIsComplete: true,
   description:
-    "Hand the chef a card in Japanese or Thai and get a clear yes or no. Comes with an emergency card. Laminated for your wallet, or digital for your phone.",
+    "Hand the chef a card in their own language and get a clear yes or no. Comes with an emergency card. Laminated for your wallet, or digital for your phone.",
   path: "/",
   shareTitle: "Eat in restaurants abroad with confidence",
   shareDescription:

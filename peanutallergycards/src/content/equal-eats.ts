@@ -132,7 +132,7 @@ export const compareRows: readonly CompareRow[] = [
   },
   {
     feature: "Translation checks",
-    us: "Every card checked by a native speaker",
+    us: "A native speaker checks every card before it goes on sale",
     equalEats: "Translator, proofreader, then a native-speaker review",
     edge: "tie",
   },

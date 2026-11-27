@@ -4,6 +4,24 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
 
 ---
 
+## 2026-11-27: Say "checked before we sell it", not "every card checked"
+
+- The site said "Every card checked by a native speaker" on every page,
+  while both the Japanese and Thai cards are still drafts with no named
+  reviewer. Launch preview shows the store as it will look on launch day,
+  but the site is now public and indexed, so the claim read as true today.
+- Changed to what is true now: a native speaker checks every card before
+  it goes on sale (the top bar, the product page's ticks and "How we check
+  translations", the FAQ, the comparison table and the Equal Eats page).
+  The terms already said this. Julia's note in `src/content/story.ts` is
+  left for her to approve.
+- Switch back to the present tense once each card is `reviewed`.
+- Same day: the homepage's search title and description were rewritten as
+  a sales pitch, without naming countries, since more are coming:
+  "Peanut Allergy Translation Cards for Restaurants Abroad".
+
+---
+
 ## 2026-11-25: PostHog cookies, with a banner only for the UK and Europe
 
 - Owner's call, the same day as the cookieless set-up below: use cookies,

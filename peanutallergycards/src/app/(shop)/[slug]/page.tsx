@@ -529,8 +529,8 @@ const ProductPage = async ({ params }: PageProps) => {
               epinephrine.
             </Accordion>
             <Accordion title="How we check translations">
-              Native speakers check every card, word by word, against the
-              English on the back.
+              Before a card goes on sale, a native speaker checks it word by
+              word against the English on the back.
             </Accordion>
           </div>
         </div>

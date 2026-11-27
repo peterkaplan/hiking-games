@@ -151,7 +151,7 @@ export const ShopBuyBox = ({
 
       <ul className="border-shop-ink mt-4 grid grid-cols-3 gap-3 border-y py-5 text-center text-sm">
         {[
-          "Checked by a native speaker",
+          "Native-speaker check before sale",
           "English on the back",
           "Works in Apple Wallet",
         ].map((item) => (
