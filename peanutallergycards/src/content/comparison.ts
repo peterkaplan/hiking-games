@@ -47,12 +47,6 @@ export const comparisonRows: readonly ComparisonRow[] = [
     translationApp: "no",
   },
   {
-    feature: "Native-speaker check before sale",
-    us: "yes",
-    freeCard: "no",
-    translationApp: "no",
-  },
-  {
     feature: "Local ambulance number on the card",
     us: "yes",
     freeCard: "no",

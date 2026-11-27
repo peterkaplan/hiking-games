@@ -11,8 +11,10 @@ Newest first. Each entry: what we decided, why, and what would make us revisit i
   reviewer. Launch preview shows the store as it will look on launch day,
   but the site is now public and indexed, so the claim read as true today.
 - Changed to what is true now: a native speaker checks every card before
-  it goes on sale (the top bar, the product page's ticks and "How we check
-  translations", the FAQ, the comparison table and the Equal Eats page).
+  it goes on sale ("How we check translations", the FAQ and the Equal Eats
+  page). Where that read badly in a few words (the top bar, the ticks under
+  Add to cart) the claim was replaced with "Free US shipping" (owner: the
+  hedged version was bad copy), and the comparison table lost the row.
   The terms already said this. Julia's note in `src/content/story.ts` is
   left for her to approve.
 - Switch back to the present tense once each card is `reviewed`.

@@ -25,7 +25,7 @@ export const AnnouncementBar = () => (
       </span>
       <span className="hidden sm:inline">
         Trip pack: {maxSavingCountries} countries, save {maxSaving}% · Instant
-        download · Checked by a native speaker before we sell it
+        download · Free US shipping
       </span>
     </p>
   </aside>
